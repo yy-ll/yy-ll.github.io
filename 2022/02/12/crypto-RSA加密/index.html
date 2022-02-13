@@ -148,33 +148,41 @@ MathJax = {
 <p>其中：</p>
 <p><strong>对称加密算法</strong>指：B和A使用同一规则对信息加解密，但在保存、传递密钥存在安全性问题。</p>
 <p><strong>非对称加密算法</strong>（公钥算法）指：由A方生成公钥和私钥，公钥公开，B获取后用其对信息加密；私钥则保密（公钥加密的信息仅私钥解得开），在A得到密文后用便其解密。</p>
-<h1 id="2-RSA加密"><a href="#2-RSA加密" class="headerlink" title="2.RSA加密"></a>2.RSA加密</h1><p>​                                      - - 对极大整数做因数分解的难度决定了RSA的可靠性</p>
+<h1 id="2-RSA加密"><a href="#2-RSA加密" class="headerlink" title="2.RSA加密"></a>2.RSA加密</h1><p>​                                           - - 对极大整数做因数分解的难度决定了RSA的可靠性</p>
 <h2 id="2-1数论知识"><a href="#2-1数论知识" class="headerlink" title="2.1数论知识"></a>2.1数论知识</h2><p>1.<strong>互质关系</strong>（互素关系）&lt;– 质数（素数） </p>
 <p>两个正整数，除1外无其他公因子，则为互质关系。</p>
 <p>2.<strong>欧拉函数</strong>φ(n)</p>
 <p>正整数n在小于n的正整数中与n构成互质关系的个数称为欧拉函数。</p>
 <p>3.<strong>欧拉定理</strong>Euler Theore – RSA核心</p>
 <p>​                                           – 费马小定理Fermat的推广（对   质数p，a^（p-1）≡1（mod p））</p>
-<p>（a,n）&#x3D;1，则a^φ（n）≡1（mod n）</p>
+<div align="center">（a,n）=1，则a^φ（n）≡1（mod n）</div>
+
 <p>4.<strong>逆元</strong>（模反元素）</p>
-<p>aa’ ≡1（mod n），（a，n）&#x3D;1</p>
+<div align="center">aa’ ≡1（mod n），（a，n）=1</div>
+
 <p>5.<strong>单向函数</strong>–公钥加密算法的核心原理，使得公钥加密、私钥解密成为现实</p>
 <p>在这之中，单向函数只使得加密变容易，便有了“陷门”的概念：有一特殊的数值，使得单向函数进行解密变简单。故陷门可作为私钥进行解密。</p>
-<p>y&#x3D;f（x），x&#x3D;f^(-1)（y） 即x求y简单，但y求x困难的函数。</p>
+<div align="center">y=f（x），x=f^(-1)（y） 即x求y简单，但y求x困难的函数。</div>
+
 <h2 id="2-2RSA过程"><a href="#2-2RSA过程" class="headerlink" title="2.2RSA过程"></a>2.2RSA过程</h2><h3 id="2-2-1语言描述"><a href="#2-2-1语言描述" class="headerlink" title="2.2.1语言描述"></a>2.2.1语言描述</h3><p>A接收B的一条消息m，按照如下步骤产生公钥、私钥：</p>
 <p><strong>step1：</strong>A随机选取大质数p、q（p≠q）。【越大越难破解】</p>
 <p><strong>step2：</strong>计算n&#x3D;p<em>q和φ（n）&#x3D;φ（p）</em>φ（q）&#x3D;（p-1）*（q-1）。</p>
 <p>【N的二进制长度即密钥长度。在实际应用中，RSA密钥一般1024位，重要场合为2048位】</p>
 <p><strong>step3：</strong>任意选整数e，1＜e＜φ（N）且（e, φ（n））&#x3D;1，再求出e关于φ（n）的逆元，记为d。</p>
 <p>【e常取65537，e、d也称指数】</p>
-<p>​                                                                                  e*d≡1（mod φ（n））</p>
-<p>​                                                                                  e*d-1&#x3D;kφ（n）</p>
-<p>​                                                                                  e<em>x+φ（n）</em>y&#x3D;1    （-k&#x3D;y）</p>
+<div align="center">e*d≡1（mod φ（n））</div>
+
+<div align="center">   e*d-1=kφ（n）</div>
+
+  <div align="center">  e*x+φ（n）*y=1    （-k=y）</div>                                 
+
 <p>再用拓展欧几里得算法（辗转相除法）求e、φ（n）</p>
 <p><strong>step4：</strong>B用A的公钥对m加密，计算出c。</p>
-<p>​                                                                                 m^e≡c（mod n）</p>
+  <div align="center">m^e≡c（mod n）</div>                                                 
+
 <p><strong>step5：</strong>A收到c后，用私钥进行解密。</p>
-<p>​                                                                                 c^d≡m（mod n）</p>
+  <div align="center"> c^d≡m（mod n）</div>                                                
+
 <h3 id="2-2-2图示说明"><a href="#2-2-2图示说明" class="headerlink" title="2.2.2图示说明"></a>2.2.2图示说明</h3><p>整个过程即公钥加密、私钥解密</p>
 <p>区别：</p>
 <p><strong>RSA签名验签</strong>则私钥加密、公钥解密。用私钥将明文进行签名生成密文串与明文一起传输，双方收到数据后，使用公钥和密文串进行验签。</p>
@@ -186,7 +194,7 @@ MathJax = {
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2022/02/08/hello-world/" target="_self">
+              <a href="/2022/02/10/hello-world/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>Prev</span>
               </a>
