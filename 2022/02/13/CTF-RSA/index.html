@@ -11,6 +11,11 @@
   
   <title>
     
+      CTF-RSA 
+      
+      
+      |
+    
      Hexo
   </title>
 
@@ -100,56 +105,127 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="CTF-RSA">
-        <div class="time-m-d">2022-02-13</div>
-        <div class="title">
-          <a href="/2022/02/13/CTF-RSA/">
-            
-              
-                <span>CTF-RSA</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">CTF-RSA</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2022-02-13 17:45:38
+        </span>
+        
       </div>
-    
-      <div class="post-item" title="crypto--RSA加密">
-        <div class="time-m-d">2022-02-12</div>
-        <div class="title">
-          <a href="/2022/02/12/crypto-RSA%E5%8A%A0%E5%AF%86/">
-            
-              
-                <span>crypto--RSA加密</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <h1 id="1-部分题目类型"><a href="#1-部分题目类型" class="headerlink" title="1.部分题目类型"></a>1.部分题目类型</h1><p>1.公钥+密文</p>
+<p> 已知：公钥文件（以.pem或.key结尾的文件如pubkey.pem、pub.key）和密文（flag.enc）</p>
+<p>思路：分析公钥提取（n，e）–&gt; 解出私钥 –&gt; 解密密文得flag</p>
+<p>例题：xctf–Normal_RSA（buu-RSA）</p>
+<p>下载附件得到一个含有pubkey.pem和flag.enc文件的文件夹</p>
+<p>看到.pem即用openssl解开公钥n和e：</p>
+<p>step1：cmd</p>
+<p>step2：进入pubkey.pem所在文件夹</p>
+<p>step3：用openssl的rsa模块：openssl rsa -pubin -text -modulus -in pubkey.pem（顺序可变）</p>
+<p>得到的Exponent即为e；Modulus即n（十六进制）</p>
+<p>step4：进入python交互式shell将n转为十进制</p>
+<p><img src="/2022/02/13/CTF-RSA/1.PNG"></p>
+<p>step5：用factordb对n进行大数分解</p>
+<p>通过以上步骤得到p、q、n、e便可求d</p>
+<p>方法1：python脚本求解d</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> rsa</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line"></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">n = <span class="number">87924348264132406875276140514499937145050893665602592992418171647042491658461</span></span><br><span class="line">p = <span class="number">275127860351348928173285174381581152299</span></span><br><span class="line">q = <span class="number">319576316814478949870590164193048041239</span></span><br><span class="line">d = libnum.invmod(e,(p-<span class="number">1</span>)*(q-<span class="number">1</span>)) <span class="comment">#求逆元</span></span><br><span class="line"></span><br><span class="line">key = rsa.PrivateKey(n,e,d,p,q)  <span class="comment">#求私钥</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;flag.enc&quot;</span>,<span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f: <span class="comment">#以二进制读方式打开</span></span><br><span class="line">    f = f.read()</span><br><span class="line">    flag = rsa.decrypt(f,key).decode(<span class="string">&#x27;utf-8&#x27;</span>)   <span class="comment">#解码 若没有decode得到的flag为b&#x27;PCTF&#123;256b_i5_m3dium&#125;\n&#x27;</span></span><br><span class="line">    <span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+
+<p>方法2：利用rsatool求d，生成私钥文件</p>
+<p>step1：cmd</p>
+<p>step2：cd rsatool.py所在文件夹</p>
+<p>step3：输入rsatool.py -f PEM -o private.pem -p 275127860351348928173285174381581152299 -q 319576316814478949870590164193048041239 -e 65537便可得到私钥文件</p>
+<p><img src="/2022/02/13/CTF-RSA/2.PNG"></p>
+<p>step4：再用openssl解密（其解密RSA加密算法的模块是rsautl）先进入flag.enc等所在文件夹，再执行openssl rsautl -in flag.enc -inkey private.pem -out flag.txt -decrypt生成flag.txt文件</p>
+<p><img src="/2022/02/13/CTF-RSA/3.PNG"></p>
+<p>最后得到PCTF{256b_i5_m3dium}</p>
+<p>注：若openssl命令忘记可</p>
+<p><img src="/2022/02/13/CTF-RSA/5.PNG"></p>
+<p><img src="/2022/02/13/CTF-RSA/4.PNG"></p>
+
       </div>
-    
-      <div class="post-item" title="Hello World">
-        <div class="time-m-d">2022-02-10</div>
-        <div class="title">
-          <a href="/2022/02/10/hello-world/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>Hello World</span>
-              
+              <a href="/2022/02/12/crypto-RSA%E5%8A%A0%E5%AF%86/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2022-02-13 17:45:38
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E9%83%A8%E5%88%86%E9%A2%98%E7%9B%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">1.部分题目类型</span></a></li></ol>
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-    <span class="page-num">1 / 1</span>
-    
-  </nav>
-</div>
+
 
         <div class="footer">
   <div class="social">
@@ -436,6 +512,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + CTF-RSA + '&url=' + http%3A%2F%2Fyy-ll.github.io%2F2022%2F02%2F13%2FCTF-RSA%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://yy-ll.github.io/2022/02/13/CTF-RSA/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
