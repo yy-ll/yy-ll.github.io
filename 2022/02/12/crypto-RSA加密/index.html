@@ -142,14 +142,14 @@ MathJax = {
         
       </div>
       <div class="markdown-body">
-        <h1 id="密码学分类"><a href="#密码学分类" class="headerlink" title="密码学分类"></a>密码学分类</h1><img src="/.io//1.PNG" style="zoom: 67%;">
+        <h1 id="1-密码学分类"><a href="#1-密码学分类" class="headerlink" title="1.密码学分类"></a>1.密码学分类</h1><img src="/.io//1.PNG" style="zoom: 67%;">
 
 <p>以下所提到的A均为接收方，B均为发送方</p>
 <p>其中：</p>
 <p><strong>对称加密算法</strong>指：B和A使用同一规则对信息加解密，但在保存、传递密钥存在安全性问题。</p>
 <p><strong>非对称加密算法</strong>（公钥算法）指：由A方生成公钥和私钥，公钥公开，B获取后用其对信息加密；私钥则保密（公钥加密的信息仅私钥解得开），在A得到密文后用便其解密。</p>
-<h1 id="RSA加密"><a href="#RSA加密" class="headerlink" title="RSA加密"></a>RSA加密</h1><p>​                                    –对极大整数做因数分解的难度决定了RSA的可靠性</p>
-<h2 id="数论知识"><a href="#数论知识" class="headerlink" title="数论知识"></a>数论知识</h2><p>1.<strong>互质关系</strong>（互素关系）&lt;– 质数（素数） </p>
+<h1 id="2-RSA加密"><a href="#2-RSA加密" class="headerlink" title="2.RSA加密"></a>2.RSA加密</h1><p>​                                      - - 对极大整数做因数分解的难度决定了RSA的可靠性</p>
+<h2 id="2-1数论知识"><a href="#2-1数论知识" class="headerlink" title="2.1数论知识"></a>2.1数论知识</h2><p>1.<strong>互质关系</strong>（互素关系）&lt;– 质数（素数） </p>
 <p>两个正整数，除1外无其他公因子，则为互质关系。</p>
 <p>2.<strong>欧拉函数</strong>φ(n)</p>
 <p>正整数n在小于n的正整数中与n构成互质关系的个数称为欧拉函数。</p>
@@ -161,7 +161,7 @@ MathJax = {
 <p>5.<strong>单向函数</strong>–公钥加密算法的核心原理，使得公钥加密、私钥解密成为现实</p>
 <p>在这之中，单向函数只使得加密变容易，便有了“陷门”的概念：有一特殊的数值，使得单向函数进行解密变简单。故陷门可作为私钥进行解密。</p>
 <p>y&#x3D;f（x），x&#x3D;f^(-1)（y） 即x求y简单，但y求x困难的函数。</p>
-<h2 id="RSA过程"><a href="#RSA过程" class="headerlink" title="RSA过程"></a>RSA过程</h2><h3 id="语言描述"><a href="#语言描述" class="headerlink" title="语言描述"></a>语言描述</h3><p>A接收B的一条消息m，按照如下步骤产生公钥、私钥：</p>
+<h2 id="2-2RSA过程"><a href="#2-2RSA过程" class="headerlink" title="2.2RSA过程"></a>2.2RSA过程</h2><h3 id="2-2-1语言描述"><a href="#2-2-1语言描述" class="headerlink" title="2.2.1语言描述"></a>2.2.1语言描述</h3><p>A接收B的一条消息m，按照如下步骤产生公钥、私钥：</p>
 <p><strong>step1：</strong>A随机选取大质数p、q（p≠q）。【越大越难破解】</p>
 <p><strong>step2：</strong>计算n&#x3D;p<em>q和φ（n）&#x3D;φ（p）</em>φ（q）&#x3D;（p-1）*（q-1）。</p>
 <p>【N的二进制长度即密钥长度。在实际应用中，RSA密钥一般1024位，重要场合为2048位】</p>
@@ -175,7 +175,7 @@ MathJax = {
 <p>​                                                                                 m^e≡c（mod n）</p>
 <p><strong>step5：</strong>A收到c后，用私钥进行解密。</p>
 <p>​                                                                                 c^d≡m（mod n）</p>
-<h3 id="图示说明"><a href="#图示说明" class="headerlink" title="图示说明"></a>图示说明</h3><p>整个过程即公钥加密、私钥解密</p>
+<h3 id="2-2-2图示说明"><a href="#2-2-2图示说明" class="headerlink" title="2.2.2图示说明"></a>2.2.2图示说明</h3><p>整个过程即公钥加密、私钥解密</p>
 <p>区别：</p>
 <p><strong>RSA签名验签</strong>则私钥加密、公钥解密。用私钥将明文进行签名生成密文串与明文一起传输，双方收到数据后，使用公钥和密文串进行验签。</p>
 <p><img src="/.io//2.PNG"></p>
@@ -212,7 +212,7 @@ MathJax = {
   <div class="post-catalog hidden" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6%E5%88%86%E7%B1%BB"><span class="toc-text">密码学分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RSA%E5%8A%A0%E5%AF%86"><span class="toc-text">RSA加密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86"><span class="toc-text">数论知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA%E8%BF%87%E7%A8%8B"><span class="toc-text">RSA过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E6%8F%8F%E8%BF%B0"><span class="toc-text">语言描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%A4%BA%E8%AF%B4%E6%98%8E"><span class="toc-text">图示说明</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%AF%86%E7%A0%81%E5%AD%A6%E5%88%86%E7%B1%BB"><span class="toc-text">1.密码学分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-RSA%E5%8A%A0%E5%AF%86"><span class="toc-text">2.RSA加密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86"><span class="toc-text">2.1数论知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2RSA%E8%BF%87%E7%A8%8B"><span class="toc-text">2.2RSA过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1%E8%AF%AD%E8%A8%80%E6%8F%8F%E8%BF%B0"><span class="toc-text">2.2.1语言描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2%E5%9B%BE%E7%A4%BA%E8%AF%B4%E6%98%8E"><span class="toc-text">2.2.2图示说明</span></a></li></ol></li></ol></li></ol>
     </div>
   </div>
 
