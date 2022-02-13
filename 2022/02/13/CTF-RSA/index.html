@@ -142,29 +142,34 @@ MathJax = {
         
       </div>
       <div class="markdown-body">
-        <h1 id="1-部分题目类型"><a href="#1-部分题目类型" class="headerlink" title="1.部分题目类型"></a>1.部分题目类型</h1><p>1.公钥+密文</p>
-<p> 已知：公钥文件（以.pem或.key结尾的文件如pubkey.pem、pub.key）和密文（flag.enc）</p>
-<p>思路：分析公钥提取（n，e）–&gt; 解出私钥 –&gt; 解密密文得flag</p>
-<p>例题：xctf–Normal_RSA（buu-RSA）</p>
+        <h1 id="1-解题核心思路"><a href="#1-解题核心思路" class="headerlink" title="1.解题核心思路"></a>1.解题核心思路</h1><p>根据所给的参数思考本题考察什么，该使用何种攻击方法。</p>
+<h1 id="2-具体数据处理"><a href="#2-具体数据处理" class="headerlink" title="2.具体数据处理"></a>2.具体数据处理</h1><p>围绕c、m、e、d、n、p、q展开</p>
+<h1 id="3-特定题目类型"><a href="#3-特定题目类型" class="headerlink" title="3.特定题目类型"></a>3.特定题目类型</h1><h2 id="3-1公钥-密文"><a href="#3-1公钥-密文" class="headerlink" title="3.1公钥+密文"></a>3.1公钥+密文</h2><h3 id="3-1-1已知"><a href="#3-1-1已知" class="headerlink" title="3.1.1已知"></a>3.1.1已知</h3><p>公钥文件（以.pem或.key结尾的文件如pubkey.pem、pub.key）和密文（flag.enc）</p>
+<h3 id="3-1-2思路"><a href="#3-1-2思路" class="headerlink" title="3.1.2思路"></a>3.1.2思路</h3><p>分析公钥提取（n，e）–&gt; 解出私钥 –&gt; 解密密文得flag</p>
+<h3 id="3-1-3例题"><a href="#3-1-3例题" class="headerlink" title="3.1.3例题"></a>3.1.3例题</h3><p>xctf–Normal_RSA（buu-RSA）</p>
 <p>下载附件得到一个含有pubkey.pem和flag.enc文件的文件夹</p>
-<p>看到.pem即用openssl解开公钥n和e：</p>
+<hr>
+<p><strong>看到.pem即用openssl解开公钥n和e</strong></p>
 <p>step1：cmd</p>
 <p>step2：进入pubkey.pem所在文件夹</p>
-<p>step3：用openssl的rsa模块：openssl rsa -pubin -text -modulus -in pubkey.pem（顺序可变）</p>
+<p>step3：<strong>用openssl的rsa模块</strong>：openssl rsa -pubin -text -modulus -in pubkey.pem（顺序可变）</p>
 <p>得到的Exponent即为e；Modulus即n（十六进制）</p>
-<p>step4：进入python交互式shell将n转为十进制</p>
+<p>step4：进入python交互式<strong>ipython</strong>将n转为十进制</p>
 <p><img src="/2022/02/13/CTF-RSA/1.PNG"></p>
-<p>step5：用factordb对n进行大数分解</p>
-<p>通过以上步骤得到p、q、n、e便可求d</p>
-<p>方法1：python脚本求解d</p>
+<p>step5：用<strong>factordb</strong>对n进行大数分解</p>
+<p>通过以上步骤可得到p、q、n、e，便可以求d</p>
+<hr>
+<p><strong>求解d的两种方法</strong></p>
+<p><strong>方法1</strong>：python脚本求解d</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> rsa</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line"></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">n = <span class="number">87924348264132406875276140514499937145050893665602592992418171647042491658461</span></span><br><span class="line">p = <span class="number">275127860351348928173285174381581152299</span></span><br><span class="line">q = <span class="number">319576316814478949870590164193048041239</span></span><br><span class="line">d = libnum.invmod(e,(p-<span class="number">1</span>)*(q-<span class="number">1</span>)) <span class="comment">#求逆元</span></span><br><span class="line"></span><br><span class="line">key = rsa.PrivateKey(n,e,d,p,q)  <span class="comment">#求私钥</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;flag.enc&quot;</span>,<span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f: <span class="comment">#以二进制读方式打开</span></span><br><span class="line">    f = f.read()</span><br><span class="line">    flag = rsa.decrypt(f,key).decode(<span class="string">&#x27;utf-8&#x27;</span>)   <span class="comment">#解码 若没有decode得到的flag为b&#x27;PCTF&#123;256b_i5_m3dium&#125;\n&#x27;</span></span><br><span class="line">    <span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
 
-<p>方法2：利用rsatool求d，生成私钥文件</p>
+<p><strong>方法2</strong>：利用rsatool求d，生成私钥文件</p>
 <p>step1：cmd</p>
 <p>step2：cd rsatool.py所在文件夹</p>
 <p>step3：输入rsatool.py -f PEM -o private.pem -p 275127860351348928173285174381581152299 -q 319576316814478949870590164193048041239 -e 65537便可得到私钥文件</p>
 <p><img src="/2022/02/13/CTF-RSA/2.PNG"></p>
-<p>step4：再用openssl解密（其解密RSA加密算法的模块是rsautl）先进入flag.enc等所在文件夹，再执行openssl rsautl -in flag.enc -inkey private.pem -out flag.txt -decrypt生成flag.txt文件</p>
+<p>step4：再用openssl解密<strong>（其解密RSA加密算法的模块是rsautl）</strong></p>
+<p>先进入flag.enc等所在文件夹，再执行openssl rsautl -in flag.enc -inkey private.pem -out flag.txt -decrypt生成flag.txt文件</p>
 <p><img src="/2022/02/13/CTF-RSA/3.PNG"></p>
 <p>最后得到PCTF{256b_i5_m3dium}</p>
 <p>注：若openssl命令忘记可</p>
@@ -202,7 +207,7 @@ MathJax = {
   <div class="post-catalog hidden" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E9%83%A8%E5%88%86%E9%A2%98%E7%9B%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">1.部分题目类型</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E8%A7%A3%E9%A2%98%E6%A0%B8%E5%BF%83%E6%80%9D%E8%B7%AF"><span class="toc-text">1.解题核心思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%85%B7%E4%BD%93%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-text">2.具体数据处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E7%89%B9%E5%AE%9A%E9%A2%98%E7%9B%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">3.特定题目类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1%E5%85%AC%E9%92%A5-%E5%AF%86%E6%96%87"><span class="toc-text">3.1公钥+密文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1%E5%B7%B2%E7%9F%A5"><span class="toc-text">3.1.1已知</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2%E6%80%9D%E8%B7%AF"><span class="toc-text">3.1.2思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3%E4%BE%8B%E9%A2%98"><span class="toc-text">3.1.3例题</span></a></li></ol></li></ol></li></ol>
     </div>
   </div>
 
