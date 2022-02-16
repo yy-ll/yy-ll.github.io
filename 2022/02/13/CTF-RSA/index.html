@@ -190,13 +190,10 @@ MathJax = {
 <p>step1：已知</p>
 <script type="math/tex; mode=display">（1） m ≡ c^d（mod n)</script><script type="math/tex; mode=display">（2）dp ≡ d（mod （p-1）)</script><script type="math/tex; mode=display">（3）dq ≡ d（mod （q-1）)</script><p>step2：由已知条件推m的表达式</p>
 <p>（1）式【未知d、n】等价于 $m = c^d + k<em>n$ 代入n = p </em> q有：</p>
-<script type="math/tex; mode=display">（4）m = c^d + k * p * q$$ 【未知d（$c^d$）、k】
-
-***
-
-由（4）式可得：（同时对q和p取余）（中国剩余定理）
-
-$$（5）mp ≡ c^d（mod p）</script><script type="math/tex; mode=display">（6）mq  ≡ c^d（mod q）</script><p>又（5）式等价于$mp + k * p = c^d$【未知k】将其代入（6）式可得：</p>
+<p>$（4）m = c^d + k <em> p </em> q$【未知d（$c^d$）、k】</p>
+<hr>
+<p>由（4）式可得：（同时对q和p取余）（中国剩余定理）</p>
+<script type="math/tex; mode=display">（5）mp ≡ c^d（mod p）</script><script type="math/tex; mode=display">（6）mq  ≡ c^d（mod q）</script><p>又（5）式等价于$mp + k * p = c^d$【未知k】将其代入（6）式可得：</p>
 <script type="math/tex; mode=display">mq ≡ （mp + k * p）mod q</script><p>解出<script type="math/tex">k = p^{-1}（mq-mp）mod q ， 其中p * p^{-1} ≡ 1（mod q）</script></p>
 <p>可得<script type="math/tex">m ≡ （mp +（p^{-1}（mq-mp）mod q）* p ）mod （p * q）</script></p>
 <p>同理：</p>
