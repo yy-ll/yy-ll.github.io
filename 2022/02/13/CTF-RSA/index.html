@@ -190,7 +190,7 @@ MathJax = {
 <p>step1：已知</p>
 <script type="math/tex; mode=display">（1） m ≡ c^d（mod n)</script><script type="math/tex; mode=display">（2）dp ≡ d（mod （p-1）)</script><script type="math/tex; mode=display">（3）dq ≡ d（mod （q-1）)</script><p>step2：由已知条件推m的表达式</p>
 <p>（1）式【未知d、n】等价于 $m = c^d + k<em>n$ 代入n = p </em> q有：</p>
-<p>&amp;&amp;（4）m = c^d + k <em> p </em> q&amp;&amp; 【未知d（$c^d$）、k】</p>
+<p>&amp;&amp;（4）m = c^d + k<em>p</em>q&amp;&amp; 【未知d（$c^d$）、k】</p>
 <hr>
 <p>由（4）式可得：（同时对q和p取余）（中国剩余定理）</p>
 <script type="math/tex; mode=display">（5）mp ≡ c^d（mod p）</script><script type="math/tex; mode=display">（6）mq  ≡ c^d（mod q）</script><p>又（5）式等价于$mp + k * p = c^d$【未知k】将其代入（6）式可得：</p>
@@ -201,10 +201,7 @@ MathJax = {
 <script type="math/tex; mode=display">mp ≡ （mq + k * q）mod p</script><p>解出<script type="math/tex">k = q^{-1}（mp-mq）mod p ， 其中q * q^{-1} ≡ 1（mod p）</script></p>
 <p><img src="/2022/02/13/CTF-RSA/6.png" style="zoom: 67%;"></p>
 <p>故：</p>
-<p>$$m ≡ （mp +（q^{-1}（mp-mq）mod p ）<em> p ）$mod （p </em> q）$</p>
-<p>$$m ≡ （mq +（p^{-1}（mq-mp）mod q）<em> q ）$mod （p </em> q）$</p>
-<p>$$m ≡ （mq +（q^{-1}（mp-mq）mod p ）<em> q ）$mod （p </em> q）$</p>
-<p>综上，写出python脚本</p>
+<script type="math/tex; mode=display">m ≡ （mp +（q^{-1}（mp-mq）mod p ）* p ）$mod （p * q）</script><script type="math/tex; mode=display">m ≡ （mq +（p^{-1}（mq-mp）mod q）* q ）$mod （p * q）</script><script type="math/tex; mode=display">m ≡ （mq +（q^{-1}（mp-mq）mod p ）* q ）$mod （p * q）</script><p>综上，写出python脚本</p>
 <h2 id="3-3本地脚本分析"><a href="#3-3本地脚本分析" class="headerlink" title="3.3本地脚本分析"></a>3.3本地脚本分析</h2><h3 id="3-3-1已知"><a href="#3-3-1已知" class="headerlink" title="3.3.1已知"></a>3.3.1已知</h3><h3 id="3-2-2思路-1"><a href="#3-2-2思路-1" class="headerlink" title="3.2.2思路"></a>3.2.2思路</h3><p>利用给出的脚本和密文写出对应的解密脚本进行解密</p>
 <h3 id="3-3-3例题"><a href="#3-3-3例题" class="headerlink" title="3.3.3例题"></a>3.3.3例题</h3>
       </div>
