@@ -159,7 +159,7 @@ MathJax = {
 <p>在这之中，单向函数只使得加密变容易，便有了“陷门”的概念：有一特殊的数值，使得单向函数进行解密变简单。故陷门可作为私钥进行解密。</p>
 <script type="math/tex; mode=display">y=f（x），x=f^{-1}（y） 即x求y简单，但y求x困难的函数。</script><h2 id="2-2RSA过程"><a href="#2-2RSA过程" class="headerlink" title="2.2RSA过程"></a>2.2RSA过程</h2><h3 id="2-2-1语言描述"><a href="#2-2-1语言描述" class="headerlink" title="2.2.1语言描述"></a>2.2.1语言描述</h3><p>A接收B的一条消息m，按照如下步骤产生公钥、私钥：</p>
 <p><strong>step1：</strong>A随机选取大质数p、q（p≠q）。【越大越难破解】</p>
-<p><strong>step2：</strong>计算$n=p<em>q$和$φ（n）=φ（p）</em>φ（q）=（p-1）*（q-1）$。</p>
+<p><strong>step2：</strong>计算n=p<em>q和φ（n）=φ（p）</em>φ（q）=（p-1）*（q-1）。</p>
 <p>【N的二进制长度即密钥长度。在实际应用中，RSA密钥一般1024位，重要场合为2048位】</p>
 <p><strong>step3：</strong>任意选整数e，$1＜e＜φ（N）且（e, φ（n））=1$，再求出e关于φ（n）的逆元，记为d。</p>
 <p>【e常取65537，e、d也称指数】</p>
