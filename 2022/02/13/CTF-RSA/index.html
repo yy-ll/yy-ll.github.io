@@ -149,7 +149,8 @@ MathJax = {
 <h3 id="3-1-3例题"><a href="#3-1-3例题" class="headerlink" title="3.1.3例题"></a>3.1.3例题</h3><p>xctf—011Normal_RSA（buu—031RSA）</p>
 <p>下载附件得到一个含有pubkey.pem和flag.enc文件的文件夹</p>
 <hr>
-<p><strong>看到.pem即用openssl解开公钥n和e</strong></p>
+<p><strong>看到.pem即用openssl解开公钥（n，e）</strong></p>
+<p>（.pem格式是openssl的一种文件格式，一般为文本格式，可保存公钥、私钥，也可保存证书）</p>
 <p>step1：cmd</p>
 <p>step2：进入pubkey.pem所在文件夹</p>
 <p>step3：<strong>用openssl的rsa模块</strong>：openssl rsa -pubin -text -modulus -in pubkey.pem（顺序可变）</p>
