@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="John Doe" />
+  <meta name="description" content="" />
+  
+  
+  <title>
+    
+      xctf--crypto exercise area 
+      
+      
+      |
+    
+     Hexo
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">xctf--crypto exercise area</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2022-02-24 13:10:38
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <h1 id="001base64"><a href="#001base64" class="headerlink" title="001base64"></a>001base64</h1><p>题目描述没有有效信息</p>
+<p>下载附件得到：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Y3liZXJwZWFjZXtXZWxjb21lX3RvX25ld19Xb3JsZCF9</span><br></pre></td></tr></table></figure>
+<h2 id="工具解题"><a href="#工具解题" class="headerlink" title="工具解题"></a>工具解题</h2><p><img src="/2022/02/24/xctf-crypto-exercise-area/1.png" style="zoom: 50%;"></p>
+<h2 id="python脚本解题"><a href="#python脚本解题" class="headerlink" title="python脚本解题"></a>python脚本解题</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">cipher = <span class="string">&#x27;Y3liZXJwZWFjZXtXZWxjb21lX3RvX25ld19Xb3JsZCF9&#x27;</span></span><br><span class="line">plainer = base64.b64decode(cipher)</span><br><span class="line"><span class="built_in">print</span>(plainer.decode())          </span><br></pre></td></tr></table></figure>
+<h2 id="Base64的特征"><a href="#Base64的特征" class="headerlink" title="Base64的特征"></a>Base64的特征</h2><p>字符串的长度为4的整数倍；</p>
+<p>字符串的符号取值只能在A-Z, a-z, 0-9, +, /, =共计65个字符中，且=如果出现就必须在结尾出现。</p>
+<h1 id="002Caesar"><a href="#002Caesar" class="headerlink" title="002Caesar"></a>002Caesar</h1><p>题目描述没啥用，附件给出：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">oknqdbqmoq&#123;kag_tmhq_xqmdzqp_omqemd_qzodkbfuaz&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="工具解题-1"><a href="#工具解题-1" class="headerlink" title="工具解题"></a>工具解题</h2><p>因为未知偏移量，故选择“枚举”，找出有特定含义的语句</p>
+<p><img src="/2022/02/24/xctf-crypto-exercise-area/5.png" style="zoom:50%;"></p>
+<h2 id="python脚本解题-1"><a href="#python脚本解题-1" class="headerlink" title="python脚本解题"></a>python脚本解题</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cipher = <span class="string">&quot;oknqdbqmoq&#123;kag_tmhq_xqmdzqp_omqemd_qzodkbfuaz&#125;&quot;</span></span><br><span class="line">alphabet = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;f&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;h&#x27;</span>,<span class="string">&#x27;i&#x27;</span>,<span class="string">&#x27;j&#x27;</span>,<span class="string">&#x27;k&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;m&#x27;</span>,<span class="string">&#x27;n&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,<span class="string">&#x27;p&#x27;</span>,<span class="string">&#x27;q&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,<span class="string">&#x27;s&#x27;</span>,<span class="string">&#x27;t&#x27;</span>,<span class="string">&#x27;u&#x27;</span>,<span class="string">&#x27;v&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;y&#x27;</span>,<span class="string">&#x27;z&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">26</span>):</span><br><span class="line">    plainer = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> cipher:</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">in</span> alphabet:</span><br><span class="line">            plainer += alphabet[(alphabet.index(i)-j)%<span class="number">26</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            plainer += i</span><br><span class="line">    <span class="built_in">print</span>(plainer)</span><br></pre></td></tr></table></figure>
+<h2 id="凯撒密码Caesar-cipher"><a href="#凯撒密码Caesar-cipher" class="headerlink" title="凯撒密码Caesar cipher"></a>凯撒密码Caesar cipher</h2><p>1.别称</p>
+<p>变换加密、位移加密</p>
+<p>2.规则</p>
+<p>是一种替换加密技术。明文中所有字母在字母表的顺序下向后按照一固定数进行偏移（若按照字母表顺序向前，则偏移量为负），替换成为密文</p>
+<p>其中，偏移量26=偏移量0（为一循环）</p>
+<p>eg：若偏移量为3，A—&gt;D</p>
+<p>3.用途</p>
+<p>作为更复杂的加密方法（维吉尼亚密码）中的一步</p>
+<p>在ROT13系统中被应用（偏移量为13）</p>
+<p>4.缺点</p>
+<p>和所有利用字母表进行替换的加密技术一样容易被破解</p>
+<p>5.数学实现</p>
+<p>将字母用数字代替，A=0、B=1……Z=25。此时，偏移量为k的</p>
+<p>加密方法：</p>
+<script type="math/tex; mode=display">c ≡ （m+k）mod 26</script><p>解密方法：</p>
+<script type="math/tex; mode=display">m ≡ （c-k）mod 26</script><h1 id="003Morse"><a href="#003Morse" class="headerlink" title="003Morse"></a>003Morse</h1><p>题目描述给出flag格式要求：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag格式为cyberpeace&#123;xxxxxxxxxx&#125;,均为小写</span><br></pre></td></tr></table></figure>
+<p>附件内容：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">11 111 010 000 0 1010 111 100 0 00 000 000 111 00 10 1 0 010 0 000 1 00 10 110</span><br></pre></td></tr></table></figure>
+<h2 id="工具解题-2"><a href="#工具解题-2" class="headerlink" title="工具解题"></a>工具解题</h2><p><img src="/2022/02/24/xctf-crypto-exercise-area/6.png" alt></p>
+<h2 id="python脚本解题-2"><a href="#python脚本解题-2" class="headerlink" title="python脚本解题"></a>python脚本解题</h2><p>这里并不是用·和-表示，而是0与1。故用0表示·和1表示-：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dict</span> =&#123;</span><br><span class="line">             <span class="string">&#x27;01&#x27;</span>:<span class="string">&#x27;a&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;1000&#x27;</span>:<span class="string">&#x27;b&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;1010&#x27;</span>:<span class="string">&#x27;c&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;100&#x27;</span>:<span class="string">&#x27;d&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;0&#x27;</span>:<span class="string">&#x27;e&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;0010&#x27;</span>:<span class="string">&#x27;f&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;110&#x27;</span>:<span class="string">&#x27;g&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;0000&#x27;</span>:<span class="string">&#x27;h&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;00&#x27;</span>:<span class="string">&#x27;i&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;0111&#x27;</span>:<span class="string">&#x27;j&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;101&#x27;</span>:<span class="string">&#x27;k&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;0100&#x27;</span>:<span class="string">&#x27;l&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;11&#x27;</span>:<span class="string">&#x27;m&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;10&#x27;</span>:<span class="string">&#x27;n&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;111&#x27;</span>:<span class="string">&#x27;o&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;0110&#x27;</span>:<span class="string">&#x27;p&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;1101&#x27;</span>:<span class="string">&#x27;q&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;010&#x27;</span>:<span class="string">&#x27;r&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;000&#x27;</span>:<span class="string">&#x27;s&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;1&#x27;</span>:<span class="string">&#x27;t&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;001&#x27;</span>:<span class="string">&#x27;u&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;0001&#x27;</span>:<span class="string">&#x27;v&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;011&#x27;</span>:<span class="string">&#x27;w&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;1001&#x27;</span>:<span class="string">&#x27;x&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;1011&#x27;</span>:<span class="string">&#x27;y&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;1100&#x27;</span>:<span class="string">&#x27;z&#x27;</span> </span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">cipher=<span class="string">&quot;11 111 010 000 0 1010 111 100 0 00 000 000 111 00 10 1 0 010 0 000 1 00 10 110&quot;</span></span><br><span class="line">plainer=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">cipher_list = cipher.split(<span class="string">&quot; &quot;</span>)     <span class="comment">#cipher_list=[&#x27;11&#x27;, &#x27;111&#x27;, &#x27;010&#x27;, &#x27;000&#x27;, &#x27;0&#x27;……]</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> cipher_list:</span><br><span class="line">    plainer += <span class="built_in">dict</span>[i]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(plainer)</span><br></pre></td></tr></table></figure>
+<h2 id="摩尔斯电码Morse-code"><a href="#摩尔斯电码Morse-code" class="headerlink" title="摩尔斯电码Morse code"></a>摩尔斯电码Morse code</h2><p>1.别称</p>
+<p>摩斯密码</p>
+<p>2.组成</p>
+<p>由点dot（·）、划dash（-）两种符号组成，中间以空格或者/间隔</p>
+<p>3.规则</p>
+<p>是一种时通时断的信号代码，通过不同的排列顺序来表达不同的英文字母、数字和标点符号。不同于现代只使用0和1两种状态的二进制代码，它的代码包括五种：</p>
+<p>1、点<br>2、划<br>3、点和划之间的停顿（字符内部的停顿）<br>4、每个字符之间短的停顿<br>5、每个词之间中等的停顿以及句子之间长的停顿</p>
+<p>其中：</p>
+<p>一点为一基本信号单位，一划的长度=3点的长度；</p>
+<p>在一个字母（数字）内，各点、划之间的间隔应为两点的长度；</p>
+<p>字母（数字）与字母（数字）之间的间隔为7点的长度。</p>
+<p>4.用途</p>
+<p>是一种早期的数字化通信形式</p>
+<p>5.对应表</p>
+<p><img src="/2022/02/24/xctf-crypto-exercise-area/7.png" style="zoom:67%;"></p>
+<h1 id="004幂数加密"><a href="#004幂数加密" class="headerlink" title="004幂数加密"></a>004幂数加密</h1><p>同样题目描述给出flag格式：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag为cyberpeace&#123;你解答出的八位大写字母&#125;</span><br></pre></td></tr></table></figure>
+<p>附件：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8842101220480224404014224202480122</span><br></pre></td></tr></table></figure>
+<p>搜索得到：</p>
+<h2 id="二进制幂数加密法"><a href="#二进制幂数加密法" class="headerlink" title="二进制幂数加密法"></a>二进制幂数加密法</h2><p>1.原理</p>
+<p>要知道，任意的十进制数都可以用2^n或2^n+2^m+……的形式表示出来。其中，可以表示的单元数=2^(n+1)-1，由使用的max n来决定。</p>
+<p>二进制幂数加密法就是应用这个原理。</p>
+<p>由于英文字母只有26个，于是只要2的0、1、2、3、4、5次幂就可以表示31个单元。通过用二进制幂数表示字母序号数来加密。</p>
+<p>2.例子</p>
+<p>明文： d o n o t……    </p>
+<p>字母序号：4 15 14 15 20……</p>
+<p>由于4=2^2 所以D加密过之后是2；15=2^0+2^1+2^2+2^3所以O加密后是0123。</p>
+<p>密文：2 0123/123 0123……</p>
+<p>其中空格表示字母的间隔，/表示单词的间隔。</p>
+<p>3.字母加密结果对照</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">A 1-------0</span><br><span class="line">B 2-------1</span><br><span class="line">C 3------01</span><br><span class="line">D 4------2</span><br><span class="line">E 5------02</span><br><span class="line">F 6------12</span><br><span class="line">G 7------012</span><br><span class="line">H 8------3</span><br><span class="line">I 9------03</span><br><span class="line">J 10-----13</span><br><span class="line">K 11-----013</span><br><span class="line">L 12-----23</span><br><span class="line">M 13----023</span><br><span class="line">N 14----123</span><br><span class="line">O 15----0123</span><br><span class="line">P 16----4</span><br><span class="line">Q 17----04</span><br><span class="line">R 18----14</span><br><span class="line">S 19-----014</span><br><span class="line">T 20-----24</span><br><span class="line">U 21-----024</span><br><span class="line">V 22-----124</span><br><span class="line">W 23-----0124</span><br><span class="line">X 24-----34</span><br><span class="line">Y 25-----034</span><br><span class="line">Z 26-----134</span><br></pre></td></tr></table></figure>
+<p>4.特点</p>
+<p>二进制幂数加密的结果均为0、1、2、3、4这几个数字组成</p>
+<hr>
+<p>但是发现给出的数据是由0、1、2、4、8组成，故不是二进制幂数加密法，而是云影密码。</p>
+<h2 id="云影密码"><a href="#云影密码" class="headerlink" title="云影密码"></a>云影密码</h2><p>1.别称</p>
+<p>01248密码</p>
+<p>2.组成</p>
+<p>0、1、2、4、8五个数字</p>
+<p>3.规则</p>
+<p>与二进制幂加密不同，这个加密法采用的是0作间隔，其他非0数隔开后组合起来相加表示序号1-26之一的字母（a/A,b/B,c/C…z/Z)</p>
+<p>因其加密原理简单，没有什么工具去解。</p>
+<h2 id="直接解题"><a href="#直接解题" class="headerlink" title="直接解题"></a>直接解题</h2><p><img src="/2022/02/24/xctf-crypto-exercise-area/8.png" style="zoom:67%;"></p>
+<h2 id="python脚本解题-3"><a href="#python脚本解题-3" class="headerlink" title="python脚本解题"></a>python脚本解题</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">alphabet = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;f&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;h&#x27;</span>,<span class="string">&#x27;i&#x27;</span>,<span class="string">&#x27;j&#x27;</span>,<span class="string">&#x27;k&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;m&#x27;</span>,<span class="string">&#x27;n&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,<span class="string">&#x27;p&#x27;</span>,<span class="string">&#x27;q&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,<span class="string">&#x27;s&#x27;</span>,<span class="string">&#x27;t&#x27;</span>,<span class="string">&#x27;u&#x27;</span>,<span class="string">&#x27;v&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;y&#x27;</span>,<span class="string">&#x27;z&#x27;</span>]</span><br><span class="line"></span><br><span class="line">cipher=<span class="string">&quot;8842101220480224404014224202480122&quot;</span></span><br><span class="line">cipher_list = cipher.split(<span class="string">&quot;0&quot;</span>)</span><br><span class="line">cipherr = []</span><br><span class="line">flag = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> cipher_list:</span><br><span class="line">    k = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(i)):</span><br><span class="line">        k += <span class="built_in">int</span>(i[j])</span><br><span class="line">    cipherr.append(k)</span><br><span class="line"><span class="keyword">for</span> m <span class="keyword">in</span> cipherr:</span><br><span class="line">    flag += alphabet[m-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+<h1 id="005Railfence"><a href="#005Railfence" class="headerlink" title="005Railfence"></a>005Railfence</h1><p>题目描述：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">冲着下一个谜题的地方去了。 到了一看，这个谜面看起来就已经有点像答案了样子了，旁边还画着一张画，是一副农家小院的 图画，上面画着一个农妇在栅栏里面喂5只小鸡。</span><br></pre></td></tr></table></figure>
+<p>附件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ccehgyaefnpeoobe&#123;lcirg&#125;epriec_ora_g</span><br></pre></td></tr></table></figure>
+<p>可以直接用工具解题：</p>
+<p>调一下Key值，找到有具体意义的输出即可</p>
+<p><img src="/2022/02/24/xctf-crypto-exercise-area/2.png" style="zoom:50%;"></p>
+<h1 id="006不仅仅是Morse"><a href="#006不仅仅是Morse" class="headerlink" title="006不仅仅是Morse"></a>006不仅仅是Morse</h1><p>题目描述：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">“这个题目和我们刚刚做的那个好像啊但是为什么按照刚刚的方法做出来答案却不对呢” ，你奇怪的问了问小鱼，“可能是因为还有一些奇怪的加密方式在里面吧，我们在仔细观察观察”。两个人 安安静静的坐下来开始思考，很耐心的把自己可以想到的加密方式一种种的过了一遍，十多分钟后两个人 异口同声的说“我想到了！”。一种食物,格式为cyberpeace&#123;小写的你解出的答案&#125;</span><br></pre></td></tr></table></figure>
+<p>附件内容：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--/.-/-.--/..--.-/-..././..--.-/..../.-/...-/./..--.-/.-/-./---/-/...././.-./..--.-/-.././-.-./---/-.././..../..../..../..../.-/.-/.-/.-/.-/-.../.-/.-/-.../-.../-.../.-/.-/-.../-.../.-/.-/.-/.-/.-/.-/.-/.-/-.../.-/.-/-.../.-/-.../.-/.-/.-/.-/.-/.-/.-/-.../-.../.-/-.../.-/.-/.-/-.../-.../.-/.-/.-/-.../-.../.-/.-/-.../.-/.-/.-/.-/-.../.-/-.../.-/.-/-.../.-/.-/.-/-.../-.../.-/-.../.-/.-/.-/-.../.-/.-/.-/-.../.-/.-/-.../.-/-.../-.../.-/.-/-.../-.../-.../.-/-.../.-/.-/.-/-.../.-/-.../.-/-.../-.../.-/.-/.-/-.../-.../.-/-.../.-/.-/.-/-.../.-/.-/-.../.-/.-/-.../.-/.-/.-/.-/-.../-.../.-/-.../-.../.-/.-/-.../-.../.-/.-/-.../.-/.-/-.../.-/.-/.-/-.../.-/.-/-.../.-/.-/-.../.-/.-/-.../.-/-.../.-/.-/-.../-.../.-/-.../.-/.-/.-/.-/-.../-.../.-/-.../.-/.-/-.../-.../.-</span><br></pre></td></tr></table></figure>
+<p>可以直接用工具解题，先解第一层Morse：</p>
+<p>调整delimiter[分隔符]为forward slash[斜杠(分隔号/)]</p>
+<p><img src="/2022/02/24/xctf-crypto-exercise-area/3.png" style="zoom:50%;"></p>
+<p>解密后的字符提示还有另一种编码：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AAAAABAABBBAABBAAAAAAAABAABABAAAAAAABBABAAABBAAABBAABAAAABABAABAAABBABAAABAAABAABABBAABBBABAAABABABBAAABBABAAABAABAABAAAABBABBAABBAABAABAAABAABAABAABABAABBABAAAABBABAABBA</span><br></pre></td></tr></table></figure>
+<p>再利用工具：</p>
+<p><img src="/2022/02/24/xctf-crypto-exercise-area/4.png" style="zoom:50%;"></p>
+<h1 id="007混合编码"><a href="#007混合编码" class="headerlink" title="007混合编码"></a>007混合编码</h1><p>同样题目描述给出格式要求：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">格式为cyberpeace&#123;小写的你解出的答案&#125;</span><br></pre></td></tr></table></figure>
+<p>下载附件得到：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JiM3NjsmIzEyMjsmIzY5OyYjMTIwOyYjNzk7JiM4MzsmIzU2OyYjMTIwOyYjNzc7JiM2ODsmIzY5OyYjMTE4OyYjNzc7JiM4NDsmIzY1OyYjNTI7JiM3NjsmIzEyMjsmIzEwNzsmIzUzOyYjNzY7JiMxMjI7JiM2OTsmIzEyMDsmIzc3OyYjODM7JiM1NjsmIzEyMDsmIzc3OyYjNjg7JiMxMDc7JiMxMTg7JiM3NzsmIzg0OyYjNjU7JiMxMjA7JiM3NjsmIzEyMjsmIzY5OyYjMTIwOyYjNzg7JiMxMDU7JiM1NjsmIzEyMDsmIzc3OyYjODQ7JiM2OTsmIzExODsmIzc5OyYjODQ7JiM5OTsmIzExODsmIzc3OyYjODQ7JiM2OTsmIzUwOyYjNzY7JiMxMjI7JiM2OTsmIzEyMDsmIzc4OyYjMTA1OyYjNTY7JiM1MzsmIzc4OyYjMTIxOyYjNTY7JiM1MzsmIzc5OyYjODM7JiM1NjsmIzEyMDsmIzc3OyYjNjg7JiM5OTsmIzExODsmIzc5OyYjODQ7JiM5OTsmIzExODsmIzc3OyYjODQ7JiM2OTsmIzExOTsmIzc2OyYjMTIyOyYjNjk7JiMxMTk7JiM3NzsmIzY3OyYjNTY7JiMxMjA7JiM3NzsmIzY4OyYjNjU7JiMxMTg7JiM3NzsmIzg0OyYjNjU7JiMxMjA7JiM3NjsmIzEyMjsmIzY5OyYjMTE5OyYjNzc7JiMxMDU7JiM1NjsmIzEyMDsmIzc3OyYjNjg7JiM2OTsmIzExODsmIzc3OyYjODQ7JiM2OTsmIzExOTsmIzc2OyYjMTIyOyYjMTA3OyYjNTM7JiM3NjsmIzEyMjsmIzY5OyYjMTE5OyYjNzc7JiM4MzsmIzU2OyYjMTIwOyYjNzc7JiM4NDsmIzEwNzsmIzExODsmIzc3OyYjODQ7JiM2OTsmIzEyMDsmIzc2OyYjMTIyOyYjNjk7JiMxMjA7JiM3ODsmIzY3OyYjNTY7JiMxMjA7JiM3NzsmIzY4OyYjMTAzOyYjMTE4OyYjNzc7JiM4NDsmIzY1OyYjMTE5Ow==</span><br></pre></td></tr></table></figure>
+<h1 id="008easy-RSA"><a href="#008easy-RSA" class="headerlink" title="008easy_RSA"></a>008easy_RSA</h1><p>见另一篇博客</p>
+<h1 id="009easychallenge"><a href="#009easychallenge" class="headerlink" title="009easychallenge"></a>009easychallenge</h1><p>题目描述：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你们走到了一个冷冷清清的谜题前面，小鱼看着题目给的信息束手无策，丈二和尚摸不着头脑 ，你嘿嘿一笑，拿出来了你随身带着的笔记本电脑，噼里啪啦的敲起来了键盘，清晰的函数逻辑和流程出现在 了电脑屏幕上，你敲敲键盘，更改了几处地方，运行以后答案变出现在了电脑屏幕上。</span><br></pre></td></tr></table></figure>
+<p>看样子应该要修改代码，下载附件得到一个.pyc文件：</p>
+<h1 id="010转轮机加密"><a href="#010转轮机加密" class="headerlink" title="010转轮机加密"></a>010转轮机加密</h1><p>题目描述：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你俩继续往前走，来到了前面的下一个关卡，这个铺面墙上写了好多奇奇怪怪的 英文字母，排列的的整整齐齐，店面前面还有一个大大的类似于土耳其旋转烤肉的架子，上面一圈圈的 也刻着很多英文字母，你是一个小历史迷，对于二战时候的历史刚好特别熟悉，一拍大腿：“嗨呀！我知道 是什么东西了！”。提示：托马斯·杰斐逊。 flag，是字符串，小写。</span><br></pre></td></tr></table></figure>
+<p>下载附件得：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1:  &lt; ZWAXJGDLUBVIQHKYPNTCRMOSFE &lt;</span><br><span class="line">2:  &lt; KPBELNACZDTRXMJQOYHGVSFUWI &lt;</span><br><span class="line">3:  &lt; BDMAIZVRNSJUWFHTEQGYXPLOCK &lt;</span><br><span class="line">4:  &lt; RPLNDVHGFCUKTEBSXQYIZMJWAO &lt;</span><br><span class="line">5:  &lt; IHFRLABEUOTSGJVDKCPMNZQWXY &lt;</span><br><span class="line">6:  &lt; AMKGHIWPNYCJBFZDRUSLOQXVET &lt;</span><br><span class="line">7:  &lt; GWTHSPYBXIZULVKMRAFDCEONJQ &lt;</span><br><span class="line">8:  &lt; NOZUTWDCVRJLXKISEFAPMYGHBQ &lt;</span><br><span class="line">9:  &lt; XPLTDSRFHENYVUBMCQWAOIKZGJ &lt;</span><br><span class="line">10: &lt; UDNAJFBOWTGVRSCZQKELMXYIHP &lt;</span><br><span class="line">11： &lt; MNBVCXZQWERTPOIUYALSKDJFHG &lt;</span><br><span class="line">12： &lt; LVNCMXZPQOWEIURYTASBKJDFHG &lt;</span><br><span class="line">13： &lt; JZQAWSXCDERFVBGTYHNUMKILOP &lt;</span><br><span class="line"></span><br><span class="line">密钥为：2,3,7,5,13,12,9,1,8,10,4,11,6</span><br><span class="line">密文为：NFQKSEVOQOFNP</span><br></pre></td></tr></table></figure>
+<h1 id="011Normal-RSA"><a href="#011Normal-RSA" class="headerlink" title="011Normal_RSA"></a>011Normal_RSA</h1><p>见另一篇博客</p>
+<h1 id="012easy-ECC"><a href="#012easy-ECC" class="headerlink" title="012easy_ECC"></a>012easy_ECC</h1><p>题目描述：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">转眼两个人又走到了下一个谜题的地方，这又是一种经典的密码学加密方式 而你刚好没有这个的工具，你对小鱼说“小鱼我知道数学真的很重要了，有了工具只是方便我们使用 懂了原理才能做到，小鱼你教我一下这个缇努怎么做吧！”在小鱼的一步步带领下，你终于明白了ECC 的基本原理，成功的解开了这个题目，两个人相视一笑，快步走向了下一个题目所在的位置。flag格式为cyberpeace&#123;x+y的值&#125;</span><br></pre></td></tr></table></figure>
+<p>下载附件得：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">已知椭圆曲线加密Ep(a,b)参数为</span><br><span class="line"></span><br><span class="line">p = 15424654874903</span><br><span class="line"></span><br><span class="line">a = 16546484</span><br><span class="line"></span><br><span class="line">b = 4548674875</span><br><span class="line"></span><br><span class="line">G(6478678675,5636379357093)</span><br><span class="line"></span><br><span class="line">私钥为</span><br><span class="line"></span><br><span class="line">k = 546768</span><br><span class="line"></span><br><span class="line">求公钥K(x,y)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/02/20/python-partial/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2022-02-24 13:10:38
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#001base64"><span class="toc-text">001base64</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E8%A7%A3%E9%A2%98"><span class="toc-text">工具解题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E8%84%9A%E6%9C%AC%E8%A7%A3%E9%A2%98"><span class="toc-text">python脚本解题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Base64%E7%9A%84%E7%89%B9%E5%BE%81"><span class="toc-text">Base64的特征</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#002Caesar"><span class="toc-text">002Caesar</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E8%A7%A3%E9%A2%98-1"><span class="toc-text">工具解题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E8%84%9A%E6%9C%AC%E8%A7%A3%E9%A2%98-1"><span class="toc-text">python脚本解题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81Caesar-cipher"><span class="toc-text">凯撒密码Caesar cipher</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#003Morse"><span class="toc-text">003Morse</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E8%A7%A3%E9%A2%98-2"><span class="toc-text">工具解题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E8%84%9A%E6%9C%AC%E8%A7%A3%E9%A2%98-2"><span class="toc-text">python脚本解题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%A9%E5%B0%94%E6%96%AF%E7%94%B5%E7%A0%81Morse-code"><span class="toc-text">摩尔斯电码Morse code</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#004%E5%B9%82%E6%95%B0%E5%8A%A0%E5%AF%86"><span class="toc-text">004幂数加密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%B9%82%E6%95%B0%E5%8A%A0%E5%AF%86%E6%B3%95"><span class="toc-text">二进制幂数加密法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%91%E5%BD%B1%E5%AF%86%E7%A0%81"><span class="toc-text">云影密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E8%A7%A3%E9%A2%98"><span class="toc-text">直接解题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E8%84%9A%E6%9C%AC%E8%A7%A3%E9%A2%98-3"><span class="toc-text">python脚本解题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#005Railfence"><span class="toc-text">005Railfence</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#006%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AFMorse"><span class="toc-text">006不仅仅是Morse</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#007%E6%B7%B7%E5%90%88%E7%BC%96%E7%A0%81"><span class="toc-text">007混合编码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#008easy-RSA"><span class="toc-text">008easy_RSA</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#009easychallenge"><span class="toc-text">009easychallenge</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#010%E8%BD%AC%E8%BD%AE%E6%9C%BA%E5%8A%A0%E5%AF%86"><span class="toc-text">010转轮机加密</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#011Normal-RSA"><span class="toc-text">011Normal_RSA</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#012easy-ECC"><span class="toc-text">012easy_ECC</span></a></li></ol>
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="facebook" href="">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="twitter" href="">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="wechat" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="weibo" href="">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © Oranges 2021</a>
+        
+    </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + xctf--crypto%20exercise%20area + '&url=' + http%3A%2F%2Fyy-ll.github.io%2F2022%2F02%2F24%2Fxctf-crypto-exercise-area%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://yy-ll.github.io/2022/02/24/xctf-crypto-exercise-area/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
