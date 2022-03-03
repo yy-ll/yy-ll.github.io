@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="John Doe" />
+  <meta name="description" content="" />
+  
+  
+  <title>
+    
+      test 
+      
+      
+      |
+    
+     Hexo
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">test</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2022-03-01 01:07:53
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <h1 id="1EzClassic"><a href="#1EzClassic" class="headerlink" title="1EzClassic"></a>1EzClassic</h1><p>文件夹中给出了EzClassic.py文件和ezclassic.txt文本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#EzClassic.py</span></span><br><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> digits,ascii_lowercase</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line">secret = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> flag:</span><br><span class="line">    <span class="keyword">if</span> i <span class="keyword">in</span> digits:</span><br><span class="line">        secret += digits[(<span class="number">3</span>*digits.index(i)+<span class="number">3</span>)%<span class="number">10</span>]</span><br><span class="line">    <span class="keyword">elif</span> i <span class="keyword">in</span> ascii_lowercase:</span><br><span class="line">        secret += ascii_lowercase[(<span class="number">7</span>*ascii_lowercase.index(i)+<span class="number">6</span>)%<span class="number">26</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        secret += i</span><br><span class="line"><span class="built_in">print</span>(secret)</span><br></pre></td></tr></table></figure>
+<p>ezclassic.txt如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Gqaatgyzctga ts lzm rvzeeiuw iph rvfdq gn jmckyg afnqvlceigf. Uqhdty cjqxvsftlpzq qpxdtdeula vld ftsuaxnmmgd ox eivldoltaua, eslrftwj aemdpne, sfl grfkyewjqpk. </span><br><span class="line">Zralauivmnpd ox uzatsqrrshpa mmewuvw IVQ bccdk, uwottvpr hsauantos, sfl gpdeergfqe gnoxejum.</span><br><span class="line"></span><br><span class="line">Evxreodgoa tqkzr lg bji lqoejf iii vcd adewux rayofquqyr yttz wvevxreigf, bji bqyvwjaksm qq ifxwtqzvtof xzqq z tpavsjni rvltw lw psmupnkw. </span><br><span class="line">Bji rgydwj zgxzkyev lpg eakwilq bq hdecyhl bji hpqojeivmnp lnv lpgvdhzrw sdqmc wywsfbgh ogcsgfa dihpr atdm vs qgld al.xhkv&#123;8d1642t4365bf28m7o8882dr8t61wfny70040498m98x6wy2o4w43mn9ya8c70d9&#125;.</span><br><span class="line">Whpne Ogznh Vcc I sfl vld covwfb qj sjp cgexwxdt, ehw emvlnfd ukwl vs bccrq gcv gqaatgdwic gcge twkqqd kycjwiummiwy ugurpdz lnv abu eorwiusbksm ozrw oqfirrcesv.</span><br><span class="line"></span><br><span class="line">Insmidivw bji zfgafumoimv tn ujgrxnnzgq-jmnesgo twuppskqry, lzm rvzeeiuw pcw qctswv i pyldpr gx tgkzn tskmmu, wnop ox opkgg tpmsav wrqgdodnmf.</span><br></pre></td></tr></table></figure>
+<p>大致看了一下，在给出的文件夹里.py文件给出了对应加密过程，.txt文本则给出了加密后的密文。密文很长，但是不难看到格式像flag的字段。</p>
+<p>题解：</p>
+<p>本题第一层应使用<strong>维吉尼亚</strong>解密，得到：</p>
+<p><img src="/2022/03/01/test/1.png" style="zoom:67%;"></p>
+<p>关键内容：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pfgw&#123;8b1642i4365bn28u7g8882bn8u61uung70040498u98p6uu2p4u43bn9gi8u70b9&#125;</span><br></pre></td></tr></table></figure>
+<p>阅读给出的.py文件，关键点：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> digits,ascii_lowercase</span><br><span class="line"><span class="comment">#获取所有的10进制数字字符：0-9 获取所有ascii码中的小写英文字母a-z</span></span><br></pre></td></tr></table></figure>
+<p>接下来便是对数字和小写字母进行不同的加密（第二层运用了<strong>仿射密码</strong>加密），解题方向便是根据加密文件写出解密脚本。</p>
+<p>要注意求模逆运算的表示方式，如A=(B-C)%D，那么B=(A+C)%D</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> digits,ascii_lowercase</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"></span><br><span class="line"><span class="comment">#加密后：</span></span><br><span class="line">secret = <span class="string">&#x27;pfgw&#123;8b1642i4365bn28u7g8882bn8u61uung70040498u98p6uu2p4u43bn9gi8u70b9&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line">p_ = gmpy2.invert(<span class="number">7</span>,<span class="number">26</span>)</span><br><span class="line">q_ = gmpy2.invert(<span class="number">3</span>,<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">flag = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> secret:</span><br><span class="line">    <span class="keyword">if</span> i <span class="keyword">in</span> digits:</span><br><span class="line">        flag += digits[((digits.index(i)-<span class="number">3</span>)*q_)%<span class="number">10</span>]</span><br><span class="line">    <span class="keyword">elif</span> i <span class="keyword">in</span> ascii_lowercase:</span><br><span class="line">        flag += ascii_lowercase[((ascii_lowercase.index(i)-<span class="number">6</span>)*p_)%<span class="number">26</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        flag += i</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+<p>解出：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;5d6173e7014db35c8a5553db5c16ccba89979725c25f1cc3f7c70db2ae5c89d2&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="2EzRSA"><a href="#2EzRSA" class="headerlink" title="2EzRSA"></a>2EzRSA</h1><p>给出challenge.txt，内容如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">e = 65537</span><br><span class="line">n1 = 18422887619025499093500253269982403514726734277290130931951684733409266757764552588136835586520444091497616122502433703822553005925827145870143883796284263591709668204024923666139247443142798131329126460191906142706434731369042637394062321362776602627815833196839001977393492553326032070349543153752206738330860921833423029246405453226702292877915919284243207730531441343099665326828244449330966931286027668460212888401368703925131438510132292325800955352080008624087828820341494478162275382644669874909677148502171755139738168028969162526912645296896922620947089851413946790871101005207462066220637348687873404340687</span><br><span class="line">n2 = 24627238962728348376943815027705870674921397560982001460282793626331598002575628339078099521337506974273153395720153505527191716182556511162045486888904879613572145129703667870896581000278381201200220298658273449218381116870437172472113285378423666989971859902485623881932028927127508183296068229924950579577585886324594991469272086469095401166676668290812950337926472248122812412724596895010295386332476713199623619123717948312334240984316891006096260515702314938536822982292177111570982341289847648748526252397867488845123136053713512073205140442674942808737453465421327055140020553239138011846499457463318570283521</span><br><span class="line">c1 = 6284446110115714055813522467658985189840095779526440780412230500922915951666616640923441039453164391416455207092370270421706629536475592428608955473690820297943288217585504761608108771783834384917615319108794406823684798622519757621754873542804639306271552082323646592520118896866755358538308654982293434096188853579365731748552860101384331709922630925898131971465741935642615424849284783129579175640029485331061512766064706551698777789337684638173847046736104282221158607030704351874945142922941782721605049545683790191848198970770948616191722711742800378016072064840738915101836555390433720255813340065960884063899</span><br><span class="line">c2 = 19701647365692546726952225736637497258695131141374046521294489080965974622270697254863583369643494778983749595264544389398444139943788137653845896238895688293658927167034461397570791042001989763664114832113375325985401879218827556199571607481622094508566261042253234191936907380260805350833037184767286096205214538324075862070786916740941195478731499000640584820531907741554108294239422528858821234407414082087337559936811047388906289334635248998101990682898604073934887242100362055589959540531254283572133377676380544975391568187608237539246773626102150837822529055031326871977430055047643381030535060217496161063206</span><br></pre></td></tr></table></figure>
+<p>题目给出了e、n1、n2、c1、c2的值。</p>
+<p>因为出现了多个n，一般思路是求出n1、n2的公因数，即为p的值。再求出n1、n2对应的q1、q2，求出c1、c2对应的m1、m2</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">n1 = <span class="number">18422887619025499093500253269982403514726734277290130931951684733409266757764552588136835586520444091497616122502433703822553005925827145870143883796284263591709668204024923666139247443142798131329126460191906142706434731369042637394062321362776602627815833196839001977393492553326032070349543153752206738330860921833423029246405453226702292877915919284243207730531441343099665326828244449330966931286027668460212888401368703925131438510132292325800955352080008624087828820341494478162275382644669874909677148502171755139738168028969162526912645296896922620947089851413946790871101005207462066220637348687873404340687</span></span><br><span class="line">n2 = <span class="number">24627238962728348376943815027705870674921397560982001460282793626331598002575628339078099521337506974273153395720153505527191716182556511162045486888904879613572145129703667870896581000278381201200220298658273449218381116870437172472113285378423666989971859902485623881932028927127508183296068229924950579577585886324594991469272086469095401166676668290812950337926472248122812412724596895010295386332476713199623619123717948312334240984316891006096260515702314938536822982292177111570982341289847648748526252397867488845123136053713512073205140442674942808737453465421327055140020553239138011846499457463318570283521</span></span><br><span class="line">c1 = <span class="number">6284446110115714055813522467658985189840095779526440780412230500922915951666616640923441039453164391416455207092370270421706629536475592428608955473690820297943288217585504761608108771783834384917615319108794406823684798622519757621754873542804639306271552082323646592520118896866755358538308654982293434096188853579365731748552860101384331709922630925898131971465741935642615424849284783129579175640029485331061512766064706551698777789337684638173847046736104282221158607030704351874945142922941782721605049545683790191848198970770948616191722711742800378016072064840738915101836555390433720255813340065960884063899</span></span><br><span class="line">c2 = <span class="number">19701647365692546726952225736637497258695131141374046521294489080965974622270697254863583369643494778983749595264544389398444139943788137653845896238895688293658927167034461397570791042001989763664114832113375325985401879218827556199571607481622094508566261042253234191936907380260805350833037184767286096205214538324075862070786916740941195478731499000640584820531907741554108294239422528858821234407414082087337559936811047388906289334635248998101990682898604073934887242100362055589959540531254283572133377676380544975391568187608237539246773626102150837822529055031326871977430055047643381030535060217496161063206</span></span><br><span class="line"></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"></span><br><span class="line">p = libnum.gcd(n1,n2)</span><br><span class="line">q1 = n1 // p</span><br><span class="line">q2 = n2 // p</span><br><span class="line"></span><br><span class="line">phi1 = (p-<span class="number">1</span>)*(q1-<span class="number">1</span>)</span><br><span class="line">phi2 = (p-<span class="number">1</span>)*(q2-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">d1 = libnum.invmod(e,phi1)</span><br><span class="line">d2 = libnum.invmod(e,phi2)</span><br><span class="line"></span><br><span class="line">m1 = <span class="built_in">pow</span>(c1,d1,n1)</span><br><span class="line">m2 = <span class="built_in">pow</span>(c2,d2,n2)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(m1)+long_to_bytes(m2))</span><br></pre></td></tr></table></figure>
+<p>解出：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;b8e16096b030cdfc0c514a1d70866da7b3ed2ca8535fae13f1a176342e79c2f2&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3Track"><a href="#3Track" class="headerlink" title="3Track"></a>3Track</h1><p>题目给出track.py文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">from Crypto.Util.number import bytes_to_long, getPrime</span><br><span class="line">from sympy import nextprime           #下一个素数</span><br><span class="line">from flag import flag</span><br><span class="line"></span><br><span class="line">m = bytes_to_long(flag.encode())</span><br><span class="line"></span><br><span class="line">n1 = getPrime(1024)*getPrime(1024)</span><br><span class="line">n2 = getPrime(1024)*getPrime(1024)</span><br><span class="line"></span><br><span class="line">p1 = getPrime(128)</span><br><span class="line">q1 = getPrime(128)</span><br><span class="line"></span><br><span class="line">e = 65537</span><br><span class="line"></span><br><span class="line">P = str(p1)+str(p1)+str(q1)+str(q1)</span><br><span class="line">Q = str(q1)+str(q1)+str(p1)+str(p1)</span><br><span class="line"></span><br><span class="line">N = int(P)*int(Q)</span><br><span class="line"></span><br><span class="line">leak = getPrime(256)</span><br><span class="line"></span><br><span class="line">_n = 1</span><br><span class="line">_p = leak</span><br><span class="line">for i in range(4):        #0、1、2、3</span><br><span class="line">    _p = nextprime(_p)</span><br><span class="line">    _n *= pow(_p,3)</span><br><span class="line"></span><br><span class="line">c1 = pow(n1,e,N)</span><br><span class="line">c2 = pow(n2,e,_n)         #c2密文 = n2^e (mod _n)加密 n2为明文</span><br><span class="line"></span><br><span class="line">x = 3                     #相当于e，低加密指数广播</span><br><span class="line"></span><br><span class="line">C1 = pow(m,x,n1)</span><br><span class="line">C2 = pow(m,x,n2) </span><br><span class="line"></span><br><span class="line">print(&quot;leak=&quot;,leak)</span><br><span class="line">print(&quot;N=&quot;,N)</span><br><span class="line">print(&quot;c1=&quot;,c1)</span><br><span class="line">print(&quot;c2=&quot;,c2)</span><br><span class="line">print(&quot;C1=&quot;,C1)</span><br><span class="line">print(&quot;C2=&quot;,C2)</span><br><span class="line"></span><br><span class="line"># leak= 91644696983009912717641684766295601753561394841214281696671038373693800931401</span><br><span class="line"># N= 58781485574656069404499226158617833776881452715128433994346232611158703342930730732789003631564649685815201565192806691124557819834153457970203608541383098480735666843885312733816501612729224392520343898027682723925532113205753034100586560973532899780478967543841553184530763889743979121855537234158841467675377</span><br><span class="line"># c1= 5576673649381795158556425346610833835245978194002555386448504567491237975160523031151410403415212129560672724386901633980733277292564251445468353501324481304980014394921919570155753262556138829921523395032673421257023906377782819750709232477318082909715234017646630542402032644986271656049491173910571580458464</span><br><span class="line"># c2= 65454977038972335560715694860202562558542761310830321082624696157701630714290678217248868296383345495850046948854244326205972784607421939974599362891947213728327080739802881860990721430236890527604340334191317011581235944141287026688039776680079551513764674468152082564449811081607706777473217000600986029762781040031805930712422894250061603395449697370409392151693980995657096890404002099631844475688521312088978237728241203272271922164571710393793502374689275073716311394288795872697300238030197763920262959117003542275169588389983121947300999014647949983492362907460927104745772091189389551859272235812820911818148589483060807556215910130236660054902530367583819148080421435487757780381305874146319202610984326075890494998851925826912991405958160976234461084198814420562541288855575437978697216964024703731543119140158180318480962218241828538181193786666846723497619162947157481564335101176560314148647806740832706690564</span><br><span class="line"># C1= 3442467842482468905466528107869824488322031585865483802648082390204489079731872013228551863053382451565885685045032614393584216728767399759912379762136502915790146227373088170070199743468656505665640545945798301012072224129113750217170369265706063400886836613651977261549205392196474050107125880882746767106780744122961283132448793425114539783167762420252131245490718143924698697027302290429904913400430703588519002127335404214593292637743856595071108611543436887219206014535265121712548306355947597227109</span><br><span class="line"># C2= 3442467842482468905466528107869824488322031585865483802648082390204489079731872013228551863053382451565885685045032614393584216728767399759912379762136502915790146227373088170070199743468656505665640545945798301012072224129113750217170369265706063400886836613651977261549205392196474050107125880882746767106780744122961283132448793425114539783167762420252131245490718143924698697027302290429904913400430703588519002127335404214593292637743856595071108611543436887219206014535265121712548306355947597227109</span><br></pre></td></tr></table></figure>
+<p>题目为track（追踪），给出了漏洞leak</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/02/24/xctf-crypto-exercise-area/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2022-03-01 01:07:53
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1EzClassic"><span class="toc-text">1EzClassic</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2EzRSA"><span class="toc-text">2EzRSA</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3Track"><span class="toc-text">3Track</span></a></li></ol>
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="facebook" href="">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="twitter" href="">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="wechat" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="weibo" href="">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © Oranges 2021</a>
+        
+    </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + test + '&url=' + http%3A%2F%2Fyy-ll.github.io%2F2022%2F03%2F01%2Ftest%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://yy-ll.github.io/2022/03/01/test/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

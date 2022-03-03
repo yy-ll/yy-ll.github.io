@@ -207,10 +207,10 @@ MathJax = {
 <p>各进制数之间的转换：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#把任何进制数转化为二进制数</span></span><br><span class="line"><span class="built_in">bin</span>()</span><br><span class="line"><span class="comment">#把任何进制数转化为八进制数</span></span><br><span class="line"><span class="built_in">oct</span>()</span><br><span class="line"><span class="comment">#把任何进制数转化为十进制数</span></span><br><span class="line"><span class="built_in">int</span>()</span><br><span class="line"><span class="comment">#把任何进制数转化为十六进制数（0-9、A-F）</span></span><br><span class="line"><span class="built_in">hex</span>()</span><br></pre></td></tr></table></figure>
 <p>其中，括号内写的是带前缀的相应进制数。</p>
-<h2 id="5-4import用法"><a href="#5-4import用法" class="headerlink" title="5.4import用法"></a>5.4import用法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将整个模块（somemodule）导入,引用模块中的变量时要用somemodule.变量名</span></span><br><span class="line"><span class="keyword">import</span> somemodule</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#将某个模块中的全部函数导入,引用模块中变量时只需直接使用变量名</span></span><br><span class="line"><span class="keyword">from</span> somemodule <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment">#从某个模块中导入某个/多个函数</span></span><br><span class="line"><span class="keyword">from</span> somemodule <span class="keyword">import</span> somefunction</span><br><span class="line"><span class="keyword">from</span> somemodule <span class="keyword">import</span> firstfunc,secondfunc,thirdfunc</span><br></pre></td></tr></table></figure>
+<h2 id="5-4import用法"><a href="#5-4import用法" class="headerlink" title="5.4import用法"></a>5.4import用法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将整个模块（somemodule）导入,引用模块中的变量时要用somemodule.变量名</span></span><br><span class="line"><span class="keyword">import</span> somemodule</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#将某个模块中的全部函数导入,引用模块中变量时只需直接使用变量名</span></span><br><span class="line"><span class="keyword">from</span> somemodule <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment">#从某个模块中导入某个/多个函数，直接使用变量名</span></span><br><span class="line"><span class="keyword">from</span> somemodule <span class="keyword">import</span> somefunction</span><br><span class="line"><span class="keyword">from</span> somemodule <span class="keyword">import</span> firstfunc,secondfunc,thirdfunc</span><br></pre></td></tr></table></figure>
 <h2 id="5-5运算符"><a href="#5-5运算符" class="headerlink" title="5.5运算符"></a>5.5运算符</h2><p>“/”表示浮点数除法，返回浮点结果（小数）</p>
 <p>“//”表示整数除法</p>
-<p>“%”表示取余数</p>
+<p>“%”表示求模（取余）运算，相当于mod，即计算除法的余数：6%4=2</p>
 <h2 id="5-6字符串处理函数"><a href="#5-6字符串处理函数" class="headerlink" title="5.6字符串处理函数"></a>5.6字符串处理函数</h2><h3 id="5-6-1strip-函数"><a href="#5-6-1strip-函数" class="headerlink" title="5.6.1strip()函数"></a>5.6.1strip()函数</h3><p>用于移除字符串头尾指定的字符或字符序列</p>
 <p>默认用法：当rm为空时，默认去除空白符（包括’\n’, ‘\r’, ‘\t’, ‘ ‘)</p>
 <p>str.strip()同时去掉str左右两边的空白符</p>
@@ -595,20 +595,5 @@ MathJax = {
 
       </div>
     </div>
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-</body>
+  </body>
 </html>
