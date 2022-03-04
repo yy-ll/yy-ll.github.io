@@ -151,11 +151,7 @@ MathJax = {
 <p>普通箱子（单锁眼）模型——对称密码体制k1=k2（单钥、私钥密码体制）</p>
 <p>双锁眼箱子模型——4个流程，过于繁琐</p>
 <p>投票箱模型（一方可不需钥匙，常需第三方介入）——非对称密码体制（双钥、公钥密码体制）</p>
-<h1 id="2-密码学发展"><a href="#2-密码学发展" class="headerlink" title="2.密码学发展"></a>2.密码学发展</h1><p>简史：</p>
-<p>古典密码时期（-1949） ———-   现代密码学    （1949-）</p>
-<p>4个时期：</p>
-<p>古代密码时代———机械密码时代———信息密码时代———商业密码时代（公钥密码）</p>
-<h1 id="3-RSA加密"><a href="#3-RSA加密" class="headerlink" title="3.RSA加密"></a>3.RSA加密</h1><p>​                                           - - 对极大整数做因数分解的难度决定了RSA的可靠性</p>
+<h1 id="2-RSA加密"><a href="#2-RSA加密" class="headerlink" title="2.RSA加密"></a>2.RSA加密</h1><p>​                                           - - 对极大整数做因数分解的难度决定了RSA的可靠性</p>
 <h2 id="2-1数论知识"><a href="#2-1数论知识" class="headerlink" title="2.1数论知识"></a>2.1数论知识</h2><p>1.<strong>互质关系</strong>（互素关系）&lt;— 质数（素数） </p>
 <p>两个正整数，除1外无其他公因子，则为互质关系。</p>
 <p>2.<strong>欧拉函数</strong>φ(n)</p>
@@ -216,7 +212,7 @@ MathJax = {
   <div class="post-catalog hidden" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%AF%86%E7%A0%81%E5%AD%A6%E5%88%86%E7%B1%BB"><span class="toc-text">1.密码学分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%AF%86%E7%A0%81%E5%AD%A6%E5%8F%91%E5%B1%95"><span class="toc-text">2.密码学发展</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-RSA%E5%8A%A0%E5%AF%86"><span class="toc-text">3.RSA加密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86"><span class="toc-text">2.1数论知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2RSA%E8%BF%87%E7%A8%8B"><span class="toc-text">2.2RSA过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1%E8%AF%AD%E8%A8%80%E6%8F%8F%E8%BF%B0"><span class="toc-text">2.2.1语言描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2%E5%9B%BE%E7%A4%BA%E8%AF%B4%E6%98%8E"><span class="toc-text">2.2.2图示说明</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%AF%86%E7%A0%81%E5%AD%A6%E5%88%86%E7%B1%BB"><span class="toc-text">1.密码学分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-RSA%E5%8A%A0%E5%AF%86"><span class="toc-text">2.RSA加密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86"><span class="toc-text">2.1数论知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2RSA%E8%BF%87%E7%A8%8B"><span class="toc-text">2.2RSA过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1%E8%AF%AD%E8%A8%80%E6%8F%8F%E8%BF%B0"><span class="toc-text">2.2.1语言描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2%E5%9B%BE%E7%A4%BA%E8%AF%B4%E6%98%8E"><span class="toc-text">2.2.2图示说明</span></a></li></ol></li></ol></li></ol>
     </div>
   </div>
 
@@ -552,5 +548,20 @@ MathJax = {
 
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>

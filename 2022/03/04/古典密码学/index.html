@@ -11,7 +11,7 @@
   
   <title>
     
-      Archives 
+      古典密码学 
       
       
       |
@@ -105,95 +105,117 @@
 
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2022</span>
-          </h2>
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">古典密码学</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2022-03-04 10:09:18
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <h1 id="1密码学的发展"><a href="#1密码学的发展" class="headerlink" title="1密码学的发展"></a>1密码学的发展</h1><h2 id="1-1简史"><a href="#1-1简史" class="headerlink" title="1.1简史"></a>1.1简史</h2><p>古典密码时期（-1949） ———-   现代密码学    （1949-）</p>
+<h2 id="1-2阶段划分"><a href="#1-2阶段划分" class="headerlink" title="1.2阶段划分"></a>1.2阶段划分</h2><p>—-古典密码阶段（1949前）—-</p>
+<p>此阶段算法和秘钥均保密，信息的安全性主要依赖于对加密和解密算法的保密。</p>
+<p>—-对称密码阶段（1949-1975年）—-</p>
+<p>此后，进入现代密码学阶段，和古典密码阶段的主要区别在于这个阶段的加密和解密算法无需保密，信息的安全性主要依赖于对秘钥的保密。</p>
+<p>需要解决的主要问题是在不可信信道下的秘钥传输问题。</p>
+<p>—-公钥密码阶段（1976年-至今）—-</p>
+<p>在此阶段，加密秘钥（公钥）公开，仅对解密秘钥（私钥）保密，基于一些数学难题保证很难通过公钥推出私钥。</p>
+<h2 id="1-3时期"><a href="#1-3时期" class="headerlink" title="1.3时期"></a>1.3时期</h2><p>古代密码时代———机械密码时代———信息密码时代———商业密码时代（公钥密码）</p>
+<h1 id="2古典密码"><a href="#2古典密码" class="headerlink" title="2古典密码"></a>2古典密码</h1><p>古典密码（classical cryptography），其编码方法主要有两种，即<strong>代换</strong>（代替）和<strong>置换</strong>（换位）。</p>
+<p><img src="/2022/03/04/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/1.png" style="zoom: 50%;"></p>
+<p><center>（关系图）&lt;/cneter&gt;</center></p>
+<h2 id="2-1代换密码（替换密码）Substitution-Cipher"><a href="#2-1代换密码（替换密码）Substitution-Cipher" class="headerlink" title="2.1代换密码（替换密码）Substitution Cipher"></a>2.1代换密码（替换密码）Substitution Cipher</h2><p>将明文中的字符<strong>替代</strong>成其他字符，<strong>每一个字符都变了</strong>。</p>
+<h3 id="2-1-1单表替换密码"><a href="#2-1-1单表替换密码" class="headerlink" title="2.1.1单表替换密码"></a>2.1.1单表替换密码</h3><h4 id="2-1-1-1最简单的替换密码——移位密码"><a href="#2-1-1-1最简单的替换密码——移位密码" class="headerlink" title="2.1.1.1最简单的替换密码——移位密码"></a>2.1.1.1最简单的替换密码——移位密码</h4><h5 id="2-1-1-1-1-凯撒密码"><a href="#2-1-1-1-1-凯撒密码" class="headerlink" title="2.1.1.1.1 凯撒密码"></a>2.1.1.1.1 凯撒密码</h5><p>移位密码中最著名的是凯撒密码。</p>
+<h4 id="2-1-1-2仿射密码"><a href="#2-1-1-2仿射密码" class="headerlink" title="2.1.1.2仿射密码"></a>2.1.1.2仿射密码</h4><p>仿射密码的加解密：</p>
+<script type="math/tex; mode=display">c ≡ am+b（mod 26）</script><script type="math/tex; mode=display">m ≡ a^{-1}（c-b）（mod 26）</script><p>其中，a、b为密钥，0≤a，b≤25且gcd（a，26）= 1</p>
+<script type="math/tex; mode=display">a^{-1} * a ≡ 1 （mod 26）</script><h3 id="2-1-2多表替换密码"><a href="#2-1-2多表替换密码" class="headerlink" title="2.1.2多表替换密码"></a>2.1.2多表替换密码</h3><h4 id="2-1-2-1Vigenere密码"><a href="#2-1-2-1Vigenere密码" class="headerlink" title="2.1.2.1Vigenere密码"></a>2.1.2.1Vigenere密码</h4><h2 id="2-2置换密码（换位密码）Permutation-Cipher"><a href="#2-2置换密码（换位密码）Permutation-Cipher" class="headerlink" title="2.2置换密码（换位密码）Permutation Cipher"></a>2.2置换密码（换位密码）Permutation Cipher</h2><p><strong>字母相同</strong>，但重新排列，导致<strong>位置顺序变了</strong>，这样编成的密码。</p>
+<p>最简单的置换密码是把明文中的字母顺序倒过来，然后截成固定长度的字母组作为密文。</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/03/01/test/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2022-03-04 10:09:18
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
       
-      <div class="post-item" title="古典密码学">
-        <div class="time-m-d">03-04</div>
-        <div class="title">
-          <a href="/2022/03/04/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/">
-            <span>古典密码学</span>
-          </a>
-        </div>
-      </div>
+    </div>
     
-      <div class="post-item" title="test">
-        <div class="time-m-d">03-01</div>
-        <div class="title">
-          <a href="/2022/03/01/test/">
-            <span>test</span>
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E5%AF%86%E7%A0%81%E5%AD%A6%E7%9A%84%E5%8F%91%E5%B1%95"><span class="toc-text">1密码学的发展</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E7%AE%80%E5%8F%B2"><span class="toc-text">1.1简史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E9%98%B6%E6%AE%B5%E5%88%92%E5%88%86"><span class="toc-text">1.2阶段划分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3%E6%97%B6%E6%9C%9F"><span class="toc-text">1.3时期</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81"><span class="toc-text">2古典密码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E4%BB%A3%E6%8D%A2%E5%AF%86%E7%A0%81%EF%BC%88%E6%9B%BF%E6%8D%A2%E5%AF%86%E7%A0%81%EF%BC%89Substitution-Cipher"><span class="toc-text">2.1代换密码（替换密码）Substitution Cipher</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1%E5%8D%95%E8%A1%A8%E6%9B%BF%E6%8D%A2%E5%AF%86%E7%A0%81"><span class="toc-text">2.1.1单表替换密码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-1%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%AF%86%E7%A0%81%E2%80%94%E2%80%94%E7%A7%BB%E4%BD%8D%E5%AF%86%E7%A0%81"><span class="toc-text">2.1.1.1最简单的替换密码——移位密码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-1-1-1-%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81"><span class="toc-text">2.1.1.1.1 凯撒密码</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-2%E4%BB%BF%E5%B0%84%E5%AF%86%E7%A0%81"><span class="toc-text">2.1.1.2仿射密码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2%E5%A4%9A%E8%A1%A8%E6%9B%BF%E6%8D%A2%E5%AF%86%E7%A0%81"><span class="toc-text">2.1.2多表替换密码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-1Vigenere%E5%AF%86%E7%A0%81"><span class="toc-text">2.1.2.1Vigenere密码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E7%BD%AE%E6%8D%A2%E5%AF%86%E7%A0%81%EF%BC%88%E6%8D%A2%E4%BD%8D%E5%AF%86%E7%A0%81%EF%BC%89Permutation-Cipher"><span class="toc-text">2.2置换密码（换位密码）Permutation Cipher</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="xctf--crypto exercise area">
-        <div class="time-m-d">02-24</div>
-        <div class="title">
-          <a href="/2022/02/24/xctf-crypto-exercise-area/">
-            <span>xctf--crypto exercise area</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="python--partial">
-        <div class="time-m-d">02-20</div>
-        <div class="title">
-          <a href="/2022/02/20/python-partial/">
-            <span>python--partial</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="RSA常见的攻击方法">
-        <div class="time-m-d">02-17</div>
-        <div class="title">
-          <a href="/2022/02/17/RSA%E5%B8%B8%E8%A7%81%E7%9A%84%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95/">
-            <span>RSA常见的攻击方法</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CTF-RSA">
-        <div class="time-m-d">02-13</div>
-        <div class="title">
-          <a href="/2022/02/13/CTF-RSA/">
-            <span>CTF-RSA</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="crypto--RSA加密">
-        <div class="time-m-d">02-12</div>
-        <div class="title">
-          <a href="/2022/02/12/crypto-RSA%E5%8A%A0%E5%AF%86/">
-            <span>crypto--RSA加密</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Hello World">
-        <div class="time-m-d">02-10</div>
-        <div class="title">
-          <a href="/2022/02/10/hello-world/">
-            <span>Hello World</span>
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-</div>
+
 
         <div class="footer">
   <div class="social">
@@ -480,6 +502,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6 + '&url=' + http%3A%2F%2Fyy-ll.github.io%2F2022%2F03%2F04%2F%25E5%258F%25A4%25E5%2585%25B8%25E5%25AF%2586%25E7%25A0%2581%25E5%25AD%25A6%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://yy-ll.github.io/2022/03/04/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
