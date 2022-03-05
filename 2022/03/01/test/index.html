@@ -172,10 +172,10 @@ MathJax = {
 <p>对于题目中的C1、C2来说：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">3</span>                     <span class="comment">#相当于e，低加密指数</span></span><br><span class="line"></span><br><span class="line">C1 = <span class="built_in">pow</span>(m,x,n1)</span><br><span class="line">C2 = <span class="built_in">pow</span>(m,x,n2) </span><br></pre></td></tr></table></figure>
 <p>即：</p>
-<script type="math/tex; mode=display">C1 ≡ m^x（mod n1）</script><script type="math/tex; mode=display">C2 ≡ m^x（mod n2）</script><p>又由同余是等价关系，即同余具有：自反性、<strong>对称性</strong>、传递性</p>
-<p>对称性：a ≡ b（mod m）等价于b ≡ a（mod m）</p>
+<script type="math/tex; mode=display">C1 ≡ m^x（mod  n1）</script><script type="math/tex; mode=display">C2 ≡ m^x（mod  n2）</script><p>又由同余是等价关系，即同余具有：自反性、<strong>对称性</strong>、传递性</p>
+<p>对称性：a ≡ b（mod  m）等价于b ≡ a（mod  m）</p>
 <p>故可知：</p>
-<script type="math/tex; mode=display">C1（mod n1）≡ m^x</script><script type="math/tex; mode=display">C2（mod n2）≡ m^x</script><p>故可用<strong>CRT</strong>求解m^x</p>
+<script type="math/tex; mode=display">C1（mod  n1）≡ m^x</script><script type="math/tex; mode=display">C2（mod  n2）≡ m^x</script><p>故可用<strong>CRT</strong>求解$m^x$</p>
 <h2 id="中国剩余定理（孙子定理）"><a href="#中国剩余定理（孙子定理）" class="headerlink" title="中国剩余定理（孙子定理）"></a>中国剩余定理（孙子定理）</h2><p>Chinese remainder theorem(CRT)</p>
 <p>求解一元线性同余方程组【物不知数】问题。</p>
 <p>对于一次同余方程组：</p>
