@@ -164,7 +164,7 @@ MathJax = {
 <script type="math/tex; mode=display">c = E_k（m）≡ m + k（mod 26），0 ≤ m，k ≤ 25</script><script type="math/tex; mode=display">m = D_k（c）≡ c - k （mod 26），0 ≤ c，k ≤ 25</script><h4 id="2-1-1-3仿射密码"><a href="#2-1-1-3仿射密码" class="headerlink" title="2.1.1.3仿射密码"></a>2.1.1.3仿射密码</h4><p>加解密：</p>
 <script type="math/tex; mode=display">c = E_{a，b}（m）≡ am+b（mod 26）</script><script type="math/tex; mode=display">m = D_{a，b}（c）≡ a^{-1}（c-b）（mod 26）</script><p>其中，a、b为密钥，0≤a，b≤25且gcd（a，26）= 1</p>
 <script type="math/tex; mode=display">a^{-1} * a ≡ 1 （mod 26）</script><h3 id="2-1-2多表替换密码Polyalphabetic-Ciphers"><a href="#2-1-2多表替换密码Polyalphabetic-Ciphers" class="headerlink" title="2.1.2多表替换密码Polyalphabetic Ciphers"></a>2.1.2多表替换密码Polyalphabetic Ciphers</h3><h4 id="2-1-2-1维吉尼亚密码Vigenere"><a href="#2-1-2-1维吉尼亚密码Vigenere" class="headerlink" title="2.1.2.1维吉尼亚密码Vigenere"></a>2.1.2.1维吉尼亚密码Vigenere</h4><p>多组移位</p>
-<h4 id="2-1-2-2希尔密码Hill-Cipher"><a href="#2-1-2-2希尔密码Hill-Cipher" class="headerlink" title="2.1.2.2希尔密码Hill Cipher"></a>2.1.2.2希尔密码Hill Cipher</h4><p>密钥K = {定义在$Z_26$上的m阶可逆矩阵}</p>
+<h4 id="2-1-2-2希尔密码Hill-Cipher"><a href="#2-1-2-2希尔密码Hill-Cipher" class="headerlink" title="2.1.2.2希尔密码Hill Cipher"></a>2.1.2.2希尔密码Hill Cipher</h4><p>密钥K = {定义在$Z_{26}$上的m阶可逆矩阵}</p>
 <p>注意：若密钥是二阶可逆矩阵。则每次对两个字母加密。</p>
 <h4 id="2-1-2-3Vernam密码"><a href="#2-1-2-3Vernam密码" class="headerlink" title="2.1.2.3Vernam密码"></a>2.1.2.3Vernam密码</h4><p>运算基于二进制数据而非字母。密文是由明文和密钥经过异或运算得到的。</p>
 <script type="math/tex; mode=display">c_i = p_i\oplus k_i</script><h4 id="2-1-2-4一次一密One-time-pad（OTP）"><a href="#2-1-2-4一次一密One-time-pad（OTP）" class="headerlink" title="2.1.2.4一次一密One-time pad（OTP）"></a>2.1.2.4一次一密One-time pad（OTP）</h4><p>对Vernam密码的改进，是不可攻破的。其密钥是随机序列。</p>
