@@ -149,7 +149,7 @@ MathJax = {
 <h1 id="流密码（序列密码）"><a href="#流密码（序列密码）" class="headerlink" title="流密码（序列密码）"></a>流密码（序列密码）</h1><p>常以二元字符表示，每次加密1比特或1字节。</p>
 <p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/1.jpg" style="zoom:67%;"></p>
 <p>加解密可用硬件实现：</p>
-<p> 线性反馈移位寄存器（LFSR：linear feedback shift register）其输出的序列称为线性反馈移位寄存器序列。</p>
+<h2 id="线性反馈移位寄存器（LFSR：linear-feedback-shift-register）"><a href="#线性反馈移位寄存器（LFSR：linear-feedback-shift-register）" class="headerlink" title="线性反馈移位寄存器（LFSR：linear feedback shift register）"></a>线性反馈移位寄存器（LFSR：linear feedback shift register）</h2><p>其输出的序列称为线性反馈移位寄存器序列。</p>
 <p>即给出K = （$k_1$，$k_2$，……，$k_m$），定义$z_i = k_i$（1≤i≤m）</p>
 <script type="math/tex; mode=display">z_{i+m} = c_0z_i + c_1z_{i+1} + …… + c_{m-1}z_{i+m-1} mod 2</script><p>其中$c_i = 0或1$，m的值即为给出的密钥个数。</p>
 <p>周期为$2^m - 1$的序列称为m序列</p>
@@ -196,7 +196,7 @@ MathJax = {
   <div class="post-catalog hidden" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E5%AF%86%E7%A0%81%EF%BC%88%E5%BA%8F%E5%88%97%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-text">流密码（序列密码）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81block-cipher"><span class="toc-text">分组密码block cipher</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E5%AF%86%E7%A0%81%EF%BC%88%E5%BA%8F%E5%88%97%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-text">流密码（序列密码）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%8D%E9%A6%88%E7%A7%BB%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88LFSR%EF%BC%9Alinear-feedback-shift-register%EF%BC%89"><span class="toc-text">线性反馈移位寄存器（LFSR：linear feedback shift register）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81block-cipher"><span class="toc-text">分组密码block cipher</span></a></li></ol>
     </div>
   </div>
 
