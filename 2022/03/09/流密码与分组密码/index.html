@@ -146,24 +146,28 @@ MathJax = {
 <p>按照密钥特征的不同，密码体制分为：对称密码体制和非对称密码体制。</p>
 <p>按照对明文加密方式的不同，密码体制分为：流密码和分组密码。</p>
 <p>其中，非对称密码体制都是分组密码。</p>
-<h1 id="流密码（序列密码）"><a href="#流密码（序列密码）" class="headerlink" title="流密码（序列密码）"></a>流密码（序列密码）</h1><p>常以二元字符表示，每次加密1比特或1字节。</p>
+<h1 id="1流密码（序列密码）"><a href="#1流密码（序列密码）" class="headerlink" title="1流密码（序列密码）"></a>1流密码（序列密码）</h1><h2 id="1-1形式"><a href="#1-1形式" class="headerlink" title="1.1形式"></a>1.1形式</h2><p>常以二元字符表示，每次加密1比特或1字节。</p>
 <p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/1.jpg" style="zoom:67%;"></p>
 <p>加解密可用硬件实现：</p>
-<h2 id="线性反馈移位寄存器（LFSR：linear-feedback-shift-register）"><a href="#线性反馈移位寄存器（LFSR：linear-feedback-shift-register）" class="headerlink" title="线性反馈移位寄存器（LFSR：linear feedback shift register）"></a>线性反馈移位寄存器（LFSR：linear feedback shift register）</h2><p>其输出的序列称为线性反馈移位寄存器序列。</p>
+<h2 id="1-2线性反馈移位寄存器（LFSR：linear-feedback-shift-register）"><a href="#1-2线性反馈移位寄存器（LFSR：linear-feedback-shift-register）" class="headerlink" title="1.2线性反馈移位寄存器（LFSR：linear feedback shift register）"></a>1.2线性反馈移位寄存器（LFSR：linear feedback shift register）</h2><p>其输出的序列称为线性反馈移位寄存器序列。</p>
 <p>即给出K = （$k_1$，$k_2$，……，$k_m$），定义$z_i = k_i$（1≤i≤m）</p>
 <script type="math/tex; mode=display">z_{i+m} = c_0z_i + c_1z_{i+1} + …… + c_{m-1}z_{i+m-1} mod 2</script><p>其中$c_i = 0或1$，m的值即为给出的密钥个数。</p>
 <p>周期为$2^m - 1$的序列称为m序列</p>
 <p>主要应用：Vernam密码、一次一密（OTP）</p>
-<h1 id="分组密码block-cipher"><a href="#分组密码block-cipher" class="headerlink" title="分组密码block cipher"></a>分组密码block cipher</h1><p>将明文分成固定长度的组，用相同的算法和密钥序列对每组进行加密，生成固定长度的密文，所以只需要研究任一组明文数字的变换规则。可以看成流密码的特例。</p>
+<h1 id="2分组密码block-cipher"><a href="#2分组密码block-cipher" class="headerlink" title="2分组密码block cipher"></a>2分组密码block cipher</h1><h2 id="2-1形式"><a href="#2-1形式" class="headerlink" title="2.1形式"></a>2.1形式</h2><p>将明文分成固定长度的组，用相同的算法和密钥序列对每组进行加密，生成固定长度的密文，所以只需要研究任一组明文数字的变换规则。可以看成流密码的特例。</p>
 <p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/2.jpg" style="zoom:67%;"></p>
-<p>框图：</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/3.jpg" style="zoom: 50%;"></p>
+<h2 id="2-2框图"><a href="#2-2框图" class="headerlink" title="2.2框图"></a>2.2框图</h2><p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/3.jpg" style="zoom: 50%;"></p>
 <p>即将明文消息的数字序列$x_0，x_1，……，x_i，……$划分成</p>
 <p>长为n的组$\vec{x} = （x_0，x_1，……，x_{n-1}）$</p>
 <p>各组（长为n的矢量）分别在密钥$\vec{k} =（k_0，k_1，……，k_{t-1}）$_</p>
 <p>控制下变成等长输出的数字序列 $\vec{y} = （y_0，y_1，……，y_{m-1}）$（长为m的矢量）</p>
 <p>其中，$x_i，y_i ∈ {0，1}$</p>
 <p>分组长度为n，通常取m = n。若n ＜ m为数据扩展；若n ＞ m为数据压缩。</p>
+<h2 id="2-3设计分组密码的方法"><a href="#2-3设计分组密码的方法" class="headerlink" title="2.3设计分组密码的方法"></a>2.3设计分组密码的方法</h2><h3 id="2-3-1代换"><a href="#2-3-1代换" class="headerlink" title="2.3.1代换"></a>2.3.1代换</h3><p>明文分组到密文分组的可逆变换。其中“可逆变换”指明文的每一个分组都产生唯一的一个密文分组。但分组长度很大的可逆代换结构不实际。为解决此问题，引入“S盒”的概念。</p>
+<h4 id="2-3-1-1S盒"><a href="#2-3-1-1S盒" class="headerlink" title="2.3.1.1S盒"></a>2.3.1.1S盒</h4><p>对于n比特的代换结构，会将n分成较小的段，如$n = r <em> n_0$（$r、n_0$均为正整数），由此可将设计n个变量的代换转变为设计r个较小的子代换，每个子代换只有$n_0$个输入变量。称<strong>每个子代换</strong>为<strong>代换盒</strong>，简称为<em>*S盒</em></em>。</p>
+<h3 id="2-3-2扩散和混淆"><a href="#2-3-2扩散和混淆" class="headerlink" title="2.3.2扩散和混淆"></a>2.3.2扩散和混淆</h3><p>是由Shannon提出的设计密码系统的两个基本方法，成为设计现代分组密码的基础。</p>
+<p>扩散：使密文中每一位由明文中多位产生，导致明文和密文之间的统计关系变得复杂。</p>
+<p>混淆：导致密文和密钥之间的统计关系变得复杂。</p>
 
       </div>
       
@@ -196,7 +200,7 @@ MathJax = {
   <div class="post-catalog hidden" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E5%AF%86%E7%A0%81%EF%BC%88%E5%BA%8F%E5%88%97%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-text">流密码（序列密码）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%8D%E9%A6%88%E7%A7%BB%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88LFSR%EF%BC%9Alinear-feedback-shift-register%EF%BC%89"><span class="toc-text">线性反馈移位寄存器（LFSR：linear feedback shift register）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81block-cipher"><span class="toc-text">分组密码block cipher</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E6%B5%81%E5%AF%86%E7%A0%81%EF%BC%88%E5%BA%8F%E5%88%97%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-text">1流密码（序列密码）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E5%BD%A2%E5%BC%8F"><span class="toc-text">1.1形式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E7%BA%BF%E6%80%A7%E5%8F%8D%E9%A6%88%E7%A7%BB%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88LFSR%EF%BC%9Alinear-feedback-shift-register%EF%BC%89"><span class="toc-text">1.2线性反馈移位寄存器（LFSR：linear feedback shift register）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81block-cipher"><span class="toc-text">2分组密码block cipher</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E5%BD%A2%E5%BC%8F"><span class="toc-text">2.1形式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E6%A1%86%E5%9B%BE"><span class="toc-text">2.2框图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3%E8%AE%BE%E8%AE%A1%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">2.3设计分组密码的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1%E4%BB%A3%E6%8D%A2"><span class="toc-text">2.3.1代换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-1S%E7%9B%92"><span class="toc-text">2.3.1.1S盒</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2%E6%89%A9%E6%95%A3%E5%92%8C%E6%B7%B7%E6%B7%86"><span class="toc-text">2.3.2扩散和混淆</span></a></li></ol></li></ol></li></ol>
     </div>
   </div>
 
