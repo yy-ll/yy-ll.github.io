@@ -11,7 +11,7 @@
   
   <title>
     
-      古典密码学 
+      流密码与分组密码 
       
       
       |
@@ -133,65 +133,44 @@ MathJax = {
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">古典密码学</div>
+      <div class="post-title">流密码与分组密码</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="Update time"></i>
-          2022-03-04 10:09:18
+          2022-03-09 00:03:06
         </span>
         
       </div>
       <div class="markdown-body">
-        <h1 id="1密码学的发展"><a href="#1密码学的发展" class="headerlink" title="1密码学的发展"></a>1密码学的发展</h1><h2 id="1-1简史"><a href="#1-1简史" class="headerlink" title="1.1简史"></a>1.1简史</h2><p>古典密码时期（-1949） ———-   现代密码学    （1949-）</p>
-<h2 id="1-2阶段划分"><a href="#1-2阶段划分" class="headerlink" title="1.2阶段划分"></a>1.2阶段划分</h2><p>—-古典密码阶段（1949前）—-</p>
-<p>此阶段算法和秘钥均保密，信息的安全性主要依赖于对加密和解密算法的保密。</p>
-<p>—-对称密码阶段（1949-1975年）—-</p>
-<p>此后，进入现代密码学阶段，和古典密码阶段的主要区别在于这个阶段的加密和解密算法无需保密，信息的安全性主要依赖于对秘钥的保密。</p>
-<p>需要解决的主要问题是在不可信信道下的秘钥传输问题。</p>
-<p>—-公钥密码阶段（1976年-至今）—-</p>
-<p>在此阶段，加密秘钥（公钥）公开，仅对解密秘钥（私钥）保密，基于一些数学难题保证很难通过公钥推出私钥。</p>
-<h2 id="1-3时期"><a href="#1-3时期" class="headerlink" title="1.3时期"></a>1.3时期</h2><p>古代密码时代———机械密码时代———信息密码时代———商业密码时代（公钥密码）</p>
-<h1 id="2古典密码"><a href="#2古典密码" class="headerlink" title="2古典密码"></a>2古典密码</h1><p>古典密码（classical cryptography），其编码方法主要有两种，即<strong>代换</strong>（代替）和<strong>置换</strong>（换位）。</p>
-<p><img src="/2022/03/04/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/1.png" style="zoom: 50%;"></p>
-<center>（关系图）</center>
-
-
-
-
-<h2 id="2-1代换密码（替换密码）Substitution-Cipher"><a href="#2-1代换密码（替换密码）Substitution-Cipher" class="headerlink" title="2.1代换密码（替换密码）Substitution Cipher"></a>2.1代换密码（替换密码）Substitution Cipher</h2><p>将明文中的字符<strong>替代</strong>成其他字符，<strong>每一个字符都变了</strong>。</p>
-<h3 id="2-1-1单表替换密码"><a href="#2-1-1单表替换密码" class="headerlink" title="2.1.1单表替换密码"></a>2.1.1单表替换密码</h3><h4 id="2-1-1-1凯撒密码Caesar-Cipher"><a href="#2-1-1-1凯撒密码Caesar-Cipher" class="headerlink" title="2.1.1.1凯撒密码Caesar Cipher"></a>2.1.1.1凯撒密码Caesar Cipher</h4><p>加解密代换所用的密钥为3，加密时每个字母后移3位（循环移位，z到c）</p>
-<script type="math/tex; mode=display">c = E_3（m）≡ m + 3（mod 26），0 ≤ m ≤ 25</script><script type="math/tex; mode=display">m = D_3（c）≡ c - 3 （mod 26），0 ≤ c ≤ 25</script><h4 id="2-1-1-2移位密码shift-cipher"><a href="#2-1-1-2移位密码shift-cipher" class="headerlink" title="2.1.1.2移位密码shift cipher"></a>2.1.1.2移位密码shift cipher</h4><p>加解密：</p>
-<script type="math/tex; mode=display">c = E_k（m）≡ m + k（mod 26），0 ≤ m，k ≤ 25</script><script type="math/tex; mode=display">m = D_k（c）≡ c - k （mod 26），0 ≤ c，k ≤ 25</script><h4 id="2-1-1-3仿射密码Affine-Cipher"><a href="#2-1-1-3仿射密码Affine-Cipher" class="headerlink" title="2.1.1.3仿射密码Affine Cipher"></a>2.1.1.3仿射密码Affine Cipher</h4><p>加解密：</p>
-<script type="math/tex; mode=display">c = E_{a，b}（m）≡ am+b（mod 26）</script><script type="math/tex; mode=display">m = D_{a，b}（c）≡ a^{-1}（c-b）（mod 26）</script><p>其中，a、b为密钥，0≤a，b≤25且gcd（a，26）= 1</p>
-<script type="math/tex; mode=display">a^{-1} * a ≡ 1 （mod 26）</script><h3 id="2-1-2多表替换密码Polyalphabetic-Ciphers"><a href="#2-1-2多表替换密码Polyalphabetic-Ciphers" class="headerlink" title="2.1.2多表替换密码Polyalphabetic Ciphers"></a>2.1.2多表替换密码Polyalphabetic Ciphers</h3><h4 id="2-1-2-1维吉尼亚密码Vigenere-Cipher"><a href="#2-1-2-1维吉尼亚密码Vigenere-Cipher" class="headerlink" title="2.1.2.1维吉尼亚密码Vigenère Cipher"></a>2.1.2.1维吉尼亚密码Vigenère Cipher</h4><p>多组移位，由一些偏移量不同的Caesar组成，即在Caesar的基础上拓展而来。</p>
-<p>加解密：</p>
-<script type="math/tex; mode=display">c_i ≡ （m_i + k_i）mod 26，0 ≤ m，k ≤ 25</script><script type="math/tex; mode=display">m_i ≡ （c_i - k_i） mod 26，0 ≤ c，k ≤ 25</script><p>其中，密钥是由关键词重复得到。加密时，密钥行，明文列。</p>
-<p>将26个凯撒密表合成一个，得到：</p>
-<p><img src="/2022/03/04/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/2.png" style="zoom: 50%;"></p>
-<p>该密表是由每一行由前一行向左偏移一位构成。</p>
-<p>如：</p>
-<p>用密钥E将明文T加密后得到：密文X（E行，T列）</p>
-<p>用密钥E将密文X解密后得到：明文T（密钥为E对应E行，密文X位于T列，故明文为T）</p>
-<h4 id="2-1-2-2希尔密码Hill-Cipher"><a href="#2-1-2-2希尔密码Hill-Cipher" class="headerlink" title="2.1.2.2希尔密码Hill Cipher"></a>2.1.2.2希尔密码Hill Cipher</h4><p>密钥K = {定义在$Z_{26}$上的m阶可逆矩阵}</p>
-<p>注意：若密钥是二阶可逆矩阵。则每次对两个字母加密。</p>
-<h4 id="2-1-2-3Vernam密码"><a href="#2-1-2-3Vernam密码" class="headerlink" title="2.1.2.3Vernam密码"></a>2.1.2.3Vernam密码</h4><p>是代换密码的特例。运算基于二进制数据而非字母，密文是由明文和密钥经过异或运算得到的。</p>
-<p>其中，M = C = K = {0，1}</p>
-<p>加解密过程：</p>
-<script type="math/tex; mode=display">c_i = p_i\oplus k_i</script><script type="math/tex; mode=display">p_i = c_i\oplus k_i</script><h4 id="2-1-2-4一次一密One-time-pad（OTP）"><a href="#2-1-2-4一次一密One-time-pad（OTP）" class="headerlink" title="2.1.2.4一次一密One-time pad（OTP）"></a>2.1.2.4一次一密One-time pad（OTP）</h4><p>对Vernam密码的改进，使用与消息一样长且无重复的随机密钥来加密信息，且密钥只加解密一条消息，是不可攻破的。</p>
-<p>若满足密钥串只用一次，且明文与密钥长度一致，则达到了<strong>无条件安全</strong>。一次一密的安全性取决于密钥的随机性。故引入伪随机的概念，即线性反馈移位寄存器（LFSR）—-&gt;<strong>流密码</strong></p>
-<h2 id="2-2置换密码（换位密码）Permutation-Cipher"><a href="#2-2置换密码（换位密码）Permutation-Cipher" class="headerlink" title="2.2置换密码（换位密码）Permutation Cipher"></a>2.2置换密码（换位密码）Permutation Cipher</h2><p><strong>字母相同</strong>，但重新排列，导致<strong>位置顺序变了</strong>，这样编成的密码。</p>
-<p>最简单的置换密码是把明文中的字母顺序倒过来，然后截成固定长度的字母组作为密文。</p>
-<h3 id="2-2-1栅栏密码Rail-Fence-Cipher"><a href="#2-2-1栅栏密码Rail-Fence-Cipher" class="headerlink" title="2.2.1栅栏密码Rail Fence Cipher"></a>2.2.1栅栏密码Rail Fence Cipher</h3><p>规则：</p>
-<p>把要加密的明文分成N个一组，然后把每组的第1个字符连起来、第2个字符连起来……直到第N个字符，最后将其全部连起来便得到了密文。</p>
-<p>分类：</p>
-<p>分为传统栅栏密码和W型栅栏密码。</p>
+        <p>根据分类标准的不同，产生了不同的密码分类：</p>
+<p>按照密钥特征的不同，密码体制分为：对称密码体制和非对称密码体制。</p>
+<p>按照对明文加密方式的不同，密码体制分为：流密码和分组密码。</p>
+<p>其中，非对称密码体制都是分组密码。</p>
+<h1 id="流密码（序列密码）"><a href="#流密码（序列密码）" class="headerlink" title="流密码（序列密码）"></a>流密码（序列密码）</h1><p>常以二元字符表示，每次加密1比特或1字节。</p>
+<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/1.jpg" style="zoom:67%;"></p>
+<p>加解密可用硬件实现：</p>
+<p> 线性反馈移位寄存器（LFSR：linear feedback shift register）其输出的序列称为线性反馈移位寄存器序列。</p>
+<p>即给出K = （$k_1$，$k_2$，……，$k_m$），定义$z_i = k_i$（1≤i≤m）</p>
+<script type="math/tex; mode=display">z_{i+m} = c_0z_i + c_1z_{i+1} + …… + c_{m-1}z_{i+m-1} mod 2</script><p>其中$c_i = 0或1$，m的值即为给出的密钥个数。</p>
+<p>周期为$2^m - 1$的序列称为m序列</p>
+<p>主要应用：Vernam密码、一次一密（OTP）</p>
+<h1 id="分组密码block-cipher"><a href="#分组密码block-cipher" class="headerlink" title="分组密码block cipher"></a>分组密码block cipher</h1><p>将明文分成固定长度的组，用相同的算法和密钥序列对每组进行加密，生成固定长度的密文，所以只需要研究任一组明文数字的变换规则。可以看成流密码的特例。</p>
+<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/2.jpg" style="zoom:67%;"></p>
+<p>框图：</p>
+<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/3.jpg" style="zoom: 50%;"></p>
+<p>即将明文消息的数字序列$x_0，x_1，……，x_i，……$划分成</p>
+<p>长为n的组$\vec{x} = （x_0，x_1，……，x_{n-1}）$</p>
+<p>各组（长为n的矢量）分别在密钥$\vec{k} =（k_0，k_1，……，k_{t-1}）$_</p>
+<p>控制下变成等长输出的数字序列 $\vec{y} = （y_0，y_1，……，y_{m-1}）$（长为m的矢量）</p>
+<p>其中，$x_i，y_i ∈ {0，1}$</p>
+<p>分组长度为n，通常取m = n。若n ＜ m为数据扩展；若n ＞ m为数据压缩。</p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2022/03/01/test/" target="_self">
+              <a href="/2022/03/04/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>Prev</span>
               </a>
@@ -200,16 +179,11 @@ MathJax = {
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime" title="Update time"></i>
-              2022-03-04 10:09:18
+              2022-03-09 00:03:06
             </span>
             
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/" target="_self">
-                <span>Next</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
@@ -222,7 +196,7 @@ MathJax = {
   <div class="post-catalog hidden" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E5%AF%86%E7%A0%81%E5%AD%A6%E7%9A%84%E5%8F%91%E5%B1%95"><span class="toc-text">1密码学的发展</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E7%AE%80%E5%8F%B2"><span class="toc-text">1.1简史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E9%98%B6%E6%AE%B5%E5%88%92%E5%88%86"><span class="toc-text">1.2阶段划分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3%E6%97%B6%E6%9C%9F"><span class="toc-text">1.3时期</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81"><span class="toc-text">2古典密码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E4%BB%A3%E6%8D%A2%E5%AF%86%E7%A0%81%EF%BC%88%E6%9B%BF%E6%8D%A2%E5%AF%86%E7%A0%81%EF%BC%89Substitution-Cipher"><span class="toc-text">2.1代换密码（替换密码）Substitution Cipher</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1%E5%8D%95%E8%A1%A8%E6%9B%BF%E6%8D%A2%E5%AF%86%E7%A0%81"><span class="toc-text">2.1.1单表替换密码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-1%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81Caesar-Cipher"><span class="toc-text">2.1.1.1凯撒密码Caesar Cipher</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-2%E7%A7%BB%E4%BD%8D%E5%AF%86%E7%A0%81shift-cipher"><span class="toc-text">2.1.1.2移位密码shift cipher</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-3%E4%BB%BF%E5%B0%84%E5%AF%86%E7%A0%81Affine-Cipher"><span class="toc-text">2.1.1.3仿射密码Affine Cipher</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2%E5%A4%9A%E8%A1%A8%E6%9B%BF%E6%8D%A2%E5%AF%86%E7%A0%81Polyalphabetic-Ciphers"><span class="toc-text">2.1.2多表替换密码Polyalphabetic Ciphers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-1%E7%BB%B4%E5%90%89%E5%B0%BC%E4%BA%9A%E5%AF%86%E7%A0%81Vigenere-Cipher"><span class="toc-text">2.1.2.1维吉尼亚密码Vigenère Cipher</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-2%E5%B8%8C%E5%B0%94%E5%AF%86%E7%A0%81Hill-Cipher"><span class="toc-text">2.1.2.2希尔密码Hill Cipher</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-3Vernam%E5%AF%86%E7%A0%81"><span class="toc-text">2.1.2.3Vernam密码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-4%E4%B8%80%E6%AC%A1%E4%B8%80%E5%AF%86One-time-pad%EF%BC%88OTP%EF%BC%89"><span class="toc-text">2.1.2.4一次一密One-time pad（OTP）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E7%BD%AE%E6%8D%A2%E5%AF%86%E7%A0%81%EF%BC%88%E6%8D%A2%E4%BD%8D%E5%AF%86%E7%A0%81%EF%BC%89Permutation-Cipher"><span class="toc-text">2.2置换密码（换位密码）Permutation Cipher</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1%E6%A0%85%E6%A0%8F%E5%AF%86%E7%A0%81Rail-Fence-Cipher"><span class="toc-text">2.2.1栅栏密码Rail Fence Cipher</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E5%AF%86%E7%A0%81%EF%BC%88%E5%BA%8F%E5%88%97%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-text">流密码（序列密码）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81block-cipher"><span class="toc-text">分组密码block cipher</span></a></li></ol>
     </div>
   </div>
 
@@ -539,12 +513,12 @@ MathJax = {
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6 + '&url=' + http%3A%2F%2Fyy-ll.github.io%2F2022%2F03%2F04%2F%25E5%258F%25A4%25E5%2585%25B8%25E5%25AF%2586%25E7%25A0%2581%25E5%25AD%25A6%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81 + '&url=' + http%3A%2F%2Fyy-ll.github.io%2F2022%2F03%2F09%2F%25E6%25B5%2581%25E5%25AF%2586%25E7%25A0%2581%25E4%25B8%258E%25E5%2588%2586%25E7%25BB%2584%25E5%25AF%2586%25E7%25A0%2581%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://yy-ll.github.io/2022/03/04/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://yy-ll.github.io/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
