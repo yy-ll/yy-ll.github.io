@@ -178,7 +178,7 @@ MathJax = {
 <p>密文：</p>
 <p>$y = L_{h + 1}||R_{h + 1}$</p>
 <p>第i轮迭代：</p>
-<script type="math/tex; mode=display">L_i = R_{i - 1}</script><script type="math/tex; mode=display">R_i = L_{i - 1} \oplus F（ R_{i - 1}，K_i）</script><p>F为<strong>轮函数</strong>，其结构即为$F（ R_{i - 1}，K_i）$</p>
+<script type="math/tex; mode=display">L_i = R_{i - 1}</script><script type="math/tex; mode=display">R_i = L_{i - 1} \oplus F（ R_{i - 1}，K_i）</script><p>F为<strong>轮函数</strong></p>
 <hr>
 <p><strong>解密</strong>结构如下</p>
 <p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/5.jpg" style="zoom: 50%;"></p>
@@ -190,6 +190,15 @@ MathJax = {
 <p>输出：<br>明文x</p>
 <h3 id="2-4-2DES介绍"><a href="#2-4-2DES介绍" class="headerlink" title="2.4.2DES介绍"></a>2.4.2DES介绍</h3><p><strong>描述图</strong></p>
 <p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/6.jpg" style="zoom:50%;"></p>
+<p>1 将明文分为64位一组</p>
+<p>2 进行初始置换IP操作后生成不同的64bit的值</p>
+<p>3 把产生的结果分左右各32bit，将R部分作为轮函数F的输入</p>
+<p>其中F又可分为四个部分：</p>
+<p>3.1 扩展置换E：32bit —-&gt; 48bit</p>
+<p>3.2 与K（48）XOR（$\oplus$）</p>
+<p>3.3 S-盒</p>
+<p>3.4 置换P（针对32bit）</p>
+<p>4 $IP^{-1}$（针对64bit）</p>
 <p><strong>算法描述</strong></p>
 <p>分组大小：2w = 64</p>
 <p>密钥大小：|K| = 56</p>
@@ -200,6 +209,7 @@ MathJax = {
 <p><strong>具体展开</strong></p>
 <p><strong>初始置换IP</strong></p>
 <p>将64位明文打乱重排，设$x = x_1x_2……x_64$，则$IP（x）= x_58x_50x_42……x_23x_15x_7$</p>
+<p>为换位密码的使用</p>
 <p>即原数据块的第58位放到新数据的第1位……第7位放到第64位。</p>
 <p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/8.jpg" style="zoom: 33%;"></p>
 <p>置换后的数据分为$L_0$和$R_0$两部分，其中$L_0$（$R_0$）为新数据的左（右）32位</p>
@@ -217,6 +227,13 @@ MathJax = {
 <p><strong>置换P</strong></p>
 <p>P为整数1-32的置换</p>
 <p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/10.jpg" style="zoom: 33%;"></p>
+<p><strong>轮函数F的设计</strong></p>
+<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/12.jpg" style="zoom:50%;"></p>
+<p>其结构即为$F（ R_{i - 1}，K_i）$</p>
+<p>${0，1}^32 × {0，1}^48 —-&gt; {0,1}^32$</p>
+<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/13.jpg" style="zoom: 50%;"></p>
+<p>即轮函数$F（ R_{i - 1}，K_i）$的运算过程为：</p>
+<p>$$R_{i - 1} —-&gt; e = E（R_{i - 1}）—-&gt; c = e \oplus K_i —-&gt; s = S（c）—-&gt; P（s）= F（ R_{i - 1}，K_i）= P(S(E（R_{I-1}）\oplus K_i))$</p>
 
       </div>
       
