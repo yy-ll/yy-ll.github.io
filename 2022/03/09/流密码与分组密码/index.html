@@ -191,6 +191,13 @@ MathJax = {
 <h3 id="2-4-2DES介绍"><a href="#2-4-2DES介绍" class="headerlink" title="2.4.2DES介绍"></a>2.4.2DES介绍</h3><p><strong>描述图</strong></p>
 <p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/6.jpg" style="zoom:50%;"></p>
 <p><strong>算法描述</strong></p>
+<p>分组大小：2w = 64</p>
+<p>密钥大小：|K| = 56</p>
+<p>子密钥：$|K_i| = 48$</p>
+<p>轮数：h = 16</p>
+<p>对明文作置换IP后开始第1次迭代；在第16次迭代后，交换左、右32bit数据，再作逆置换$IP^{-1}$即得密文</p>
+<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/7.jpg" style="zoom:50%;"></p>
+<p><strong>具体展开</strong></p>
 
       </div>
       
