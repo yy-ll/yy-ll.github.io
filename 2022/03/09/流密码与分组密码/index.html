@@ -178,10 +178,10 @@ MathJax = {
 <p>密文：</p>
 <p>$y = L_{h + 1}||R_{h + 1}$</p>
 <p>第i轮迭代：</p>
-<script type="math/tex; mode=display">L_i = R_{i - 1}</script><script type="math/tex; mode=display">R_i = L_{i - 1} \oplus F（ R_{i - 1}，K_i）</script><p>F为轮函数</p>
+<script type="math/tex; mode=display">L_i = R_{i - 1}</script><script type="math/tex; mode=display">R_i = L_{i - 1} \oplus F（ R_{i - 1}，K_i）</script><p>F为<strong>轮函数</strong>，其结构即为$F（ R_{i - 1}，K_i）$</p>
 <hr>
 <p><strong>解密</strong>结构如下</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/5.jpg" style="zoom:67%;"></p>
+<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/5.jpg" style="zoom: 50%;"></p>
 <p>与加密结构相同</p>
 <p>子密钥使用次序相反：</p>
 <p>$K_h，K_{h - 1}，……，K_2，K_1$</p>
@@ -200,7 +200,23 @@ MathJax = {
 <p><strong>具体展开</strong></p>
 <p><strong>初始置换IP</strong></p>
 <p>将64位明文打乱重排，设$x = x_1x_2……x_64$，则$IP（x）= x_58x_50x_42……x_23x_15x_7$</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/8.jpg" style="zoom:50%;"></p>
+<p>即原数据块的第58位放到新数据的第1位……第7位放到第64位。</p>
+<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/8.jpg" style="zoom: 33%;"></p>
+<p>置换后的数据分为$L_0$和$R_0$两部分，其中$L_0$（$R_0$）为新数据的左（右）32位</p>
+<p><strong>逆初始置换$IP^{-1}$</strong></p>
+<p>将初始置换IP表中的第一位即数字1放到第58位，第二位即数字2放到第50位……</p>
+<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/11.jpg" style="zoom:50%;"></p>
+<p><strong>扩展置换E</strong></p>
+<p>将前一轮迭代的结果$R_{i - 1}$作输入，根据扩展函数E将32位的比特输入扩展为48位（将32位的明文每4位分成一组，共8组，每个分组由4位扩展为6位）</p>
+<p>扩展方法为每个分组的4位作为6位输出分组的中间4位，6位输出分组中的第1位和第6位由扩散产生，其中第1个小分组的左侧相邻分组为最后一个小分组。</p>
+<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/9.jpg" style="zoom:50%;"></p>
+<center>E置换的扩展置换表</center>
+
+
+
+<p><strong>置换P</strong></p>
+<p>P为整数1-32的置换</p>
+<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/10.jpg" style="zoom: 33%;"></p>
 
       </div>
       
