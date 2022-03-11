@@ -181,10 +181,30 @@ MathJax = {
 <p>若满足密钥串只用一次，且明文与密钥长度一致，则达到了<strong>无条件安全</strong>。一次一密的安全性取决于密钥的随机性。故引入伪随机的概念，即线性反馈移位寄存器（LFSR）—-&gt;<strong>流密码</strong></p>
 <h2 id="2-2置换密码（换位密码）Permutation-Cipher"><a href="#2-2置换密码（换位密码）Permutation-Cipher" class="headerlink" title="2.2置换密码（换位密码）Permutation Cipher"></a>2.2置换密码（换位密码）Permutation Cipher</h2><p><strong>字母相同</strong>，但重新排列，导致<strong>位置顺序变了</strong>，这样编成的密码。</p>
 <p>最简单的置换密码是把明文中的字母顺序倒过来，然后截成固定长度的字母组作为密文。</p>
-<h3 id="2-2-1栅栏密码Rail-Fence-Cipher"><a href="#2-2-1栅栏密码Rail-Fence-Cipher" class="headerlink" title="2.2.1栅栏密码Rail Fence Cipher"></a>2.2.1栅栏密码Rail Fence Cipher</h3><p>规则：</p>
-<p>把要加密的明文分成N个一组，然后把每组的第1个字符连起来、第2个字符连起来……直到第N个字符，最后将其全部连起来便得到了密文。</p>
-<p>分类：</p>
+<h3 id="2-2-1栅栏密码Rail-Fence-Cipher"><a href="#2-2-1栅栏密码Rail-Fence-Cipher" class="headerlink" title="2.2.1栅栏密码Rail Fence Cipher"></a>2.2.1栅栏密码Rail Fence Cipher</h3><p>分类：</p>
 <p>分为传统栅栏密码和W型栅栏密码。</p>
+<p>【传统型】栅栏密码规则：</p>
+<p>把要加密的明文分成N个一组，然后把每组的第1个字符连起来、第2个字符连起来……直到第N个字符，最后将其全部连起来便得到了密文。</p>
+<p>加密原理：（如分成2个一组）</p>
+<p>明文为</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">THE LONGEST DAY MUST HAVE AN END</span><br></pre></td></tr></table></figure>
+<p>加密过程</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">TH</span><br><span class="line">EL</span><br><span class="line">ON</span><br><span class="line">GE</span><br><span class="line">ST</span><br><span class="line">DA</span><br><span class="line">YM</span><br><span class="line">US</span><br><span class="line">TH</span><br><span class="line">AV</span><br><span class="line">EA</span><br><span class="line">NE</span><br><span class="line">ND</span><br></pre></td></tr></table></figure>
+<p>连起来便得到：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TEOGSDYUTAENNHLNETAMSHVAED</span><br></pre></td></tr></table></figure>
+<p>也可以这样理解：</p>
+<p>step1：把将要传递的信息中的字母交替排成上下两行<br>step2：将下面一行字母排在上面一行的后面来形成一段密码</p>
+<p>加密过程为：<br>step1：T E O G S D Y U T A E N N<br>              H L N E T A M S H V A E D<br>step2:   TEOGSDYUTAENN HLNETAMSHVAED</p>
+<p>解密过程为：</p>
+<p>step1：将密文分成两行<br>step2：再按上下上下的顺序组合成一句话</p>
+<p>【W型】栅栏密码规则：</p>
+<p>在加密的方法中，明文由上至下顺序写上，当到达最低部时，再回头向上，一直重复直至整篇明文写完为止。</p>
+<p>明文：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WEAREDISCOVEREDFLEEATONCE</span><br></pre></td></tr></table></figure>
+<p>加密（三栏）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">W . . . E . . . C . . . R . . . L . . . T . . . E</span><br><span class="line">. E . R . D . S . O . E . E . F . E . A . O . C .</span><br><span class="line">. . A . . . I . . . V . . . D . . . E . . . N . .</span><br></pre></td></tr></table></figure>
+<p>按行读取后的密文：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WECRLTEERDSOEEFEAOCAIVDEN</span><br></pre></td></tr></table></figure>
 
       </div>
       
