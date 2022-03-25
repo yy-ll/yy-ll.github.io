@@ -185,6 +185,7 @@ MathJax = {
 <p>分为传统栅栏密码和W型栅栏密码。</p>
 <p>【传统型】栅栏密码规则：</p>
 <p>把要加密的明文分成N个一组，然后把每组的第1个字符连起来、第2个字符连起来……直到第N个字符，最后将其全部连起来便得到了密文。</p>
+<p>若遇到栅栏加密的密文，解密的key值就是字符串的长度除以加密的key值，再用该值将密文字符串加密就可以得到原文字符串。</p>
 <p>加密原理：（如分成2个一组）</p>
 <p>明文为</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">THE LONGEST DAY MUST HAVE AN END</span><br></pre></td></tr></table></figure>
@@ -578,20 +579,5 @@ MathJax = {
 
       </div>
     </div>
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-</body>
+  </body>
 </html>
