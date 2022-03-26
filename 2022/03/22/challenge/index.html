@@ -147,25 +147,25 @@ MathJax = {
 <p>首先代码审计，程序中调用的是go（），便从此看起。</p>
 <p>p的值是一个512位的素数，而q的值进行了一些转化。</p>
 <p>先对q进行探索：</p>
-<p><img src="/2022/03/22/challenge/blog/source\_posts\challenge\1.png" style="zoom:80%;"></p>
+<p><img src="/2022/03/22/challenge/1.png" style="zoom:80%;"></p>
 <p>看看具体位数：</p>
-<p><img src="/2022/03/22/challenge/blog/source\_posts\challenge\2.png" style="zoom: 80%;"></p>
+<p><img src="/2022/03/22/challenge/2.png"></p>
 <p>由原代码得q也是512位的素数</p>
 <p>退出sage：</p>
-<p><img src="/2022/03/22/challenge/blog/source\_posts\challenge\3.png" style="zoom:80%;"></p>
+<p><img src="/2022/03/22/challenge/3.png" alt></p>
 <p>延sage的使用：</p>
-<p><img src="/2022/03/22/challenge/blog/source\_posts\challenge\4.png" style="zoom:80%;"></p>
+<p><img src="/2022/03/22/challenge/4.png" alt></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> getPrime</span><br><span class="line">p = getPrime(<span class="number">512</span>)</span><br><span class="line">q = next_prime(p+(<span class="number">1</span>&lt;&lt;<span class="number">338</span>))</span><br><span class="line"><span class="built_in">print</span>(p)</span><br><span class="line"><span class="built_in">print</span>(q)</span><br></pre></td></tr></table></figure>
-<p>vim后生成test.sage</p>
-<p>再<img src="/2022/03/22/challenge/blog/source\_posts\challenge\6.png" alt></p>
+<p>vim后生成test.sage，再：</p>
+<p><img src="/2022/03/22/challenge/6.png" alt></p>
 <p>sage后生成test.sage.py</p>
 <p>再执行：</p>
-<p><img src="/2022/03/22/challenge/blog/source\_posts\challenge\5.png" style="zoom:80%;"></p>
+<p><img src="/2022/03/22/challenge/5.png" alt></p>
 <p>发现p、q前50位相同</p>
 <p>添上两行代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(q-p)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">str</span>(p)[:<span class="number">51</span>])</span><br></pre></td></tr></table></figure>
 <p>发现q-p的值只有后4位不同：</p>
-<p><img src="/2022/03/22/challenge/blog/source\_posts\challenge\7.png" style="zoom:80%;"></p>
+<p><img src="/2022/03/22/challenge/7.png" style="zoom:80%;"></p>
 <p>注意：</p>
 <p>若通过vim修改了代码，但是用python3运行发现结果不变，则可以删去test.sage.py文件重新用sage text.sage生成再运行。</p>
 
@@ -521,20 +521,5 @@ MathJax = {
 
       </div>
     </div>
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-</body>
+  </body>
 </html>
