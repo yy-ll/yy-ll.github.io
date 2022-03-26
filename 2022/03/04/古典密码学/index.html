@@ -152,7 +152,7 @@ MathJax = {
 <p>在此阶段，加密秘钥（公钥）公开，仅对解密秘钥（私钥）保密，基于一些数学难题保证很难通过公钥推出私钥。</p>
 <h2 id="1-3时期"><a href="#1-3时期" class="headerlink" title="1.3时期"></a>1.3时期</h2><p>古代密码时代———机械密码时代———信息密码时代———商业密码时代（公钥密码）</p>
 <h1 id="2古典密码"><a href="#2古典密码" class="headerlink" title="2古典密码"></a>2古典密码</h1><p>古典密码（classical cryptography），其编码方法主要有两种，即<strong>代换</strong>（代替）和<strong>置换</strong>（换位）。</p>
-<p><img src="/2022/03/04/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/1.png" style="zoom: 50%;"></p>
+<p><img src="/古典密码学/1.png" style="zoom: 50%;"></p>
 <center>（关系图）</center>
 
 
@@ -167,7 +167,7 @@ MathJax = {
 <p>加解密：</p>
 <script type="math/tex; mode=display">c_i ≡ （m_i + k_i）mod 26，0 ≤ m，k ≤ 25</script><script type="math/tex; mode=display">m_i ≡ （c_i - k_i） mod 26，0 ≤ c，k ≤ 25</script><p>其中，密钥是由关键词重复得到。加密时，密钥行，明文列。</p>
 <p>将26个凯撒密表合成一个，得到：</p>
-<p><img src="/2022/03/04/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/2.png" style="zoom: 50%;"></p>
+<p><img src="/古典密码学/2.png" style="zoom: 50%;"></p>
 <p>该密表是由每一行由前一行向左偏移一位构成。</p>
 <p>如：</p>
 <p>用密钥E将明文T加密后得到：密文X（E行，T列）</p>
