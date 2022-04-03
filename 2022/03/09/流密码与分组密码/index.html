@@ -147,7 +147,7 @@ MathJax = {
 <p>按照对明文加密方式的不同，密码体制分为：流密码和分组密码。</p>
 <p>其中，非对称密码体制都是分组密码。</p>
 <h1 id="1流密码（序列密码）"><a href="#1流密码（序列密码）" class="headerlink" title="1流密码（序列密码）"></a>1流密码（序列密码）</h1><h2 id="1-1形式"><a href="#1-1形式" class="headerlink" title="1.1形式"></a>1.1形式</h2><p>常以二元字符表示，每次加密1比特或1字节。</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/1.jpg" style="zoom:67%;"></p>
+<p><img src="/流密码与分组密码/1.jpg" style="zoom:67%;"></p>
 <p>加解密可用硬件实现：</p>
 <h2 id="1-2线性反馈移位寄存器（LFSR：linear-feedback-shift-register）"><a href="#1-2线性反馈移位寄存器（LFSR：linear-feedback-shift-register）" class="headerlink" title="1.2线性反馈移位寄存器（LFSR：linear feedback shift register）"></a>1.2线性反馈移位寄存器（LFSR：linear feedback shift register）</h2><p>其输出的序列称为线性反馈移位寄存器序列。</p>
 <p>即给出K = （$k_1$，$k_2$，……，$k_m$），定义$z_i = k_i$（1≤i≤m）</p>
@@ -155,8 +155,8 @@ MathJax = {
 <p>周期为$2^m - 1$的序列称为m序列</p>
 <p>主要应用：Vernam密码、一次一密（OTP）</p>
 <h1 id="2分组密码block-cipher"><a href="#2分组密码block-cipher" class="headerlink" title="2分组密码block cipher"></a>2分组密码block cipher</h1><h2 id="2-1形式"><a href="#2-1形式" class="headerlink" title="2.1形式"></a>2.1形式</h2><p>将明文分成固定长度的组，用相同的算法和密钥序列对每组进行加密，生成固定长度的密文，所以只需要研究任一组明文数字的变换规则。可以看成流密码的特例。</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/2.jpg" style="zoom:67%;"></p>
-<h2 id="2-2框图"><a href="#2-2框图" class="headerlink" title="2.2框图"></a>2.2框图</h2><p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/3.jpg" style="zoom: 50%;"></p>
+<p><img src="/流密码与分组密码/2.jpg" style="zoom:67%;"></p>
+<h2 id="2-2框图"><a href="#2-2框图" class="headerlink" title="2.2框图"></a>2.2框图</h2><p><img src="/流密码与分组密码/3.jpg" style="zoom: 50%;"></p>
 <p>即将明文消息的数字序列$x_0，x_1，……，x_i，……$划分成</p>
 <p>长为n的组$\vec{x} = （x_0，x_1，……，x_{n-1}）$</p>
 <p>各组（长为n的矢量）分别在密钥$\vec{k} =（k_0，k_1，……，k_{t-1}）$_</p>
@@ -171,7 +171,7 @@ MathJax = {
 <h2 id="2-4数据加密标准（DES：data-encryption-standard）"><a href="#2-4数据加密标准（DES：data-encryption-standard）" class="headerlink" title="2.4数据加密标准（DES：data encryption standard）"></a>2.4数据加密标准（DES：data encryption standard）</h2><p>为现代密码，其主要用到分组密码概念和<strong>Feistel密码</strong>。</p>
 <h3 id="2-4-1Feistel密码结构"><a href="#2-4-1Feistel密码结构" class="headerlink" title="2.4.1Feistel密码结构"></a>2.4.1Feistel密码结构</h3><p><strong>加密</strong>结构如下</p>
 <p>即将明文分为左右两部分，$L_0$不变直接作为异或的一部分，轮函数F得到的结果作为异或的另一部分，异或后的结果即为下一次R的输入。而$R_0$不变直接作为下一次L的输入。</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/4.jpg" style="zoom: 50%;"></p>
+<p><img src="/流密码与分组密码/4.jpg" style="zoom: 50%;"></p>
 <p>子密钥产生算法：</p>
 <p>K =&gt; $K_1，K_2，……，K_h$</p>
 <p>明文：</p>
@@ -181,28 +181,30 @@ MathJax = {
 <p>第i轮迭代：</p>
 <script type="math/tex; mode=display">L_i = R_{i - 1}</script><script type="math/tex; mode=display">R_i = L_{i - 1} \oplus F（ R_{i - 1}，K_i）</script><p>F为<strong>轮函数</strong></p>
 <p><strong>轮函数F的设计</strong></p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/12.jpg" style="zoom:50%;"></p>
+<p><img src="/流密码与分组密码/12.jpg" style="zoom:50%;"></p>
 <p>其结构即为$F（ R_{i - 1}，K_i）$</p>
 <p>$（0，1）^{32} × （0，1）^{48} —-&gt; （0,1）^{32}$</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/13.jpg" style="zoom: 50%;"></p>
+<p><img src="/流密码与分组密码/13.jpg" style="zoom: 50%;"></p>
 <p>轮函数F的过程为：</p>
 <p>将明文右边的值送入E盒作<strong>扩展置换</strong>（将32bit扩展到48bit），将48bit的结果与子密钥$K_i$异或后，再送入S盒作非线性代换，得到32位的结果送入P盒作线性置换。</p>
 <p>经过P盒，由32位输入可得到32位输出。置换后的结果与64位明文分组中的左侧32位分组异或，得到下一层右侧的输入。（左、右侧分别进行换位，开始下一轮迭代）</p>
 <p>轮函数$F（ R_{i - 1}，K_i）$的运算过程为：</p>
 <script type="math/tex; mode=display">R_{i - 1} -> e = E（R_{i - 1}）-> c = e \oplus K_i -> s = S（c）-> P（s）= F（ R_{i - 1}，K_i）= P(S(E（R_{i -1}）\oplus K_i))</script><hr>
 <p><strong>解密</strong>结构如下</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/5.jpg" style="zoom: 50%;"></p>
+<p><img src="/流密码与分组密码/5.jpg" style="zoom: 50%;"></p>
 <p>与加密结构相同</p>
 <p>子密钥使用次序相反：</p>
 <p>$K_h，K_{h - 1}，……，K_2，K_1$</p>
 <p>输入：</p>
 <p>密文y</p>
 <p>输出：<br>明文x</p>
-<h3 id="2-4-2DES介绍"><a href="#2-4-2DES介绍" class="headerlink" title="2.4.2DES介绍"></a>2.4.2DES介绍</h3><h4 id="2-4-2-1描述图"><a href="#2-4-2-1描述图" class="headerlink" title="2.4.2.1描述图"></a>2.4.2.1描述图</h4><p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/6.jpg" style="zoom:50%;"></p>
+<h3 id="2-4-2DES介绍"><a href="#2-4-2DES介绍" class="headerlink" title="2.4.2DES介绍"></a>2.4.2DES介绍</h3><h4 id="2-4-2-1描述图"><a href="#2-4-2-1描述图" class="headerlink" title="2.4.2.1描述图"></a>2.4.2.1描述图</h4><p><img src="/流密码与分组密码/6.jpg" style="zoom:50%;"></p>
+<p>16轮变换具体化：</p>
+<p><img src="/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/18.png" style="zoom: 67%;"></p>
 <p>1 将明文分为64位一组</p>
 <p>2 进行初始置换IP操作后生成不同的64bit的值</p>
 <p>3 把产生的结果分左右各32bit，将R部分作为轮函数F的输入</p>
-<p>其中F又可分为四个部分：</p>
+<p>其中F又可分为四个部分：4</p>
 <p>3.1 扩展置换E：32bit —-&gt; 48bit</p>
 <p>3.2 与K（48）XOR（$\oplus$）</p>
 <p>3.3 S-盒（将48bit变为32bit）</p>
@@ -215,44 +217,45 @@ MathJax = {
 <p>子密钥：$|K_i| = 48$</p>
 <p>轮数：h = 16</p>
 <p>对明文作置换IP后开始第1次迭代；在第16次迭代后，交换左、右32bit数据，再作逆置换$IP^{-1}$即得密文</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/7.jpg" style="zoom:50%;"></p>
+<p><img src="/流密码与分组密码/7.jpg" style="zoom:50%;"></p>
 <h3 id="2-4-3DES具体展开"><a href="#2-4-3DES具体展开" class="headerlink" title="2.4.3DES具体展开"></a>2.4.3DES具体展开</h3><h4 id="2-4-3-1初始置换IP"><a href="#2-4-3-1初始置换IP" class="headerlink" title="2.4.3.1初始置换IP"></a>2.4.3.1初始置换IP</h4><p>将64位明文打乱重排，设$x = x_1x_2……x_{64}$，则$IP（x）= x_{58}x_{50}x_{42}……x_{23}x_{15}x_7$</p>
 <p>为换位密码的使用</p>
 <p>即原数据块的第58位放到新数据的第1位……第7位放到第64位。</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/8.jpg" style="zoom: 33%;"></p>
-<p>置换后的数据分为$L_0$和$R_0$两部分，其中$L_0$（$R_0$）为新数据的左（右）32位</p>
+<p><img src="/流密码与分组密码/8.jpg" style="zoom: 33%;"></p>
+<p>置换后的数据分为$L_0$和$R_0$两部分，其中$L_0$为新数据的左32位（置换后数据的前32位）</p>
 <h4 id="2-4-3-2逆初始置换-IP-1"><a href="#2-4-3-2逆初始置换-IP-1" class="headerlink" title="2.4.3.2逆初始置换$IP^{-1}$"></a>2.4.3.2逆初始置换$IP^{-1}$</h4><p>将初始置换IP表中的第一位即数字1放到第58位，第二位即数字2放到第50位……</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/11.jpg" style="zoom:50%;"></p>
+<p><img src="/流密码与分组密码/11.jpg" style="zoom:50%;"></p>
 <h4 id="2-4-3-3扩展置换E"><a href="#2-4-3-3扩展置换E" class="headerlink" title="2.4.3.3扩展置换E"></a>2.4.3.3扩展置换E</h4><p>将前一轮迭代的结果$R_{i - 1}$作输入，根据扩展函数E将32位的比特输入扩展为48位（将32位的明文每4位分成一组，共8组，每个分组由4位扩展为6位）</p>
 <p>扩展方法为每个分组的4位作为6位输出分组的中间4位，6位输出分组中的第1位和第6位由扩散产生，其中第1个小分组的左侧相邻分组为最后一个小分组。</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/9.jpg" style="zoom:50%;"></p>
+<p><img src="/流密码与分组密码/9.jpg" style="zoom:50%;"></p>
 <center>E置换的扩展置换表</center>
 
 
 
 <h4 id="2-4-3-4置换P-线性置换"><a href="#2-4-3-4置换P-线性置换" class="headerlink" title="2.4.3.4置换P(线性置换)"></a>2.4.3.4置换P(线性置换)</h4><p>P为整数1-32的位置置换</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/10.jpg" style="zoom: 33%;"></p>
+<p><img src="/流密码与分组密码/10.jpg" style="zoom: 33%;"></p>
 <h4 id="2-4-3-5非线性代换——S盒"><a href="#2-4-3-5非线性代换——S盒" class="headerlink" title="2.4.3.5非线性代换——S盒"></a>2.4.3.5非线性代换——S盒</h4><p>经过E盒扩展之后得到的48位数据，每组6位（可分成8组），将其输入8个不同的S盒(S0～S7)，得到一个32位的输出。</p>
 <p>每个S盒都是6位输入、4位输出的结构，其中第1位和最后1位作为行号，第2位到第5位作为列号。例如，010111的行号为01=1，列号为1011=11。查表得(1,11)=11，二进制数为1011。</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/11.png" style="zoom:80%;"></p>
-<h4 id="2-4-3-6密钥生成算法"><a href="#2-4-3-6密钥生成算法" class="headerlink" title="2.4.3.6密钥生成算法"></a>2.4.3.6密钥生成算法</h4><p>通过三个步骤：<strong>初始置换选择PC-1</strong>、<strong>循环移位运算</strong>、<strong>置换选择PC-2</strong>，最终生成所需要的16轮子密钥。</p>
+<p><img src="/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/11.png" style="zoom: 50%;"></p>
+<p><img src="/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/19.png" style="zoom:50%;"></p>
+<h4 id><a href="#" class="headerlink" title=" "></a> </h4><h4 id="2-4-3-6密钥生成算法"><a href="#2-4-3-6密钥生成算法" class="headerlink" title="2.4.3.6密钥生成算法"></a>2.4.3.6密钥生成算法</h4><p>通过三个步骤：<strong>初始置换选择PC-1</strong>、<strong>循环移位运算</strong>、<strong>置换选择PC-2</strong>，最终生成所需要的16轮子密钥。</p>
 <p>在初始64位密钥中，第8、16、24、32、40、48、56、64位（共8位）为奇偶校验位，其余为有效位作为密钥。初始置换选择PC-1的作用就是筛选出56位有效位，筛选后将其分为两组分别放入C寄存器和D寄存器中。</p>
 <p>之后经过循环左移，再经过置换选择PC-2。其中，PC-2把C中的第9、18、22、25位和D中的第7、9、15、26位删去，其余部分经过置换之后输出48位的轮密钥。</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/14.png" style="zoom:80%;"></p>
+<p><img src="/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/14.png" style="zoom:80%;"></p>
 <p>置换选择PC-1</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/15%E3%80%81.png" style="zoom:80%;"></p>
-<p>选择K的第57,49,…位共28位作为密钥段$C_0$</p>
-<p>选择K的第63,55,…位共28位作为密钥段$D_0$</p>
+<p><img src="/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/15%E3%80%81.png" style="zoom:80%;"></p>
+<p>选择K的第57,49,…位等前28位作为密钥段$C_0$</p>
+<p>选择K的第63,55,…位等后28位作为密钥段$D_0$</p>
 <p>循环左移$LS_i$</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/16.png" alt></p>
+<p><img src="/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/16.png" alt></p>
 <p>将28位的密钥段作为$C_i$， $D_i$循环左移1或2位，左移位数由上表确定。</p>
 <p>置换选择PC-2</p>
-<p><img src="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/17.png" style="zoom:80%;"></p>
+<p><img src="/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/17.png" style="zoom:80%;"></p>
 <p>从56位密钥段Ci||Di中选择48位作为子密钥$K_i$</p>
-<h3 id="2-4-4总结DES流程"><a href="#2-4-4总结DES流程" class="headerlink" title="2.4.4总结DES流程"></a>2.4.4总结DES流程</h3><p>在获得初始密钥后</p>
+<h3 id="2-4-4总结DES流程"><a href="#2-4-4总结DES流程" class="headerlink" title="2.4.4总结DES流程"></a>2.4.4总结DES流程</h3><p>在获得初始64位密钥后</p>
 <p>1.generateKey轮密钥生成</p>
 <p>作用：生成加解密每一轮需要的子（轮）密钥</p>
-<p>输入：56位的初始密钥key</p>
+<p>输入：初始密钥key</p>
 <p>输出：16组48位的轮密钥roundKey</p>
 <p>（1）初始置换选择PC-1</p>
 <p>（2）循环移位运算</p>
@@ -303,7 +306,7 @@ MathJax = {
   <div class="post-catalog hidden" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E6%B5%81%E5%AF%86%E7%A0%81%EF%BC%88%E5%BA%8F%E5%88%97%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-text">1流密码（序列密码）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E5%BD%A2%E5%BC%8F"><span class="toc-text">1.1形式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E7%BA%BF%E6%80%A7%E5%8F%8D%E9%A6%88%E7%A7%BB%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88LFSR%EF%BC%9Alinear-feedback-shift-register%EF%BC%89"><span class="toc-text">1.2线性反馈移位寄存器（LFSR：linear feedback shift register）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81block-cipher"><span class="toc-text">2分组密码block cipher</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E5%BD%A2%E5%BC%8F"><span class="toc-text">2.1形式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E6%A1%86%E5%9B%BE"><span class="toc-text">2.2框图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3%E8%AE%BE%E8%AE%A1%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">2.3设计分组密码的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1%E4%BB%A3%E6%8D%A2"><span class="toc-text">2.3.1代换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-1S%E7%9B%92"><span class="toc-text">2.3.1.1S盒</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2%E6%89%A9%E6%95%A3%E5%92%8C%E6%B7%B7%E6%B7%86"><span class="toc-text">2.3.2扩散和混淆</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4%E6%95%B0%E6%8D%AE%E5%8A%A0%E5%AF%86%E6%A0%87%E5%87%86%EF%BC%88DES%EF%BC%9Adata-encryption-standard%EF%BC%89"><span class="toc-text">2.4数据加密标准（DES：data encryption standard）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-1Feistel%E5%AF%86%E7%A0%81%E7%BB%93%E6%9E%84"><span class="toc-text">2.4.1Feistel密码结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-2DES%E4%BB%8B%E7%BB%8D"><span class="toc-text">2.4.2DES介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-1%E6%8F%8F%E8%BF%B0%E5%9B%BE"><span class="toc-text">2.4.2.1描述图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-2%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0"><span class="toc-text">2.4.2.2算法描述</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-3DES%E5%85%B7%E4%BD%93%E5%B1%95%E5%BC%80"><span class="toc-text">2.4.3DES具体展开</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-1%E5%88%9D%E5%A7%8B%E7%BD%AE%E6%8D%A2IP"><span class="toc-text">2.4.3.1初始置换IP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-2%E9%80%86%E5%88%9D%E5%A7%8B%E7%BD%AE%E6%8D%A2-IP-1"><span class="toc-text">2.4.3.2逆初始置换$IP^{-1}$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-3%E6%89%A9%E5%B1%95%E7%BD%AE%E6%8D%A2E"><span class="toc-text">2.4.3.3扩展置换E</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-4%E7%BD%AE%E6%8D%A2P-%E7%BA%BF%E6%80%A7%E7%BD%AE%E6%8D%A2"><span class="toc-text">2.4.3.4置换P(线性置换)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-5%E9%9D%9E%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%8D%A2%E2%80%94%E2%80%94S%E7%9B%92"><span class="toc-text">2.4.3.5非线性代换——S盒</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-6%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90%E7%AE%97%E6%B3%95"><span class="toc-text">2.4.3.6密钥生成算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-4%E6%80%BB%E7%BB%93DES%E6%B5%81%E7%A8%8B"><span class="toc-text">2.4.4总结DES流程</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E6%B5%81%E5%AF%86%E7%A0%81%EF%BC%88%E5%BA%8F%E5%88%97%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-text">1流密码（序列密码）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E5%BD%A2%E5%BC%8F"><span class="toc-text">1.1形式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E7%BA%BF%E6%80%A7%E5%8F%8D%E9%A6%88%E7%A7%BB%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88LFSR%EF%BC%9Alinear-feedback-shift-register%EF%BC%89"><span class="toc-text">1.2线性反馈移位寄存器（LFSR：linear feedback shift register）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81block-cipher"><span class="toc-text">2分组密码block cipher</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E5%BD%A2%E5%BC%8F"><span class="toc-text">2.1形式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E6%A1%86%E5%9B%BE"><span class="toc-text">2.2框图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3%E8%AE%BE%E8%AE%A1%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">2.3设计分组密码的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1%E4%BB%A3%E6%8D%A2"><span class="toc-text">2.3.1代换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-1S%E7%9B%92"><span class="toc-text">2.3.1.1S盒</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2%E6%89%A9%E6%95%A3%E5%92%8C%E6%B7%B7%E6%B7%86"><span class="toc-text">2.3.2扩散和混淆</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4%E6%95%B0%E6%8D%AE%E5%8A%A0%E5%AF%86%E6%A0%87%E5%87%86%EF%BC%88DES%EF%BC%9Adata-encryption-standard%EF%BC%89"><span class="toc-text">2.4数据加密标准（DES：data encryption standard）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-1Feistel%E5%AF%86%E7%A0%81%E7%BB%93%E6%9E%84"><span class="toc-text">2.4.1Feistel密码结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-2DES%E4%BB%8B%E7%BB%8D"><span class="toc-text">2.4.2DES介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-1%E6%8F%8F%E8%BF%B0%E5%9B%BE"><span class="toc-text">2.4.2.1描述图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-2%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0"><span class="toc-text">2.4.2.2算法描述</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-3DES%E5%85%B7%E4%BD%93%E5%B1%95%E5%BC%80"><span class="toc-text">2.4.3DES具体展开</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-1%E5%88%9D%E5%A7%8B%E7%BD%AE%E6%8D%A2IP"><span class="toc-text">2.4.3.1初始置换IP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-2%E9%80%86%E5%88%9D%E5%A7%8B%E7%BD%AE%E6%8D%A2-IP-1"><span class="toc-text">2.4.3.2逆初始置换$IP^{-1}$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-3%E6%89%A9%E5%B1%95%E7%BD%AE%E6%8D%A2E"><span class="toc-text">2.4.3.3扩展置换E</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-4%E7%BD%AE%E6%8D%A2P-%E7%BA%BF%E6%80%A7%E7%BD%AE%E6%8D%A2"><span class="toc-text">2.4.3.4置换P(线性置换)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-5%E9%9D%9E%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%8D%A2%E2%80%94%E2%80%94S%E7%9B%92"><span class="toc-text">2.4.3.5非线性代换——S盒</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text"> </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-6%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90%E7%AE%97%E6%B3%95"><span class="toc-text">2.4.3.6密钥生成算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-4%E6%80%BB%E7%BB%93DES%E6%B5%81%E7%A8%8B"><span class="toc-text">2.4.4总结DES流程</span></a></li></ol></li></ol></li></ol>
     </div>
   </div>
 
