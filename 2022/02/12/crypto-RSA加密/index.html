@@ -158,7 +158,7 @@ MathJax = {
 <p>正整数n在小于n的正整数中与n构成互质关系的个数称为欧拉函数。</p>
 <p>对于n：</p>
 <p>若n为素数，则φ(n)=n-1</p>
-<p>若$n=p^(\alpha)$，p为素数，则$φ(n)=p^(\alpha)-p^{(\alpha)-1}=p^(\alpha)（1-（\frac{1}{p}））$</p>
+<p>若$n=p^\alpha$，p为素数，则$φ(n)=p^\alpha-p^{\alpha-1}=p^\alpha（1-（\frac{1}{p}））$</p>
 <p>3.<strong>欧拉定理</strong>Euler Theore — RSA核心</p>
 <p>​                                           — 费马小定理Fermat的推广</p>
 <script type="math/tex; mode=display">Fermat：对质数p，a^{p-1}≡1（mod p）</script><script type="math/tex; mode=display">Euler：（a,n）=1，则a^φ（n）≡1（mod n）</script><p>4.<strong>逆元</strong>（模反元素）</p>
@@ -551,20 +551,5 @@ MathJax = {
 
       </div>
     </div>
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-</body>
+  </body>
 </html>
