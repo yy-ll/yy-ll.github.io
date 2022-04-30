@@ -11,6 +11,11 @@
   
   <title>
     
+      Hash 
+      
+      
+      |
+    
      Hexo
   </title>
 
@@ -100,148 +105,115 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="国密算法">
-        <div class="time-m-d">2022-04-29</div>
-        <div class="title">
-          <a href="/2022/04/29/%E5%9B%BD%E5%AF%86%E7%AE%97%E6%B3%95/">
-            
-              
-                <span>国密算法</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Hash</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2022-04-04 10:03:24
+        </span>
+        
       </div>
-    
-      <div class="post-item" title="Hash">
-        <div class="time-m-d">2022-04-04</div>
-        <div class="title">
-          <a href="/2022/04/04/Hash/">
-            
-              
-                <span>Hash</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <p>Hash函数MD5（MD：message digest，消息摘要）</p>
+<p>MD5算法的输入可以是任意长度的消息x，对输入消息按512位的分组为单位进行处理，输出128的散列值MD（x）。</p>
+<p>step1：增加填充位。</p>
+<p>step2：附加消息长度值。</p>
+<p>用64位表示原始消息x的长度</p>
+<p>step1、step2合称消息的预处理</p>
+<p>step3：初始化MD缓冲区。</p>
+<p>缓冲区用4个32位的寄存器表示，以小端格式存储。</p>
+<p>step4：以512位的分组（16个字）为单位处理消息。</p>
+<p>是MD5算法的主循环，几个分组便进行几次。每个循环有4轮，每一轮进行16次迭代。每次迭代的运算形式为：</p>
+<p>其中基本逻辑函数g的定义：执行位的逻辑运算。通过输入b、c、d（3个3位的字）产生一个32位的结果。</p>
+<p>X为字组。对于不同轮处理过程，使用16个字的顺序不一样。</p>
+<p>T为常数表，其含有64个32位常数</p>
+<p>4轮：F、G、H、I，且4轮处理过程的算法结构相同。</p>
+<p>step5：输出。</p>
+<p>Hash算法SHA-1（secure hash algorithm）</p>
+<p>输出160位的散列值，SHA-1处理消息的过程与MD5类似。</p>
+<p>step1、step2：同MD5</p>
+<p>step3：初始化缓冲区。有5个32位的寄存器，以大端格式存储。</p>
+<p>step4：以512位的分组（16个字）为单位处理消息。</p>
+<p>有4轮处理，每轮20步。</p>
+<p>buu-001-MD5</p>
+<p>打开得到txt文本文档，内容如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e00cf25ad42683b3df678c61f42c6bda</span><br></pre></td></tr></table></figure>
+<p>根据题目提示，用在线网站进行MD5解密</p>
+<p><img src="/2022/04/04/Hash/1.png" alt></p>
+
       </div>
-    
-      <div class="post-item" title="buu-crypto-two">
-        <div class="time-m-d">2022-04-03</div>
-        <div class="title">
-          <a href="/2022/04/03/buu-crypto-two/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>buu-crypto-two</span>
-              
+              <a href="/2022/04/03/buu-crypto-two/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2022-04-04 10:03:24
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2022/04/29/%E5%9B%BD%E5%AF%86%E7%AE%97%E6%B3%95/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="python-des">
-        <div class="time-m-d">2022-04-02</div>
-        <div class="title">
-          <a href="/2022/04/02/python-des/">
-            
-              
-                <span>python-des</span>
-              
-            
-          </a>
-        </div>
-      </div>
+
     
-      <div class="post-item" title="challenge">
-        <div class="time-m-d">2022-03-22</div>
-        <div class="title">
-          <a href="/2022/03/22/challenge/">
-            
-              
-                <span>challenge</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="流密码与分组密码">
-        <div class="time-m-d">2022-03-09</div>
-        <div class="title">
-          <a href="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/">
-            
-              
-                <span>流密码与分组密码</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="古典密码学">
-        <div class="time-m-d">2022-03-04</div>
-        <div class="title">
-          <a href="/2022/03/04/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/">
-            
-              
-                <span>古典密码学</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="test">
-        <div class="time-m-d">2022-03-01</div>
-        <div class="title">
-          <a href="/2022/03/01/test/">
-            
-              
-                <span>test</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="xctf--crypto exercise area">
-        <div class="time-m-d">2022-02-24</div>
-        <div class="title">
-          <a href="/2022/02/24/xctf-crypto-exercise-area/">
-            
-              
-                <span>xctf--crypto exercise area</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="python--partial">
-        <div class="time-m-d">2022-02-20</div>
-        <div class="title">
-          <a href="/2022/02/20/python-partial/">
-            
-              
-                <span>python--partial</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-    <span class="page-num">1 / 2</span>    
-      <a href="/page/2/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         <div class="footer">
   <div class="social">
@@ -528,6 +500,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Hash + '&url=' + http%3A%2F%2Fyy-ll.github.io%2F2022%2F04%2F04%2FHash%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://yy-ll.github.io/2022/04/04/Hash/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

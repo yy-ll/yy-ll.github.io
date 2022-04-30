@@ -11,6 +11,11 @@
   
   <title>
     
+      国密算法 
+      
+      
+      |
+    
      Hexo
   </title>
 
@@ -100,148 +105,106 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="国密算法">
-        <div class="time-m-d">2022-04-29</div>
-        <div class="title">
-          <a href="/2022/04/29/%E5%9B%BD%E5%AF%86%E7%AE%97%E6%B3%95/">
-            
-              
-                <span>国密算法</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">国密算法</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2022-04-29 14:32:39
+        </span>
+        
       </div>
-    
-      <div class="post-item" title="Hash">
-        <div class="time-m-d">2022-04-04</div>
-        <div class="title">
-          <a href="/2022/04/04/Hash/">
-            
-              
-                <span>Hash</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <p>国密算法（国家商用密码算法）是由国家密码管理局认定和公布的密码算法标准及其应用规范。其中的SM系列密码，代表商密（商业密码），是指用于商业的、不涉及国家秘密的密码技术。</p>
+<p><img src="/2022/04/29/%E5%9B%BD%E5%AF%86%E7%AE%97%E6%B3%95/1.png" alt></p>
+<p>SM1、SM4、SM7、祖冲之密码是对称算法；<br>SM2、SM9是非对称算法；<br>SM3是哈希算法。</p>
+<h1 id="SM4"><a href="#SM4" class="headerlink" title="SM4"></a>SM4</h1><p>SM4 为分组加密算法，对称加密，用于替代 DES/AES 等国际算法，SM4 算法与 AES 算法具有相同的密钥长度和分组长度，均为 128 位，故对消息进行加解密时，若消息长度过长，需要进行分组；若消息长度不足，则要进行填充。加密算法与密钥扩展算法都采用 32 轮非线性迭代结构，解密算法与加密算法的结构相同，只是轮密钥的使用顺序相反，解密轮密钥是加密轮密钥的逆序。</p>
+<p><img src="/2022/04/29/%E5%9B%BD%E5%AF%86%E7%AE%97%E6%B3%95/2.png" alt></p>
+<h1 id="SM2"><a href="#SM2" class="headerlink" title="SM2"></a>SM2</h1><p>SM2 为椭圆曲线（ECC）公钥加密算法，非对称加密，SM2 算法和 RSA 算法都是公钥加密算法，SM2 算法是一种更安全的算法，在我们国家商用密码体系中被用来替换 RSA 算法，在不少 gov 网站会见到此类加密算法。SM2 椭圆曲线公钥密码算法比 RSA 算法有以下优势：</p>
+<p><img src alt><img src="/2022/04/29/%E5%9B%BD%E5%AF%86%E7%AE%97%E6%B3%95/3.png" alt="3" style="zoom: 50%;"></p>
+
       </div>
-    
-      <div class="post-item" title="buu-crypto-two">
-        <div class="time-m-d">2022-04-03</div>
-        <div class="title">
-          <a href="/2022/04/03/buu-crypto-two/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>buu-crypto-two</span>
-              
+              <a href="/2022/04/04/Hash/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2022-04-29 14:32:39
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="python-des">
-        <div class="time-m-d">2022-04-02</div>
-        <div class="title">
-          <a href="/2022/04/02/python-des/">
-            
-              
-                <span>python-des</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SM4"><span class="toc-text">SM4</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SM2"><span class="toc-text">SM2</span></a></li></ol>
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="challenge">
-        <div class="time-m-d">2022-03-22</div>
-        <div class="title">
-          <a href="/2022/03/22/challenge/">
-            
-              
-                <span>challenge</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="流密码与分组密码">
-        <div class="time-m-d">2022-03-09</div>
-        <div class="title">
-          <a href="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/">
-            
-              
-                <span>流密码与分组密码</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="古典密码学">
-        <div class="time-m-d">2022-03-04</div>
-        <div class="title">
-          <a href="/2022/03/04/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/">
-            
-              
-                <span>古典密码学</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="test">
-        <div class="time-m-d">2022-03-01</div>
-        <div class="title">
-          <a href="/2022/03/01/test/">
-            
-              
-                <span>test</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="xctf--crypto exercise area">
-        <div class="time-m-d">2022-02-24</div>
-        <div class="title">
-          <a href="/2022/02/24/xctf-crypto-exercise-area/">
-            
-              
-                <span>xctf--crypto exercise area</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="python--partial">
-        <div class="time-m-d">2022-02-20</div>
-        <div class="title">
-          <a href="/2022/02/20/python-partial/">
-            
-              
-                <span>python--partial</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-    <span class="page-num">1 / 2</span>    
-      <a href="/page/2/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         <div class="footer">
   <div class="social">
@@ -528,6 +491,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%9B%BD%E5%AF%86%E7%AE%97%E6%B3%95 + '&url=' + http%3A%2F%2Fyy-ll.github.io%2F2022%2F04%2F29%2F%25E5%259B%25BD%25E5%25AF%2586%25E7%25AE%2597%25E6%25B3%2595%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://yy-ll.github.io/2022/04/29/%E5%9B%BD%E5%AF%86%E7%AE%97%E6%B3%95/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
