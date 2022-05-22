@@ -214,7 +214,38 @@ MathJax = {
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span> c,n</span><br><span class="line"><span class="built_in">print</span> <span class="built_in">pow</span>(<span class="number">294</span>,e,n)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> c,n</span><br></pre></td></tr></table></figure>
 <p>发现这里有三个密文，两个n值，不属于有的攻击类型，感觉有点无从下手。面对这种题型，应该回到python源程序去找规律。</p>
 <p>发现两个n共用一个q值，这便是解题点。便可以利用gcd求解q，自然相关值如p、phi均可知。同时，还需要e值。为了方便描述，不妨让c1 = pow(294,e,n1)，发现c1、n1均已知，！而且！e又给出了范围，要想到用爆破的方法求e。</p>
-
+<h1 id="056-ACTF新生赛2020-crypto-rsa0"><a href="#056-ACTF新生赛2020-crypto-rsa0" class="headerlink" title="056[ACTF新生赛2020]crypto-rsa0"></a>056[ACTF新生赛2020]crypto-rsa0</h1><p>题目给出格式要求：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">得到的 flag 请包上 flag&#123;&#125; 提交。</span><br></pre></td></tr></table></figure>
+<p>下载后得到一个tar压缩文件，将其解压，如下图：</p>
+<p><img src="/2022/04/03/buu-crypto-two/6.png" alt></p>
+<p>得到一个tmp文件夹，其中又含有一个hint.txt文件和一个challenge.zip压缩包</p>
+<p>hint意思为“提示”，先打开看看该文件：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">怎么办呢，出题人也太坏了，竟然把压缩包给伪加密了！</span><br></pre></td></tr></table></figure>
+<p>而给出的压缩包打不开，解压失败，要求输入加密文件的密码。</p>
+<p>显然，入手点在于<strong>伪加密</strong>。</p>
+<p>首先要知道，一个zip文件由三部分组成：</p>
+<p>1.压缩源文件数据区：</p>
+<p>50 4B 03 04：这是头文件标记（0x04034b50）<br>14 00：解压文件所需 pkware 版本<br>00 00：全局方式位标记（有无加密）</p>
+<p>2.压缩源文件目录区：</p>
+<p>50 4B 01 02：目录中文件文件头标记(0x02014b50)<br>3F 00：压缩使用的 pkware 版本<br>14 00：解压文件所需 pkware 版本<br>00 00：全局方式位标记（有无加密，伪加密的关键）</p>
+<p>3.压缩源文件目录结束标志</p>
+<p>用010 Editor打开该压缩包，显示如下：</p>
+<p><img src="/2022/04/03/buu-crypto-two/7.png" alt></p>
+<p>关注到文件头的加密位标记。伪加密就是把未加密的文件，通过修改加密位，让其转换成了伪加密文件</p>
+<p><img src="/2022/04/03/buu-crypto-two/8.png" alt></p>
+<p>因此，查找所有的文件头中的14 00：</p>
+<p><img src="/2022/04/03/buu-crypto-two/9.png" alt></p>
+<p>把14 00后面的加密位都改成00 00后，伪加密文件就变成了无加密文件，此时便可解压成功，得到一个challenge文件夹，里面包含output文本文件和一个rsa0.py源文件</p>
+<p>用记事本打开output：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">9018588066434206377240277162476739271386240173088676526295315163990968347022922841299128274551482926490908399237153883494964743436193853978459947060210411</span><br><span class="line">7547005673877738257835729760037765213340036696350766324229143613179932145122130685778504062410137043635958208805698698169847293520149572605026492751740223</span><br><span class="line">50996206925961019415256003394743594106061473865032792073035954925875056079762626648452348856255575840166640519334862690063949316515750256545937498213476286637455803452890781264446030732369871044870359838568618176586206041055000297981733272816089806014400846392307742065559331874972274844992047849472203390350</span><br></pre></td></tr></table></figure>
+<p>再打开python源码文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Cryptodome.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">FLAG=<span class="comment">#hidden, please solve it</span></span><br><span class="line">flag=<span class="built_in">int</span>.from_bytes(FLAG,byteorder = <span class="string">&#x27;big&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p=getPrime(<span class="number">512</span>)</span><br><span class="line">q=getPrime(<span class="number">512</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(p)</span><br><span class="line"><span class="built_in">print</span>(q)</span><br><span class="line">N=p*q</span><br><span class="line">e=<span class="number">65537</span></span><br><span class="line">enc = <span class="built_in">pow</span>(flag,e,N)</span><br><span class="line"><span class="built_in">print</span> (enc)</span><br></pre></td></tr></table></figure>
+<p>由对应得，output给出了p、q、enc的值，而且rsa0.py也给出了e的值，即为常规题目。写出简单脚本解题：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">p=<span class="number">9018588066434206377240277162476739271386240173088676526295315163990968347022922841299128274551482926490908399237153883494964743436193853978459947060210411</span></span><br><span class="line">q=<span class="number">7547005673877738257835729760037765213340036696350766324229143613179932145122130685778504062410137043635958208805698698169847293520149572605026492751740223</span></span><br><span class="line">c=<span class="number">50996206925961019415256003394743594106061473865032792073035954925875056079762626648452348856255575840166640519334862690063949316515750256545937498213476286637455803452890781264446030732369871044870359838568618176586206041055000297981733272816089806014400846392307742065559331874972274844992047849472203390350</span></span><br><span class="line">e=<span class="number">65537</span></span><br><span class="line">d=gmpy2.invert(e,(p-<span class="number">1</span>)*(q-<span class="number">1</span>))</span><br><span class="line">n=p*q</span><br><span class="line">m=<span class="built_in">pow</span>(c,d,n)</span><br><span class="line"><span class="built_in">print</span>(libnum.n2s(<span class="built_in">int</span>(m)))</span><br></pre></td></tr></table></figure>
+<p>运行后得到：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b&#x27;actf&#123;n0w_y0u_see_RSA&#125;&#x27;</span><br></pre></td></tr></table></figure>
+<p>改格式后提交。</p>
+<h1 id><a href="#" class="headerlink" title=" "></a> </h1>
       </div>
       
         <div class="prev-or-next">
@@ -251,7 +282,7 @@ MathJax = {
   <div class="post-catalog hidden" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#033robomunication"><span class="toc-text">033robomunication</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E8%A7%A3%E9%A2%98"><span class="toc-text">工具解题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E8%A7%A3%E9%A2%98"><span class="toc-text">脚本解题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#046-NCTF2019-childRSA"><span class="toc-text">046[NCTF2019]childRSA</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#050-HDCTF2019-bbbbbbrsa"><span class="toc-text">050[HDCTF2019]bbbbbbrsa</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BJDCTF2020-RSA"><span class="toc-text">[BJDCTF2020]RSA</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#033robomunication"><span class="toc-text">033robomunication</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E8%A7%A3%E9%A2%98"><span class="toc-text">工具解题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E8%A7%A3%E9%A2%98"><span class="toc-text">脚本解题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#046-NCTF2019-childRSA"><span class="toc-text">046[NCTF2019]childRSA</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#050-HDCTF2019-bbbbbbrsa"><span class="toc-text">050[HDCTF2019]bbbbbbrsa</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BJDCTF2020-RSA"><span class="toc-text">[BJDCTF2020]RSA</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#056-ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-crypto-rsa0"><span class="toc-text">056[ACTF新生赛2020]crypto-rsa0</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text"> </span></a></li></ol>
     </div>
   </div>
 
