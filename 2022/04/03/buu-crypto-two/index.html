@@ -252,7 +252,7 @@ MathJax = {
 <p>核心式子为c = pow(m, bytes_to_long(flag), n)，而且脚本中已经给出了c、m、n的值，求flag即需要求解指数。</p>
 <p>思路是清晰的，但是不懂该怎么求解。</p>
 <p>后面才知道本题考察的是<strong>离散对数</strong>问题，即：</p>
-<script type="math/tex; mode=display">bytes_to_long(flag)=/log  （c mod n）. （m mod n）</script>
+<script type="math/tex; mode=display">bytes_to_long(flag)=\log_（m mod n）（c mod n）</script>
       </div>
       
         <div class="prev-or-next">
