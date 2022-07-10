@@ -11,7 +11,7 @@
   
   <title>
     
-      archive_a: 2022/2 
+      ACTF-crypto 
       
       
       |
@@ -105,158 +105,119 @@
 
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2022</span>
-          </h2>
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">ACTF-crypto</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2022-07-08 22:55:44
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <h1 id="impossible-RSA"><a href="#impossible-RSA" class="headerlink" title="impossible RSA"></a>impossible RSA</h1><p>解压后文件夹有flag、public.pem、server.py共三个文件，看到.pem后缀的文件首先解出公钥：<br>step1：wt</p>
+<p>step2：进入public.pem所在文件夹</p>
+<p>step3：openssl rsa -pubin -text -modulus -in public.pem（顺序可变）</p>
+<p><img src="/2022/07/08/ACTF-crypto/1.png" alt></p>
+<p>step4：用python将n（Modulus 十六进制）转为十进制</p>
+<p><img src="/2022/07/08/ACTF-crypto/2.png" alt></p>
+<p>于是便得到：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">公钥（n，e）</span><br><span class="line">n =15987576139341888788648863000534417640300610310400667285095951525208145689364599119023071414036901060746667790322978452082156680245315967027826237720608915093109552001033660867808508307569531484090109429319369422352192782126107818889717133951923616077943884651989622345435505428708807799081267551724239052569147921746342232280621533501263115148844736900422712305937266228809533549134349607212400851092005281865296850991469375578815615235030857047620950536534729591359236290249610371406300791107442098796128895918697534590865459421439398361818591924211607651747970679849262467894774012617335352887745475509155575074809</span><br><span class="line"></span><br><span class="line">e = 65537</span><br></pre></td></tr></table></figure>
+<p>这种有给其他信息的一般无法用factordb对n进行大数分解，于是继续看python源文件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">flag = <span class="string">b&#x27;ACTF&#123;...&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    p = getPrime(<span class="number">1024</span>)</span><br><span class="line">    q = inverse(e, p)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> isPrime(q):</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    n = p * q;</span><br><span class="line">    public = RSA.construct((n, e))</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;public.pem&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">        file.write(public.exportKey(<span class="string">&#x27;PEM&#x27;</span>))</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;flag&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">        file.write(long_to_bytes(<span class="built_in">pow</span>(bytes_to_long(flag), e, n)))</span><br><span class="line">    <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p>本题特色在于q的生成算法上：</p>
+<script type="math/tex; mode=display">eq ≡ 1 mod p</script><p>等价于：</p>
+<script type="math/tex; mode=display">eq = 1+kp</script><p>移项可得：</p>
+<script type="math/tex; mode=display">kp+1-eq=0</script><p>同乘p得：</p>
+<script type="math/tex; mode=display">kp^2+p-eqp=0</script><p>又由n=qp得</p>
+<script type="math/tex; mode=display">kp^2+p-en=0</script><p>便得到p的一元二次方程。利用求根公式求p：</p>
+<p>其中根的判别式$Δ$为$b^2-4ac$</p>
+<p>当$Δ&gt;0$时，有两个不同的实根；</p>
+<p>当$Δ=0$时，有两个相同的实根；</p>
+<p>当$Δ&lt;0$时，无实根。</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/04/29/%E5%9B%BD%E5%AF%86%E7%AE%97%E6%B3%95/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2022-07-08 22:55:44
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
       
-      <div class="post-item" title="ACTF-crypto">
-        <div class="time-m-d">07-08</div>
-        <div class="title">
-          <a href="/2022/07/08/ACTF-crypto/">
-            <span>ACTF-crypto</span>
-          </a>
-        </div>
-      </div>
+    </div>
     
-      <div class="post-item" title="国密算法">
-        <div class="time-m-d">04-29</div>
-        <div class="title">
-          <a href="/2022/04/29/%E5%9B%BD%E5%AF%86%E7%AE%97%E6%B3%95/">
-            <span>国密算法</span>
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#impossible-RSA"><span class="toc-text">impossible RSA</span></a></li></ol>
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="Hash">
-        <div class="time-m-d">04-04</div>
-        <div class="title">
-          <a href="/2022/04/04/Hash/">
-            <span>Hash</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="buu-crypto-two">
-        <div class="time-m-d">04-03</div>
-        <div class="title">
-          <a href="/2022/04/03/buu-crypto-two/">
-            <span>buu-crypto-two</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="python-des">
-        <div class="time-m-d">04-02</div>
-        <div class="title">
-          <a href="/2022/04/02/python-des/">
-            <span>python-des</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="challenge">
-        <div class="time-m-d">03-22</div>
-        <div class="title">
-          <a href="/2022/03/22/challenge/">
-            <span>challenge</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="流密码与分组密码">
-        <div class="time-m-d">03-09</div>
-        <div class="title">
-          <a href="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/">
-            <span>流密码与分组密码</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="古典密码学">
-        <div class="time-m-d">03-04</div>
-        <div class="title">
-          <a href="/2022/03/04/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/">
-            <span>古典密码学</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="test">
-        <div class="time-m-d">03-01</div>
-        <div class="title">
-          <a href="/2022/03/01/test/">
-            <span>test</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="xctf--crypto exercise area">
-        <div class="time-m-d">02-24</div>
-        <div class="title">
-          <a href="/2022/02/24/xctf-crypto-exercise-area/">
-            <span>xctf--crypto exercise area</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="python--partial">
-        <div class="time-m-d">02-20</div>
-        <div class="title">
-          <a href="/2022/02/20/python-partial/">
-            <span>python--partial</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="RSA常见的攻击方法">
-        <div class="time-m-d">02-17</div>
-        <div class="title">
-          <a href="/2022/02/17/RSA%E5%B8%B8%E8%A7%81%E7%9A%84%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95/">
-            <span>RSA常见的攻击方法</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CTF-RSA">
-        <div class="time-m-d">02-13</div>
-        <div class="title">
-          <a href="/2022/02/13/CTF-RSA/">
-            <span>CTF-RSA</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="crypto--RSA加密">
-        <div class="time-m-d">02-12</div>
-        <div class="title">
-          <a href="/2022/02/12/crypto-RSA%E5%8A%A0%E5%AF%86/">
-            <span>crypto--RSA加密</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Hello World">
-        <div class="time-m-d">02-10</div>
-        <div class="title">
-          <a href="/2022/02/10/hello-world/">
-            <span>Hello World</span>
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-</div>
+
 
         <div class="footer">
   <div class="social">
@@ -543,6 +504,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + ACTF-crypto + '&url=' + http%3A%2F%2Fyy-ll.github.io%2F2022%2F07%2F08%2FACTF-crypto%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://yy-ll.github.io/2022/07/08/ACTF-crypto/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
