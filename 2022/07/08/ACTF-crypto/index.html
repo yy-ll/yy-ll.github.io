@@ -145,9 +145,9 @@ MathJax = {
         <h1 id="impossible-RSA"><a href="#impossible-RSA" class="headerlink" title="impossible RSA"></a>impossible RSA</h1><p>解压后文件夹有flag、public.pem、server.py共三个文件，看到.pem后缀的文件首先解出公钥：<br>step1：wt</p>
 <p>step2：进入public.pem所在文件夹</p>
 <p>step3：openssl rsa -pubin -text -modulus -in public.pem（顺序可变）</p>
-<p><img src="/ACTF-crypto/1.png" alt></p>
+<p><img src="/2022/07/08/ACTF-crypto/1.png" alt></p>
 <p>step4：用python将n（Modulus 十六进制）转为十进制</p>
-<p><img src="/ACTF-crypto/2.png" alt></p>
+<p><img src="/2022/07/08/ACTF-crypto/2.png" alt></p>
 <p>于是便得到：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">公钥（n，e）</span><br><span class="line">n =15987576139341888788648863000534417640300610310400667285095951525208145689364599119023071414036901060746667790322978452082156680245315967027826237720608915093109552001033660867808508307569531484090109429319369422352192782126107818889717133951923616077943884651989622345435505428708807799081267551724239052569147921746342232280621533501263115148844736900422712305937266228809533549134349607212400851092005281865296850991469375578815615235030857047620950536534729591359236290249610371406300791107442098796128895918697534590865459421439398361818591924211607651747970679849262467894774012617335352887745475509155575074809</span><br><span class="line"></span><br><span class="line">e = 65537</span><br></pre></td></tr></table></figure>
 <p>这种有给其他信息的一般无法用factordb对n进行大数分解，于是继续看python源文件：</p>
@@ -167,9 +167,9 @@ MathJax = {
 <p>而蓝帽杯crypto给出了priv.pem私钥文件，同样先进入相应文件夹并尝试用OpenSSL命令以明文形式输出密钥的各个参数值：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl rsa -in priv.pem -text -out private.txt</span><br></pre></td></tr></table></figure>
 <p>发现无法生成private.txt文件，自然也无从查看RSA密钥中各个参数的值：</p>
-<p><img src="/ACTF-crypto/3.png" alt></p>
+<p><img src="/2022/07/08/ACTF-crypto/3.png" alt></p>
 <p>用VS Code查看priv.pem私钥文件发现：</p>
-<p><img src="/ACTF-crypto/4.png" alt></p>
+<p><img src="/2022/07/08/ACTF-crypto/4.png" alt></p>
 <p>中间空缺了一大段，因此无法正常解析，故要手动解析。</p>
 <p>文件（如上）为BASE64编码，在openssl中执行：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl   base64  -d  -in priv.pem -out private.pem</span><br></pre></td></tr></table></figure>
@@ -211,6 +211,11 @@ MathJax = {
             
           </div>
           <div class="post-foot-prev">
+            
+              <a href="/2022/07/21/DSCTF-crypto/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
             
           </div>
         </div>

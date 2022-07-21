@@ -209,12 +209,13 @@ MathJax = {
 <p>step1：列出已知，易得dp是解题关键</p>
 <p>$（1）dp ≡ d（mod （p-1）)$【d、p未知】</p>
 <p>$（2）d ≡ e^{-1}（mod （p-1）*（q-1）)$【d、p、q未知】</p>
-<script type="math/tex; mode=display">（3）n = p * q</script><p>故先需要求出p或q</p>
+<p>$（3）n = p * q$</p>
+<p>故先需要求出p或q</p>
 <p>step2：推导</p>
-<p>（2）式等价于</p>
-<script type="math/tex; mode=display">（4）d = e^{-1} + k * （p-1） * （q-1）</script><p>将（4）式代入（1）式得：</p>
+<p>（2）式等价于<br>$（4）d = e^{-1} + k <em> （p-1） </em> （q-1）$</p>
+<p>将（4）式代入（1）式得：</p>
 <p>$dp ≡ e^{-1}（mod （p-1））$，或$dp ≡ e^{-1}（mod （q-1））$</p>
-<p>等价于$dp <em> e -1 = k </em> （q-1）$</p>
+<p>等价于$d_p<em>e -1 = k </em>（q-1）$</p>
 <p>因此爆破出k就可以求q，进一步求得结果</p>
 <p>在此任取k的爆破范围为（1，e）（因题中给出的e=65537较大）</p>
 <p>综上，利用python脚本求解：</p>
