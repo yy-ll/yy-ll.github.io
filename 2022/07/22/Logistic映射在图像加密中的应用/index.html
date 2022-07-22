@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="John Doe" />
+  <meta name="description" content="" />
+  
+  
+  <title>
+    
+      Logistic映射在图像加密中的应用 
+      
+      
+      |
+    
+     Hexo
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Logistic映射在图像加密中的应用</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2022-07-22 17:02:39
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <h1 id="Logistic映射简介"><a href="#Logistic映射简介" class="headerlink" title="Logistic映射简介"></a>Logistic映射简介</h1><p>生态学中的虫口模型(即Logistic映射，又称单峰映象)</p>
+<p>是一个二次多项式映射(递归关系)，它在一定程度上是一个时间离散的人口统计模型，模型表示如下：</p>
+<script type="math/tex; mode=display">x_{n+1}=\mu x_n（1-x_n）</script><p>$\mu$是分岔参数， 当 3.5699456… &lt; $\mu$ ≤ 4时，映射进入混沌(chaos)区域。</p>
+<h1 id="混沌方法的数字图像加密实现"><a href="#混沌方法的数字图像加密实现" class="headerlink" title="混沌方法的数字图像加密实现"></a>混沌方法的数字图像加密实现</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>该图像加密利用混沌系统与加密技术相结合。</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>传统的混沌映射加密可分为置换和扩散两个阶段，像素置乱变换与灰度值替换都由混沌系统产生的混沌序列所控制，扩散过程如下：</p>
+<p>step1:利用混沌序列获取密钥流。<br>step2:加密图像矩阵的像素值。<br>step3:重复步骤2，直至得到密文图像。</p>
+<h2 id="加解密过程"><a href="#加解密过程" class="headerlink" title="加解密过程"></a>加解密过程</h2><p>加密公式：</p>
+<p>设图像(i,j)处的灰度值为I(i,j), I ′ ( i , j ) 表示替换后在(i,j)的灰度值。</p>
+<script type="math/tex; mode=display">I′(i,j)=(((r1(i,j)+r2(i,j))⊕r3(i,j))+I(i,j))mod256</script><p> $\oplus$表示按位异或运算。r1,r2,r3表示的是混沌序列值与255的乘积（采用多混沌序列产生的密钥空间大于单一的混沌序列所产生的密钥空间），替换变换的密钥由r1,r2,r3对应的混沌系统提供，可以进行多次变换寻求更好加密效果。<br>解密公式：</p>
+<script type="math/tex; mode=display">I(i,j)=(I′(i,j)−((r1(i,j)+r2(i,j))⊕r3(i,j)))mod256</script><p>解密是加密的逆。</p>
+<h2 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">加密函数</span></span><br><span class="line"><span class="string">img_encrypt:原始图像(二维ndarray)</span></span><br><span class="line"><span class="string">key:密钥列表，大小为7(1、2、3为混沌系统初始条件；4、5、6为分岔参数u，7为重复加密次数)</span></span><br><span class="line"><span class="string">return:返回加密后的图像</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">encrypt</span>(<span class="params">img,key</span>):</span><br><span class="line">  <span class="comment">#图像的宽高</span></span><br><span class="line">  [w,h]=img.shape</span><br><span class="line">  <span class="comment">#混沌系统初始条件</span></span><br><span class="line">  x1=key[<span class="number">0</span>]</span><br><span class="line">  x2=key[<span class="number">1</span>]</span><br><span class="line">  x3=key[<span class="number">2</span>]</span><br><span class="line">  <span class="comment">#分岔参数u</span></span><br><span class="line">  u1=key[<span class="number">3</span>]</span><br><span class="line">  u2=key[<span class="number">4</span>]</span><br><span class="line">  u3=key[<span class="number">5</span>]</span><br><span class="line">  <span class="comment">#加密次数</span></span><br><span class="line">  n=key[<span class="number">6</span>]</span><br><span class="line">  <span class="comment">#一个临时数组用于返回加密后的图像，可以不影响原始图像</span></span><br><span class="line">  img_tmp=np.zeros((w,h))</span><br><span class="line">  <span class="comment">#对原始图像的每个像素都处理n次</span></span><br><span class="line">  <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(w):</span><br><span class="line">      <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(h):</span><br><span class="line">        <span class="comment">#计算混沌序列值</span></span><br><span class="line">        x1=u1*x1*(<span class="number">1</span>-x1)</span><br><span class="line">        x2=u2*x2*(<span class="number">1</span>-x2)</span><br><span class="line">        x3=u3*x3*(<span class="number">1</span>-x3)</span><br><span class="line">        <span class="comment">##混沌值位于[0,1]区间内，所以可以看做是一个系数，乘以最大灰度值并转成整数用于异或运算即可</span></span><br><span class="line">        r1=<span class="built_in">int</span>(x1*<span class="number">255</span>)</span><br><span class="line">        r2=<span class="built_in">int</span>(x2*<span class="number">255</span>)</span><br><span class="line">        r3=<span class="built_in">int</span>(x3*<span class="number">255</span>)</span><br><span class="line">        img_tmp[i][j]=(((r1+r2)^r3)+img[i][j])%<span class="number">256</span></span><br><span class="line">    <span class="comment">#下一轮加密重新初始化混沌系统</span></span><br><span class="line">    x1=key[<span class="number">0</span>]</span><br><span class="line">    x2=key[<span class="number">1</span>]</span><br><span class="line">    x3=key[<span class="number">3</span>]</span><br><span class="line">  <span class="keyword">return</span> img_tmp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">解密函数</span></span><br><span class="line"><span class="string">img:加密后图像(二维ndarray)</span></span><br><span class="line"><span class="string">key:密钥列表，大小为7(1、2、3为混沌系统初始条件；4、5、6为分岔参数u，7为重复加密次数)</span></span><br><span class="line"><span class="string">return:返回解密后的图像</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt</span>(<span class="params">img,key</span>):</span><br><span class="line">    <span class="comment">#图像的宽高</span></span><br><span class="line">  [w,h]=img.shape</span><br><span class="line">  <span class="comment">#混沌系统初始条件</span></span><br><span class="line">  x1=key[<span class="number">0</span>]</span><br><span class="line">  x2=key[<span class="number">1</span>]</span><br><span class="line">  x3=key[<span class="number">2</span>]</span><br><span class="line">  <span class="comment">#分岔参数u</span></span><br><span class="line">  u1=key[<span class="number">3</span>]</span><br><span class="line">  u2=key[<span class="number">4</span>]</span><br><span class="line">  u3=key[<span class="number">5</span>]</span><br><span class="line">  <span class="comment">#加密次数</span></span><br><span class="line">  n=key[<span class="number">6</span>]</span><br><span class="line">  <span class="comment">#一个临时数组用于返回加密后的图像，可以不影响传入的加密图像</span></span><br><span class="line">  img_tmp=np.zeros((w,h))</span><br><span class="line">  <span class="comment">#对原始图像的每个像素都处理n次</span></span><br><span class="line">  <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(w):</span><br><span class="line">      <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(h):</span><br><span class="line">        x1=u1*x1*(<span class="number">1</span>-x1)</span><br><span class="line">        x2=u2*x2*(<span class="number">1</span>-x2)</span><br><span class="line">        x3=u3*x3*(<span class="number">1</span>-x3)</span><br><span class="line">        r1=<span class="built_in">int</span>(x1*<span class="number">255</span>)</span><br><span class="line">        r2=<span class="built_in">int</span>(x2*<span class="number">255</span>)</span><br><span class="line">        r3=<span class="built_in">int</span>(x3*<span class="number">255</span>)</span><br><span class="line">        img_tmp[i][j]=(img[i][j]-((r1+r2)^r3))%<span class="number">256</span></span><br><span class="line">        <span class="comment"># img[i][j]=(img[i][j]-((r1[i*w+j]+r2[i*w+j])^r3[i*w+j]))%256</span></span><br><span class="line">    <span class="comment">#下一轮加密重新初始化混沌系统</span></span><br><span class="line">    x1=key[<span class="number">0</span>]</span><br><span class="line">    x2=key[<span class="number">1</span>]</span><br><span class="line">    x3=key[<span class="number">3</span>]</span><br><span class="line">  <span class="keyword">return</span> img_tmp</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">  <span class="comment">#原始图像路径</span></span><br><span class="line">  path=<span class="string">&#x27;./lena.jpg&#x27;</span></span><br><span class="line">  <span class="comment">#加密密钥参数列表</span></span><br><span class="line">  key=[<span class="number">0.343</span>,<span class="number">0.432</span>,<span class="number">0.63</span>,<span class="number">3.769</span>,<span class="number">3.82</span>,<span class="number">3.85</span>,<span class="number">1</span>]</span><br><span class="line">  <span class="comment">#读取原始图像</span></span><br><span class="line">  img=cv2.imread(path)</span><br><span class="line">  <span class="comment">#img.shape=&gt;(512,512,3),宽、高、通道数量</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">#图像灰度化</span></span><br><span class="line">  img_gray = cv2.cvtColor(img,cv2.COLOR_RGB2GRAY)</span><br><span class="line">  <span class="comment">#混沌加密原始图像</span></span><br><span class="line">  img_encrypt=encrypt(img_gray,key)</span><br><span class="line">  <span class="comment">#错误密钥解密图像</span></span><br><span class="line">  wrong_key=[<span class="number">0.342</span>,<span class="number">0.432</span>,<span class="number">0.61</span>,<span class="number">3.769</span>,<span class="number">3.82</span>,<span class="number">3.85</span>,<span class="number">1</span>]</span><br><span class="line">  wrong_decrypt=decrypt(img_encrypt,wrong_key)</span><br><span class="line">  <span class="comment">#正确密钥解密图像</span></span><br><span class="line">  img_decrypt=decrypt(img_encrypt,key)</span><br><span class="line"></span><br><span class="line">  <span class="comment">#结果展示</span></span><br><span class="line">  plt.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = [<span class="string">&#x27;SimHei&#x27;</span>]  <span class="comment"># 中文乱码</span></span><br><span class="line">  <span class="comment">#子图1，原始图像</span></span><br><span class="line">  plt.subplot(<span class="number">221</span>)</span><br><span class="line">  <span class="comment">#plt默认使用三通道显示图像，所以需要制定cmap参数为gray</span></span><br><span class="line">  <span class="comment">#imshow()对图像进行处理，画出图像，show()进行图像显示</span></span><br><span class="line">  plt.imshow(img_gray,cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">  plt.title(<span class="string">&#x27;原始图像(灰度化)&#x27;</span>)</span><br><span class="line">  <span class="comment">#不显示坐标轴</span></span><br><span class="line">  plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">#子图2，加密后图像</span></span><br><span class="line">  plt.subplot(<span class="number">222</span>)</span><br><span class="line">  plt.imshow(img_encrypt,cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">  plt.title(<span class="string">&#x27;加密图像(密钥&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(key))</span><br><span class="line">  plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">#子图3，错误密钥解密结果</span></span><br><span class="line">  plt.subplot(<span class="number">223</span>)</span><br><span class="line">  plt.imshow(wrong_decrypt,cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">  plt.title(<span class="string">&#x27;解密图像(密钥&#123;&#125;)&#x27;</span>.<span class="built_in">format</span>(wrong_key))</span><br><span class="line">  plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">#子图4，正确密钥解密结果</span></span><br><span class="line">  plt.subplot(<span class="number">224</span>)</span><br><span class="line">  plt.imshow(img_decrypt,cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">  plt.title(<span class="string">&#x27;解密图像(密钥&#123;&#125;)&#x27;</span>.<span class="built_in">format</span>(key))</span><br><span class="line">  plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">#设置子图默认的间距</span></span><br><span class="line">  <span class="comment"># plt.tight_layout()</span></span><br><span class="line">  <span class="comment">#保存图像</span></span><br><span class="line">  <span class="comment"># cv2.imwrite(&#x27;./lean_original.jpg&#x27;,img)</span></span><br><span class="line">  <span class="comment"># cv2.imwrite(&#x27;./lean_gray.jpg&#x27;,img_gray)</span></span><br><span class="line">  <span class="comment"># cv2.imwrite(&#x27;./lean_encrypt.jpg&#x27;,img_encrypt)</span></span><br><span class="line">  <span class="comment"># cv2.imwrite(&#x27;./lean_gray.jpg&#x27;,wrong_decrypt)</span></span><br><span class="line">  <span class="comment"># cv2.imwrite(&#x27;./lean_decrypt.jpg&#x27;,img_decrypt)</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">#显示图像</span></span><br><span class="line">  plt.show()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">  main()</span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/07/21/DSCTF-crypto/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2022-07-22 17:02:39
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Logistic%E6%98%A0%E5%B0%84%E7%AE%80%E4%BB%8B"><span class="toc-text">Logistic映射简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B7%E6%B2%8C%E6%96%B9%E6%B3%95%E7%9A%84%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%8A%A0%E5%AF%86%E5%AE%9E%E7%8E%B0"><span class="toc-text">混沌方法的数字图像加密实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E8%A7%A3%E5%AF%86%E8%BF%87%E7%A8%8B"><span class="toc-text">加解密过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="toc-text">实现代码</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="facebook" href="">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="twitter" href="">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="wechat" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="weibo" href="">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © Oranges 2021</a>
+        
+    </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Logistic%E6%98%A0%E5%B0%84%E5%9C%A8%E5%9B%BE%E5%83%8F%E5%8A%A0%E5%AF%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8 + '&url=' + http%3A%2F%2Fyy-ll.github.io%2F2022%2F07%2F22%2FLogistic%25E6%2598%25A0%25E5%25B0%2584%25E5%259C%25A8%25E5%259B%25BE%25E5%2583%258F%25E5%258A%25A0%25E5%25AF%2586%25E4%25B8%25AD%25E7%259A%2584%25E5%25BA%2594%25E7%2594%25A8%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://yy-ll.github.io/2022/07/22/Logistic%E6%98%A0%E5%B0%84%E5%9C%A8%E5%9B%BE%E5%83%8F%E5%8A%A0%E5%AF%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
