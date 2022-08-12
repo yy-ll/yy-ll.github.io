@@ -188,7 +188,7 @@ MathJax = {
 <p>是泄露$d_q$的题型，通过公式推导恢复q。题目给出了提示需要构造等式通过coppersmith攻击方法恢复$d_q$。在此可以先测试一下，求出n的位数为1024位，而$d_q$给出了后面120位（低位），缺失392位。</p>
 <p>对于$d_q \equiv d  mod (q-1)$两边同乘$d^{-1}$（即e），有：</p>
 <script type="math/tex; mode=display">e*d_q \equiv 1 mod(q-1)</script><p>等价于：</p>
-<script type="math/tex; mode=display">e * d_q = k * (q-1)+1（1）</script><p>由于$d_q$与q的位数类似，即k与e的大小接近，尝试爆破k。</p>
+<script type="math/tex; mode=display">（1）e * d_q = k * (q-1)+1</script><p>由于$d_q$与q的位数类似，即k与e的大小接近，尝试爆破k。</p>
 <p>令$q^{-1} (mod p) \equiv t$，有：</p>
 <script type="math/tex; mode=display">tq \equiv 1 (mod p)</script><p>其中t为逆元，等价于：</p>
 <script type="math/tex; mode=display">t * q = u * p+1</script><p>移项，构造方程式得：</p>
