@@ -164,18 +164,18 @@ MathJax = {
 <p>解得flag为：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b&#x27;ACTF&#123;F1nD1nG_5pEcia1_n_i5_nOt_eA5y&#125;&#x27;</span><br></pre></td></tr></table></figure>
 <h1 id="蓝帽杯corrupted-key"><a href="#蓝帽杯corrupted-key" class="headerlink" title="蓝帽杯corrupted_key"></a>蓝帽杯corrupted_key</h1><p>提示信息：利用rsa各参量之间的关系构造方程，并用coppersmith方法恢复完整私钥。</p>
-<p>而蓝帽杯crypto给出了priv.pem私钥文件，同样先进入相应文件夹并尝试用OpenSSL命令以明文形式输出密钥的各个参数值：</p>
+<p>与ACTF相比，蓝帽杯crypto给出了priv.pem私钥文件，同样先进入相应文件夹，尝试用OpenSSL命令以明文形式输出密钥的各个参数值：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl rsa -in priv.pem -text -out private.txt</span><br></pre></td></tr></table></figure>
-<p>发现无法生成private.txt文件，自然也无从查看RSA密钥中各个参数的值：</p>
 <p><img src="/2022/07/08/ACTF-crypto/3.png" alt></p>
-<p>用VS Code查看priv.pem私钥文件发现：</p>
+<p>发现无法生成private.txt文件，自然也无从查看RSA密钥中各个参数的值。</p>
+<p>用VS Code查看priv.pem私钥文件：</p>
 <p><img src="/2022/07/08/ACTF-crypto/4.png" alt></p>
-<p>中间空缺了一大段，因此无法正常解析，故要手动解析。</p>
-<p>文件（如上）为BASE64编码，在openssl中执行：</p>
+<p>发现中间空缺了一大段，无法正常解析，需要手动解析。</p>
+<p>上述文件为BASE64编码，在openssl中执行：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl   base64  -d  -in priv.pem -out private.pem</span><br></pre></td></tr></table></figure>
 <p>将BASE64编码的文件转化成二进制编码，用010 Editor打开如下：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">30 82 02 5E 02 01 00 02 81 81 00 D7 15 25 06 AA</span><br><span class="line">9C EC 05 E5 33 5D 6B 46 F5 49 14 07 C3 19 9F D5</span><br><span class="line">10 91 F1 F6 03 0D 37 62 B9 E0 3F 49 C9 DC DC 07</span><br><span class="line">50 54 E0 CC 14 8B 97 4B 41 85 4B D9 3B 4E E1 6A</span><br><span class="line">2A 87 6E E6 20 05 E8 0E F8 06 B7 AA 3B 64 B1 BF</span><br><span class="line">9B 1F A7 73 E3 53 D0 CD B9 FF 97 83 DD D5 F5 E6</span><br><span class="line">74 99 AD 10 F3 61 E9 38 D0 0B 82 A6 A4 C4 2A 05</span><br><span class="line">35 C5 E7 67 21 79 8E 86 B4 5C D4 B8 D0 3B 0D 7E</span><br><span class="line">75 C2 BE 87 66 A1 E8 43 BD C6 41 02 03 01 00 01</span><br><span class="line">C9 0B CE CF 1C BA B3 35 85 85 E8 A0 41 D1 B1 02</span><br><span class="line">41 00 E3 01 6C B3 60 9C 1D 64 3C 16 74 39 C3 B9</span><br><span class="line">38 B8 81 F4 23 7F 24 86 0D 3B 1C B8 5A 62 6D 5C</span><br><span class="line">CD 47 26 96 4E 0F 82 70 D6 C4 DF 9E BF EB CC 53</span><br><span class="line">8E 4E E5 E1 A7 B7 36 8E DE 51 EC 6A E9 17 F7 8E</span><br><span class="line">B5 98</span><br></pre></td></tr></table></figure>
-<p>生成的private.pem 文件为BASE64解码后（十六进制）的文件，此文件是将RSA密钥语法中的结构进行DER编码后的二进制表现形式。对其进行解析，解析规则如下：</p>
+<p>即生成的private.pem 文件为BASE64解码后（十六进制）的文件，此文件是将RSA密钥语法中的结构进行DER编码后的二进制表现形式。对其进行解析，解析规则如下：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">标签头3082025c    （4 bytes）         类型为SEQUENCE  后接 604 bytes</span><br><span class="line"></span><br><span class="line">020100  INTEGER   长度为0             内容为VERSION</span><br><span class="line"> </span><br><span class="line">028181  INTEGER   长度为129 bytes     内容为n          （modulus）</span><br><span class="line"></span><br><span class="line">0203    INTEGER   长度为3 bytes       内容为e          （publicExponent）</span><br><span class="line"> </span><br><span class="line">028180  INTEGER   长度为128 bytes     内容为d          （privateExponent）</span><br><span class="line"></span><br><span class="line">0241    INTEGER   长度为65 bytes      内容为p          （prime1）</span><br><span class="line"></span><br><span class="line">0241    INTEGER   长度为65 bytes      内容为q          （prime2）</span><br><span class="line"></span><br><span class="line">0240    INTEGER   长度为64 bytes      内容为d mod（p-1） exponent1 </span><br><span class="line"></span><br><span class="line">0240    INTEGER   长度为64 bytes      内容为d mod (q-1)  exponent2</span><br><span class="line"></span><br><span class="line">0241    INTEGER   长度为65 bytes      内容为q ^ - 1 mod p  coefficient</span><br></pre></td></tr></table></figure>
 <p>故应该由各个量的标志，结合转换关系，直接对private.pem 文件解析。</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1个字节 = 8位(8个二进制位) = 2个16进制字符 </span><br><span class="line"> 1Byte = 8bit</span><br></pre></td></tr></table></figure>
@@ -185,13 +185,16 @@ MathJax = {
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">b&#x27;MIICXgIBAAKBgQDXFSUGqpzsBeUzXWtG9UkUB8MZn9UQkfH2Aw03YrngP0nJ3NwH&#x27;</span><br><span class="line">b&#x27;UFTgzBSLl0tBhUvZO07haiqHbuYgBegO+Aa3qjtksb+bH6dz41PQzbn/l4Pd1fXm&#x27;</span><br><span class="line">b&#x27;dJmtEPNh6TjQC4KmpMQqBTXF52cheY6GtFzUuNA7DX51wr6HZqHoQ73GQQIDAQAB&#x27;</span><br><span class="line">3082025e02010002818100d7152506aa9cec05e5335d6b46f5491407c3199fd51091f1f6030d3762b9e03f49c9dcdc075054e0cc148b974b41854bd93b4ee16a2a876ee62005e80ef806b7aa3b64b1bf9b1fa773e353d0cdb9ff9783ddd5f5e67499ad10f361e938d00b82a6a4c42a0535c5e76721798e86b45cd4b8d03b0d7e75c2be8766a1e843bdc6410203010001</span><br><span class="line">b&#x27;&#x27;</span><br><span class="line">b&#x27;&#x27;</span><br><span class="line">b&#x27;&#x27;</span><br><span class="line">b&#x27;&#x27;</span><br><span class="line">b&#x27;&#x27;</span><br><span class="line">b&#x27;&#x27;</span><br><span class="line">b&#x27;&#x27;</span><br><span class="line">b&#x27;&#x27;</span><br><span class="line">b&#x27;yQvOzxy6szWFheigQdGxAkEA4wFss2CcHWQ8FnQ5w7k4uIH0I38khg07HLhaYm1c&#x27;</span><br><span class="line">b&#x27;zUcmlk4PgnDWxN+ev+vMU45O5eGntzaO3lHsaukX9461mA==&#x27;</span><br><span class="line">c90bcecf1cbab3358585e8a041d1b1024100e3016cb3609c1d643c167439c3b938b881f4237f24860d3b1cb85a626d5ccd4726964e0f8270d6c4df9ebfebcc538e4ee5e1a7b7368ede51ec6ae917f78eb598</span><br></pre></td></tr></table></figure>
 <p>解得：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">d mod (q-1) c90bcecf1cbab3358585e8a041d1b1</span><br><span class="line">n= 151036135413139226687867011199700639084856588533884431118047808395603993635242690166659649156476428533386350427603713487259266502837260466348398817558768025404903682189934563578605367223796247470920497617904900418615352839562681665973088711089128789315193951623751145385357347144960284983398745189236464272961</span><br><span class="line">e= 65537</span><br><span class="line">pow(q,-1) mod p = 11889246144866782519155392157369478059715977597114885585873502852127888907191116911762955888968046505980125449346852147369649024143226438553109462231463320</span><br></pre></td></tr></table></figure>
-<p>是泄露$d_q$的题型，通过公式推导恢复q。</p>
+<p>是泄露$d_q$的题型，通过公式推导恢复q。题目给出了提示需要构造等式通过coppersmith攻击方法恢复$d_q$。在此可以先测试一下，求出n的位数为1024位，而$d_q$给出了后面120位（低位），缺失392位。</p>
 <p>对于$d_q \equiv d  mod (q-1)$两边同乘d^{-1}即e有：</p>
 <script type="math/tex; mode=display">e*d_q \equiv 1 mod(q-1)</script><p>等价于：</p>
-<script type="math/tex; mode=display">e * d_q = k * (q-1)+1</script><p>令$f=e * d_q -1 + k$，将上式分解为：</p>
-<script type="math/tex; mode=display">f = e * (d _ {qh}+d _ {ql}) -1 +k = kq</script><p>再令$q^{-1} (mod p) \equiv t$，有：</p>
-<script type="math/tex; mode=display">tq \equiv 1 (mod p)</script><script type="math/tex; mode=display">tq-1 \equiv 0 (mod p)</script><script type="math/tex; mode=display">tq^2-q \equiv 0 (mod n)</script><p>综上，有：</p>
-<script type="math/tex; mode=display">tf^2-kf \equiv 0 (mod n)</script>
+<script type="math/tex; mode=display">e * d_q = k * (q-1)+1</script><p>由于$d_q$与q的位数类似，即k与e的大小接近，尝试爆破k。</p>
+<p>令$q^{-1} (mod p) \equiv t$，有：</p>
+<script type="math/tex; mode=display">tq \equiv 1 (mod p)</script><p>其中t为逆元，等价于：</p>
+<script type="math/tex; mode=display">t * q = u * p+1</script><p>移项，构造方程式得：</p>
+<script type="math/tex; mode=display">tq-1 \equiv 0 (mod p)</script><script type="math/tex; mode=display">tq^2-q \equiv 0 (mod n)</script><p>为方便表示，令给出的$d_q$低位为$_d_q$</p>
+<p>在构造的时候$d_q$要写成$d_q = (2 <em>* 120 </em> x)+_d_q$，因为x未知可能会导致通过移位·实现乘法出现问题，故不能写成$d_q = (x &lt;&lt; 120) + _d_q$</p>
+
       </div>
       
         <div class="prev-or-next">
@@ -564,20 +567,5 @@ MathJax = {
 
       </div>
     </div>
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-</body>
+  </body>
 </html>
