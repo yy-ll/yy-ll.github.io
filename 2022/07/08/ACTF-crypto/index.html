@@ -186,11 +186,17 @@ MathJax = {
 <p>解得：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">d mod (q-1) c90bcecf1cbab3358585e8a041d1b1</span><br><span class="line">n= 151036135413139226687867011199700639084856588533884431118047808395603993635242690166659649156476428533386350427603713487259266502837260466348398817558768025404903682189934563578605367223796247470920497617904900418615352839562681665973088711089128789315193951623751145385357347144960284983398745189236464272961</span><br><span class="line">e= 65537</span><br><span class="line">pow(q,-1) mod p = 11889246144866782519155392157369478059715977597114885585873502852127888907191116911762955888968046505980125449346852147369649024143226438553109462231463320</span><br></pre></td></tr></table></figure>
 <p>是泄露$d_q$的题型，通过公式推导恢复q。题目给出了提示需要构造等式通过coppersmith攻击方法恢复$d_q$。在此可以先测试一下，求出n的位数为1024位，而$d_q$给出了后面120位（低位），缺失392位。</p>
-<p>对于$d_q \equiv d  mod (q-1)$两边同乘d^{-1}即e有：</p>
+<p>对于$d_q \equiv d  mod (q-1)$两边同乘$d^{-1}$（即e），有：</p>
 <script type="math/tex; mode=display">e*d_q \equiv 1 mod(q-1)</script><p>等价于：</p>
-<script type="math/tex; mode=display">e * d_q = k * (q-1)+1</script><p>由于$d_q$与q的位数类似，即k与e的大小接近，尝试爆破k。</p>
-<p>令$q^{-1} (mod p) \equiv t$，有：</p>
-<script type="math/tex; mode=display">tq \equiv 1 (mod p)</script><p>其中t为逆元，等价于：</p>
+<script type="math/tex; mode=display">e * d_q = k * (q-1)+1$$（1）
+
+由于$d_q$与q的位数类似，即k与e的大小接近，尝试爆破k。
+
+
+
+令$q^{-1} (mod p) \equiv t$，有：
+
+$$tq \equiv 1 (mod p)</script><p>其中t为逆元，等价于：</p>
 <script type="math/tex; mode=display">t * q = u * p+1</script><p>移项，构造方程式得：</p>
 <script type="math/tex; mode=display">tq-1 \equiv 0 (mod p)</script><script type="math/tex; mode=display">tq^2-q \equiv 0 (mod n)</script><p>为方便表示，令给出的$d_q$低位为_$d_q$</p>
 <p>在构造的时候$d_q$要写成$d_q$ = (2 <em>* 120 </em> x)+_$d_q$，因为x未知可能会导致通过移位·实现乘法出现问题，故不能写成$d_q$ = (x &lt;&lt; 120) + _$d_q$</p>
