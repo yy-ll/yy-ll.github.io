@@ -192,7 +192,7 @@ MathJax = {
 <p>令$q^{-1} (mod p) \equiv t$，有：</p>
 <script type="math/tex; mode=display">tq \equiv 1 (mod p)</script><p>其中t为逆元，等价于：</p>
 <script type="math/tex; mode=display">t * q = u * p+1</script><p>移项，构造方程式得：</p>
-<script type="math/tex; mode=display">tq-1 \equiv 0 (mod p)</script><script type="math/tex; mode=display">tq^2-q \equiv 0 (mod n)</script><p>为方便表示，令给出的$d_q$低位为$_d_q$</p>
+<script type="math/tex; mode=display">tq-1 \equiv 0 (mod p)</script><script type="math/tex; mode=display">tq^2-q \equiv 0 (mod n)</script><p>为方便表示，令给出的$d_q$低位为_$d_q$</p>
 <p>在构造的时候$d_q$要写成$d_q = (2 <em>* 120 </em> x)+_d_q$，因为x未知可能会导致通过移位·实现乘法出现问题，故不能写成$d_q = (x &lt;&lt; 120) + _d_q$</p>
 
       </div>
@@ -567,5 +567,20 @@ MathJax = {
 
       </div>
     </div>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>
