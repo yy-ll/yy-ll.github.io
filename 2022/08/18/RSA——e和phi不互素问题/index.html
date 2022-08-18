@@ -146,7 +146,7 @@ MathJax = {
 <script type="math/tex; mode=display">e*d \equiv 1（mod \varphi（n））</script><p>但是这一步要求满足前提$gcd（e，\varphi（n））= 1$，即e与$\varphi（n）$互素。如果不互素，仍这样求解逆元，会出现如下报错：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d = gmpy2.invert(e,phi)</span><br><span class="line">ZeroDivisionError: invert() no inverse exists</span><br></pre></td></tr></table></figure>
 <p>为方便描述，令t=gcd（e，phi），即公约数为t，又分为几种情况：</p>
-<h1 id="m-t-＜n"><a href="#m-t-＜n" class="headerlink" title="$m^t ＜n$"></a>$m^t ＜n$</h1><p>在此，可以把$m^t$看成一个整体$_m$，进行推导：</p>
+<h1 id="类别"><a href="#类别" class="headerlink" title="类别"></a>类别</h1><h2 id="m-t-＜n"><a href="#m-t-＜n" class="headerlink" title="$m^t ＜n$"></a>$m^t ＜n$</h2><p>在此，可以把$m^t$看成一个整体_m，进行推导：</p>
 <script type="math/tex; mode=display">（1）_e = e//t</script><script type="math/tex; mode=display">d = gmpy2.invert（_e，phi）</script><p>对于$m^e \equiv c （mod n）$，将（1）式带入有：</p>
 <script type="math/tex; mode=display">（m^t）^{_e} \equiv c （mod n）</script><p>再同乘d次方得：</p>
 <script type="math/tex; mode=display">m^t \equiv c^d （mod n）</script><p>即$m^t$可求且$m^t ＜n$。故解题时直接对$m^t$开t次方根:</p>
@@ -183,7 +183,7 @@ MathJax = {
   <div class="post-catalog hidden" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#m-t-%EF%BC%9Cn"><span class="toc-text">$m^t ＜n$</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E5%88%AB"><span class="toc-text">类别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#m-t-%EF%BC%9Cn"><span class="toc-text">$m^t ＜n$</span></a></li></ol></li></ol>
     </div>
   </div>
 
