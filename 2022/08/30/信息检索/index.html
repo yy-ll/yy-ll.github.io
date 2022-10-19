@@ -11,7 +11,7 @@
   
   <title>
     
-      archive_a: 2022/7 
+      信息检索 
       
       
       |
@@ -105,221 +105,101 @@
 
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2022</span>
-          </h2>
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">信息检索</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2022-08-30 16:24:02
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>如何高效搜索？</p>
+<p>1.培养搜索思维（怎样输入搜索关键词）<br>根据其搜索规则，搜索引擎会将句子（无论长句还是短句）拆分成多个词组，再在信息中检索词组。不要用口语化、抽象的句子和关键词去搜索。</p>
+<p>2.使用加减号对搜索结果过滤，实现精准搜索</p>
+<p>用法：</p>
+<p>关键词1 +关键词2 -关键词3（符号前面有空格）</p>
+<p>3.使用site在指定网站内搜索</p>
+<p>用法：</p>
+<p>site: 指定网站的域名 关键词1 +关键词2</p>
+<p>4.使用filetype，找某格式文档</p>
+<p>用法：</p>
+<p>filetype:文件格式 关键词1 +关键词2</p>
+<p>5.使用intitle，指定搜索结果中要包含的关键词</p>
+<p>用法：</p>
+<p>关键词1 intitle:关键词2</p>
+<p>6.限定搜索信息的时限</p>
+<p>用法：</p>
+<p>关键词 时间..时间</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/08/18/RSA%E2%80%94%E2%80%94e%E5%92%8Cphi%E4%B8%8D%E4%BA%92%E7%B4%A0%E9%97%AE%E9%A2%98/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2022-08-30 16:24:02
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
       
-      <div class="post-item" title="信息检索">
-        <div class="time-m-d">08-30</div>
-        <div class="title">
-          <a href="/2022/08/30/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2/">
-            <span>信息检索</span>
-          </a>
-        </div>
-      </div>
+    </div>
     
-      <div class="post-item" title="RSA——e和phi不互素问题">
-        <div class="time-m-d">08-18</div>
-        <div class="title">
-          <a href="/2022/08/18/RSA%E2%80%94%E2%80%94e%E5%92%8Cphi%E4%B8%8D%E4%BA%92%E7%B4%A0%E9%97%AE%E9%A2%98/">
-            <span>RSA——e和phi不互素问题</span>
-          </a>
-        </div>
-      </div>
+
     
-      <div class="post-item" title="蓝帽杯-crypto">
-        <div class="time-m-d">08-17</div>
-        <div class="title">
-          <a href="/2022/08/17/%E8%93%9D%E5%B8%BD%E6%9D%AF-crypto/">
-            <span>蓝帽杯-crypto</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="RSA——Coppersmith攻击">
-        <div class="time-m-d">08-16</div>
-        <div class="title">
-          <a href="/2022/08/16/RSA%E2%80%94%E2%80%94Coppersmith%E6%94%BB%E5%87%BB/">
-            <span>RSA——Coppersmith攻击</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="智能合约 安全分析和审计指南">
-        <div class="time-m-d">08-14</div>
-        <div class="title">
-          <a href="/2022/08/14/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6-%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90%E5%92%8C%E5%AE%A1%E8%AE%A1%E6%8C%87%E5%8D%97/">
-            <span>智能合约 安全分析和审计指南</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Logistic映射在图像加密中的应用">
-        <div class="time-m-d">07-22</div>
-        <div class="title">
-          <a href="/2022/07/22/Logistic%E6%98%A0%E5%B0%84%E5%9C%A8%E5%9B%BE%E5%83%8F%E5%8A%A0%E5%AF%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">
-            <span>Logistic映射在图像加密中的应用</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="DSCTF-crypto">
-        <div class="time-m-d">07-21</div>
-        <div class="title">
-          <a href="/2022/07/21/DSCTF-crypto/">
-            <span>DSCTF-crypto</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="ACTF-crypto">
-        <div class="time-m-d">07-08</div>
-        <div class="title">
-          <a href="/2022/07/08/ACTF-crypto/">
-            <span>ACTF-crypto</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="国密算法">
-        <div class="time-m-d">04-29</div>
-        <div class="title">
-          <a href="/2022/04/29/%E5%9B%BD%E5%AF%86%E7%AE%97%E6%B3%95/">
-            <span>国密算法</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Hash">
-        <div class="time-m-d">04-04</div>
-        <div class="title">
-          <a href="/2022/04/04/Hash/">
-            <span>Hash</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="buu-crypto-two">
-        <div class="time-m-d">04-03</div>
-        <div class="title">
-          <a href="/2022/04/03/buu-crypto-two/">
-            <span>buu-crypto-two</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="python-des">
-        <div class="time-m-d">04-02</div>
-        <div class="title">
-          <a href="/2022/04/02/python-des/">
-            <span>python-des</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="challenge">
-        <div class="time-m-d">03-22</div>
-        <div class="title">
-          <a href="/2022/03/22/challenge/">
-            <span>challenge</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="流密码与分组密码">
-        <div class="time-m-d">03-09</div>
-        <div class="title">
-          <a href="/2022/03/09/%E6%B5%81%E5%AF%86%E7%A0%81%E4%B8%8E%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/">
-            <span>流密码与分组密码</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="古典密码学">
-        <div class="time-m-d">03-04</div>
-        <div class="title">
-          <a href="/2022/03/04/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/">
-            <span>古典密码学</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="test">
-        <div class="time-m-d">03-01</div>
-        <div class="title">
-          <a href="/2022/03/01/test/">
-            <span>test</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="xctf--crypto exercise area">
-        <div class="time-m-d">02-24</div>
-        <div class="title">
-          <a href="/2022/02/24/xctf-crypto-exercise-area/">
-            <span>xctf--crypto exercise area</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="python--partial">
-        <div class="time-m-d">02-20</div>
-        <div class="title">
-          <a href="/2022/02/20/python-partial/">
-            <span>python--partial</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="RSA常见的攻击方法">
-        <div class="time-m-d">02-17</div>
-        <div class="title">
-          <a href="/2022/02/17/RSA%E5%B8%B8%E8%A7%81%E7%9A%84%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95/">
-            <span>RSA常见的攻击方法</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CTF-RSA">
-        <div class="time-m-d">02-13</div>
-        <div class="title">
-          <a href="/2022/02/13/CTF-RSA/">
-            <span>CTF-RSA</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="crypto--RSA加密">
-        <div class="time-m-d">02-12</div>
-        <div class="title">
-          <a href="/2022/02/12/crypto-RSA%E5%8A%A0%E5%AF%86/">
-            <span>crypto--RSA加密</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Hello World">
-        <div class="time-m-d">02-10</div>
-        <div class="title">
-          <a href="/2022/02/10/hello-world/">
-            <span>Hello World</span>
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-</div>
+
 
         <div class="footer">
   <div class="social">
@@ -606,6 +486,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2 + '&url=' + http%3A%2F%2Fyy-ll.github.io%2F2022%2F08%2F30%2F%25E4%25BF%25A1%25E6%2581%25AF%25E6%25A3%2580%25E7%25B4%25A2%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://yy-ll.github.io/2022/08/30/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
