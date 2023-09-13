@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="John Doe" />
+  <meta name="description" content="" />
+  
+  
+  <title>
+    
+      tipdm 
+      
+      
+      |
+    
+     Hexo
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">tipdm</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2023-03-24 14:24:34
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>注意1）预处理、模型、算法！</p>
+<p>1）若训练集不够多则需要数据增强（增加样本量）、数据修正。注：读入数据不算预处理。</p>
+<h1 id="1-背景分析"><a href="#1-背景分析" class="headerlink" title="1 背景分析"></a>1 背景分析</h1><p>……</p>
+<p>接下来进行EDA（Exploratory Data Analysis，探索性数据分析），看各个特征的一些数据分布情况，熟悉数据。</p>
+<h1 id="2-数据读取"><a href="#2-数据读取" class="headerlink" title="2 数据读取"></a>2 数据读取</h1><p>导入数据分析常用包：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
+<p>读取数据时，分训练集和测试集读取：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data  = pd.read_csv(<span class="string">&#x27;train.csv&#x27;</span>)</span><br><span class="line">data_ = pd.read_csv(<span class="string">&#x27;test.csv&#x27;</span>)</span><br><span class="line"><span class="comment">#查看数据（前3行）</span></span><br><span class="line">data.head(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>比较训练集与测试集给出数据的差别，或许需要预测</p>
+<p>可以看出后面都是特征变量，出货的特征：order_date（订单日期）、sales_region_code（销</p>
+<p>售区域编码）、item_code（产品编码）、first_cate_code （产品大类编码）、second_cate_code </p>
+<p>（产品细类编码）、sales_chan_name （销售渠道名称）、item_price （产品价格）和 ord_qty </p>
+<p>（订单需求量）。</p>
+<p>data和data_基本信息：</p>
+<p>查看各列数据列名、缺失情况与类型Dtype</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data.info()</span><br><span class="line">data_.info()</span><br></pre></td></tr></table></figure>
+<h1 id="3-数据预处理-清洗和整理"><a href="#3-数据预处理-清洗和整理" class="headerlink" title="3 数据预处理(清洗和整理)"></a>3 数据预处理(清洗和整理)</h1><h2 id="3-1-画图看缺失值"><a href="#3-1-画图看缺失值" class="headerlink" title="3.1 画图看缺失值"></a>3.1 画图看缺失值</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> missingno <span class="keyword">as</span> msno</span><br><span class="line">%matplotlib inline <span class="comment">#将图表嵌入到Notebook中</span></span><br><span class="line">msno.matrix(data)</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-数据清洗"><a href="#3-2-数据清洗" class="headerlink" title="3.2 数据清洗"></a>3.2 数据清洗</h2><h3 id="3-2-1-重复数据"><a href="#3-2-1-重复数据" class="headerlink" title="3.2.1 重复数据"></a>3.2.1 重复数据</h3><p>删除法</p>
+<h3 id="3-2-2-特征选择"><a href="#3-2-2-特征选择" class="headerlink" title="3.2.2 特征选择"></a>3.2.2 特征选择</h3><p>删除一些不需要（即与题目无关）的变量，还有缺失值很多的变量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data.drop (<span class="string">&#x27;列名&#x27;</span>,axis=<span class="number">1</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">data_.drop (<span class="string">&#x27;PassengerId&#x27;</span>,axis=<span class="number">1</span>, inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-3-缺失值处理"><a href="#3-2-3-缺失值处理" class="headerlink" title="3.2.3 缺失值处理"></a>3.2.3 缺失值处理</h3><p>（1）删除法：</p>
+<p>删除法指</p>
+<p>当某些变量缺少的观测比例非常低时（如5%以内），直接删除存在缺失的观测；</p>
+<p>当某些变量的缺失比例非常高时（如85%以上），直接删除这些缺失的变量。</p>
+<p>（2）替换法：</p>
+<p>替换法指</p>
+<p>用某种常数直接替换缺失值，如：</p>
+<p>对连续变量而言，使用均值或中位数替换；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#对年龄等缺失值位置进行填充，采用中位数填充</span></span><br><span class="line">data[<span class="string">&#x27;Age&#x27;</span>].fillna(data.Age.median(), inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p>对于离散变量，使用众数替换。</p>
+<p>（3）插补法</p>
+<p>插补法指</p>
+<p>根据其他非缺失的变量或观测来预测缺失值，常见的插补法有回归插补法、K近邻插补法、拉格朗日插补法等。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data_[<span class="string">&#x27;Fare&#x27;</span>].fillna(method=<span class="string">&#x27;pad&#x27;</span>,axis=<span class="number">0</span>,inplace=<span class="literal">True</span>) <span class="comment">#表示用上一个非缺失值取填充该缺失值</span></span><br></pre></td></tr></table></figure>
+<p><strong>总结：</strong></p>
+<p>1.Python中缺失值的填充用fillna()函数，该函数的功能是用指定的值取填充dataframe中的缺失值。</p>
+<p>2.基本语法为：df.fillna(a,[inplace=False])</p>
+<p>其中，参数a表示常数或字典；inplace为可选参数，默认为False，表示不修改原对象；若指定inplace=True，则直接修改原对象。</p>
+<p>若a为常数，则用常数a填充缺失值</p>
+<p>若a为字典，则表示第key列的缺失值用key对应的value值填充，如：df.fillna({0:10,1:20})表示用10填充第0列的缺失值，用20填充第1列的缺失值。</p>
+<p>3.df.fillna()函数的返回值</p>
+<p>若指定inplace=True，则函数返回值为None；若未指定，则函数返回填充缺失值后的数据。</p>
+<p>4.df.fillna()函数的用法补充</p>
+<p>指定method参数时：</p>
+<p>若method=’ffill‘或’pad’，表示用前一个非缺失值取填充该缺失值，语法为df.fillna(method=’ffill’);</p>
+<p>若method=‘bfill’或’backfill’，表示用下一个非缺失值填充该缺失值。</p>
+<p>指定limit参数和axis参数：</p>
+<p>limit参数用于指定每列或每行缺失值填充的数量，默认按列操作</p>
+<p>axis参数用于指定对行还是对列操作。若axis=0，则对各行数据进行填充；若axis=1，则对各列数据进行填充。</p>
+<h3 id="3-2-4-异常值处理"><a href="#3-2-4-异常值处理" class="headerlink" title="3.2.4 异常值处理"></a>3.2.4 异常值处理</h3><h3 id="3-2-5-查看数据具体值情况"><a href="#3-2-5-查看数据具体值情况" class="headerlink" title="3.2.5 查看数据具体值情况"></a>3.2.5 查看数据具体值情况</h3><p>item_code：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用np中的unique函数去除其中重复元素，按从大到小返回一个新的无重复的列表</span></span><br><span class="line">data_item  = np.unique(data[<span class="string">&quot;item_code&quot;</span>],return_counts=<span class="literal">True</span>)</span><br><span class="line"><span class="comment">#用return_counts = True表示返回新列表元素在旧列表中出现的次数，并以列表形式储存在arr中</span></span><br><span class="line"><span class="built_in">print</span>(data_item)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#利用pandas中的value_counts()函数返回一个包含唯一值计数的系列</span></span><br><span class="line"><span class="comment">#利用pandas中的sort_values()进行排序，默认升序</span></span><br><span class="line">data[<span class="string">&quot;item_code&quot;</span>].value_counts().sort_values()</span><br><span class="line"><span class="comment">#一共1423个商品</span></span><br></pre></td></tr></table></figure>
+<p>first_cate_code：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[<span class="string">&quot;first_cate_code&quot;</span>].unique()</span><br></pre></td></tr></table></figure>
+<p>second_cate_code:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[<span class="string">&quot;second_cate_code&quot;</span>].unique()</span><br></pre></td></tr></table></figure>
+<p>sales_region_code:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[<span class="string">&quot;sales_region_code&quot;</span>].unique()</span><br></pre></td></tr></table></figure>
+<p>添加数据“销售额”：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data[<span class="string">&quot;sales&quot;</span>]=(data[<span class="string">&quot;ord_qty&quot;</span>])*(data[<span class="string">&quot;item_price&quot;</span>])</span><br><span class="line"><span class="comment">#保存为文件，方便使用</span></span><br><span class="line">data.to_csv(<span class="string">&quot;data_sales.csv&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="3-4-分类型数据转化"><a href="#3-4-分类型数据转化" class="headerlink" title="3.4 分类型数据转化"></a>3.4 分类型数据转化</h2><h3 id="3-4-1-sales-chan-name处理"><a href="#3-4-1-sales-chan-name处理" class="headerlink" title="3.4.1 sales_chan_name处理"></a>3.4.1 sales_chan_name处理</h3><p>将文本型的分类数据映射为数值型数据，例如男：0，女：1</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">d1=&#123;<span class="string">&#x27;offline&#x27;</span>:<span class="number">0</span>,<span class="string">&#x27;online&#x27;</span>:<span class="number">1</span>&#125;</span><br><span class="line">data[<span class="string">&#x27;sales_chan_name&#x27;</span>]=data[<span class="string">&#x27;sales_chan_name&#x27;</span>].<span class="built_in">map</span>(d1)</span><br><span class="line">data_[<span class="string">&#x27;sales_chan_name&#x27;</span>]=data2[<span class="string">&#x27;sales_chan_name&#x27;</span>].<span class="built_in">map</span>(d1)</span><br></pre></td></tr></table></figure>
+<h3 id="3-4-2-order-date处理"><a href="#3-4-2-order-date处理" class="headerlink" title="3.4.2 order_date处理"></a>3.4.2 order_date处理</h3><p>更改日期类型为datetime类型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data[<span class="string">&quot;order_date&quot;</span>]=data[<span class="string">&quot;order_date&quot;</span>].apply(pd.to_datetime,<span class="built_in">format</span>=<span class="string">&#x27;%Y-%m-%d&#x27;</span>)</span><br><span class="line">data.info()<span class="comment">#查看类型</span></span><br></pre></td></tr></table></figure>
+<p>对日期时间进行时间特征处理：</p>
+<p>（1）不同时间段（月头、月中、月末）</p>
+<p>根据order_date分出‘day’和‘yuedu’</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">xun</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="number">1</span>&lt;=x&lt;=<span class="number">10</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;1&#x27;</span></span><br><span class="line">    <span class="keyword">elif</span> <span class="number">11</span>&lt;=x&lt;=<span class="number">20</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;2&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;3&#x27;</span></span><br><span class="line"></span><br><span class="line">data[<span class="string">&#x27;day&#x27;</span>]=data.order_date.apply(<span class="keyword">lambda</span> dateString:datetime.strptime(dateString,<span class="string">&#x27;%Y/%m/%d&#x27;</span>).day)</span><br><span class="line">data[<span class="string">&#x27;yuedu&#x27;</span>] =data[<span class="string">&#x27;day&#x27;</span>].apply(xun)</span><br><span class="line"><span class="built_in">print</span>(data.head()) <span class="comment">#查看前5行数据</span></span><br></pre></td></tr></table></figure>
+<p>（2）节假日</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> chinese_calendar</span><br><span class="line">data[<span class="string">&#x27;is_holiday&#x27;</span>] =data.order_date.apply(<span class="keyword">lambda</span> dateString:chinese_calendar.is_holiday(datetime.strptime(dateString,<span class="string">&#x27;%Y/%m/%d&#x27;</span>)))</span><br><span class="line"><span class="built_in">print</span>(data.head()) </span><br></pre></td></tr></table></figure>
+<p>（3）促销（如618、双十一）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">cuxiao</span>(<span class="params">xx</span>):</span><br><span class="line">    dt=datetime.strptime(xx,<span class="string">&#x27;%Y/%m/%d&#x27;</span>)</span><br><span class="line">    x=dt.month</span><br><span class="line">    y=dt.day</span><br><span class="line">    <span class="keyword">if</span> x==<span class="number">11</span> <span class="keyword">and</span> y==<span class="number">11</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;1&#x27;</span></span><br><span class="line">    <span class="keyword">elif</span> x==<span class="number">6</span> <span class="keyword">and</span> y==<span class="number">18</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;1&#x27;</span></span><br><span class="line">    <span class="keyword">elif</span> x==<span class="number">12</span> <span class="keyword">and</span> y==<span class="number">12</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;1&#x27;</span></span><br><span class="line">    <span class="keyword">elif</span> x==<span class="number">3</span> <span class="keyword">and</span> y==<span class="number">7</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;1&#x27;</span></span><br><span class="line">    <span class="keyword">elif</span> x==<span class="number">3</span> <span class="keyword">and</span> y==<span class="number">8</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;1&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;0&#x27;</span></span><br><span class="line"></span><br><span class="line">data[<span class="string">&#x27;cx&#x27;</span>]=data[<span class="string">&#x27;order_date&#x27;</span>].apply(cuxiao)</span><br><span class="line"><span class="built_in">print</span>(data.head())</span><br></pre></td></tr></table></figure>
+<p>（4）季节</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data[<span class="string">&#x27;month&#x27;</span>] =data.order_date.apply(<span class="keyword">lambda</span> dateString:datetime.strptime(dateString,<span class="string">&#x27;%Y/%m/%d&#x27;</span>).month)</span><br><span class="line">data[<span class="string">&#x27;season&#x27;</span>] =data[<span class="string">&#x27;month&#x27;</span>].<span class="built_in">map</span>(&#123;<span class="number">3</span>:<span class="number">1</span>,<span class="number">4</span>:<span class="number">1</span>,<span class="number">5</span>:<span class="number">1</span>,<span class="number">6</span>:<span class="number">2</span>,<span class="number">7</span>:<span class="number">2</span>,<span class="number">8</span>:<span class="number">2</span>,<span class="number">9</span>:<span class="number">3</span>,<span class="number">10</span>:<span class="number">3</span>,<span class="number">11</span>:<span class="number">3</span>,<span class="number">12</span>:<span class="number">4</span>,<span class="number">1</span>:<span class="number">4</span>,<span class="number">2</span>:<span class="number">4</span>&#125;)</span><br><span class="line"><span class="built_in">print</span>(data.head())</span><br></pre></td></tr></table></figure>
+<h1 id="4-数据探索"><a href="#4-数据探索" class="headerlink" title="4 数据探索"></a>4 数据探索</h1><h2 id="4-1地区频率分布图"><a href="#4-1地区频率分布图" class="headerlink" title="4.1地区频率分布图"></a>4.1地区频率分布图</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.导入数据并格式化</span></span><br><span class="line"><span class="comment"># 已经导入数据至data</span></span><br><span class="line"><span class="comment"># 根据label列分组并计数</span></span><br><span class="line">data_label = data.groupby(<span class="string">&quot;sales_region_code&quot;</span>).size()</span><br><span class="line"><span class="comment"># 转化为作图所需要的array格式，如：([[    0, 37536],[    1, 12322]])</span></span><br><span class="line">datas = <span class="built_in">list</span>(<span class="built_in">zip</span>(data_label.index.to_list(), data_label.to_list()))</span><br><span class="line">datas = np.array(datas)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.绘制饼图</span></span><br><span class="line"><span class="comment"># 设置字体和编码格式</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = <span class="string">&#x27;simhei&#x27;</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="literal">False</span></span><br><span class="line"><span class="comment"># 添加数据，标签，比例</span></span><br><span class="line"><span class="comment">#控制饼图内百分比设置,可以使用format字符串或者format function</span></span><br><span class="line">        <span class="comment">#&#x27;%1.1f&#x27;指小数点前后位数(没有用空格补齐)</span></span><br><span class="line">plt.pie(datas[:, <span class="number">1</span>], labels=datas[:, <span class="number">0</span>], autopct=<span class="string">&quot;%.1ff%%&quot;</span>) </span><br><span class="line"><span class="comment"># 在左上方添加图例</span></span><br><span class="line">plt.legend(datas[:, <span class="number">0</span>], loc=<span class="string">&quot;upper left&quot;</span>)</span><br><span class="line"><span class="comment"># 添加标题</span></span><br><span class="line">plt.title(<span class="string">&quot;地区频率分布&quot;</span>) </span><br><span class="line"><span class="comment"># 展示饼图</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2023/03/24/tipdm/6.png" style="zoom:80%;"></p>
+<h2 id="4-2需求量随时间变化趋势"><a href="#4-2需求量随时间变化趋势" class="headerlink" title="4.2需求量随时间变化趋势"></a>4.2需求量随时间变化趋势</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">data[<span class="string">&#x27;year&#x27;</span>] =data.order_date.apply(<span class="keyword">lambda</span> dateString:datetime.strptime(dateString,<span class="string">&#x27;%Y/%m/%d&#x27;</span>).year)</span><br><span class="line"><span class="built_in">print</span>(data[<span class="string">&#x27;year&#x27;</span>])</span><br><span class="line">time_r= data.groupby([<span class="string">&#x27;year&#x27;</span>,<span class="string">&#x27;month&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(time_r.size())</span><br><span class="line">fig1,ax1=plt.subplots(figsize=(<span class="number">15</span>,<span class="number">8</span>))</span><br><span class="line">drawdf=time_r[<span class="string">&#x27;ord_qty&#x27;</span>].apply(np.<span class="built_in">sum</span>)</span><br><span class="line">drawdf.plot(ax=ax1)</span><br><span class="line">fig1</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2023/03/24/tipdm/11.png" alt></p>
+<h1 id="5-特征工程"><a href="#5-特征工程" class="headerlink" title="5 特征工程"></a>5 特征工程</h1><p>画图查看训练集和测试集的数据分布情况</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#读取测试集数据</span></span><br><span class="line">data_= pd.read_csv(<span class="string">&quot;F:\B\示例数据\predict_sku0.csv&quot;</span>)</span><br><span class="line">data_.info()</span><br><span class="line">dist_cols = <span class="number">4</span> <span class="comment">#图片展示列数</span></span><br><span class="line">dist_rows = <span class="built_in">len</span>(data_.columns)</span><br><span class="line"><span class="comment"># print(dist_rows)</span></span><br><span class="line"><span class="comment">#figsize:指定figure的宽和高</span></span><br><span class="line">plt.figure(figsize=(<span class="number">4</span> * dist_cols, <span class="number">4</span> * dist_rows))</span><br><span class="line"><span class="comment"># print(data[col])</span></span><br><span class="line">i = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> col <span class="keyword">in</span> data_.columns:</span><br><span class="line">    ax = plt.subplot(dist_rows, dist_cols, i)</span><br><span class="line">    ax = sns.kdeplot(data[col], color=<span class="string">&quot;Red&quot;</span>, shade=<span class="literal">True</span>)</span><br><span class="line">    ax = sns.kdeplot(data_[col], color=<span class="string">&quot;Blue&quot;</span>, shade=<span class="literal">True</span>)</span><br><span class="line">    ax.set_xlabel(col)</span><br><span class="line">    ax.set_ylabel(<span class="string">&quot;Frequency&quot;</span>)</span><br><span class="line">    ax = ax.legend([<span class="string">&quot;train&quot;</span>, <span class="string">&quot;test&quot;</span>])</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2023/03/24/tipdm/7.png" alt></p>
+<h1 id="6-问题解答"><a href="#6-问题解答" class="headerlink" title="6 问题解答"></a>6 问题解答</h1><h2 id="1-对训练数据进行分析"><a href="#1-对训练数据进行分析" class="headerlink" title="1.对训练数据进行分析"></a>1.对训练数据进行分析</h2><h3 id="（1）产品的不同价格对需求量的影响；"><a href="#（1）产品的不同价格对需求量的影响；" class="headerlink" title="（1）产品的不同价格对需求量的影响；"></a>（1）产品的不同价格对需求量的影响；</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按照价格开始分组 计算需求量的均值</span></span><br><span class="line">grouped = data.groupby(<span class="string">&#x27;item_price&#x27;</span>)[<span class="string">&#x27;ord_qty&#x27;</span>].mean().reset_index()</span><br><span class="line"><span class="built_in">print</span>(grouped)</span><br><span class="line"><span class="comment">#使用Matplotlib画图</span></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>,<span class="number">6</span>))</span><br><span class="line">plt.plot(grouped[<span class="string">&#x27;item_price&#x27;</span>],grouped[<span class="string">&#x27;ord_qty&#x27;</span>],<span class="string">&#x27;o-&#x27;</span>)<span class="comment">#定义x、y轴数据</span></span><br><span class="line">plt.xlabel(<span class="string">&#x27;Price&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Average Ord_Qty&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Relationship between Price and Average Ord_Qty&#x27;</span>)</span><br><span class="line">plt.savefig(<span class="string">&#x27;C:/Users/12583/1.png&#x27;</span>,dpi=<span class="number">300</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2023/03/24/tipdm/1.png" alt></p>
+<p>从图表中可以看出，产品价格与平均需求量之间存在一定关系，即当价格较低时，需求量较高；而当价格超过一定标准，订单的需求量较低。这可能是因为价格过高让消费者觉得不值得购买。因此，合理的定价策划可以在一定程度上提高产品销售量。</p>
+<p>也可以使用回归模型（如线性回归）对产品价格和需求量之间的关系进行建模和预测，从而确定价格对需求量的影响。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line"><span class="comment">#绘制散点图</span></span><br><span class="line">sns.scatterplot(x=<span class="string">&#x27;item_price&#x27;</span>,y=<span class="string">&#x27;ord_qty&#x27;</span>,data=data)</span><br></pre></td></tr></table></figure>
+<p><img src="/2023/03/24/tipdm/2.png" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#绘制箱线图</span></span><br><span class="line">sns.boxplot(x=<span class="string">&#x27;item_price&#x27;</span>,y=<span class="string">&#x27;ord_qty&#x27;</span>,data=data)</span><br></pre></td></tr></table></figure>
+<p><img src="/2023/03/24/tipdm/3.png" style="zoom:80%;"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用线性回归模型拟合</span></span><br><span class="line">x = data[[<span class="string">&#x27;item_price&#x27;</span>]]</span><br><span class="line">y = data[[<span class="string">&#x27;ord_qty&#x27;</span>]]</span><br><span class="line">model = LinearRegression()</span><br><span class="line">model.fit(x,y)</span><br><span class="line"><span class="comment">#输出模型系数和截距</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Coefficients:&#x27;</span>,model.coef_)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Intercept:&#x27;</span>,model.intercept_)</span><br></pre></td></tr></table></figure>
+<h3 id="（2）产品所在区域对需求量的影响，以及不同区域的产品需求量有何特性；"><a href="#（2）产品所在区域对需求量的影响，以及不同区域的产品需求量有何特性；" class="headerlink" title="（2）产品所在区域对需求量的影响，以及不同区域的产品需求量有何特性；"></a>（2）产品所在区域对需求量的影响，以及不同区域的产品需求量有何特性；</h3><p>对不同区域的需求量进行可视化分析（绘制直方图、箱线图），查看需求量的分布情况。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#绘制直方图</span></span><br><span class="line">sns.histplot(x=<span class="string">&#x27;ord_qty&#x27;</span>,hue=<span class="string">&#x27;sales_region_code&#x27;</span>,data=data,kde=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2023/03/24/tipdm/4.png" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#绘制箱线图</span></span><br><span class="line">sns.boxplot(x=<span class="string">&#x27;sales_region_code&#x27;</span>,y=<span class="string">&#x27;ord_qty&#x27;</span>,data=data)</span><br></pre></td></tr></table></figure>
+<p><img src="/2023/03/24/tipdm/5.png" alt></p>
+<p> <img src="/2023/03/24/tipdm/image-20230411172249762.png" alt="image-20230411172249762"></p>
+<p>由此可以大致判断出，不同区域之间需求量不存在显著差异，初步确定产品所在区域对需求量的影响。</p>
+<h3 id="（3）不同销售方式（线上和线下）的产品需求量的特征；"><a href="#（3）不同销售方式（线上和线下）的产品需求量的特征；" class="headerlink" title="（3）不同销售方式（线上和线下）的产品需求量的特征；"></a>（3）不同销售方式（线上和线下）的产品需求量的特征；</h3><p>首先按照销售渠道名称（seles_chan_name）将数据分为线上和线下，计算它们的需求量（ord_qty）的基本统计量（均值、中位数、最大值、最小值、标准差等等），了解其分布情况和差异。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将数据按照销售渠道名称分为线上和线下</span></span><br><span class="line">online_data = data[data[<span class="string">&#x27;sales_chan_name&#x27;</span>]==<span class="number">1</span>]</span><br><span class="line">offline_data = data[data[<span class="string">&#x27;sales_chan_name&#x27;</span>]==<span class="number">0</span>]</span><br><span class="line"><span class="comment">#计算线上和线下订单需求量的基本统计量</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;线上需求量的基本统计量：&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(online_data[<span class="string">&#x27;ord_qty&#x27;</span>].describe())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;线下需求量的基本统计量：&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(offline_data[<span class="string">&#x27;ord_qty&#x27;</span>].describe())</span><br></pre></td></tr></table></figure>
+<p>可以通过数据可视化的方式（绘制不同的销售方式的需求量直方图、箱线图等方法）来更加直观地查看不同销售方式下产品需求量的特性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#设置图形风格</span></span><br><span class="line">sns.<span class="built_in">set</span>(style=<span class="string">&quot;ticks&quot;</span>,palette=<span class="string">&quot;pastel&quot;</span>)</span><br><span class="line"><span class="comment">#绘制箱线图，分析线上和线下需求量的分布情况</span></span><br><span class="line">sns.boxplot(x=<span class="string">&quot;sales_chan_name&quot;</span>,y=<span class="string">&quot;ord_qty&quot;</span>,data=data)</span><br><span class="line"><span class="comment">#显示图形</span></span><br><span class="line">sns.despine(trim=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2023/03/24/tipdm/9.png" alt></p>
+<p>该箱线图展示了线上和线下方式中产品需求量的分布情况。线上需求量的中位数高于线下，则线上销售渠道</p>
+<h3 id="（4）不同品类之间的产品需求量有何不同点和共同点；"><a href="#（4）不同品类之间的产品需求量有何不同点和共同点；" class="headerlink" title="（4）不同品类之间的产品需求量有何不同点和共同点；"></a>（4）不同品类之间的产品需求量有何不同点和共同点；</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">time_r= data.groupby([<span class="string">&#x27;second_cate_code&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(time_r.size())</span><br><span class="line">fig2,ax2=plt.subplots(figsize=(<span class="number">15</span>,<span class="number">8</span>))</span><br><span class="line">drawdf=time_r[<span class="string">&#x27;ord_qty&#x27;</span>].apply(np.<span class="built_in">sum</span>)</span><br><span class="line">drawdf.plot(ax=ax2)</span><br><span class="line">fig2</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2023/03/24/tipdm/10.png" alt></p>
+<h3 id="（补）产品的销售额对需求量的影响"><a href="#（补）产品的销售额对需求量的影响" class="headerlink" title="（补）产品的销售额对需求量的影响"></a>（补）产品的销售额对需求量的影响</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">corr = plt.subplots(figsize = (<span class="number">8</span>,<span class="number">6</span>))</span><br><span class="line">corr= sns.heatmap(data.corr(method=<span class="string">&#x27;spearman&#x27;</span>),annot=<span class="literal">True</span>,square=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2023/03/24/tipdm/8.png" alt></p>
+<p>通过热力图可以很直观的看出变量间的相关系数矩阵，同样也可直接输出有较强关联的特征：[(‘ord_qty’, ‘sales’)]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">corr_matrix = data.corr().<span class="built_in">abs</span>()</span><br><span class="line"><span class="comment">#print(corr_matrix)</span></span><br><span class="line"><span class="comment">#系数大于0.8</span></span><br><span class="line">high_corr_var =np.where(corr_matrix&gt;<span class="number">0.8</span>)</span><br><span class="line">high_corr_var = [(corr_matrix.columns[x],corr_matrix.columns[y]) <span class="keyword">for</span> x,y <span class="keyword">in</span> <span class="built_in">zip</span>(*high_corr_var) <span class="keyword">if</span> x !=y <span class="keyword">and</span> x&lt;y]</span><br><span class="line"><span class="built_in">print</span>(high_corr_var)</span><br></pre></td></tr></table></figure>
+<h2 id="2-模型"><a href="#2-模型" class="headerlink" title="2.模型"></a>2.模型</h2><p>假定模型：<br>争对不同的时间粒度，使用Arima会比较合适点。Arima，将预测对象随时间推移而成的数据序列视为一个随机序列。Arima时间序列等模型结合的组合预测已经能够对本题进行很好的解答，但是时间序列无法考虑其他特征变量，比如销售区域，商品品类等的影响，而传统的机器学习回归建模比如支持向量机等也很难考量时间序列的影响。<br>同时需要利用之前对日期预处理的部分利用。</p>
+<p><img src="/2023/03/24/tipdm/12.png" style="zoom:80%;"></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2023/03/20/LanQiao/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2023-03-24 14:24:34
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E8%83%8C%E6%99%AF%E5%88%86%E6%9E%90"><span class="toc-text">1 背景分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96"><span class="toc-text">2 数据读取</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86-%E6%B8%85%E6%B4%97%E5%92%8C%E6%95%B4%E7%90%86"><span class="toc-text">3 数据预处理(清洗和整理)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E7%94%BB%E5%9B%BE%E7%9C%8B%E7%BC%BA%E5%A4%B1%E5%80%BC"><span class="toc-text">3.1 画图看缺失值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97"><span class="toc-text">3.2 数据清洗</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-%E9%87%8D%E5%A4%8D%E6%95%B0%E6%8D%AE"><span class="toc-text">3.2.1 重复数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9"><span class="toc-text">3.2.2 特征选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-3-%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86"><span class="toc-text">3.2.3 缺失值处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-4-%E5%BC%82%E5%B8%B8%E5%80%BC%E5%A4%84%E7%90%86"><span class="toc-text">3.2.4 异常值处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-5-%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%85%B7%E4%BD%93%E5%80%BC%E6%83%85%E5%86%B5"><span class="toc-text">3.2.5 查看数据具体值情况</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E5%88%86%E7%B1%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E8%BD%AC%E5%8C%96"><span class="toc-text">3.4 分类型数据转化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-1-sales-chan-name%E5%A4%84%E7%90%86"><span class="toc-text">3.4.1 sales_chan_name处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2-order-date%E5%A4%84%E7%90%86"><span class="toc-text">3.4.2 order_date处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2"><span class="toc-text">4 数据探索</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1%E5%9C%B0%E5%8C%BA%E9%A2%91%E7%8E%87%E5%88%86%E5%B8%83%E5%9B%BE"><span class="toc-text">4.1地区频率分布图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2%E9%9C%80%E6%B1%82%E9%87%8F%E9%9A%8F%E6%97%B6%E9%97%B4%E5%8F%98%E5%8C%96%E8%B6%8B%E5%8A%BF"><span class="toc-text">4.2需求量随时间变化趋势</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B"><span class="toc-text">5 特征工程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E9%97%AE%E9%A2%98%E8%A7%A3%E7%AD%94"><span class="toc-text">6 问题解答</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AF%B9%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E5%88%86%E6%9E%90"><span class="toc-text">1.对训练数据进行分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E4%BA%A7%E5%93%81%E7%9A%84%E4%B8%8D%E5%90%8C%E4%BB%B7%E6%A0%BC%E5%AF%B9%E9%9C%80%E6%B1%82%E9%87%8F%E7%9A%84%E5%BD%B1%E5%93%8D%EF%BC%9B"><span class="toc-text">（1）产品的不同价格对需求量的影响；</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E4%BA%A7%E5%93%81%E6%89%80%E5%9C%A8%E5%8C%BA%E5%9F%9F%E5%AF%B9%E9%9C%80%E6%B1%82%E9%87%8F%E7%9A%84%E5%BD%B1%E5%93%8D%EF%BC%8C%E4%BB%A5%E5%8F%8A%E4%B8%8D%E5%90%8C%E5%8C%BA%E5%9F%9F%E7%9A%84%E4%BA%A7%E5%93%81%E9%9C%80%E6%B1%82%E9%87%8F%E6%9C%89%E4%BD%95%E7%89%B9%E6%80%A7%EF%BC%9B"><span class="toc-text">（2）产品所在区域对需求量的影响，以及不同区域的产品需求量有何特性；</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E4%B8%8D%E5%90%8C%E9%94%80%E5%94%AE%E6%96%B9%E5%BC%8F%EF%BC%88%E7%BA%BF%E4%B8%8A%E5%92%8C%E7%BA%BF%E4%B8%8B%EF%BC%89%E7%9A%84%E4%BA%A7%E5%93%81%E9%9C%80%E6%B1%82%E9%87%8F%E7%9A%84%E7%89%B9%E5%BE%81%EF%BC%9B"><span class="toc-text">（3）不同销售方式（线上和线下）的产品需求量的特征；</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E4%B8%8D%E5%90%8C%E5%93%81%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E4%BA%A7%E5%93%81%E9%9C%80%E6%B1%82%E9%87%8F%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C%E7%82%B9%E5%92%8C%E5%85%B1%E5%90%8C%E7%82%B9%EF%BC%9B"><span class="toc-text">（4）不同品类之间的产品需求量有何不同点和共同点；</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E8%A1%A5%EF%BC%89%E4%BA%A7%E5%93%81%E7%9A%84%E9%94%80%E5%94%AE%E9%A2%9D%E5%AF%B9%E9%9C%80%E6%B1%82%E9%87%8F%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-text">（补）产品的销售额对需求量的影响</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A8%A1%E5%9E%8B"><span class="toc-text">2.模型</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="facebook" href="">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="twitter" href="">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="wechat" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="weibo" href="">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © Oranges 2021</a>
+        
+    </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + tipdm + '&url=' + http%3A%2F%2Fyy-ll.github.io%2F2023%2F03%2F24%2Ftipdm%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://yy-ll.github.io/2023/03/24/tipdm/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

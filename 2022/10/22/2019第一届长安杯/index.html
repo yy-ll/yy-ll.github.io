@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="John Doe" />
+  <meta name="description" content="" />
+  
+  
+  <title>
+    
+     Hexo
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title"></div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2022-10-22 14:15:36
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>2019长安杯电子数据取证<br>在一起电诈案件中，受害者称自己的银行卡被他人冒用，曾收到假冒公安的短信，因为自己在一一个P2P网站中理财，假冒公安称该网站已被列外非法网站，要自己到公安备案网站填写自己的信息，并帮助自己追回本金,因此信以为真,在网站上填写了自己的信息和绑定的银行卡信息;案机关推测嫌疑人可能是获取了P2P网站中的注册用户信息，从而进行定向诈骗，因此调取了P2P理财网站的服务器，现委派你对该服务器进行电子数据取证。你获得该P2P理财网站服务器硬盘镜像文件“检材1.E01”,根据这个镜像文件，回答下列问题：</p>
+<ul>
+<li>在电子取证分析过程中，常遇到DD、E01等系统镜像。可以对E01镜像（与DD镜像相同）进行手动仿真查看镜像数据。</li>
+</ul>
+<p>使用的软件：FTK Imager、VMware Workstation</p>
+<ul>
+<li>直接用火眼</li>
+</ul>
+<p><strong>FTK Imager 挂载镜像</strong></p>
+<p>step1：“File”-&gt;“Imager Mounting”</p>
+<p>step2：</p>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/1.png" style="zoom:67%;"></p>
+<p>1）选择需要挂载的镜像文件;</p>
+<p>2）选择”Block Device/Writable”</p>
+<p>3）点击”Mount”;</p>
+<p>4）记住”驱动器号”;</p>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/2.png" style="zoom:67%;"></p>
+<p>5)mount成功后，会在本地磁盘显示出新的分区，可以打开Windows资源管理器查看，以及默认在镜像位置新生成一个后缀为“.adcf”的镜像同名文件，用来存放可写模式下镜像被修改的数据。</p>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/3.png" alt></p>
+<p><strong>VMware新建虚拟机</strong></p>
+<p>step1：</p>
+<p>1）用管理员权限打开VMware后新建虚拟机：<br>    “创建新的虚拟机”-&gt;“自定义（高级）”-&gt;“下一步“</p>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/4.png" style="zoom:67%;"><br>2）虚拟机硬件兼容性默认即可，”下一步“</p>
+<p>3）”稍后安装操作系统“：<br>    后面会用到FTK Imager挂载起来的镜像”    </p>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/5.png" style="zoom:67%;"></p>
+<p>4）选择对应的镜像系统</p>
+<p>在不清楚镜像时：<br>    看 FTK Imager 挂载起来的分区Partition，在“驱动器”里面可以看到“分区”的文件系统类型，根据文件判断该挂载的镜像</p>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/7.png" style="zoom:50%;"></p>
+<p>出现了SWaP，指的是Linux系统中的交换分区。</p>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/6.png" style="zoom:50%;"></p>
+<p>5）虚拟机保存位置</p>
+<p>step2:</p>
+<p>1)处理器、内存及其它配置</p>
+<p>建议配置高一些，方便运行虚拟机。处理器和内存分配太小了会卡，有时候镜像数据量大还不一定能运行起来。</p>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/8.png" style="zoom:50%;"></p>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/9.png" style="zoom:50%;"></p>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/10.png" style="zoom:50%;"></p>
+<p>选择“使用物理磁盘”，通常第一次选择，点击下一步会请求以管理员权限运行，需要允许。</p>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/11.png" style="zoom:50%;"></p>
+<p>然后设备选择前面 FTK Imager 挂载起来的对应驱动器号，磁盘默认选择使用整个磁盘即可。</p>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/12.png" style="zoom:50%;"></p>
+<p>1.计算“检材1.E01”镜像的SHA256值是多少</p>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/13.png" style="zoom:50%;"></p>
+<p>2.该服务器的操作系统版本是什么</p>
+<p>Linux查看当前操作系统版本信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/version</span><br></pre></td></tr></table></figure>
+<p>3、该服务器内核版本是多少</p>
+<p>Linux查看服务器内核版本信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/14.png" alt></p>
+<p>4、原服务器存在多少硬盘分区</p>
+<p>Linux查看硬盘分区：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsblk</span><br></pre></td></tr></table></figure>
+<p>5、原服务器中硬盘分区其中含有-个LVM逻辑卷的分区,请找出该分区内开始的逻辑区块地址（LBA）。(答案格式:扇区，Sector) </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/16.png" alt></p>
+<p>6、该LVM逻辑卷分区内root逻辑卷X的文件系统是什么</p>
+<p>  <img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/15.png" style="zoom:50%;"></p>
+<p>7、该LVM逻辑卷分区内root逻辑卷的物理大小是多少? (单位: byte)</p>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/17.png" style="zoom:33%;"></p>
+<p>8、请找出该服务器的网站访问端口是什么</p>
+<p>网站基本上都是默认80端口访问的</p>
+<p>docker容器将80端口映射到本机的8091端口上</p>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/18.png" alt></p>
+<p>或者看nginx是web服务中间件</p>
+<p>9、该服务器中运行了docker应用，在本地由多少docker镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/19.png" alt></p>
+<p>| wc -l表示按列计数</p>
+<p>10、该docker应用的server版本是多少</p>
+<p>查看docker应用版本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/20.png" alt></p>
+<p>11、该docker应用中总共有多少容器节点</p>
+<p>查看docker中容器节点数目：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+<p>12、运行中的容器节点有多少</p>
+<p>查看docker鸿运行的容器节点数目：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/22.png" alt></p>
+<p>13、在运行的容器节点中，其中一台容器名称为romantic_varahamihira的容器节点，它的hostname是什么</p>
+<p>docker inspect容积或镜像ID</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+<p>14、上题容器节点中，占用了主机哪个端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<p>15、在运行中的容器节点中，其中一台容器ID为15debb1824e6的容器节点，它运行了什么服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<p>常用服务默认端口：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">服务</th>
+<th>端口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">FTP（File Transfer Protocol，文件传输协议）</td>
+<td>21端口</td>
+</tr>
+<tr>
+<td style="text-align:left">SSH（Secure Shell Protocol，安全外壳协议）</td>
+<td>22端口</td>
+</tr>
+<tr>
+<td style="text-align:left">Telnet（远程终端协议）</td>
+<td>23端口</td>
+</tr>
+<tr>
+<td style="text-align:left">STMP（Simple Mail Transfer Protocol，简单邮件传输协议）</td>
+<td>25端口</td>
+</tr>
+<tr>
+<td style="text-align:left">DNS（Domain Name System，域名系统）</td>
+<td>53端口</td>
+</tr>
+<tr>
+<td style="text-align:left">HTTP（Hyper Text Transfer Protocol，超文本传输协议）</td>
+<td>80端口</td>
+</tr>
+<tr>
+<td style="text-align:left">POP3（Post Office Protocol - Version 3，邮局协议版本3）</td>
+<td>110端口</td>
+</tr>
+<tr>
+<td style="text-align:left">RPC（Remote Procedure Call，远程过程调用）</td>
+<td>135端口</td>
+</tr>
+<tr>
+<td style="text-align:left">SMB（Samba，用于文件、打印机、串口等的共享）</td>
+<td>139/445端口</td>
+</tr>
+<tr>
+<td style="text-align:left">HTTPS（Hyper Text Transfer Protocol over SecureSocket Layer，超文本传输安全协议）</td>
+<td>443端口</td>
+</tr>
+<tr>
+<td style="text-align:left">Microsoft SQL Server数据库</td>
+<td>1433端口</td>
+</tr>
+<tr>
+<td style="text-align:left">Oracle数据库</td>
+<td>1521端口</td>
+</tr>
+<tr>
+<td style="text-align:left">Mysql数据库</td>
+<td>3306端口</td>
+</tr>
+<tr>
+<td style="text-align:left">RDP（Remote Desktop Protocol 远程桌面服务）</td>
+<td>3389端口</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>16、上题容器节点中，占用了主机的哪个端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<p>17、该服务器中网站运行在 docker 容器中，其中 web 服务使用的是什么应用</p>
+<p>从第8题可以得出web服务的容器ID为16fc160060c1</p>
+<p>获取其容器/镜像的元数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect 16fc160060c1 | less</span><br></pre></td></tr></table></figure>
+<p>18、上题所述运行 web 服务的容器节点，使用的镜像名称是什么？（格式 REPOSITORY：TAG）</p>
+<p>查看镜像信息就可以直接查看TAG</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/23.png" alt></p>
+<p>19、上题所述容器节点占用的容器端口是什么？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/24.png" alt></p>
+<p>20、网站目录所在的容器内部路径为（格式：容器 ID：路径）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker ps 确定入口点</span><br><span class="line">docker exec -it 53766d68636f /bin/bash 进入到容器内部，启动容器后启动bash</span><br><span class="line">cd …… 找到相应的网站根目录</span><br><span class="line">exit 退出</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/25.png" alt></p>
+<p>21、网站目录所在的主机路径为下列选项中的哪个</p>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/26.png" alt></p>
+<p>从上述图中可以看到三个层结构，即lowerdir、upperdir、merged层。使用docker inspect [容器ID]就可以看到这几个层所在的位置。</p>
+<p>获取其容器/镜像的元数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect 53766d68636f</span><br></pre></td></tr></table></figure>
+<p>22、网站日志的路径在哪</p>
+<p>centos 中的主要log文件都存储在 /var/log/ 目录下面，即日志文件的默认路径是/var/log</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 16fc160060c1 /bin/bash</span><br></pre></td></tr></table></figure>
+<p>23、案发当时，该服务器的原始 IP 地址是多少？</p>
+<p>根据上述ngnix的配置文件，可以找到日志文件</p>
+<p>24、在 docker 中，各容器节点和主机之间的网络连接模式是什么</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect 16fc160060c1</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/27.png" alt></p>
+<p>25、当我们想将网站重构好时，访问网站时，web 应用在其中承担什么样的工作？——做一个端口转发</p>
+<p>A.运行网站<br>B.转发<br>C.反向代理<br>D.负载均衡</p>
+<p>26、从网站日志中，我们可以看到嫌疑人入侵服务器所使用的 IP 是</p>
+<p>27、网站目录中网站的主配置文件是哪一个？(相对路径)</p>
+<p>28、该网站使用的是什么数据库？</p>
+<p>通过上一题中得出的答案，可以得到看到数据库的配置文件是db.js</p>
+<p>cat db.js</p>
+<p>29、所使用数据库的端口是多少？</p>
+<p>30、数据库所在服务器 IP 是多少？</p>
+<p>31、数据库的用户名是什么？</p>
+<p>32、数据库的密码是什么？</p>
+<p>33、该网站所使用的数据库库名是什么？</p>
+<p>34、在案发时，黑客对该服务器某个文件/目录进行了加密，请问是哪个文件/目录？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history</span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/10/19/Memory-Forensics/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2022-10-22 14:15:36
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2022/11/11/meiyacup2018/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="facebook" href="">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="twitter" href="">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="wechat" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="weibo" href="">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © Oranges 2021</a>
+        
+    </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' +  + '&url=' + http%3A%2F%2Fyy-ll.github.io%2F2022%2F10%2F22%2F2019%25E7%25AC%25AC%25E4%25B8%2580%25E5%25B1%258A%25E9%2595%25BF%25E5%25AE%2589%25E6%259D%25AF%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://yy-ll.github.io/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

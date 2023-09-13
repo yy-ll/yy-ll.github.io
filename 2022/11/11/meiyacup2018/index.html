@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="John Doe" />
+  <meta name="description" content="" />
+  
+  
+  <title>
+    
+      meiyacup2018 
+      
+      
+      |
+    
+     Hexo
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">meiyacup2018</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2022-11-11 14:56:38
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>2018第四届“美亚杯”电子数据取证竞赛试题</p>
+<p>资格赛-案情介绍<br>1.林胜(Victor) 是一名三十岁的中学教师。一天，他在家中使用计算机期间，收到一封勒索邮件，其中列出他电子邮件用户名和密码，及其他個人资料，並声称他的用户数据已被窃取，计算机已被入侵。黑客向林胜勒索两个比特币，否则会使用他的个人用户数据作非法用途。林无力支付，于是报警，并向警方提供了他的个人计算机作检验。<br>2.现你被委派对林的计算机进行电子数据取证，还原事件经过。</p>
+<p>你会获得林胜( Victor )计算机的硬盘镜像文件”Victor. _PC. E01”。根据这个镜像文件的内容，请回答以下问题：</p>
+<ol>
+<li><p>Victor的笔记本电脑己成功取证并制作成法证映像档(Forensic Image)， 下列哪个是其MD5哈希值？</p>
+<p>利用火眼计算MD5值：</p>
+<p><img src="/2022/11/11/meiyacup2018/1.png" alt></p>
+<p>运算得到：</p>
+<p><img src="/2022/11/11/meiyacup2018/2.png" alt></p>
+</li>
+<li><p>根据法证映像档(Forensic Image) ，确定原笔记本内有多少个硬盘分区?</p>
+<p><img src="/2022/11/11/meiyacup2018/3.png" alt></p>
+<p><img src="/2022/11/11/meiyacup2018/4.png" alt></p>
+</li>
+<li><p>你能找到硬盘操作系统分区内的开始逻辑区块地址(LBA) ? (答案格式:扇区，Sector)</p>
+<p><img src="/2022/11/11/meiyacup2018/5.png" alt></p>
+<p><img src="/2022/11/11/meiyacup2018/6.png" alt="6"></p>
+</li>
+<li><p>你能找到硬盘操作系统分区的物理大小吗(字节byte)? </p>
+<p><img src="/2022/11/11/meiyacup2018/7.png" alt></p>
+</li>
+<li><p>操作系统分区的文件系统是哪种?</p>
+<p><img src="/2022/11/11/meiyacup2018/8.png" alt></p>
+</li>
+<li><p>操作系统分区，每个簇(Cluster)包含几个扇区( sectors)?</p>
+</li>
+</ol>
+<p><img src="/2022/11/11/meiyacup2018/9.png" alt></p>
+<p>7.在操作系统分区内，$MFT的物理起始扇区位置(Starting physical sector)是什么?</p>
+<p><img src="/2022/11/11/meiyacup2018/10.png" alt></p>
+<p>8.请找出系统文件“SOFTWARE” ，请问操作系统的安装日期是?<br>(答案格式-“世界协调时间”: YYYY=M-DD HH:MM UTC)</p>
+<p><img src="/2022/11/11/meiyacup2018/11.png" alt></p>
+<p>世界协调时间 (UTC)，北京时间=世界时间+8小时</p>
+<p>SAM文件是保存密码的文件夹。SAM.LOG是保存密码相关日志文件夹。</p>
+<p>sam文件位置:E:\Windows\System32\config</p>
+<p><img src="/2022/11/11/meiyacup2018/12.png" alt></p>
+<p><img src="/2022/11/11/meiyacup2018/13.png" alt></p>
+<p>9.用户“victor” 的唯一标识符(SID)是什么?(答案格式: RID)</p>
+<p>10.用户“Lily”的唯一标识符(SID)是什么? (答案格式+RID）</p>
+<p><img src="/2022/11/11/meiyacup2018/14.png" alt></p>
+<ol>
+<li><p>Victor上一次更改系统登入密码是?<br>答案格式(“本地时间”: YYYY-MM- -DD HH:MM +8)</p>
+</li>
+<li><p>12.Lily上一次更改系统登入密码是?<br>(”答案格式一“本地时间”: YYYY-MM-DD HH:MM +8)</p>
+<p>见Pwd Reset Date</p>
+</li>
+<li><p>Victor 总共登录系统多少次?</p>
+<p>见Login Count</p>
+</li>
+<li><p>以下哪个帐号已经被禁用?</p>
+<p><img src="/2022/11/11/meiyacup2018/15.png" alt></p>
+<p>或者：</p>
+<p><img src="/2022/11/11/meiyacup2018/19.png" alt></p>
+</li>
+<li><p>以下哪个帐系统权限最低?</p>
+<p><img src="/2022/11/11/meiyacup2018/16.png" alt></p>
+<p>或者：</p>
+<p><img src="/2022/11/11/meiyacup2018/18.png" alt></p>
+</li>
+<li><p>以下哪个帐号曾经远端登录系统?</p>
+<p><img src="/2022/11/11/meiyacup2018/17.png" alt></p>
+<p>这几个用户都是本地登录，可以在一定程度上说明远端登入已经被禁止</p>
+</li>
+</ol>
+<p>17.硬盘操作系统的版本?</p>
+<p><img src="/2022/11/11/meiyacup2018/20.png" alt></p>
+<p>18.操作系统的最新服务包( Service Pack)版本号是什么?</p>
+<p>见上图</p>
+<p>19.下列哪个是victor的默认打印机?</p>
+<p><img src="/2022/11/11/meiyacup2018/21.png" alt></p>
+<p>20.在2018-10-31 08:29:32 +8时间，账号simon曾经使用以下哪个文件?</p>
+<p><img src="/2022/11/11/meiyacup2018/22.png" alt></p>
+<p>跳到文件目录所显示的路径下查看一下访问时间，找一个使用时间是最符合的</p>
+<p><img src="/2022/11/11/meiyacup2018/23.png" alt></p>
+<p>21.接上题，开启上述文件的程序是?</p>
+<p>22.以下哪个是victor的默认网页浏览器?<br><img src="/2022/11/11/meiyacup2018/24.png" alt></p>
+<p>发现火狐的使用次数是最多的，故猜测火狐就是victor的默认浏览器</p>
+<ol>
+<li><p>victor的回收站里面有一张地图，以下哪个是这张地图原来的文件名? </p>
+</li>
+<li><p>接上题，上述地图原来的储存路径是?</p>
+<p><img src="/2022/11/11/meiyacup2018/25.png" alt></p>
+<p>25.找出一个名为” request for quotation. Ink”的档案，并指出该LNK文件的目标路径? </p>
+<p><img src="/2022/11/11/meiyacup2018/26.png" alt></p>
+<p>26.接上题，上述文件上一次开启的时间是?<br>（答案格式-“本地时间”: YYYY-MM-DD HH:MM:SS +8 )</p>
+<p><img src="/2022/11/11/meiyacup2018/27.png" alt></p>
+<p>27.接上题，”request for quotation.Ink”的元数据(metadata)记录了以下哪个网卡的物理地址(mac address)? </p>
+<p><img src="/2022/11/11/meiyacup2018/28.png" alt></p>
+<p>28.系统账号victor使用以下哪个电子邮件发送/接收的程序?</p>
+<p><img src="/2022/11/11/meiyacup2018/29.png" alt></p>
+<p>或：</p>
+<p><img src="/2022/11/11/meiyacup2018/30.png" alt></p>
+<ol>
+<li><p>系统经哪个IP地址，登录互联网?</p>
+<p><img src="/2022/11/11/meiyacup2018/31.png" alt></p>
+</li>
+</ol>
+</li>
+</ol>
+<p>30.在该操作系统中，曾经连接数个USB移动储存装置(U盘)，下列那个是该系统连接过的USB移动储存装置?</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/10/22/2019%E7%AC%AC%E4%B8%80%E5%B1%8A%E9%95%BF%E5%AE%89%E6%9D%AF/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2022-11-11 14:56:38
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2023/03/20/LanQiao/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="facebook" href="">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="twitter" href="">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="wechat" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="weibo" href="">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © Oranges 2021</a>
+        
+    </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + meiyacup2018 + '&url=' + http%3A%2F%2Fyy-ll.github.io%2F2022%2F11%2F11%2Fmeiyacup2018%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://yy-ll.github.io/2022/11/11/meiyacup2018/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
