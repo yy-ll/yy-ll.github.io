@@ -11,7 +11,7 @@
   
   <title>
     
-      crypto--RSA加密 
+      入侵检测设备 
       
       
       |
@@ -133,59 +133,40 @@ MathJax = {
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">crypto--RSA加密</div>
+      <div class="post-title">入侵检测设备</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="Update time"></i>
-          2022-02-12 23:41:51
+          2023-09-24 08:12:56
         </span>
         
       </div>
       <div class="markdown-body">
-        <h1 id="1-密码学分类"><a href="#1-密码学分类" class="headerlink" title="1.密码学分类"></a>1.密码学分类</h1><p><img src="/2022/02/12/crypto-RSA%E5%8A%A0%E5%AF%86/1.PNG" style="zoom: 80%;"></p>
-<p>以下所提到的A均为接收方，B均为发送方</p>
-<p>其中：</p>
-<p><strong>对称加密算法</strong>指：B和A使用同一规则对信息加解密，但在保存、传递密钥存在安全性问题。</p>
-<p><strong>非对称加密算法</strong>（公钥算法）指：由A方生成公钥和私钥，公钥公开，B获取后用其对信息加密；私钥则保密（公钥加密的信息仅私钥解得开），在A得到密文后用便其解密。</p>
-<p>其中，在发展阶段产生了三种保密通信模型：</p>
-<p>普通箱子（单锁眼）模型——对称密码体制k1=k2（单钥、私钥密码体制）</p>
-<p>双锁眼箱子模型——4个流程，过于繁琐</p>
-<p>投票箱模型（一方可不需钥匙，常需第三方介入）——非对称密码体制（双钥、公钥密码体制）</p>
-<h1 id="2-RSA加密"><a href="#2-RSA加密" class="headerlink" title="2.RSA加密"></a>2.RSA加密</h1><p>​                                           - - 对极大整数做因数分解的难度决定了RSA的可靠性</p>
-<h2 id="2-1数论知识"><a href="#2-1数论知识" class="headerlink" title="2.1数论知识"></a>2.1数论知识</h2><p>1.<strong>互质关系</strong>（互素关系）&lt;— 质数（素数） </p>
-<p>两个正整数，除1外无其他公因子，则为互质关系。</p>
-<p>2.<strong>欧拉函数</strong>φ(n)</p>
-<p>正整数n在小于n的正整数中与n构成互质关系的个数称为欧拉函数。</p>
-<p>对于n：</p>
-<p>若n为素数，则φ(n)=n-1</p>
-<p>若$n=p^\alpha$，p为素数，则$φ(n)=p^\alpha-p^{\alpha-1}=p^\alpha（1-\frac{1}{p}）$</p>
-<p>若$n=p_1^{\alpha_1}p_2^{\alpha_2}……p_s^{\alpha_s}$，则$φ(n)=n\prod_{i=1}^s （1-\frac{1}{p_i}）$</p>
-<p>3.<strong>欧拉定理</strong>Euler Theore — RSA核心</p>
-<p>​                                           — 费马小定理Fermat的推广</p>
-<script type="math/tex; mode=display">Fermat：对质数p，a^{p-1}≡1（mod p）</script><script type="math/tex; mode=display">Euler：（a,n）=1，则a^φ（n）≡1（mod n）</script><p>4.<strong>逆元</strong>（模反元素）</p>
-<script type="math/tex; mode=display">aa’ ≡1（mod n），（a，n）=1</script><p>5.<strong>单向函数</strong>—公钥加密算法的核心原理，使得公钥加密、私钥解密成为现实</p>
-<p>在这之中，单向函数只使得加密变容易，便有了“陷门”的概念：有一特殊的数值，使得单向函数进行解密变简单。故陷门可作为私钥进行解密。</p>
-<script type="math/tex; mode=display">y=f（x），x=f^{-1}（y） 即x求y简单，但y求x困难的函数。</script><h2 id="2-2RSA过程"><a href="#2-2RSA过程" class="headerlink" title="2.2RSA过程"></a>2.2RSA过程</h2><h3 id="2-2-1语言描述"><a href="#2-2-1语言描述" class="headerlink" title="2.2.1语言描述"></a>2.2.1语言描述</h3><p>A接收B的一条消息m，按照如下步骤产生公钥、私钥：</p>
-<p><strong>step1：</strong>A随机选取大质数p、q（p≠q）。【越大越难破解】</p>
-<p><strong>step2：</strong>计算n=p <em> q和φ（n）=φ（p） </em> φ（q）=（p-1） * （q-1）。</p>
-<p>【N的二进制长度即密钥长度。在实际应用中，RSA密钥一般1024位，重要场合为2048位】</p>
-<p><strong>step3：</strong>任意选整数e，$1＜e＜φ（N）且（e, φ（n））=1$，再求出e关于φ（n）的逆元，记为d。</p>
-<p>【e常取65537，e、d也称指数】</p>
-<script type="math/tex; mode=display">e*d≡1（mod φ（n））</script><script type="math/tex; mode=display">e*d-1=kφ（n）</script><script type="math/tex; mode=display">e*x+φ（n）*y=1    （-k=y）</script><p>再用拓展欧几里得算法（辗转相除法）求e、φ（n）</p>
-<p><strong>step4：</strong>B用A的公钥对m加密，计算出c。</p>
-<script type="math/tex; mode=display">m^e≡c（mod n）</script><p><strong>step5：</strong>A收到c后，用私钥进行解密。</p>
-<script type="math/tex; mode=display">c^d≡m（mod n）</script><h3 id="2-2-2图示说明"><a href="#2-2-2图示说明" class="headerlink" title="2.2.2图示说明"></a>2.2.2图示说明</h3><p>整个过程即公钥加密、私钥解密</p>
-<p>区别：</p>
-<p><strong>RSA签名验签</strong>则私钥加密、公钥解密。用私钥将明文进行签名生成密文串与明文一起传输，双方收到数据后，使用公钥和密文串进行验签。</p>
-<p><img src="/2022/02/12/crypto-RSA%E5%8A%A0%E5%AF%86/2.PNG" alt></p>
-<p>实际中，公钥、私钥数据用ASN.1格式表达</p>
+        <h1 id="天眼"><a href="#天眼" class="headerlink" title="天眼"></a>天眼</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>高级威胁检测，检测流量中的攻击</p>
+<p>是全流量设备，并非全包流量【因探针只记录部分流量】</p>
+<p>安全合规审计，通过内置场景进行，如高危端口访问审计【22端口：ssh应用端口 53端口：DNS（Domain Name Server，域名服务器）服务器所开放】</p>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p><img src="/2023/09/24/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87/blog/source\_posts\入侵检测设备\1.png" alt></p>
+<p><img src="/2023/09/24/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87/blog/source\_posts\入侵检测设备\2.png" style="zoom:80%;"></p>
+<p><strong>流量传感器</strong>【只存储告警日志】，部署在核心交换机旁侧，根据七层协议还原流量。若匹配到规则库，则生成告警日志，否则生成网络日志，将两种日志一起传给分析平台。</p>
+<p><strong>文件威胁鉴定器</strong>【沙箱】，分为静态检测（检测文件的md5值、签名、漏洞）和动态检测（通过内置虚拟机检测异常检测等），将生成的样本日志传给分析平台。</p>
+<p><strong>分析平台</strong>存储告警日志【来源于沙箱与探针】、网络日志【来源于沙箱，不存在恶意行为】、终端日志【天擎发送过来】，可与天擎进行联动</p>
+<p>发送日志时，三个平台时间需一致</p>
+<p>组件（服务）：</p>
+<p>云端威胁情报</p>
+<p>三个硬件：</p>
+<p>S53/S56【为服务器型号，对应网络传感器】用于部署探针（旁路部署）【还有一个硬件：S52】含四个监听口用于采集流量，两个USB口</p>
+<p>A58【对应分析平台】/D57【对应文件威胁鉴定器】用于部署分析平台和沙箱</p>
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p><img src="/2023/09/24/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87/blog/source\_posts\入侵检测设备\3.png" alt></p>
+<h2 id="威胁检测原理"><a href="#威胁检测原理" class="headerlink" title="威胁检测原理"></a>威胁检测原理</h2><p>天眼同时检测攻击<strong>请求</strong>报文和攻击<strong>响应</strong>报文，能给出攻击结果的精确判断：企图（虽状态码为200，但没有匹配到特征库）、成功、失陷、失败</p>
+<p>天眼同时记录攻击告警日志以及网络会话日志</p>
+<p>finally选择题考【产品信息、事件分析】两个模块</p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2022/02/10/hello-world/" target="_self">
+              <a href="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>Prev</span>
               </a>
@@ -194,16 +175,11 @@ MathJax = {
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime" title="Update time"></i>
-              2022-02-12 23:41:51
+              2023-09-24 08:12:56
             </span>
             
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2022/02/13/CTF-RSA/" target="_self">
-                <span>Next</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
@@ -216,7 +192,7 @@ MathJax = {
   <div class="post-catalog hidden" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%AF%86%E7%A0%81%E5%AD%A6%E5%88%86%E7%B1%BB"><span class="toc-text">1.密码学分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-RSA%E5%8A%A0%E5%AF%86"><span class="toc-text">2.RSA加密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86"><span class="toc-text">2.1数论知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2RSA%E8%BF%87%E7%A8%8B"><span class="toc-text">2.2RSA过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1%E8%AF%AD%E8%A8%80%E6%8F%8F%E8%BF%B0"><span class="toc-text">2.2.1语言描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2%E5%9B%BE%E7%A4%BA%E8%AF%B4%E6%98%8E"><span class="toc-text">2.2.2图示说明</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%A9%E7%9C%BC"><span class="toc-text">天眼</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-text">部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84"><span class="toc-text">架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A8%81%E8%83%81%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86"><span class="toc-text">威胁检测原理</span></a></li></ol></li></ol>
     </div>
   </div>
 
@@ -533,12 +509,12 @@ MathJax = {
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + crypto--RSA%E5%8A%A0%E5%AF%86 + '&url=' + http%3A%2F%2Fyy-ll.github.io%2F2022%2F02%2F12%2Fcrypto-RSA%25E5%258A%25A0%25E5%25AF%2586%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87 + '&url=' + http%3A%2F%2Fyy-ll.github.io%2F2023%2F09%2F24%2F%25E5%2585%25A5%25E4%25BE%25B5%25E6%25A3%2580%25E6%25B5%258B%25E8%25AE%25BE%25E5%25A4%2587%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://yy-ll.github.io/2022/02/12/crypto-RSA%E5%8A%A0%E5%AF%86/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://yy-ll.github.io/2023/09/24/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
