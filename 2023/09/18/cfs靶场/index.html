@@ -144,7 +144,7 @@ MathJax = {
       <div class="markdown-body">
         <h1 id="CFS三层靶机"><a href="#CFS三层靶机" class="headerlink" title="CFS三层靶机"></a>CFS三层靶机</h1><h2 id="渗透流程"><a href="#渗透流程" class="headerlink" title="渗透流程"></a>渗透流程</h2><p>target2和target3不能连接外网，只能在内网进行通信。所以先渗透target1，作为跳板攻击target2和target3</p>
 <h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="配置网卡"><a href="#配置网卡" class="headerlink" title="配置网卡"></a>配置网卡</h3><p>首先需要配置3张网卡搭建内网环境，在VM编辑处找到虚拟网络编辑器：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\1.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/1.png" alt></p>
 <p>其中的4（11）,9（22）,10（33）三张网卡就是为了这个靶场而创建的三张网卡,再按照下面这个环境去更换网卡，在vm的主页选择打开虚拟机找到对应位置即可创建靶场所需的三台虚拟机（直接打开并导入）：</p>
 <p>攻击机器（kali）——kali攻击机选择第四张网卡（11）</p>
 <p>target1靶机服务器：centos——centos选择第4张（11）和第9张（22）网卡</p>
