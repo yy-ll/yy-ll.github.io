@@ -144,25 +144,25 @@ MathJax = {
       <div class="markdown-body">
         <h1 id="CFS三层靶机"><a href="#CFS三层靶机" class="headerlink" title="CFS三层靶机"></a>CFS三层靶机</h1><h2 id="渗透流程"><a href="#渗透流程" class="headerlink" title="渗透流程"></a>渗透流程</h2><p>target2和target3不能连接外网，只能在内网进行通信。所以先渗透target1，作为跳板攻击target2和target3</p>
 <h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="配置网卡"><a href="#配置网卡" class="headerlink" title="配置网卡"></a>配置网卡</h3><p>首先需要配置3张网卡搭建内网环境，在VM编辑处找到虚拟网络编辑器：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/1.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/1.png" style="zoom:80%;"></p>
 <p>其中的4（11）,9（22）,10（33）三张网卡就是为了这个靶场而创建的三张网卡,再按照下面这个环境去更换网卡，在vm的主页选择打开虚拟机找到对应位置即可创建靶场所需的三台虚拟机（直接打开并导入）：</p>
 <p>攻击机器（kali）——kali攻击机选择第四张网卡（11）</p>
 <p>target1靶机服务器：centos——centos选择第4张（11）和第9张（22）网卡</p>
 <p>target2内网主机：ubuntu——ubuntu选择第9张和第10张网卡</p>
 <p>target3内网主机：windows7——win7选第10张网卡</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\22.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/22.png" style="zoom:80%;"></p>
 <p>这样整个环境就搭建好了开启即可</p>
 <h3 id="宝塔后台配置"><a href="#宝塔后台配置" class="headerlink" title="宝塔后台配置"></a>宝塔后台配置</h3><h4 id="centos"><a href="#centos" class="headerlink" title="centos"></a>centos</h4><p>开启target1，在靶机的描述部分附有宝塔后台地址</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\3.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/3.png" alt></p>
 <p>直接开启后先进行登录root，查看ip：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\4.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/4.png" style="zoom:80%;"></p>
 <p>把宝塔登录地址的ip换成自己的ip就可以登录</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\5.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/5.png" style="zoom:80%;"></p>
 <p>进入宝塔面板，选择网站，再点击网站名192.168.1.110，将centos靶机中c段为11的ip添加进去，确保能够访问到对应的web页面：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\6.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/6.png" alt></p>
 <h4 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h4><p>ubuntu进行同样的操作添加c段为22的ip</p>
 <p>首先开启后登录root：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\7.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/7.png" alt></p>
 <h4 id="win7"><a href="#win7" class="headerlink" title="win7"></a>win7</h4><p>win7直接开机即可</p>
 <p>到这里搭建就全部完成了</p>
 <p>这里模拟的是kali和centos的第一张网卡位于外网，即你拥有一台kali，现在给你一个ip为192.168.11.128的主机让你渗透</p>
@@ -182,34 +182,34 @@ MathJax = {
 <p>192.168.33.33</p>
 <p>Administrator密码：teamssix.com</p>
 <h2 id="渗透实操"><a href="#渗透实操" class="headerlink" title="渗透实操"></a>渗透实操</h2><h3 id="打穿centos"><a href="#打穿centos" class="headerlink" title="打穿centos"></a>打穿centos</h3><h4 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h4><p>目前只有对方主机的ip，别无其他信息，故使用nmap对对方主机进行扫描，通过探测到的端口得知对方开启了什么服务</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\8.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/8.png" alt></p>
 <p>可以看到对方开启的服务比较多，注意到80端口开启，这说明对方搭建了网站，网站就有各种的漏洞的可以尝试。先访问这个开启了80端口的ip：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\9.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/9.png" alt></p>
 <p>访问后发现这是一个用thinkphp5版本搭建的网站</p>
 <h4 id="获取webshell"><a href="#获取webshell" class="headerlink" title="获取webshell"></a>获取webshell</h4><p>tp5存在命令执行漏洞，直接用工具：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\10.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/10.png" alt></p>
 <p>这个工具可以探测并利用存在漏洞的thinkphp</p>
 <p>直接使用工具getshell：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\11.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/11.png" alt></p>
 <p>访问这个带有木马的域名使用蚁剑来连接 ：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\12.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/12.png" alt></p>
 <p>即可获取webshell</p>
 <h5 id="flag1"><a href="#flag1" class="headerlink" title="flag1"></a>flag1</h5><p>系统根目录下</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\85.png" alt></p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\86.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/85.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/86.png" alt></p>
 <p>flag.txt中含第一个flag{qEa12Nasd1a}</p>
 <h5 id="flag2"><a href="#flag2" class="headerlink" title="flag2"></a>flag2</h5><p>网站根目录下</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\13.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/13.png" alt></p>
 <p>flag21sA.txt里面放的是第二个flag{e2D3aFdasde}：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\14.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/14.png" alt></p>
 <h5 id="flag3"><a href="#flag3" class="headerlink" title="flag3"></a>flag3</h5><p>网站robots.txt文件中</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\87.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/87.png" alt></p>
 <p>第三个flag{QeaRqaw12fs}</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\88.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/88.png" alt></p>
 <p>拿到centos的webshell后再利用蚁剑的终端做进一步信息收集，右键—&gt;在此处打开终端：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\15.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/15.png" alt></p>
 <p>ifconfig时发现了另一个ip，这就说明了它还存在其他内网主机：192.168.22.128</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\16.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/16.png" alt></p>
 <p>这台centos基本被拿下。下面便涉及到msf：先用msf创建一个后门，就是在桌面创建一个elf格式的木马，再开启监听，通过蚁剑上传，再直接控制终端运行这个木马即可监听到。</p>
 <h4 id="获取主机权限"><a href="#获取主机权限" class="headerlink" title="获取主机权限"></a>获取主机权限</h4><p>用msf生成后门，但出现：</p>
 <p>msfvenom: command not found</p>
@@ -218,68 +218,68 @@ MathJax = {
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i metasploit-framework_6.3.34+20230910102724~1rapid7-1_amd64.deb</span><br></pre></td></tr></table></figure>
 <p>安装成功。</p>
 <p>msf生成后门：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\17.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/17.png" alt></p>
 <p>将后门上传，kali开监控，执行木马：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\18.png" style="zoom:67%;"></p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\19.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/18.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/19.png" alt></p>
 <p>开启服务：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\20.png" style="zoom:67%;"></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/20.png" alt></p>
 <p>在蚁剑中：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\21.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/21.png" alt></p>
 <p>回到kali：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\23.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/23.png" alt></p>
 <p>截至现在，彻底了拿到了centos的权限。接下来再打它的内网，刚才nmap探测出可能内网还有其他主机，这里就来进行探测打其他的主机。</p>
 <h3 id="打穿ubuntu"><a href="#打穿ubuntu" class="headerlink" title="打穿ubuntu"></a>打穿ubuntu</h3><h4 id="信息收集-1"><a href="#信息收集-1" class="headerlink" title="信息收集"></a>信息收集</h4><p>直接尝试nmap扫描另一张网卡的其他主机：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap 192.168.22.0/24</span><br></pre></td></tr></table></figure>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\24.png" style="zoom:67%;"></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/24.png" alt></p>
 <p>出现了一堆failed，说明了一个都扫不到。原因是我们的网段设置，这里扫描是用的kali的ip扫描，模拟的环境中kali和centos是公网主机，所以可以直接扫到，而现在扫的属于内网网段，扫不到很正常。</p>
 <p>刚才我们打下的centos虽然是公网主机，但是它也在这个内网。于是就用centos的ip来打它的内网，先用msf自带的探测网络接口的模块（get_local_subnets）和查看路由的模块(autoroute -p)来进一步进行信息探测，注意不要退出终端页面！直接run：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">run get_local_subnets</span><br><span class="line">run autoroute -p</span><br></pre></td></tr></table></figure>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\25.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/25.png" alt></p>
 <p>这里查到centos处于三个网段内，刚才nmap扫出来只有两个网段，这说明122的网段就是出题方来迷惑的</p>
 <p>而且当前没有路由 （路由是指路由器从一个接口上收到数据包，根据数据包的目的地址进行定向并转发到另一个接口的过程，就相当于把我们要传输的数据先传输到该路由，再发往目标）</p>
 <p>centos上没有msf，所以可以通过设置路由的方式把我们的请求从centos发出，这样就可以在kali上访问到centos的ip了</p>
 <h4 id="信息分析"><a href="#信息分析" class="headerlink" title="信息分析"></a>信息分析</h4><p>故添加一个路由(autoroute -s)，因为我们已经在11网段内，所以添加的路由肯定添加22网段的，就可以理解为我们建立了一个攻击机kali和该网段的隧道</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run autoroute -s 192.168.22.0/24</span><br></pre></td></tr></table></figure>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\32.png" style="zoom:80%;"></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/32.png" alt></p>
 <p>现在便可以与22网段通信了，接下来继续用nmap扫描该内网网段下存活了哪些主机，（注意：这里使用nmap扫描要禁用ping检测，即-Pn，因为不一定能ping通）</p>
 <p>这里的路由还有缺陷：它只能在这个msf建立的会话上使用，假如我们新开一个终端使用nmap扫描，还是扫不到。所以这里就涉及到：msf的代理配置。</p>
 <h4 id="msf的代理配置"><a href="#msf的代理配置" class="headerlink" title="msf的代理配置"></a>msf的代理配置</h4><p>msf有自己的代理模块（auxiliary/server/socks_proxy ）</p>
 <p>先来开启代理服务，srvport是端口随便定，只要不被占用</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\27.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/27.png" alt></p>
 <p>再进入 /etc/proxychains4.conf更改代理配置即可。</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\29.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/29.png" alt></p>
 <p>在该文件的最下面一行，把ip更改为kali攻击机的ip（192.168.11.129），端口更改为刚刚配置模块的端口（2222），更改后：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\28.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/28.png" alt></p>
 <p>此时在指令前输入proxychains4即可走代理来执行该命令，用nmap检验：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\30.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/30.png" alt></p>
 <p>能探测ubuntu的端口，说明代理配置成功（千万注意前面的终端页面都不要关，路由必须设置才可以成功）</p>
 <h4 id="拿下Ubuntu-webshell"><a href="#拿下Ubuntu-webshell" class="headerlink" title="拿下Ubuntu webshell"></a>拿下Ubuntu webshell</h4><p>跟拿下centos的webshell一样的原理，开放了80端口，所以直接访问其网页</p>
 <p>在kali上打开，但是浏览器并不能直接访问Ubuntu的网站，同样需要加上代理，根据靶机的ip如下配置</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\31.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/31.png" alt></p>
 <p>配置之后直接访问Ubuntu的ip就可以访问对应的网站</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\33.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/33.png" alt></p>
 <p>可以看到这是一个cms系统，一般步骤是先探测版本再去看对应版本有无漏洞，但是这里的开发者审查工具直接提示了sql注入：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\34.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/34.png" alt></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/index.php?r=vul&amp;keyword=1</span><br></pre></td></tr></table></figure>
 <p>直接访问它给的有sql注入的漏洞站点，进行测试：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\35.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/35.png" alt></p>
 <p>直接用sqlmap来跑，注意这里的sqlmap也要配置代理（用自带的) </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 探测url是否存在漏洞 是什么类型</span><br><span class="line">python3 sqlmap.py -u &quot;http://192.168.22.129/index.php?r=vul&amp;keyword=1&quot; --proxy=socks4://192.168.11.129:2222</span><br></pre></td></tr></table></figure>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\36.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/36.png" alt></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 sqlmap.py -u &quot;http://192.168.22.129/index.php?r=vul&amp;keyword=1&quot; --proxy=socks4://192.168.11.129:2222 --dbs</span><br></pre></td></tr></table></figure>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\37.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/37.png" alt></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 sqlmap.py -u &quot;http://192.168.22.129/index.php?r=vul&amp;keyword=1&quot; --proxy=socks4://192.168.11.129:2222 -D bagecms --tables </span><br></pre></td></tr></table></figure>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\38.png" style="zoom:67%;"></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/38.png" style="zoom:67%;"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 sqlmap.py -u &quot;http://192.168.22.129/index.php?r=vul&amp;keyword=1&quot; --proxy=socks4://192.168.11.129:2222 -D begacms -T bage_admin --columns</span><br></pre></td></tr></table></figure>
 <p>一路yes，还没跑出来就把代理弄崩了</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\39.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/39.png" alt></p>
 <p>正常情况最后要扫出username和password。但是等待时间过长，且会掉线：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 sqlmap.py -u &quot;http://192.168.22.129/index.php?r=vul&amp;keyword=1&quot; --proxy=socks4://192.168.11.129:2222 -D begacms -T bage_admin -C username,password --dump</span><br></pre></td></tr></table></figure>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\48.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/48.png" alt></p>
 <p>尝试手工进行报错注入。</p>
 <p>先加’，报错，说明存在交互：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\40.png" style="zoom:67%;"></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/40.png" style="zoom:67%;"></p>
 <p>但在测试1=2时候发现与预想页面不一致：</p>
 <p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\41.png" alt></p>
 <p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\42.png" alt></p>
