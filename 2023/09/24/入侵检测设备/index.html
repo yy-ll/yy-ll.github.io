@@ -317,7 +317,7 @@ MathJax = {
 <h2 id><a href="#" class="headerlink" title=" "></a> </h2><p><img src="/2023/09/24/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87/48.png" alt></p>
 <p>挖矿不是恶意行为</p>
 <h3 id="挖矿方式及交互特征"><a href="#挖矿方式及交互特征" class="headerlink" title="挖矿方式及交互特征"></a>挖矿方式及交互特征</h3><p><img src="/2023/09/24/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87/49.png" alt></p>
-<h4 id="终端挖矿"><a href="#终端挖矿" class="headerlink" title="终端挖矿"></a>终端挖矿</h4><p>终端挖矿建立tcp明文连接、数据传输有特征字符：</p>
+<h4 id="终端挖矿"><a href="#终端挖矿" class="headerlink" title="终端挖矿"></a>终端挖矿</h4><p>终端挖矿会通过域名解析，与解析结果建立tcp明文连接、数据传输有特征字符：</p>
 <p>通过特征字符，可以判断处于挖矿任务处于哪个阶段</p>
 <p>第一阶段——客户机终端连接矿池：连接矿池的序号id、jasonrpc（连接矿池的协议）、method（连接矿池的方法）</p>
 <p>第二阶段——接收到信息的矿池： jsonrps、status、{job-id}</p>
@@ -327,6 +327,26 @@ MathJax = {
 <p>特征在于触发的是url类告警，使用http、https协议，真正中招的是服务器</p>
 <h4 id="软件挖矿"><a href="#软件挖矿" class="headerlink" title="软件挖矿"></a>软件挖矿</h4><p>安装软件去挖矿，既有网页挖矿的特征，又有终端挖矿的特征</p>
 <h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><p><img src="/2023/09/24/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87/51.png" alt></p>
+<p><a target="_blank" rel="noopener" href="https://ti.qianxin.com/">https://ti.qianxin.com/</a></p>
+<p><a target="_blank" rel="noopener" href="https://x.threatbook.com/">https://x.threatbook.com/</a></p>
+<p><a target="_blank" rel="noopener" href="https://ti.360.net/#/homepage">https://ti.360.net/#/homepage</a></p>
+<p>可以通过ti平台、微步、360查看有效性(最近看到、注册日期、过期时间)，排除由时效性带来的误报。【若两个及以上平台都显示未过期，说明当前域名还有时效性】</p>
+<p>C2是远控木马：</p>
+<p><img src="/2023/09/24/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87/53.png" alt></p>
+<p>若目前在有效期内，继续通过标签排查关联性，了解别名CNAME、入侵方式、网络行为特征、扩散特征：</p>
+<p><img src="/2023/09/24/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87/54.png" alt></p>
+<p>找到扩散方式：445</p>
+<p><img src="/2023/09/24/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87/55.png" alt></p>
+<p><img src="/2023/09/24/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87/56.png" alt="56"></p>
+<p>说明：</p>
+<p>1.网络行为特征</p>
+<p>（1）域名解析：域名行为DGA域名</p>
+<p>（2）解析的结果进行交互，TCP密文</p>
+<p>（3）连接的矿池ip</p>
+<p>2.扩散特征</p>
+<p>（1）ms17-010 smb 445</p>
+<p>另：</p>
+<p><img src="/2023/09/24/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87/52.png" alt></p>
 
       </div>
       

