@@ -142,7 +142,7 @@ MathJax = {
         
       </div>
       <div class="markdown-body">
-        <h2 id="Web事件分析"><a href="#Web事件分析" class="headerlink" title="Web事件分析"></a>Web事件分析</h2><p>探针的检索引擎</p>
+        <h1 id="Web事件分析"><a href="#Web事件分析" class="headerlink" title="Web事件分析"></a>Web事件分析</h1><p>探针的检索引擎</p>
 <p>IDS检测网络攻击</p>
 <p>WebIDS检测网页漏洞利用</p>
 <p>Webshell检测webshell类告警</p>
@@ -151,6 +151,7 @@ MathJax = {
 <p>对于网页漏洞利用而言</p>
 <p>在天眼分析平台——威胁感知，查看平台判断的网页漏洞利用的攻击结果（成功、企图、失败）</p>
 <p>接下来需要人工进行二次验证，若结果也为成功，分为两种情况。</p>
+<p>看payload可以大致判断攻击者要做什么</p>
 <p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/58.png" alt></p>
 <p>其中，特殊设备指的是部署外网的扫描器、出口ip</p>
 <p>在重保、hw期间需要封禁IP</p>
@@ -165,18 +166,22 @@ MathJax = {
 <p>A08:2021——常见明文传输，中间人攻击，形成数据的篡改</p>
 <p>A09:2021——服务器没有启用日志记录和监控，一旦发生攻击无法确认攻击行为</p>
 <p>A10:2021——服务器没有对目标ip验证，常用于对内网的探测和攻击</p>
-<h3 id="信息泄露漏洞"><a href="#信息泄露漏洞" class="headerlink" title="信息泄露漏洞"></a>信息泄露漏洞</h3><p>分为两种情况：访问文件存在并且返回文件内容、返回的响应包中包含版本信息</p>
-<h4 id="敏感信息泄露"><a href="#敏感信息泄露" class="headerlink" title="敏感信息泄露"></a>敏感信息泄露</h4><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/61.png" alt></p>
-<h4 id="Git信息泄露"><a href="#Git信息泄露" class="headerlink" title="Git信息泄露"></a>Git信息泄露</h4><p>开发人员对站点自动部署，当将.git文件夹直接部署到线上环境，导致攻击者可以通过/.git/config文件获取对应的站点源码、配置信息。</p>
-<h4 id="svn信息泄露"><a href="#svn信息泄露" class="headerlink" title="svn信息泄露"></a>svn信息泄露</h4><p>隐藏文件.svn/entries含网站源码信息</p>
-<h4 id="日志文件泄露"><a href="#日志文件泄露" class="headerlink" title="日志文件泄露"></a>日志文件泄露</h4><p>.log文件泄露到登录系统后台</p>
-<h4 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h4><p>已知文件php.ini缓存的位置（文件上传位置泄露）</p>
-<h4 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h4><p>即使为404、500，可能会返回中间价以及组件的版本信息</p>
-<h4 id="应对措施"><a href="#应对措施" class="headerlink" title="应对措施"></a>应对措施</h4><p>删除隐藏文件、增加安全配置、限制文件包含路径以及名称</p>
-<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/62.png" alt></p>
+<h2 id="信息泄露漏洞"><a href="#信息泄露漏洞" class="headerlink" title="信息泄露漏洞"></a>信息泄露漏洞</h2><p>分为两种情况：访问文件存在并且返回文件内容、返回的响应包中包含版本信息</p>
+<h3 id="敏感信息泄露"><a href="#敏感信息泄露" class="headerlink" title="敏感信息泄露"></a>敏感信息泄露</h3><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/61.png" alt></p>
+<h3 id="Git信息泄露"><a href="#Git信息泄露" class="headerlink" title="Git信息泄露"></a>Git信息泄露</h3><p>开发人员对站点自动部署，当将.git文件夹直接部署到线上环境，导致攻击者可以通过/.git/config文件获取对应的站点源码、配置信息。</p>
+<h3 id="svn信息泄露"><a href="#svn信息泄露" class="headerlink" title="svn信息泄露"></a>svn信息泄露</h3><p>隐藏文件.svn/entries含网站源码信息</p>
+<h3 id="日志文件泄露"><a href="#日志文件泄露" class="headerlink" title="日志文件泄露"></a>日志文件泄露</h3><p>.log文件泄露到登录系统后台</p>
+<h3 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h3><p>已知文件php.ini缓存的位置（文件上传位置泄露）</p>
+<h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h3><p>即使为404、500，可能会返回中间价以及组件的版本信息</p>
+<h3 id="应对措施"><a href="#应对措施" class="headerlink" title="应对措施"></a>应对措施</h3><p>删除隐藏文件、增加安全配置、限制文件包含路径以及名称</p>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/62.png" alt></p>
 <p>泄露点一：phpinfo</p>
 <p>泄露点二：Server字段暴露中间价的版本</p>
-<h3 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h3>
+<h2 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h2><h3 id="本地文件包含"><a href="#本地文件包含" class="headerlink" title="本地文件包含"></a>本地文件包含</h3><p>包含目录文件、日志文件、系统环境、session文件获取其他用户的cookie</p>
+<p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/63.png" alt></p>
+<h3 id="远程文件包含"><a href="#远程文件包含" class="headerlink" title="远程文件包含"></a>远程文件包含</h3><p>设置文件白名单</p>
+<p>避免文件包含最安全的是设置allow_url_fopen和allow_url_include为Off</p>
+<h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2>
       </div>
       
         <div class="prev-or-next">
@@ -208,7 +213,7 @@ MathJax = {
   <div class="post-catalog hidden" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90"><span class="toc-text">Web事件分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%E6%BC%8F%E6%B4%9E"><span class="toc-text">信息泄露漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-text">敏感信息泄露</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Git%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-text">Git信息泄露</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#svn%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-text">svn信息泄露</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2"><span class="toc-text">日志文件泄露</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-text">文件包含</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-text">状态码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E5%AF%B9%E6%8E%AA%E6%96%BD"><span class="toc-text">应对措施</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E"><span class="toc-text">文件包含漏洞</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90"><span class="toc-text">Web事件分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%E6%BC%8F%E6%B4%9E"><span class="toc-text">信息泄露漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-text">敏感信息泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-text">Git信息泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#svn%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-text">svn信息泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2"><span class="toc-text">日志文件泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-text">文件包含</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-text">状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E5%AF%B9%E6%8E%AA%E6%96%BD"><span class="toc-text">应对措施</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E"><span class="toc-text">文件包含漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-text">本地文件包含</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-text">远程文件包含</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-text">SQL注入</span></a></li></ol></li></ol>
     </div>
   </div>
 
