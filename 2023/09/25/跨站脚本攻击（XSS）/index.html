@@ -189,7 +189,8 @@ MathJax = {
 <p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/243.png" alt></p>
 <p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/104.png" alt></p>
 <p>用于js弹窗的代码顺利执行</p>
-<h3 id="level2"><a href="#level2" class="headerlink" title="level2"></a>level2</h3><h4 id="服务器端用htmlspecialchars-函数对keyword参数的值进行处理"><a href="#服务器端用htmlspecialchars-函数对keyword参数的值进行处理" class="headerlink" title="服务器端用htmlspecialchars()函数对keyword参数的值进行处理"></a>服务器端用htmlspecialchars()函数对keyword参数的值进行处理</h4><p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/105.png" alt></p>
+<h3 id="level2"><a href="#level2" class="headerlink" title="level2"></a>level2</h3><p>服务器端用htmlspecialchars()函数对keyword参数的值进行处理</p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/105.png" alt></p>
 <p>这一关加入了“输入框”和“搜索”</p>
 <p>从url入手看，依然是get方式传参，初步判断为反射型xss</p>
 <p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/106.png" alt></p>
@@ -236,125 +237,125 @@ MathJax = {
 <p>发现报错，查看网页源代码：</p>
 <p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/121.png" alt></p>
 <p>第一处被htmlspecialchars()函数将&lt;和&gt;进行了编码处理</p>
-<p>第二处在显示位可以看到恶意代码<script>中添加了一个_符号</p>
+<p>第二处在显示位可以看到恶意代码script中添加了一个_符号</p>
 <p>用之前事件触发的代码进行测试：</p>
-<p><img src="跨站脚本攻击（XSS）/248.png" alt=""><br><img src="跨站脚本攻击（XSS）/122.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/248.png" alt><br><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/122.png" alt></p>
 <p>未触发弹窗，看网页源码：</p>
-<p><img src="跨站脚本攻击（XSS）/123.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/123.png" alt></p>
 <p>说明对onfocus这一类的事件字符也进行了防范，但发现提交的javascript字符并没有被过滤或者转义等。</p>
 <p>此处无法通过<code>&lt;script&gt;</code>标签或触发事件来执行js代码的话，那么换一个标签来执行js代码，通过在href属性中插入js代码来点击执行：</p>
-<p><img src="跨站脚本攻击（XSS）/249.png" alt=""></p>
-<p><img src="跨站脚本攻击（XSS）/124.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/249.png" alt></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/124.png" alt></p>
 <p>页面回显出现xss的链接，点击链接便可触发弹窗的js代码</p>
-<p><img src="跨站脚本攻击（XSS）/125.png" alt=""></p>
-<h3 id="level6"><a href="#level6" class="headerlink" title="level6"></a>level6</h3><p><img src="跨站脚本攻击（XSS）/126.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/125.png" alt></p>
+<h3 id="level6"><a href="#level6" class="headerlink" title="level6"></a>level6</h3><p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/126.png" alt></p>
 <p>看上去和之前没有区别，用弹窗代码测试：</p>
-<p><img src="跨站脚本攻击（XSS）/243.png" alt=""></p>
-<p><img src="跨站脚本攻击（XSS）/127.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/243.png" alt></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/127.png" alt></p>
 <p>发现报错，查看源码：</p>
-<p><img src="跨站脚本攻击（XSS）/128.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/128.png" alt></p>
 <p>第一处还是<code>&lt;</code>和<code>&gt;</code>被编码了</p>
 <p>第二处是在script字符中插入<code>_</code>破坏语义</p>
 <p>尝试事件触发的代码进行尝试：</p>
-<p><img src="跨站脚本攻击（XSS）/248.png" alt=""></p>
-<p><img src="跨站脚本攻击（XSS）/130.png" alt=""></p>
-<p><img src="跨站脚本攻击（XSS）/129.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/248.png" alt></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/130.png" alt></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/129.png" alt></p>
 <p>可以看到在value属性值中也插入了<code>_</code>符号防止xss的发生</p>
 <p>尝试上一关的<code>&lt;a&gt;</code>标签：</p>
-<p><img src="跨站脚本攻击（XSS）/249.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/249.png" alt></p>
 <p>也报错了</p>
-<p><img src="跨站脚本攻击（XSS）/131.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/131.png" alt></p>
 <p>xss链接无法点击，查看源代码：</p>
-<p><img src="跨站脚本攻击（XSS）/132.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/132.png" alt></p>
 <p>尝试大小写混写能不能绕过，改动<code>&lt;a&gt;</code>标签中的<code>href</code>属性的大小写，在html中对大小写是不敏感的。</p>
-<p><img src="跨站脚本攻击（XSS）/250.png" alt=""></p>
-<p><img src="跨站脚本攻击（XSS）/133.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/250.png" alt></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/133.png" alt></p>
 <p>点击页面回显的<code>xss</code>链接：</p>
-<p><img src="跨站脚本攻击（XSS）/134.png" alt=""></p>
-<h3 id="level7"><a href="#level7" class="headerlink" title="level7"></a>level7</h3><p><img src="跨站脚本攻击（XSS）/135.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/134.png" alt></p>
+<h3 id="level7"><a href="#level7" class="headerlink" title="level7"></a>level7</h3><p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/135.png" alt></p>
 <p>看上去和之前没有区别，用弹窗代码测试：</p>
-<p><img src="跨站脚本攻击（XSS）/243.png" alt=""></p>
-<p><img src="跨站脚本攻击（XSS）/136.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/243.png" alt></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/136.png" alt></p>
 <p>查看源代码：</p>
-<p><img src="跨站脚本攻击（XSS）/137.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/137.png" alt></p>
 <p>第一处将&lt;和&gt;进行编码处理</p>
 <p>第二处把script字符直接删除</p>
-<p><img src="跨站脚本攻击（XSS）/243.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/243.png" alt></p>
 <p>尝试双写关键字</p>
-<p><img src="跨站脚本攻击（XSS）/251.png" alt=""></p>
-<p><img src="跨站脚本攻击（XSS）/141.png" alt=""></p>
-<h3 id="level8"><a href="#level8" class="headerlink" title="level8"></a>level8</h3><p><img src="跨站脚本攻击（XSS）/142.png" alt=""></p>
-<p><img src="跨站脚本攻击（XSS）/143.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/251.png" alt></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/141.png" alt></p>
+<h3 id="level8"><a href="#level8" class="headerlink" title="level8"></a>level8</h3><p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/142.png" alt></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/143.png" alt></p>
 <p>弹窗代码：</p>
-<p><img src="跨站脚本攻击（XSS）/243.png" alt=""></p>
-<p><img src="跨站脚本攻击（XSS）/144.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/243.png" alt></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/144.png" alt></p>
 <p>第一处&lt;和&gt;被编码</p>
 <p>第二处在href属性值中script字符被插入了_字符破坏语义</p>
-<p><img src="跨站脚本攻击（XSS）/248.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/248.png" alt></p>
 <p>查看源码发现用来闭合引号的引号被编码，onfocus一类的事件也被破坏：</p>
-<p><img src="跨站脚本攻击（XSS）/145.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/145.png" alt></p>
 <p>大小写绕过，也失败。在此处没有对关键字进行删除，不进行双写测试。</p>
-<p>将要提交的js代码<img src="跨站脚本攻击（XSS）/252.png" alt="">进行编码防止插入_字符导致语义的破坏：</p>
+<p>将要提交的js代码<img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/252.png" alt>进行编码防止插入_字符导致语义的破坏：</p>
 <p><a target="_blank" rel="noopener" href="https://www.toolnb.com/tools/htmlende.html">HTML实体编码互转 - 爱资料工具 (toolnb.com)</a></p>
-<p><img src="跨站脚本攻击（XSS）/147.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/147.png" alt></p>
 <p>输入后，点击“添加友情链接”，查看源代码，发现“友情链接”里面（<a></a>）的代码正常：</p>
-<p><img src="跨站脚本攻击（XSS）/149.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/149.png" alt></p>
 <p>故再点击“友情链接”：</p>
-<p><img src="跨站脚本攻击（XSS）/148.png" alt=""></p>
-<h3 id="level9"><a href="#level9" class="headerlink" title="level9"></a>level9</h3><p><img src="跨站脚本攻击（XSS）/150.png" alt=""></p>
-<p>提交的参数值插入到了标签的value属性值中，但是在<a>标签的href属性中没有出现该参数值，而是显示的是字符串： “您的链接不合法？有没有！”，猜测这里对url地址做了匹配，只有包含正常的url地址才能添加到href属性值中。</p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/148.png" alt></p>
+<h3 id="level9"><a href="#level9" class="headerlink" title="level9"></a>level9</h3><p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/150.png" alt></p>
+<p>提交的参数值插入到了标签的value属性值中，但是在<a>标签的href属性中没有出现该参数值，而是显示的是字符串： “您的链接不合法？有没有！”，猜测这里对url地址做了匹配，只有包含正常的url地址才能添加到href属性值中。</a></p>
 <p>构造一个有正常url地址的恶意代码：</p>
-<p><img src="跨站脚本攻击（XSS）/253.png" alt=""></p>
-<p><img src="跨站脚本攻击（XSS）/151.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/253.png" alt></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/151.png" alt></p>
 <p>语句显示在了href属性值中，但是javascript字符被插入了_，尝试用大小写绕过：</p>
-<p><img src="跨站脚本攻击（XSS）/254.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/254.png" alt></p>
 <p>仍然失败：</p>
-<p><img src="跨站脚本攻击（XSS）/152.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/152.png" alt></p>
 <p>尝试对关键字进行编码，同level9，但不行。从服务器端看源文件代码，有语句指出：如果字符中没有<a href="http://的话就会返回false，接着在href属性值中就会出现&quot;您的链接不合法？有没有！">http://的话就会返回false，接着在href属性值中就会出现&quot;您的链接不合法？有没有！</a>“</p>
 <p>&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#120;&#115;&#115;&#39;&#41;//http://</p>
-<p><img src="跨站脚本攻击（XSS）/153.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/153.png" alt></p>
 <h3 id="level10"><a href="#level10" class="headerlink" title="level10"></a>level10</h3><p>与之前不一样</p>
-<p><img src="跨站脚本攻击（XSS）/154.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/154.png" alt></p>
 <p>查看源代码，发现在源码中有隐藏的表单，含有<code>t_link</code> <code>t_history</code> <code>t_sort</code>三个隐藏的<code>&lt;input&gt;</code>标签：</p>
-<p><img src="跨站脚本攻击（XSS）/155.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/155.png" alt></p>
 <p>利用弹窗代码测试：</p>
-<p><img src="跨站脚本攻击（XSS）/243.png" alt=""></p>
-<p><img src="跨站脚本攻击（XSS）/156.png" alt=""></p>
-<p><img src="跨站脚本攻击（XSS）/157.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/243.png" alt></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/156.png" alt></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/157.png" alt></p>
 <p>从三个<input>标签入手：</p>
-<p><img src="跨站脚本攻击（XSS）/255.png" alt=""></p>
-<p><img src="跨站脚本攻击（XSS）/158.png" alt=""></p>
-<p><img src="跨站脚本攻击（XSS）/159.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/255.png" alt></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/158.png" alt></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/159.png" alt></p>
 <p>可以看出只有一个<code>&lt;input&gt;</code>标签的状态可以被改变：名为<code>t_sort</code>的<code>&lt;input&gt;</code>标签，之前都是隐藏状态，但是通过构造参数响应发现只有它里面的值被改变了。</p>
 <p>故从该标签进行突破，尝试注入恶意代码进行弹窗：</p>
-<p><img src="跨站脚本攻击（XSS）/244.png" alt=""></p>
-<p><img src="跨站脚本攻击（XSS）/160.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/244.png" alt></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/160.png" alt></p>
 <h2 id="利用xss获取cookie"><a href="#利用xss获取cookie" class="headerlink" title="利用xss获取cookie"></a>利用xss获取cookie</h2><h3 id="方法一利用xss测试平台"><a href="#方法一利用xss测试平台" class="headerlink" title="方法一利用xss测试平台"></a>方法一利用xss测试平台</h3><p><a target="_blank" rel="noopener" href="https://xss.yt/">XSS平台-XSS安全测试平台</a></p>
 <p>首先，创建”我的项目”，使用”超强默认模块“，按照默认进行配置：</p>
-<p><img src="跨站脚本攻击（XSS）/161.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/161.png" alt></p>
 <p>利用DVWA的XSS(Stored)漏洞进行测试：</p>
-<p><img src="跨站脚本攻击（XSS）/162.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/162.png" alt></p>
 <p>在ie浏览器把攻击代码贴入Message提交得到（设Name为cccc）：</p>
-<p><img src="跨站脚本攻击（XSS）/164.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/164.png" alt></p>
 <p>在第三方平台创建的项目中，点击”项目内容查看“：</p>
-<p><img src="跨站脚本攻击（XSS）/165.png" alt=""></p>
-<p><img src="跨站脚本攻击（XSS）/166.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/165.png" alt></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/166.png" alt></p>
 <p>在第三方中获得cookie : security=low; PHPSESSID=e901pcmb5ne056oqfrhvrek8h7</p>
 <p>也可以用F12直接获取cookie值</p>
 <p>接下来，需要利用Cookie Editor插件修改cookie值，便可以不登录就进入对应页面，换一个浏览器进行登录</p>
-<p><img src="跨站脚本攻击（XSS）/168.png" alt=""></p>
-<p><img src="跨站脚本攻击（XSS）/169.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/168.png" alt></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/169.png" alt></p>
 <p>保存后刷新页面，便可不需要登录直接进入。</p>
 <p>可能存在的问题：该操作需要保持原始界面登录，Cookie具有时效性（过了时效性便无法成功）</p>
 <h3 id="方法二利用pikachu-Xss后台"><a href="#方法二利用pikachu-Xss后台" class="headerlink" title="方法二利用pikachu Xss后台"></a>方法二利用pikachu Xss后台</h3><p>首先搭建pikachu Xss 后台（相当于前面的第三方平台）：</p>
-<p><img src="跨站脚本攻击（XSS）/146.png" style="zoom:67%;" /></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/146.png" style="zoom:67%;"></p>
 <p>同样利用pikachu中存储型xss（另开一个页面）进行攻击，攻击代码如下：</p>
-<p><img src="跨站脚本攻击（XSS）/256.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/256.png" alt></p>
 <p>地址为接受cookie值的地址，即如下界面：</p>
-<p><img src="跨站脚本攻击（XSS）/170.png" alt=""></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/170.png" alt></p>
 <p>开始攻击：</p>
-<p><img src="跨站脚本攻击（XSS）/171.png" alt=""></p>
-</script></p>
+<p><img src="/2023/09/25/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89/171.png" alt></p>
+
       </div>
       
         <div class="prev-or-next">
@@ -391,7 +392,7 @@ MathJax = {
   <div class="post-catalog hidden" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89"><span class="toc-text">跨站脚本攻击（XSS）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-text">类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8B"><span class="toc-text">反射型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DVWA%E9%9D%B6%E5%9C%BA"><span class="toc-text">DVWA靶场</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8B"><span class="toc-text">存储型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DVWA%E9%9D%B6%E5%9C%BA-1"><span class="toc-text">DVWA靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BB%B6%E7%94%B3"><span class="toc-text">延申</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM%E5%9E%8B"><span class="toc-text">DOM型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pikachu%E9%9D%B6%E5%9C%BA"><span class="toc-text">pikachu靶场</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E7%B1%BB%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">三种类型之间的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xss-labs-master%E9%9D%B6%E5%9C%BA"><span class="toc-text">xss-labs-master靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level1"><span class="toc-text">level1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level2"><span class="toc-text">level2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%94%A8htmlspecialchars-%E5%87%BD%E6%95%B0%E5%AF%B9keyword%E5%8F%82%E6%95%B0%E7%9A%84%E5%80%BC%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86"><span class="toc-text">服务器端用htmlspecialchars()函数对keyword参数的值进行处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level3"><span class="toc-text">level3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level4"><span class="toc-text">level4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level5"><span class="toc-text">level5</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%EF%BC%89"><span class="toc-text">跨站脚本攻击（XSS）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-text">类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8B"><span class="toc-text">反射型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DVWA%E9%9D%B6%E5%9C%BA"><span class="toc-text">DVWA靶场</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8B"><span class="toc-text">存储型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DVWA%E9%9D%B6%E5%9C%BA-1"><span class="toc-text">DVWA靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BB%B6%E7%94%B3"><span class="toc-text">延申</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM%E5%9E%8B"><span class="toc-text">DOM型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pikachu%E9%9D%B6%E5%9C%BA"><span class="toc-text">pikachu靶场</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E7%B1%BB%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">三种类型之间的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xss-labs-master%E9%9D%B6%E5%9C%BA"><span class="toc-text">xss-labs-master靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level1"><span class="toc-text">level1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level2"><span class="toc-text">level2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#level3"><span class="toc-text">level3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level4"><span class="toc-text">level4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level5"><span class="toc-text">level5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level6"><span class="toc-text">level6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level7"><span class="toc-text">level7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level8"><span class="toc-text">level8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level9"><span class="toc-text">level9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#level10"><span class="toc-text">level10</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8xss%E8%8E%B7%E5%8F%96cookie"><span class="toc-text">利用xss获取cookie</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E5%88%A9%E7%94%A8xss%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0"><span class="toc-text">方法一利用xss测试平台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E5%88%A9%E7%94%A8pikachu-Xss%E5%90%8E%E5%8F%B0"><span class="toc-text">方法二利用pikachu Xss后台</span></a></li></ol></li></ol></li></ol>
     </div>
   </div>
 

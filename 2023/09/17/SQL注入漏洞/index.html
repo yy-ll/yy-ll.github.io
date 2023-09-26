@@ -208,6 +208,8 @@ MathJax = {
 <p>联合注入<strong>步骤</strong>：</p>
 <p><img src="/2023/09/17/SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/3.png" style="zoom:67%;"></p>
 <p>（4）其中空格编码为20%，’编码为27%\</p>
+<p>（5）在手工注入前需要先确认数据库类型</p>
+<p><img src="/2023/09/17/SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/81.png" alt></p>
 <h3 id="SQL注入类型——联合查询（Less-1，2，3，4）"><a href="#SQL注入类型——联合查询（Less-1，2，3，4）" class="headerlink" title="SQL注入类型——联合查询（Less-1，2，3，4）"></a>SQL注入类型——联合查询（Less-1，2，3，4）</h3><h4 id="Less-1"><a href="#Less-1" class="headerlink" title="Less-1"></a>Less-1</h4><p>登录靶场，目标找账号密码，第一关显示如下：</p>
 <p><img src="/2023/09/17/SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/5.png" alt></p>
 <p>提示输入数字值的ID作为参数，输入?id=1</p>
@@ -296,7 +298,7 @@ MathJax = {
 <p><img src="/2023/09/17/SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/58.png" style="zoom:67%;"></p>
 <h3 id="SQL注入类型——报错注入（Less-5，6）"><a href="#SQL注入类型——报错注入（Less-5，6）" class="headerlink" title="SQL注入类型——报错注入（Less-5，6）"></a>SQL注入类型——报错注入（Less-5，6）</h3><p>判断方法：</p>
 <p>页面无回显位</p>
-<p>常用报错函数E</p>
+<p>常用报错函数如下：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">updatexml()         是mysql对xml文档数据进行查询和修改的xpath函数</span><br><span class="line">extractvalue()      是mysql对xml文档数据进行查询的xpath函数</span><br><span class="line"><span class="built_in">floor</span>()             mysql中用来取整的函数</span><br><span class="line"><span class="built_in">exp</span>()               此函数返回e(自然对数的底)指数x的幂值</span><br></pre></td></tr></table></figure>
 <p><img src="/2023/09/17/SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/35.png" alt></p>
 <p>其中会用到0x7e（为波浪线的十六进制），作为标记，看是否完全显示完。</p>
@@ -351,7 +353,8 @@ MathJax = {
 <p>求出数量后便于遍历</p>
 <h5 id="fifth-求表的长度"><a href="#fifth-求表的长度" class="headerlink" title="fifth 求表的长度"></a>fifth 求表的长度</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 猜第一个表</span><br><span class="line"><span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;security&#x27;</span> limit <span class="number">0</span>,<span class="number">1</span></span><br><span class="line"></span><br><span class="line"># 截取第一个表的第一个字母</span><br><span class="line">substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;security&#x27;</span> limit <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27; and ascii(substr((select table_name from information_schema.tables where table_schema=&#x27;</span>security<span class="string">&#x27; limit 0,1),1,1))=101 --+</span></span><br></pre></td></tr></table></figure>
 <p>接下来一个表一个表的爆破</p>
-<h3 id="SQL注入类型——时间盲注-Less-9"><a href="#SQL注入类型——时间盲注-Less-9" class="headerlink" title="SQL注入类型——时间盲注(Less-9)"></a>SQL注入类型——时间盲注(Less-9)</h3><p><img src="/2023/09/17/SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/63.png" alt></p>
+<h3 id="SQL注入类型——时间盲注-Less-9"><a href="#SQL注入类型——时间盲注-Less-9" class="headerlink" title="SQL注入类型——时间盲注(Less-9)"></a>SQL注入类型——时间盲注(Less-9)</h3><p>不管输入什么，页面都不会改变</p>
+<p><img src="/2023/09/17/SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/63.png" alt></p>
 <h4 id="Less-9"><a href="#Less-9" class="headerlink" title="Less-9"></a>Less-9</h4><h5 id="first-2"><a href="#first-2" class="headerlink" title="first"></a>first</h5><p>输入’，发现无报错无回显，且页面无变化，不知道是否与数据库有交互</p>
 <p><img src="/2023/09/17/SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/75.png" alt></p>
 <p>用sleep()函数求闭合字符，但要注意排除网络原因（将页面沉睡时间设长一些）</p>
