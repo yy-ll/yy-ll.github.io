@@ -148,7 +148,7 @@ MathJax = {
 <p>Webshell检测webshell类告警</p>
 <p>威胁情报检测威胁情报类告警</p>
 <p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/57.png" alt></p>
-<p>对于网页漏洞利用而言</p>
+<h2 id="网页漏洞利用"><a href="#网页漏洞利用" class="headerlink" title="网页漏洞利用"></a>网页漏洞利用</h2><p>对于网页漏洞利用而言</p>
 <p>在天眼分析平台——威胁感知，查看平台判断的网页漏洞利用的攻击结果（成功、企图、失败）</p>
 <p>接下来需要人工进行二次验证，若结果也为成功，分为两种情况。</p>
 <p>看payload可以大致判断攻击者要做什么</p>
@@ -166,22 +166,22 @@ MathJax = {
 <p>A08:2021——常见明文传输，中间人攻击，形成数据的篡改</p>
 <p>A09:2021——服务器没有启用日志记录和监控，一旦发生攻击无法确认攻击行为</p>
 <p>A10:2021——服务器没有对目标ip验证，常用于对内网的探测和攻击</p>
-<h2 id="信息泄露漏洞"><a href="#信息泄露漏洞" class="headerlink" title="信息泄露漏洞"></a>信息泄露漏洞</h2><p>分为两种情况：访问文件存在并且返回文件内容、返回的响应包中包含版本信息</p>
-<h3 id="敏感信息泄露"><a href="#敏感信息泄露" class="headerlink" title="敏感信息泄露"></a>敏感信息泄露</h3><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/61.png" alt></p>
-<h3 id="Git信息泄露"><a href="#Git信息泄露" class="headerlink" title="Git信息泄露"></a>Git信息泄露</h3><p>开发人员对站点自动部署，当将.git文件夹直接部署到线上环境，导致攻击者可以通过/.git/config文件获取对应的站点源码、配置信息。</p>
-<h3 id="svn信息泄露"><a href="#svn信息泄露" class="headerlink" title="svn信息泄露"></a>svn信息泄露</h3><p>隐藏文件.svn/entries含网站源码信息</p>
-<h3 id="日志文件泄露"><a href="#日志文件泄露" class="headerlink" title="日志文件泄露"></a>日志文件泄露</h3><p>.log文件泄露到登录系统后台</p>
-<h3 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h3><p>已知文件php.ini缓存的位置（文件上传位置泄露）</p>
-<h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h3><p>即使为404、500，可能会返回中间价以及组件的版本信息</p>
-<h3 id="应对措施"><a href="#应对措施" class="headerlink" title="应对措施"></a>应对措施</h3><p>删除隐藏文件、增加安全配置、限制文件包含路径以及名称</p>
-<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/62.png" alt></p>
+<h3 id="信息泄露漏洞"><a href="#信息泄露漏洞" class="headerlink" title="信息泄露漏洞"></a>信息泄露漏洞</h3><p>分为两种情况：访问文件存在并且返回文件内容、返回的响应包中包含版本信息</p>
+<h4 id="敏感信息泄露"><a href="#敏感信息泄露" class="headerlink" title="敏感信息泄露"></a>敏感信息泄露</h4><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/61.png" alt></p>
+<h4 id="Git信息泄露"><a href="#Git信息泄露" class="headerlink" title="Git信息泄露"></a>Git信息泄露</h4><p>开发人员对站点自动部署，当将.git文件夹直接部署到线上环境，导致攻击者可以通过/.git/config文件获取对应的站点源码、配置信息。</p>
+<h4 id="svn信息泄露"><a href="#svn信息泄露" class="headerlink" title="svn信息泄露"></a>svn信息泄露</h4><p>隐藏文件.svn/entries含网站源码信息</p>
+<h4 id="日志文件泄露"><a href="#日志文件泄露" class="headerlink" title="日志文件泄露"></a>日志文件泄露</h4><p>.log文件泄露到登录系统后台</p>
+<h4 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h4><p>已知文件php.ini缓存的位置（文件上传位置泄露）</p>
+<h4 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h4><p>即使为404、500，可能会返回中间价以及组件的版本信息</p>
+<h4 id="应对措施"><a href="#应对措施" class="headerlink" title="应对措施"></a>应对措施</h4><p>删除隐藏文件、增加安全配置、限制文件包含路径以及名称</p>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/62.png" alt></p>
 <p>泄露点一：phpinfo</p>
 <p>泄露点二：Server字段暴露中间价的版本</p>
-<h2 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h2><h3 id="本地文件包含"><a href="#本地文件包含" class="headerlink" title="本地文件包含"></a>本地文件包含</h3><p>包含目录文件、日志文件、系统环境、session文件获取其他用户的cookie</p>
+<h3 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h3><h4 id="本地文件包含"><a href="#本地文件包含" class="headerlink" title="本地文件包含"></a>本地文件包含</h4><p>包含目录文件、日志文件、系统环境、session文件获取其他用户的cookie</p>
 <p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/63.png" alt></p>
-<h3 id="远程文件包含"><a href="#远程文件包含" class="headerlink" title="远程文件包含"></a>远程文件包含</h3><p>设置文件白名单</p>
+<h4 id="远程文件包含"><a href="#远程文件包含" class="headerlink" title="远程文件包含"></a>远程文件包含</h4><p>设置文件白名单</p>
 <p>避免文件包含最安全的是设置allow_url_fopen和allow_url_include为Off</p>
-<h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/64.png" alt></p>
+<h3 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h3><h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/64.png" alt></p>
 <p>其中，—+中+即为空格</p>
 <p>内联注释用于绕过waf</p>
 <p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/65.png" alt></p>
@@ -189,32 +189,88 @@ MathJax = {
 <p>/*! 5.7            说明该段当为注释执行</p>
 <p>/*! 5.5            说明该段当为SQL语句执行</p>
 <p>/*!                   说明该段当为SQL语句执行</p>
-<h3 id="Union联合注入"><a href="#Union联合注入" class="headerlink" title="Union联合注入"></a>Union联合注入</h3><p>union用于拼接两个或者多个select查询语句，每个查询需要有相同列数</p>
+<h4 id="Union联合注入"><a href="#Union联合注入" class="headerlink" title="Union联合注入"></a>Union联合注入</h4><p>union用于拼接两个或者多个select查询语句，每个查询需要有相同列数</p>
 <p>order by +列名/数字【根据第几列进行排序】</p>
 <p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/66.png" alt></p>
 <p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/67.png" alt></p>
 <p>其中</p>
 <p>value值为空，说明数据库允许；value值为路径，说明数据库允许在该路径下导入导出；value值为null，说明不允许。</p>
 <p>root@localhost为用户标识（用户+主机名）</p>
-<h2 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h2><p>XML用于传输数据，HTML用于显示数据</p>
-<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><h1 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h1><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/68.png" alt></p>
-<h1 id="网络攻击"><a href="#网络攻击" class="headerlink" title="网络攻击"></a>网络攻击</h1><h2 id="登录爆破"><a href="#登录爆破" class="headerlink" title="登录爆破"></a>登录爆破</h2><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/70.png" alt></p>
-<h3 id="爆破行为存在的原因"><a href="#爆破行为存在的原因" class="headerlink" title="爆破行为存在的原因"></a>爆破行为存在的原因</h3><p>登录允许无限次尝试、未对连接ip进行限制、当前服务器上存在弱口令</p>
+<h3 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h3><p>XML用于传输数据，HTML用于显示数据</p>
+<h3 id="练习：事件分析"><a href="#练习：事件分析" class="headerlink" title="练习：事件分析"></a>练习：事件分析</h3><h4 id="1、分析以下为什么类型的告警，是否攻击成功？"><a href="#1、分析以下为什么类型的告警，是否攻击成功？" class="headerlink" title="1、分析以下为什么类型的告警，是否攻击成功？"></a>1、分析以下为什么类型的告警，是否攻击成功？</h4><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/87.png" alt></p>
+<p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/88.png" alt="88"></p>
+<p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/89.png" alt="89"></p>
+<p>请求头中assert()是代码执行函数，发现存在代码执行漏洞</p>
+<h4 id="2、分析以下为什么告警，是否攻击成功？"><a href="#2、分析以下为什么告警，是否攻击成功？" class="headerlink" title="2、分析以下为什么告警，是否攻击成功？"></a>2、分析以下为什么告警，是否攻击成功？</h4><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/90.png" alt></p>
+<p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/91.png" alt="91"></p>
+<p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/92.png" alt="92"></p>
+<p>该处无状态码，可以先看看响应体，其显示的是linux网卡（eth0、eth1）配置信息</p>
+<p>发现请求体执行linux命令ifconfig，响应体有预期的结果，说明该攻击代码攻击成功</p>
+<h4 id="3、以下告警为什么类型告警：（命令执行？文件下载？）-告警成功与否？"><a href="#3、以下告警为什么类型告警：（命令执行？文件下载？）-告警成功与否？" class="headerlink" title="3、以下告警为什么类型告警：（命令执行？文件下载？）  告警成功与否？"></a>3、以下告警为什么类型告警：（命令执行？文件下载？）  告警成功与否？</h4><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/93.png" alt></p>
+<p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/94.png" alt="94"></p>
+<p>在请求体中找到payload：既有ping命令，也有wget在指定路径中下载文件并写入，还有sh命令（执行shell脚本）用于运行该文件，说明在进行多条的命令拼接，属于命令执行。</p>
+<p>在响应头中出现状态码为404，说明请求的资源不存在，攻击失败。</p>
+<h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/68.png" alt></p>
+<h2 id="网络攻击"><a href="#网络攻击" class="headerlink" title="网络攻击"></a>网络攻击</h2><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/74.png" alt></p>
+<h3 id="登录爆破"><a href="#登录爆破" class="headerlink" title="登录爆破"></a>登录爆破</h3><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/70.png" alt></p>
+<h4 id="爆破行为存在的原因"><a href="#爆破行为存在的原因" class="headerlink" title="爆破行为存在的原因"></a>爆破行为存在的原因</h4><p>登录允许无限次尝试、未对连接ip进行限制、当前服务器上存在弱口令</p>
 <p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/69.png" alt></p>
-<h3 id="常见的爆破工具"><a href="#常见的爆破工具" class="headerlink" title="常见的爆破工具"></a>常见的爆破工具</h3><p>Hydra、Medusa（通过ssh协议，root用户，利用弱口令字典去登录爆破）</p>
-<h3 id="流量特征"><a href="#流量特征" class="headerlink" title="流量特征"></a>流量特征</h3><p>短时间内（sip）单个ip对（dip）另一个单个ip发起大量登录请求，并且产生了大量登录失败日志。通过该流量特征判断是否存在登录爆破行为。</p>
-<h2 id="木马外联分析"><a href="#木马外联分析" class="headerlink" title="木马外联分析"></a>木马外联分析</h2><p>只有终端挖矿是以明文匹配规则，终端与矿池建立tcp明文连接</p>
-<h3 id="挖矿流量告警"><a href="#挖矿流量告警" class="headerlink" title="挖矿流量告警"></a>挖矿流量告警</h3><p>1.进行域名解析</p>
+<h4 id="常见的爆破工具"><a href="#常见的爆破工具" class="headerlink" title="常见的爆破工具"></a>常见的爆破工具</h4><p>Hydra、Medusa（通过ssh协议，root用户，利用弱口令字典去登录爆破）</p>
+<h4 id="流量特征"><a href="#流量特征" class="headerlink" title="流量特征"></a>流量特征</h4><p>短时间内（sip）单个ip对（dip）另一个单个ip发起大量登录请求，并且产生了大量登录失败日志。通过该流量特征判断是否存在登录爆破行为。</p>
+<h3 id="木马外联分析"><a href="#木马外联分析" class="headerlink" title="木马外联分析"></a>木马外联分析</h3><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/72.png" alt></p>
+<p>只有终端挖矿是以明文匹配规则，终端与矿池建立tcp明文连接</p>
+<h4 id="挖矿流量告警"><a href="#挖矿流量告警" class="headerlink" title="挖矿流量告警"></a>挖矿流量告警</h4><p>1.进行域名解析</p>
 <p>2.解析结果明文</p>
 <p>3.存在id、jasonrpc等特征字符</p>
-<h3 id="邮件安全分析"><a href="#邮件安全分析" class="headerlink" title="邮件安全分析"></a>邮件安全分析</h3><p>（1）客户端（利用SMTP协议）发给邮件服务器1</p>
+<h4 id="邮件安全分析"><a href="#邮件安全分析" class="headerlink" title="邮件安全分析"></a>邮件安全分析</h4><p>（1）客户端（利用SMTP协议）发给邮件服务器1</p>
 <p>（2）邮件服务器1（利用SMTP协议）发给最近的邮件服务器2</p>
 <p>（3）客户端通过（利用POP3/IMIP协议）接收邮件服务器2</p>
-<h3 id="DGA"><a href="#DGA" class="headerlink" title="DGA"></a>DGA</h3><p>DGA：域名生成算法</p>
+<h4 id="DGA"><a href="#DGA" class="headerlink" title="DGA"></a>DGA</h4><p>DGA：域名生成算法</p>
 <p>在客户端和服务器植入相同的DGA种子，在服务器中利用DGA种子生成随机域名，并进行域名解析，而在客户端生成的域名更快。利用两者的时间差，最后解析到攻击者生成的域名。</p>
-<h2 id="扫描"><a href="#扫描" class="headerlink" title="扫描"></a>扫描</h2><h3 id="web扫描"><a href="#web扫描" class="headerlink" title="web扫描"></a>web扫描</h3><p>指纹扫描、目录扫描、漏洞扫描、后台爆破（BP）、后门扫描（是否存在webshell，其连接的密码是动态变化，执行的指令不变）</p>
-<h3 id="主机扫描"><a href="#主机扫描" class="headerlink" title="主机扫描"></a>主机扫描</h3><p>扫描的方式：点对点扫描、点对面扫描</p>
+<h3 id="扫描"><a href="#扫描" class="headerlink" title="扫描"></a>扫描</h3><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/73.png" alt></p>
+<h4 id="web扫描"><a href="#web扫描" class="headerlink" title="web扫描"></a>web扫描</h4><p>指纹扫描、目录扫描、漏洞扫描、后台爆破（BP）、后门扫描（是否存在webshell，其连接的密码是动态变化，执行的指令不变）</p>
+<h4 id="主机扫描"><a href="#主机扫描" class="headerlink" title="主机扫描"></a>主机扫描</h4><p>扫描的方式：点对点扫描、点对面扫描</p>
 <p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/71.png" alt></p>
+<h3 id="练习：网络攻击扫描事件分析"><a href="#练习：网络攻击扫描事件分析" class="headerlink" title="练习：网络攻击扫描事件分析"></a>练习：网络攻击扫描事件分析</h3><h4 id="1、分析以下告警是否成功？"><a href="#1、分析以下告警是否成功？" class="headerlink" title="1、分析以下告警是否成功？"></a>1、分析以下告警是否成功？</h4><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/75.png" alt></p>
+<p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/76.png" alt></p>
+<p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/77.png" alt></p>
+<p>分析结果：</p>
+<p>（1）请求头出现XFF、disconnect</p>
+<p>（2）响应头出现404</p>
+<p>（3）响应体也是返回404界面</p>
+<h4 id="2、Nmap扫描行为"><a href="#2、Nmap扫描行为" class="headerlink" title="2、Nmap扫描行为"></a>2、Nmap扫描行为</h4><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/78.png" alt></p>
+<p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/79.png" alt></p>
+<p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/80.png" alt></p>
+<p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/82.png" alt></p>
+<p>分析结果：</p>
+<p>（1）请求头使用Nmap</p>
+<p>（2）Info出现41112&gt;8082、8082&gt;41112，且两条记录对应的sip、dip互换</p>
+<p>（3）对于Info中出现可疑信息的sip、dip进行进一步扫描</p>
+<p>（4）找到的日志均为TCP流量类型</p>
+<h4 id="3、发现挖矿木马外连通讯行为"><a href="#3、发现挖矿木马外连通讯行为" class="headerlink" title="3、发现挖矿木马外连通讯行为"></a>3、发现挖矿木马外连通讯行为</h4><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/83.png" alt></p>
+<p>分析结果：</p>
+<p>（1）出现id、jsonrpc、job、job_id字段说明为终端挖矿的第三阶段</p>
+<h4 id="4、扫描器Acunetix-Web-Vulnerability-Scanner扫描行为"><a href="#4、扫描器Acunetix-Web-Vulnerability-Scanner扫描行为" class="headerlink" title="4、扫描器Acunetix Web Vulnerability Scanner扫描行为"></a>4、扫描器Acunetix Web Vulnerability Scanner扫描行为</h4><p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/84.png" alt></p>
+<p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/85.png" alt></p>
+<p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/86.png" alt></p>
+<p>分析结果：</p>
+<p>（1）请求头中Accept字段</p>
+<p>（2）响应头返回的状态码为206</p>
+<p>（3）</p>
+<h2 id="威胁情报"><a href="#威胁情报" class="headerlink" title="威胁情报"></a>威胁情报</h2><p>IOC分为五个场景，不同场景触发不同告警，有七大误报情况：</p>
+<p>①IOC失效（域名变更、IP易主、样本清除）</p>
+<p>②邮件安全网关③DNS对外开放④伪造地址扫描</p>
+<p>⑤安全设备（自身机制导致的触发）</p>
+<p>⑥主动扫描⑦用户触发</p>
+<p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/95.png" alt></p>
+<p>其中，</p>
+<p>触发场景：终端和服务器进行数据交互</p>
+<p>URL类，联系网页挖矿，真正被植入挖矿代码的是服务器</p>
+<p>域名解析类流量，产生告警，不好判断受害IP。首先需要找到域名解析的发起者，再判断终端与域名解析的结果是否有数据交互，（有数据交互则中招的受害ip是终端sip，若无交互则受害ip不成立）两个条件唯一确定受害IP。</p>
+<p><img src="/2023/09/26/Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/96.png" alt></p>
+<p>本地域名服务器设置有两个选项，是否允许动态更新。</p>
+<p>dns_type:0，表示请求，此时sip为发起域名解析请求的设备，dip为接收域名解析请求的设备；</p>
+<p>dns_type:1，表示响应，此时sip为发起域名解析响应的设备，dip为接收域名解析响应的设备。</p>
 
       </div>
       
@@ -247,7 +303,7 @@ MathJax = {
   <div class="post-catalog hidden" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90"><span class="toc-text">Web事件分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%E6%BC%8F%E6%B4%9E"><span class="toc-text">信息泄露漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-text">敏感信息泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-text">Git信息泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#svn%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-text">svn信息泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2"><span class="toc-text">日志文件泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-text">文件包含</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-text">状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E5%AF%B9%E6%8E%AA%E6%96%BD"><span class="toc-text">应对措施</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E"><span class="toc-text">文件包含漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-text">本地文件包含</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-text">远程文件包含</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-text">SQL注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Union%E8%81%94%E5%90%88%E6%B3%A8%E5%85%A5"><span class="toc-text">Union联合注入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XML"><span class="toc-text">XML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0"><span class="toc-text">练习</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webshell"><span class="toc-text">webshell</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB"><span class="toc-text">网络攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E7%88%86%E7%A0%B4"><span class="toc-text">登录爆破</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%88%86%E7%A0%B4%E8%A1%8C%E4%B8%BA%E5%AD%98%E5%9C%A8%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-text">爆破行为存在的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%88%86%E7%A0%B4%E5%B7%A5%E5%85%B7"><span class="toc-text">常见的爆破工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81"><span class="toc-text">流量特征</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%A8%E9%A9%AC%E5%A4%96%E8%81%94%E5%88%86%E6%9E%90"><span class="toc-text">木马外联分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%96%E7%9F%BF%E6%B5%81%E9%87%8F%E5%91%8A%E8%AD%A6"><span class="toc-text">挖矿流量告警</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%AE%E4%BB%B6%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90"><span class="toc-text">邮件安全分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DGA"><span class="toc-text">DGA</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F"><span class="toc-text">扫描</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#web%E6%89%AB%E6%8F%8F"><span class="toc-text">web扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E6%89%AB%E6%8F%8F"><span class="toc-text">主机扫描</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90"><span class="toc-text">Web事件分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E9%A1%B5%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-text">网页漏洞利用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%E6%BC%8F%E6%B4%9E"><span class="toc-text">信息泄露漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-text">敏感信息泄露</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Git%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-text">Git信息泄露</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#svn%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-text">svn信息泄露</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2"><span class="toc-text">日志文件泄露</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-text">文件包含</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-text">状态码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E5%AF%B9%E6%8E%AA%E6%96%BD"><span class="toc-text">应对措施</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E"><span class="toc-text">文件包含漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-text">本地文件包含</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-text">远程文件包含</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-text">SQL注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-text">注释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Union%E8%81%94%E5%90%88%E6%B3%A8%E5%85%A5"><span class="toc-text">Union联合注入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XML"><span class="toc-text">XML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%EF%BC%9A%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90"><span class="toc-text">练习：事件分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%88%86%E6%9E%90%E4%BB%A5%E4%B8%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%91%8A%E8%AD%A6%EF%BC%8C%E6%98%AF%E5%90%A6%E6%94%BB%E5%87%BB%E6%88%90%E5%8A%9F%EF%BC%9F"><span class="toc-text">1、分析以下为什么类型的告警，是否攻击成功？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%88%86%E6%9E%90%E4%BB%A5%E4%B8%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E5%91%8A%E8%AD%A6%EF%BC%8C%E6%98%AF%E5%90%A6%E6%94%BB%E5%87%BB%E6%88%90%E5%8A%9F%EF%BC%9F"><span class="toc-text">2、分析以下为什么告警，是否攻击成功？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E4%BB%A5%E4%B8%8B%E5%91%8A%E8%AD%A6%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B1%BB%E5%9E%8B%E5%91%8A%E8%AD%A6%EF%BC%9A%EF%BC%88%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%EF%BC%9F%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%EF%BC%9F%EF%BC%89-%E5%91%8A%E8%AD%A6%E6%88%90%E5%8A%9F%E4%B8%8E%E5%90%A6%EF%BC%9F"><span class="toc-text">3、以下告警为什么类型告警：（命令执行？文件下载？）  告警成功与否？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webshell"><span class="toc-text">webshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB"><span class="toc-text">网络攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E7%88%86%E7%A0%B4"><span class="toc-text">登录爆破</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%88%86%E7%A0%B4%E8%A1%8C%E4%B8%BA%E5%AD%98%E5%9C%A8%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-text">爆破行为存在的原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%88%86%E7%A0%B4%E5%B7%A5%E5%85%B7"><span class="toc-text">常见的爆破工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81"><span class="toc-text">流量特征</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%A8%E9%A9%AC%E5%A4%96%E8%81%94%E5%88%86%E6%9E%90"><span class="toc-text">木马外联分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%96%E7%9F%BF%E6%B5%81%E9%87%8F%E5%91%8A%E8%AD%A6"><span class="toc-text">挖矿流量告警</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%82%AE%E4%BB%B6%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90"><span class="toc-text">邮件安全分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DGA"><span class="toc-text">DGA</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F"><span class="toc-text">扫描</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#web%E6%89%AB%E6%8F%8F"><span class="toc-text">web扫描</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E6%89%AB%E6%8F%8F"><span class="toc-text">主机扫描</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%EF%BC%9A%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E6%89%AB%E6%8F%8F%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90"><span class="toc-text">练习：网络攻击扫描事件分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%88%86%E6%9E%90%E4%BB%A5%E4%B8%8B%E5%91%8A%E8%AD%A6%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F%EF%BC%9F"><span class="toc-text">1、分析以下告警是否成功？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Nmap%E6%89%AB%E6%8F%8F%E8%A1%8C%E4%B8%BA"><span class="toc-text">2、Nmap扫描行为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%8F%91%E7%8E%B0%E6%8C%96%E7%9F%BF%E6%9C%A8%E9%A9%AC%E5%A4%96%E8%BF%9E%E9%80%9A%E8%AE%AF%E8%A1%8C%E4%B8%BA"><span class="toc-text">3、发现挖矿木马外连通讯行为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E6%89%AB%E6%8F%8F%E5%99%A8Acunetix-Web-Vulnerability-Scanner%E6%89%AB%E6%8F%8F%E8%A1%8C%E4%B8%BA"><span class="toc-text">4、扫描器Acunetix Web Vulnerability Scanner扫描行为</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5"><span class="toc-text">威胁情报</span></a></li></ol></li></ol>
     </div>
   </div>
 
