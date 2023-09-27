@@ -318,9 +318,10 @@ MathJax = {
 <h3 id="挖矿方式及交互特征"><a href="#挖矿方式及交互特征" class="headerlink" title="挖矿方式及交互特征"></a>挖矿方式及交互特征</h3><p><img src="/2023/09/24/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87/49.png" alt></p>
 <h4 id="终端挖矿"><a href="#终端挖矿" class="headerlink" title="终端挖矿"></a>终端挖矿</h4><p>终端挖矿会通过域名解析，与解析结果建立tcp明文连接、数据传输有特征字符：</p>
 <p>通过特征字符，可以判断处于挖矿任务处于哪个阶段</p>
-<p>第一阶段——客户机终端连接矿池：连接矿池的序号id、jasonrpc（连接矿池的协议）、method（连接矿池的方法）</p>
-<p>第二阶段——接收到信息的矿池： jsonrps、status、{job-id}</p>
-<p>第三阶段——确认：id，jasonrpc，job{job-id}，XMING（交互的协议）</p>
+<p>第一阶段——客户机终端连接矿池：连接矿池的序号id（连接矿池的序号）、jasonrpc（连接矿池的协议）、<strong>method</strong>（连接矿池的方法）</p>
+<p>第二阶段——接收到信息的矿池： jsonrps、status（连接矿池的状态）、job-id（挖矿任务的需要）</p>
+<p>第三阶段——终端向矿池确认挖矿任务：id，jasonrpc，job{job-id}，XMING（交互的协议）</p>
+<p>其中，只有第一、三阶段有id这个特征字符。</p>
 <h4 id="网页挖矿"><a href="#网页挖矿" class="headerlink" title="网页挖矿"></a>网页挖矿</h4><p><img src="/2023/09/24/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87/50.png" alt></p>
 <p>服务器被植入了js代码（清除恶意代码），断开连接后，终端可以不做任何处理（未中招）</p>
 <p>特征在于触发的是url类告警，使用http、https协议，真正中招的是服务器</p>
