@@ -151,7 +151,7 @@ MathJax = {
 <p><a target="_blank" rel="noopener" href="https://172.168.20.232/sensor/home">https://172.168.20.232/sensor/home</a></p>
 <h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>三个重要组件（流量传感器、文件威胁鉴定器、分析平台）</p>
 <p><img src="/2023/09/24/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87/3.png" style="zoom:80%;"></p>
-<h3 id="流量传感器【探针】"><a href="#流量传感器【探针】" class="headerlink" title="流量传感器【探针】"></a>流量传感器【探针】</h3><p>（1）采集与还原流量信息【数据还原配置模块：探针可以还原qq、http、imip信息，不支持微信流量的还原】，还原应用协议信息，记录文件传输行为、邮件行为与数据库行为，检测入侵行为与web攻击行为。</p>
+<h3 id="流量传感器【探针】"><a href="#流量传感器【探针】" class="headerlink" title="流量传感器【探针】"></a>流量传感器【探针】</h3><p>（1）采集与还原流量信息【数据还原配置模块：探针可以还原qq、http、imap、pop3信息，不支持微信流量的还原】，还原应用协议信息，记录文件传输行为、邮件行为与数据库行为，检测入侵行为与web攻击行为。</p>
 <p>（2）探针属于<strong>旁路</strong>部署的<strong>模式</strong>，一般部署在核心交换机旁侧</p>
 <p>（3）探针旁路阻断的三种方式：①URL重定向：http_redirect、②IP阻断：tcp_reset、③DNS重定向：dns_redirect</p>
 <p><img src="/2023/09/24/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87/4.png" alt></p>
